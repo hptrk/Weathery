@@ -24,17 +24,16 @@ ul[role="list"],
 ol[role="list"] {
   list-style: none;
 }
-
-// Set core root defaults
-html:focus-within {
-  scroll-behavior: smooth;
+html {
+  font-size: 62.5%;
 }
 
-// Set core body defaults
+// Set core body defaults, items to center
 body {
   min-height: 100vh;
-  text-rendering: optimizeLegibility;
-  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 // Make images easier to work with

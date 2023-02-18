@@ -1,0 +1,9 @@
+body {
+  background-image: linear-gradient(
+    to left bottom,
+    $color-background-dark,
+    $color-background-light
+  );
+  background-size: cover;
+  background-repeat: no-repeat;
+}

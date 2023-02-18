@@ -1,0 +1,19 @@
+.container {
+  width: 140rem;
+  min-height: 85vh;
+  border-radius: 3rem;
+  padding: 2.5rem;
+  background-color: $color-container-background;
+  box-shadow: $shadow-dark;
+
+  display: grid;
+  grid-template-rows: 2fr 10fr 15fr; //temporary
+  grid-template-columns: [left-start] 3fr [left-end right-start] 1fr [right-end];
+  row-gap: 3rem;
+  column-gap: 2rem;
+
+  * {
+    background-color: gray; //temporary
+    border: 2px solid salmon; //temporary
+  }
+}

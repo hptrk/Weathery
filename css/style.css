@@ -19,13 +19,14 @@ ul[role="list"],
 ol[role="list"] {
   list-style: none; }
 
-html:focus-within {
-  scroll-behavior: smooth; }
+html {
+  font-size: 62.5%; }
 
 body {
   min-height: 100vh;
-  text-rendering: optimizeLegibility;
-  line-height: 1.5; }
+  display: flex;
+  justify-content: center;
+  align-items: center; }
 
 img,
 picture {
@@ -37,3 +38,32 @@ button,
 textarea,
 select {
   font: inherit; }
+
+body {
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  text-rendering: optimizeLegibility;
+  line-height: 1.6;
+  color: #e7e7e8; }
+
+.container {
+  width: 140rem;
+  min-height: 85vh;
+  border-radius: 3rem;
+  padding: 2.5rem;
+  background-color: #101014;
+  box-shadow: 1rem 2rem 4rem rgba(0, 0, 0, 0.3);
+  display: grid;
+  grid-template-rows: 2fr 10fr 15fr;
+  grid-template-columns: [left-start] 3fr [left-end right-start] 1fr [right-end];
+  row-gap: 3rem;
+  column-gap: 2rem; }
+  .container * {
+    background-color: gray;
+    border: 2px solid salmon; }
+
+body {
+  background-image: linear-gradient(to left bottom, #212529, #343a40);
+  background-size: cover;
+  background-repeat: no-repeat; }
