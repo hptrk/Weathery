@@ -47,6 +47,70 @@ body {
   line-height: 1.6;
   color: #e7e7e8; }
 
+.navigation__icon-box {
+  cursor: pointer;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 100%;
+  display: block;
+  background-color: #232325;
+  text-align: center; }
+
+.navigation__icon-list {
+  position: relative;
+  margin-top: 2.4rem; }
+  .navigation__icon-list, .navigation__icon-list::before, .navigation__icon-list::after {
+    display: inline-block;
+    width: 2.5rem;
+    height: 3px;
+    border-radius: 10px;
+    background-color: #e7e7e8;
+    transition: all 0.2s;
+    animation-timing-function: ease-in-out; }
+  .navigation__icon-list::before, .navigation__icon-list::after {
+    content: "";
+    position: absolute;
+    left: 0; }
+  .navigation__icon-list::before {
+    top: -0.8rem; }
+  .navigation__icon-list::after {
+    top: 0.8rem; }
+
+.navigation__icon-box:hover .navigation__icon-list::before {
+  top: -1rem; }
+
+.navigation__icon-box:hover .navigation__icon-list::after {
+  top: 1rem; }
+
+.navigation__icon-info {
+  position: relative;
+  width: 0.6rem;
+  height: 1.8rem;
+  margin-top: 2rem; }
+  .navigation__icon-info, .navigation__icon-info::before {
+    background-color: #e7e7e8;
+    border-radius: 10px;
+    transition: all 0.2s;
+    animation-timing-function: ease-in-out;
+    display: inline-block; }
+  .navigation__icon-info::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -1rem;
+    width: 0.6rem;
+    height: 0.6rem; }
+
+.navigation__icon-box:hover .navigation__icon-info::before {
+  top: -1.4rem; }
+
+.navigation__icon-box:hover .navigation__icon-info {
+  margin-top: 2.2rem; }
+
+.navigation__location-icon {
+  height: 2.4rem;
+  width: 2.4rem; }
+
 .container {
   width: 140rem;
   min-height: 85vh;
@@ -59,9 +123,16 @@ body {
   grid-template-columns: [left-start] 3fr [left-end right-start] 1fr [right-end];
   row-gap: 3rem;
   column-gap: 2rem; }
-  .container * {
-    background-color: gray;
-    border: 2px solid salmon; }
+  .container > section,
+  .container > header {
+    background-color: gray; }
+
+.navigation {
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 3rem; }
 
 body {
   background-image: linear-gradient(to left bottom, #212529, #343a40);

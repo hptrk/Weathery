@@ -1,0 +1,80 @@
+.navigation {
+  &__icon {
+    //BOX IN THE BACKGROUND
+    &-box {
+      cursor: pointer;
+      width: 5rem;
+      height: 5rem;
+      border-radius: 100%;
+      display: block;
+      background-color: $color-grey-dark; //TEMP
+      text-align: center;
+    }
+    //LIST ICON STYLE
+    &-list {
+      position: relative;
+      margin-top: 2.4rem;
+      &,
+      &::before,
+      &::after {
+        display: inline-block;
+        width: 2.5rem;
+        height: 3px;
+        border-radius: 10px;
+        background-color: $color-grey-light; //TEMP
+        transition: all 0.2s;
+        animation-timing-function: ease-in-out;
+      }
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+      }
+      &::before {
+        top: -0.8rem;
+      }
+      &::after {
+        top: 0.8rem;
+      }
+    }
+    //LIST ICON FUNCTIONALITY
+    &-box:hover &-list::before {
+      top: -1rem;
+    }
+    &-box:hover &-list::after {
+      top: 1rem;
+    }
+    //INFO ICON STYLE
+    &-info {
+      position: relative;
+      width: 0.6rem;
+      height: 1.8rem;
+      margin-top: 2rem;
+      &,
+      &::before {
+        background-color: $color-grey-light; //TEMP
+        border-radius: 10px;
+        transition: all 0.2s;
+        animation-timing-function: ease-in-out;
+        display: inline-block;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: -1rem;
+        width: 0.6rem;
+        height: 0.6rem;
+      }
+    }
+    //INFO ICON FUNCTIONALITY
+    &-box:hover &-info::before {
+      top: -1.4rem;
+    }
+    &-box:hover &-info {
+      margin-top: 2.2rem;
+    }
+  }
+}

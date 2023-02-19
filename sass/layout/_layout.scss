@@ -12,8 +12,15 @@
   row-gap: 3rem;
   column-gap: 2rem;
 
-  * {
+  & > section,
+  & > header {
     background-color: gray; //temporary
-    border: 2px solid salmon; //temporary
   }
+}
+.navigation {
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 3rem; //TEMPORARY
 }
