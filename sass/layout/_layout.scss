@@ -14,7 +14,7 @@
 
   & > section,
   & > header {
-    background-color: gray; //temporary
+    //background-color: gray; //temporary
   }
 }
 .navigation {
@@ -22,5 +22,5 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 3rem; //TEMPORARY
+  gap: 2.5rem; //TEMPORARY
 }

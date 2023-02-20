@@ -107,9 +107,51 @@ body {
 .navigation__icon-box:hover .navigation__icon-info {
   margin-top: 2.2rem; }
 
-.navigation__location-icon {
-  height: 2.4rem;
-  width: 2.4rem; }
+.navigation__location {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+  margin-right: auto;
+  gap: 0.8rem; }
+  .navigation__location-icon {
+    height: 2.4rem;
+    width: 2.4rem; }
+  .navigation__location-text {
+    font-size: 2rem; }
+    .navigation__location-text--city {
+      font-weight: bold; }
+
+.navigation__searchbar {
+  position: relative;
+  width: 55rem;
+  height: 5rem;
+  padding: 2.5rem;
+  border-radius: 100px;
+  background-color: #1e1e1e;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  transition: all 0.2s; }
+  .navigation__searchbar:focus-within {
+    transform: scale(1.02); }
+  .navigation__searchbar:focus-within .navigation__searchbar-icon {
+    transform: scale(1.2); }
+  .navigation__searchbar-icon {
+    transition: all 0.2s;
+    height: 2.4rem;
+    width: 2.4rem; }
+  .navigation__searchbar-input {
+    width: 100%;
+    background: none;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: 1.6rem; }
+    .navigation__searchbar-input:focus {
+      outline: none; }
+    .navigation__searchbar-input::placeholder {
+      outline: none;
+      color: #888; }
 
 .container {
   width: 140rem;
@@ -123,16 +165,13 @@ body {
   grid-template-columns: [left-start] 3fr [left-end right-start] 1fr [right-end];
   row-gap: 3rem;
   column-gap: 2rem; }
-  .container > section,
-  .container > header {
-    background-color: gray; }
 
 .navigation {
   height: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 3rem; }
+  gap: 2.5rem; }
 
 body {
   background-image: linear-gradient(to left bottom, #212529, #343a40);

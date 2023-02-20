@@ -1,6 +1,7 @@
 //////////////////////
 // COLORS //
-$color-grey-light: #e7e7e8; //font, TEMPORARY
+$color-grey-light: #e7e7e8; //font
+$color-grey-light-2: #888; //font (searchbar placeholder color)
 
 $color-background-dark: #212529; //website background
 $color-background-light: #343a40;
@@ -8,6 +9,7 @@ $color-background-light: #343a40;
 $color-container-background: #101014; //app background
 
 $color-grey-dark: #232325; //button background
+$color-grey-dark-2: #1e1e1e; //search bar background
 
 //////////////////////
 // FONTS //
@@ -15,4 +17,4 @@ $font-primary: "Mulish", sans-serif;
 
 //////////////////////
 // SHADOWS //
-$shadow-dark: 1rem 2rem 4rem rgba(0, 0, 0, 0.3);
+$shadow-dark: 1rem 2rem 4rem rgba(0, 0, 0, 0.3); //app shadow

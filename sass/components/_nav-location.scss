@@ -1,6 +1,19 @@
 .navigation {
-  &__location-icon {
-    height: 2.4rem; //temporary
-    width: 2.4rem; //temporary
+  &__location {
+    display: flex;
+    align-items: center;
+    margin-left: 0.5rem;
+    margin-right: auto;
+    gap: 0.8rem;
+    &-icon {
+      height: 2.4rem; //temporary
+      width: 2.4rem; //temporary
+    }
+    &-text {
+      font-size: 2rem;
+      &--city {
+        font-weight: bold;
+      }
+    }
   }
 }
