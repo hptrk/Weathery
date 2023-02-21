@@ -3,8 +3,8 @@
     //BOX IN THE BACKGROUND
     &-box {
       cursor: pointer;
-      width: 5rem;
-      height: 5rem;
+      width: $width-topbar-buttons;
+      height: $height-topbar-buttons;
       border-radius: 100%;
       display: block;
       background-color: $color-grey-dark; //TEMP
