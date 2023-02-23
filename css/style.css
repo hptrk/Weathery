@@ -157,17 +157,46 @@ body {
   display: none; }
 
 .settingsbox__switcher-checkbox + label {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: red;
+  cursor: pointer;
+  background-color: #1a191c;
+  outline: 2px solid #242426;
   height: 5rem;
   width: 10rem;
-  padding: 0.4rem;
+  padding: 0.8rem;
   border-radius: 100px; }
   .settingsbox__switcher-checkbox + label > svg {
     height: 3.3rem;
-    width: 3.3rem; }
+    width: 3.3rem;
+    z-index: 1000; }
+  .settingsbox__switcher-checkbox + label::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    height: 5rem;
+    width: 5rem;
+    border-radius: 100%;
+    background-color: #bbd8ec;
+    outline: 2px solid #e7e7e8;
+    transition: all 0.2s; }
+
+.settingsbox__switcher-checkbox:checked + label::before {
+  transform: translateX(-100%); }
+
+.settingsbox__switcher-checkbox:checked + label > .sun {
+  transition-property: stroke, fill;
+  transition-delay: 0.1s;
+  fill: black;
+  stroke: black; }
+
+.settingsbox__switcher-checkbox:not(:checked) + label > .moon {
+  transition-property: stroke, fill;
+  transition-delay: 0.1s;
+  fill: black;
+  stroke: black; }
 
 .container {
   width: 140rem;

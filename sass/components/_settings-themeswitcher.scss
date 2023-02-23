@@ -4,19 +4,51 @@
       display: none;
     }
     &-checkbox + label {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background-color: red;
+      cursor: pointer;
+      background-color: $color-grey-dark-3;
+      outline: 2px solid $color-grey-lines;
       height: 5rem;
       width: 10rem;
-      padding: 0.4rem;
+      padding: 0.8rem;
       border-radius: 100px;
 
       & > svg {
         height: 3.3rem;
         width: 3.3rem;
+        z-index: 1000;
       }
+
+      &::before {
+        content: "";
+        position: absolute;
+        right: 0;
+        height: 5rem;
+        width: 5rem;
+        border-radius: 100%;
+        background-color: $color-lightblue-main;
+        outline: 2px solid $color-grey-light;
+        transition: all 0.2s;
+      }
+    }
+    &-checkbox:checked + label::before {
+      //toggle button background
+      transform: translateX(-100%); //move left with own size
+    }
+    &-checkbox:checked + label > .sun {
+      transition-property: stroke, fill;
+      transition-delay: 0.1s;
+      fill: black;
+      stroke: black;
+    }
+    &-checkbox:not(:checked) + label > .moon {
+      transition-property: stroke, fill;
+      transition-delay: 0.1s;
+      fill: black;
+      stroke: black;
     }
   }
 }
