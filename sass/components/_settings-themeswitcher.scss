@@ -1,20 +1,23 @@
 .settingsbox {
   &__switcher {
+    //invisible checkbox for toggle
     &-checkbox {
       display: none;
     }
+    //background of the whole element
     &-checkbox + label {
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       cursor: pointer;
-      background-color: $color-grey-dark-3;
-      outline: 2px solid $color-grey-lines;
       height: 5rem;
       width: 10rem;
       padding: 0.8rem;
       border-radius: 100px;
+      background-color: $color-grey-dark-3;
+      outline: 2px solid $color-grey-lines;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
       & > svg {
         height: 3.3rem;
@@ -22,29 +25,30 @@
         z-index: 1000;
       }
 
+      //active setting background (round)
       &::before {
         content: "";
         position: absolute;
-        right: 0;
+        right: 0; //because the default is dark mode
         height: 5rem;
         width: 5rem;
         border-radius: 100%;
         background-color: $color-lightblue-main;
         outline: 2px solid $color-grey-light;
         transition: all 0.2s;
+        transition-timing-function: ease-out;
       }
     }
     &-checkbox:checked + label::before {
-      //toggle button background
       transform: translateX(-100%); //move left with own size
     }
-    &-checkbox:checked + label > .sun {
+    &-checkbox:checked + label > .sun { //sun icon
       transition-property: stroke, fill;
       transition-delay: 0.1s;
       fill: black;
       stroke: black;
     }
-    &-checkbox:not(:checked) + label > .moon {
+    &-checkbox:not(:checked) + label > .moon { //moon icon
       transition-property: stroke, fill;
       transition-delay: 0.1s;
       fill: black;

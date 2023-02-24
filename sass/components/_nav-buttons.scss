@@ -29,7 +29,7 @@
         border-radius: 100px;
         background-color: $color-grey-light;
         transition: all 0.2s;
-        animation-timing-function: ease-in-out;
+        transition-timing-function: ease-out;
       }
       &::before,
       &::after {
@@ -44,7 +44,7 @@
         top: 0.8rem;
       }
     }
-    //LIST ICON FUNCTIONALITY
+    //LIST ICON  HOVER FUNCTIONALITY
     &-box:hover &-list::before {
       transform: translateY(-0.2rem);
     }
@@ -59,11 +59,11 @@
       margin-top: 2rem;
       &,
       &::before {
-        background-color: $color-grey-light; //TEMP
+        display: inline-block;
+        background-color: $color-grey-light;
         border-radius: 10px;
         transition: all 0.2s;
-        animation-timing-function: ease-in-out;
-        display: inline-block;
+        transition-timing-function: ease-out;
       }
 
       &::before {
@@ -75,7 +75,7 @@
         height: 4px;
       }
     }
-    //INFO ICON FUNCTIONALITY
+    //INFO ICON HOVER FUNCTIONALITY
     &-box:hover &-info::before {
       transform: translateY(-0.4rem);
     }

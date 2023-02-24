@@ -1,17 +1,22 @@
 .navigation {
+  //element container
   &__location {
     display: flex;
     align-items: center;
     margin-right: auto;
     gap: 0.8rem;
+    //pin icon
     &-icon {
-      height: 2.4rem; //temporary
-      width: 2.4rem; //temporary
+      height: 2.5rem;
+      width: 2.5rem;
     }
+    //location text
     &-text {
-      font-size: 2rem;
+      font-size: 1.8rem;
+      font-weight: 300;
       &--city {
-        font-weight: bold;
+        font-size: 2rem;
+        font-weight: 700;
       }
     }
   }

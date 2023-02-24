@@ -1,15 +1,17 @@
 .navigation {
   &__searchbar {
     position: relative;
-    width: 55rem;
+    width: 55%;
     height: 5rem;
-    padding: 2.5rem;
+    padding: 1.25rem 2.5rem;
     border-radius: 100px;
     background-color: $color-grey-dark-2;
+
     display: flex;
     align-items: center;
     gap: 1.5rem;
     transition: all 0.2s;
+    transition-timing-function: ease-out;
 
     &:focus-within {
       transform: scale(1.02);
@@ -20,6 +22,7 @@
 
     &-icon {
       transition: all 0.2s;
+      transition-timing-function: ease-out;
       height: 2.4rem;
       width: 2.4rem;
     }
@@ -28,15 +31,11 @@
       background: none;
       border: none;
       color: inherit;
-      font-family: inherit;
-      font-size: 1.6rem;
 
       &:focus {
         outline: none;
       }
-
       &::placeholder {
-        outline: none;
         color: $color-grey-light-2;
       }
     }

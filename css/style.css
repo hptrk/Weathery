@@ -62,15 +62,15 @@ body {
 
 .navigation__icon-list {
   position: relative;
-  margin-top: 2.4rem; }
+  margin-top: 50%; }
   .navigation__icon-list, .navigation__icon-list::before, .navigation__icon-list::after {
     display: inline-block;
     width: 2.5rem;
-    height: 3px;
-    border-radius: 10px;
+    height: 2px;
+    border-radius: 100px;
     background-color: #e7e7e8;
     transition: all 0.2s;
-    animation-timing-function: ease-in-out; }
+    transition-timing-function: ease-out; }
   .navigation__icon-list::before, .navigation__icon-list::after {
     content: "";
     position: absolute;
@@ -81,32 +81,32 @@ body {
     top: 0.8rem; }
 
 .navigation__icon-box:hover .navigation__icon-list::before {
-  top: -1rem; }
+  transform: translateY(-0.2rem); }
 
 .navigation__icon-box:hover .navigation__icon-list::after {
-  top: 1rem; }
+  transform: translateY(0.2rem); }
 
 .navigation__icon-info {
   position: relative;
-  width: 0.6rem;
+  width: 4px;
   height: 1.8rem;
   margin-top: 2rem; }
   .navigation__icon-info, .navigation__icon-info::before {
+    display: inline-block;
     background-color: #e7e7e8;
     border-radius: 10px;
     transition: all 0.2s;
-    animation-timing-function: ease-in-out;
-    display: inline-block; }
+    transition-timing-function: ease-out; }
   .navigation__icon-info::before {
     content: "";
     position: absolute;
     left: 0;
-    top: -1rem;
-    width: 0.6rem;
-    height: 0.6rem; }
+    top: -0.8rem;
+    width: 4px;
+    height: 4px; }
 
 .navigation__icon-box:hover .navigation__icon-info::before {
-  top: -1.4rem; }
+  transform: translateY(-0.4rem); }
 
 .navigation__icon-box:hover .navigation__icon-info {
   margin-top: 2.2rem; }
@@ -117,54 +117,52 @@ body {
   margin-right: auto;
   gap: 0.8rem; }
   .navigation__location-icon {
-    height: 2.4rem;
-    width: 2.4rem; }
+    height: 2.5rem;
+    width: 2.5rem; }
   .navigation__location-text {
-    font-size: 2rem; }
+    font-size: 1.8rem;
+    font-weight: 300; }
     .navigation__location-text--city {
-      font-weight: bold; }
+      font-size: 2rem;
+      font-weight: 700; }
 
 .navigation__searchbar {
   position: relative;
-  width: 55rem;
+  width: 55%;
   height: 5rem;
-  padding: 2.5rem;
+  padding: 1.25rem 2.5rem;
   border-radius: 100px;
   background-color: #1e1e1e;
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  transition: all 0.2s; }
+  transition: all 0.2s;
+  transition-timing-function: ease-out; }
   .navigation__searchbar:focus-within {
     transform: scale(1.02); }
   .navigation__searchbar:focus-within .navigation__searchbar-icon {
     transform: scale(1.1); }
   .navigation__searchbar-icon {
     transition: all 0.2s;
+    transition-timing-function: ease-out;
     height: 2.4rem;
     width: 2.4rem; }
   .navigation__searchbar-input {
     width: 100%;
     background: none;
     border: none;
-    color: inherit;
-    font-family: inherit;
-    font-size: 1.6rem; }
+    color: inherit; }
     .navigation__searchbar-input:focus {
       outline: none; }
     .navigation__searchbar-input::placeholder {
-      outline: none;
       color: #888; }
 
 .settingsbox__profilepic {
-  border-radius: 100%;
-  background-color: #232325;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer; }
   .settingsbox__profilepic-icon {
-    display: inline;
     fill: #bbd8ec;
     width: 5rem;
     height: 5rem;
@@ -175,16 +173,16 @@ body {
 
 .settingsbox__switcher-checkbox + label {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   cursor: pointer;
-  background-color: #1a191c;
-  outline: 2px solid #242426;
   height: 5rem;
   width: 10rem;
   padding: 0.8rem;
-  border-radius: 100px; }
+  border-radius: 100px;
+  background-color: #1a191c;
+  outline: 2px solid #242426;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
   .settingsbox__switcher-checkbox + label > svg {
     height: 3.3rem;
     width: 3.3rem;
@@ -198,7 +196,8 @@ body {
     border-radius: 100%;
     background-color: #bbd8ec;
     outline: 2px solid #e7e7e8;
-    transition: all 0.2s; }
+    transition: all 0.2s;
+    transition-timing-function: ease-out; }
 
 .settingsbox__switcher-checkbox:checked + label::before {
   transform: translateX(-100%); }

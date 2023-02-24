@@ -1,14 +1,14 @@
 //////////////////////
 // COLORS //
-$color-grey-light: #e7e7e8; //font
+$color-grey-light: #e7e7e8; //font + css custom icons + svg icons
 $color-grey-light-2: #888; //font (searchbar placeholder color)
 
-$color-background-dark: #212529; //website background
-$color-background-light: #343a40;
+$color-background-dark: #212529; //website background gradient part 1
+$color-background-light: #343a40; //website background gradient part 2
 
 $color-container-background: #101014; //app background
 
-$color-grey-dark: #232325; //button background
+$color-grey-dark: #232325; //header button background
 $color-grey-dark-2: #1e1e1e; //search bar background
 $color-grey-dark-3: #1a191c; //theme switcher background
 $color-grey-lines: #242426; //color of lines (theme switcher outline)
@@ -25,5 +25,5 @@ $shadow-dark: 1rem 2rem 4rem rgba(0, 0, 0, 0.3); //app shadow
 
 //////////////////////
 // COMPONENTS //
-$width-topbar-buttons: 5rem;
-$height-topbar-buttons: 5rem;
+$width-header-buttons: 5rem;
+$height-header-buttons: 5rem;
