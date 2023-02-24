@@ -1,31 +1,33 @@
 .navigation {
   &__icon {
     &-container {
+      // container of the custom icons
       display: flex;
       gap: 2.5rem;
       margin-right: 3rem;
     }
-    //BOX IN THE BACKGROUND
     &-box {
+      // round background of the icons
       cursor: pointer;
-      width: $width-topbar-buttons;
-      height: $height-topbar-buttons;
+      width: $width-header-buttons;
+      height: $height-header-buttons;
       border-radius: 100%;
-      background-color: $color-grey-dark; //TEMP
+      background-color: $color-grey-dark;
       text-align: center;
     }
     //LIST ICON STYLE
     &-list {
       position: relative;
-      margin-top: 2.4rem;
+      margin-top: 50%;
+
       &,
       &::before,
       &::after {
         display: inline-block;
-        width: 2.5rem;
-        height: 3px;
-        border-radius: 10px;
-        background-color: $color-grey-light; //TEMP
+        width: 2.5rem; //currently half of the background width
+        height: 2px;
+        border-radius: 100px;
+        background-color: $color-grey-light;
         transition: all 0.2s;
         animation-timing-function: ease-in-out;
       }
@@ -44,15 +46,15 @@
     }
     //LIST ICON FUNCTIONALITY
     &-box:hover &-list::before {
-      top: -1rem;
+      transform: translateY(-0.2rem);
     }
     &-box:hover &-list::after {
-      top: 1rem;
+      transform: translateY(0.2rem);
     }
     //INFO ICON STYLE
     &-info {
       position: relative;
-      width: 0.6rem;
+      width: 4px;
       height: 1.8rem;
       margin-top: 2rem;
       &,
@@ -68,14 +70,14 @@
         content: "";
         position: absolute;
         left: 0;
-        top: -1rem;
-        width: 0.6rem;
-        height: 0.6rem;
+        top: -0.8rem;
+        width: 4px;
+        height: 4px;
       }
     }
     //INFO ICON FUNCTIONALITY
     &-box:hover &-info::before {
-      top: -1.4rem;
+      transform: translateY(-0.4rem);
     }
     &-box:hover &-info {
       margin-top: 2.2rem;
