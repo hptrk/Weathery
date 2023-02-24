@@ -1,0 +1,19 @@
+.settingsbox {
+  &__profilepic {
+    border-radius: 100%;
+    background-color: $color-grey-dark;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    &-icon {
+      display: inline;
+      fill: $color-lightblue-main;
+      // width: 6.154rem;
+      // height: 6.154rem;
+      width: 5rem;
+      height: 5rem;
+      transform: scale(1.2308);
+    }
+  }
+}

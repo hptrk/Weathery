@@ -153,6 +153,20 @@ body {
       outline: none;
       color: #888; }
 
+.settingsbox__profilepic {
+  border-radius: 100%;
+  background-color: #232325;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer; }
+  .settingsbox__profilepic-icon {
+    display: inline;
+    fill: #bbd8ec;
+    width: 5rem;
+    height: 5rem;
+    transform: scale(1.2308); }
+
 .settingsbox__switcher-checkbox {
   display: none; }
 
@@ -217,6 +231,17 @@ body {
   justify-content: flex-start;
   align-items: center;
   gap: 2.5rem; }
+
+.settings {
+  display: flex;
+  align-items: center; }
+
+.settingsbox {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 3rem; }
 
 body {
   background-image: linear-gradient(to left bottom, #212529, #343a40);
