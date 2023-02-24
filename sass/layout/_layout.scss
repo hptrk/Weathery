@@ -24,3 +24,14 @@
   align-items: center;
   gap: 2.5rem; //TEMPORARY
 }
+.settings {
+  display: flex;
+  align-items: center;
+}
+.settingsbox {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 3rem;
+}
