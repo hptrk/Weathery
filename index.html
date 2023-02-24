@@ -19,6 +19,7 @@
     <div class="container">
       <header class="header">
         <nav class="navigation">
+          <!-- custom made icons in css (list, info) -->
           <div class="navigation__icon-container">
             <div class="navigation__icon-box">
               <a class="navigation__icon-list"></a>
@@ -27,7 +28,9 @@
               <a class="navigation__icon-info"></a>
             </div>
           </div>
+          <!-- display of the current city, country -->
           <div class="navigation__location">
+            <!-- pin icon-->
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -40,12 +43,15 @@
                 clip-rule="evenodd"
               />
             </svg>
+
             <span class="navigation__location-text"
-              ><span class="navigation__location-text--city">Seattle</span>,
+              ><strong class="navigation__location-text--city">Seattle</strong>,
               Australia</span
             >
           </div>
+          <!-- search bar -->
           <form class="navigation__searchbar">
+            <!-- search icon -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -72,13 +78,17 @@
 
       <section class="settings">
         <div class="settingsbox">
+          <!-- theme switcher -->
           <div class="settingsbox__switcher">
+            <!-- invisible checkbox for a technique -->
             <input
               type="checkbox"
               id="themeSwitcher"
               class="settingsbox__switcher-checkbox"
             />
+            <!-- the actual visible switcher element -->
             <label for="themeSwitcher">
+              <!-- sun icon -->
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -93,6 +103,7 @@
                   d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
                 />
               </svg>
+              <!-- moon icon -->
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -110,6 +121,7 @@
             </label>
           </div>
 
+          <!-- profile picture with an icon -->
           <a class="settingsbox__profilepic">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -126,6 +138,7 @@
           </a>
         </div>
       </section>
+
       <section class="forecast">this is the forecast</section>
       <section class="diagram">this is the diagram</section>
       <section class="map">this is the map</section>
