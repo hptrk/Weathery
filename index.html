@@ -16,7 +16,7 @@
     <title>Weathery</title>
   </head>
   <body>
-    <div class="container">
+    <main class="container">
       <header class="header">
         <nav class="navigation">
           <!-- custom made icons in css (list, info) -->
@@ -139,10 +139,50 @@
         </div>
       </section>
 
-      <section class="forecast">this is the forecast</section>
+      <section class="forecast">
+        <header class="forecast__header">
+          <ul class="forecast__header-menu" role="list">
+            <li class="forecast__header-menu--item"><span>Today</span></li>
+            <li class="forecast__header-menu--item"><span>Tomorrow</span></li>
+            <li class="forecast__header-menu--item">
+              <span class="forecast__active-item">Next 7 days</span>
+            </li>
+          </ul>
+
+          <div class="forecast__header-switcher">
+            <input
+              type="checkbox"
+              id="forecastSwitcher"
+              class="forecast__header-switcher--checkbox"
+            />
+            <label for="forecastSwitcher">
+              <span class="forecast__header-switcher--left">Forecast</span>
+              <span class="forecast__header-switcher--right">Air quality</span>
+            </label>
+          </div>
+        </header>
+
+        <div class="forecast__container">
+          <figure class="forecast__container-card forecast__active-card">
+            <div class="forecast__container-card--header">
+              <span>Monday</span><span>11:42 PM</span>
+            </div>
+            <div class="forecast__container-card--main">
+              <span>16&#176;</span>
+            </div>
+          </figure>
+          <figure class="forecast__container-card">Tue</figure>
+          <figure class="forecast__container-card">Wed</figure>
+          <figure class="forecast__container-card">Thu</figure>
+          <figure class="forecast__container-card">Fri</figure>
+          <figure class="forecast__container-card">Sat</figure>
+          <figure class="forecast__container-card">Sun</figure>
+        </div>
+      </section>
+
       <section class="diagram">this is the diagram</section>
       <section class="map">this is the map</section>
       <section class="other">this is the other</section>
-    </div>
+    </main>
   </body>
 </html>
