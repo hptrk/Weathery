@@ -1,7 +1,7 @@
 //////////////////////
 // COLORS //
 $color-grey-light: #e7e7e8; //font + css custom icons + svg icons
-$color-grey-light-2: #888; //font (searchbar placeholder color)
+$color-grey-light-2: #888; //font (searchbar placeholder color + non-active forecast switcher color)
 $color-grey-light-3: #6d6d71; //font (e.g. forecast menu when not active)
 
 $color-background-dark: #212529; //website background gradient part 1
@@ -10,9 +10,9 @@ $color-background-light: #343a40; //website background gradient part 2
 $color-container-background: #101014; //app background
 
 $color-grey-dark: #232325; //header button background
-$color-grey-dark-2: #1e1e1e; //search bar background
+$color-grey-dark-2: #1e1e1e; //search bar + forecast switcher background
 $color-grey-dark-3: #1a191c; //theme switcher background
-$color-grey-lines: #292929; //color of lines (theme switcher outline)
+$color-grey-lines: #242426; //color of lines (theme switcher outline)
 
 $color-lightblue-main: #bbd8ec; //main color
 

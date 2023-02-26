@@ -1,0 +1,61 @@
+.forecast {
+  &__header {
+    &-switcher {
+      //invisible checkbox for toggle
+      &--checkbox {
+        display: none;
+        & + label {
+          position: relative;
+          cursor: pointer;
+          background-color: $color-grey-dark-2;
+          border-radius: 100px;
+          height: 3.6rem;
+          width: 20rem;
+          color: $color-grey-light-2;
+
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          align-items: center;
+          justify-items: center;
+
+          font-size: 1.2rem;
+          font-weight: 700;
+
+          &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            height: 100%;
+            width: 50%;
+            border-radius: 100px;
+            background-color: $color-lightblue-main;
+            transition: all 0.4s;
+            transition-timing-function: ease-out;
+          }
+          & > :first-child,
+          & > :last-child {
+            z-index: 1000;
+            transition-property: color;
+            transition-delay: 0.2s;
+          }
+        }
+
+        &:checked + label::before {
+          transform: translateX(100%);
+        }
+        &:not(:checked) + label > :first-child {
+          color: black;
+        }
+        &:not(:checked) + label > :last-child {
+          color: $color-grey-light-2;
+        }
+        &:checked + label > :last-child {
+          color: black;
+        }
+        &:checked + label > :first-child {
+          color: $color-grey-light-2;
+        }
+      }
+    }
+  }
+}
