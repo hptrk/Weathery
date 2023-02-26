@@ -17,7 +17,9 @@ dd {
 
 ul[role="list"],
 ol[role="list"] {
-  list-style: none; }
+  list-style: none;
+  margin: 0;
+  padding: 0; }
 
 html {
   font-size: 62.5%; }
@@ -46,6 +48,10 @@ body {
   text-rendering: optimizeLegibility;
   line-height: 1.6;
   color: #e7e7e8; }
+
+.forecast__active-item {
+  color: #e7e7e8;
+  cursor: default !important; }
 
 .navigation__icon-container {
   display: flex;
@@ -179,7 +185,7 @@ body {
   padding: 0.8rem;
   border-radius: 100px;
   background-color: #1a191c;
-  outline: 2px solid #242426;
+  outline: 2px solid #292929;
   display: flex;
   align-items: center;
   justify-content: space-between; }
@@ -214,6 +220,19 @@ body {
   fill: black;
   stroke: black; }
 
+.forecast__header-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3.2rem;
+  font-size: 2rem;
+  color: #6d6d71; }
+  .forecast__header-menu--item {
+    cursor: pointer;
+    transition: all 0.2s; }
+    .forecast__header-menu--item:not(.forecast__active-item):hover {
+      transform: scaleX(1.05); }
+
 .container {
   width: 140rem;
   min-height: 85vh;
@@ -242,6 +261,14 @@ body {
   justify-content: flex-end;
   align-items: center;
   gap: 3rem; }
+
+.forecast {
+  display: grid;
+  grid-template-rows: repeat(2, min-content); }
+  .forecast__header, .forecast__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
 
 body {
   background-image: linear-gradient(to left bottom, #212529, #343a40);

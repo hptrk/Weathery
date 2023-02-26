@@ -23,6 +23,8 @@ dd {
 ul[role="list"],
 ol[role="list"] {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 html {
   font-size: 62.5%; //so 1rem equals to 10 px, for easier calculations

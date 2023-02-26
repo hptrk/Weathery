@@ -33,3 +33,13 @@
   align-items: center;
   gap: 3rem;
 }
+.forecast {
+  display: grid;
+  grid-template-rows: repeat(2, min-content);
+  &__header,
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

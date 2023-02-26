@@ -1,0 +1,20 @@
+.forecast {
+  &__header {
+    &-menu {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 3.2rem;
+
+      font-size: 2rem;
+      color: $color-grey-light-3;
+      &--item {
+        cursor: pointer;
+        transition: all 0.2s;
+        &:not(.forecast__active-item):hover {
+          transform: scaleX(1.05);
+        }
+      }
+    }
+  }
+}
