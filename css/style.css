@@ -220,6 +220,25 @@ body {
   fill: black;
   stroke: black; }
 
+.forecast__container-card {
+  border-radius: 3.2rem;
+  height: 21.9rem;
+  background-color: #1b1a1d;
+  overflow: hidden; }
+  .forecast__container-card--header {
+    padding: 1rem 2rem;
+    font-size: 1.8rem;
+    color: #e7e7e8;
+    font-weight: 600; }
+
+.forecast__active-card {
+  background-color: #bbd8ec; }
+  .forecast__active-card > .forecast__container-card--header {
+    background-color: #adcade;
+    color: black;
+    display: flex;
+    justify-content: space-between; }
+
 .forecast__header-menu {
   display: flex;
   justify-content: space-between;
@@ -283,7 +302,7 @@ body {
   background-color: #101014;
   box-shadow: 1rem 2rem 4rem rgba(0, 0, 0, 0.3);
   display: grid;
-  grid-template-rows: 2fr 10fr 15fr;
+  grid-template-rows: 2fr 11fr 14fr;
   grid-template-columns: [left-start] 3fr [left-end right-start] 1fr [right-end];
   row-gap: 3rem;
   column-gap: 2rem; }
@@ -306,11 +325,16 @@ body {
 
 .forecast {
   display: grid;
-  grid-template-rows: repeat(2, min-content); }
-  .forecast__header, .forecast__container {
+  grid-template-rows: repeat(2, min-content);
+  row-gap: 2rem; }
+  .forecast__header {
     display: flex;
     align-items: center;
     justify-content: space-between; }
+  .forecast__container {
+    display: grid;
+    grid-template-columns: minmax(24rem, 2.4fr) repeat(6, minmax(10rem, 1fr));
+    gap: 2rem; }
 
 body {
   background-image: linear-gradient(to left bottom, #212529, #343a40);

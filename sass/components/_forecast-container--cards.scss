@@ -1,0 +1,31 @@
+.forecast {
+  &__container {
+    &-card {
+      border-radius: 3.2rem;
+      height: 21.9rem;
+      background-color: $color-grey-dark-4;
+      overflow: hidden;
+      &--header {
+        padding: 1rem 2rem;
+        font-size: 1.8rem;
+        color: $color-grey-light;
+        font-weight: 600;
+      }
+    }
+  }
+  &__active-card {
+    background-color: $color-lightblue-main;
+
+    & > .forecast__container-card {
+      &--header {
+        background-color: $color-lightblue-main-shade;
+        color: black;
+
+        display: flex;
+        justify-content: space-between;
+      }
+      &--main {
+      }
+    }
+  }
+}
