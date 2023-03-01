@@ -7,7 +7,7 @@
   box-shadow: $shadow-dark;
 
   display: grid;
-  grid-template-rows: 2fr 10fr 15fr; //temporary
+  grid-template-rows: 2fr 11fr 14fr; //temporary
   grid-template-columns: [left-start] 3fr [left-end right-start] 1fr [right-end];
   row-gap: 3rem;
   column-gap: 2rem;
@@ -36,10 +36,15 @@
 .forecast {
   display: grid;
   grid-template-rows: repeat(2, min-content);
-  &__header,
-  &__container {
+  row-gap: 2rem; //TEMPORARY
+  &__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+  &__container {
+    display: grid;
+    grid-template-columns: minmax(24rem, 2.4fr) repeat(6, minmax(10rem, 1fr)); //ONLY WORKS WITH MONDAY
+    gap: 2rem;
   }
 }

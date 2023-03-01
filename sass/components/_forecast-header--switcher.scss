@@ -4,6 +4,8 @@
       //invisible checkbox for toggle
       &--checkbox {
         display: none;
+
+        //background of the whole element
         & + label {
           position: relative;
           cursor: pointer;
@@ -14,45 +16,53 @@
           color: $color-grey-light-2;
 
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr 1fr; //equal width for the options
           align-items: center;
           justify-items: center;
 
           font-size: 1.2rem;
           font-weight: 700;
 
+          //styling of the sliding part
           &::before {
             content: "";
             position: absolute;
             left: 0;
             height: 100%;
-            width: 50%;
+            width: 50%; //half of the element, so it ends in the middle
             border-radius: 100px;
             background-color: $color-lightblue-main;
             transition: all 0.4s;
             transition-timing-function: ease-out;
           }
+          //the real text on the elements
           & > :first-child,
           & > :last-child {
-            z-index: 1000;
+            z-index: 1000; //place on before element
             transition-property: color;
-            transition-delay: 0.2s;
+            transition-delay: 0.2s; //needs a delay for smoother animation
           }
         }
-
+        //FUNCTIONALITY
         &:checked + label::before {
-          transform: translateX(100%);
+          transform: translateX(100%); //moving the label with its own width
         }
+        //// IF THE SWITCH IS ON THE LEFT
         &:not(:checked) + label > :first-child {
+          //left text
           color: black;
         }
         &:not(:checked) + label > :last-child {
+          //right text
           color: $color-grey-light-2;
         }
+        //// IF THE SWITCH IS ON THE RIGHT
         &:checked + label > :last-child {
+          //right text
           color: black;
         }
         &:checked + label > :first-child {
+          //left text
           color: $color-grey-light-2;
         }
       }

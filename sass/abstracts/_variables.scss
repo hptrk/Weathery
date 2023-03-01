@@ -1,8 +1,11 @@
 //////////////////////
 // COLORS //
+//FONT COLORS
 $color-grey-light: #e7e7e8; //font + css custom icons + svg icons
 $color-grey-light-2: #888; //font (searchbar placeholder color + non-active forecast switcher color)
 $color-grey-light-3: #6d6d71; //font (e.g. forecast menu when not active)
+$color-blueish-grey: #4b565e; //forecast active card stat font
+$color-blueish-black: #131618; //forecast strong data font
 
 $color-background-dark: #212529; //website background gradient part 1
 $color-background-light: #343a40; //website background gradient part 2
@@ -12,13 +15,16 @@ $color-container-background: #101014; //app background
 $color-grey-dark: #232325; //header button background
 $color-grey-dark-2: #1e1e1e; //search bar + forecast switcher background
 $color-grey-dark-3: #1a191c; //theme switcher background
-$color-grey-lines: #242426; //color of lines (theme switcher outline)
+$color-grey-dark-4: #1b1a1d; //forecast cards background
+$color-grey-lines: #242426; //color of lines (theme switcher outline, forecast cards header line)
 
 $color-lightblue-main: #bbd8ec; //main color
+$color-lightblue-main-shade: #adcade; //main color shade
 
 //////////////////////
 // FONTS //
 $font-primary: "Mulish", sans-serif;
+$font-numbers: "Red Hat Display", sans-serif;
 
 //////////////////////
 // SHADOWS //

@@ -13,6 +13,7 @@
     transition: all 0.2s;
     transition-timing-function: ease-out;
 
+    //on focus
     &:focus-within {
       transform: scale(1.02);
     }
@@ -20,12 +21,14 @@
       transform: scale(1.1);
     }
 
+    //search svg icon
     &-icon {
       transition: all 0.2s;
       transition-timing-function: ease-out;
       height: 2.4rem;
       width: 2.4rem;
     }
+    //text field
     &-input {
       width: 100%;
       background: none;
@@ -35,6 +38,7 @@
       &:focus {
         outline: none;
       }
+      //text when nothing is typed in
       &::placeholder {
         color: $color-grey-light-2;
       }

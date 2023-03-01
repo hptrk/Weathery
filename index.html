@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&family=Red+Hat+Display:wght@400;500;600;700;800&family=Saira:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
 
@@ -141,6 +141,7 @@
 
       <section class="forecast">
         <header class="forecast__header">
+          <!-- menu of the forecast -->
           <ul class="forecast__header-menu" role="list">
             <li class="forecast__header-menu--item"><span>Today</span></li>
             <li class="forecast__header-menu--item"><span>Tomorrow</span></li>
@@ -149,12 +150,15 @@
             </li>
           </ul>
 
+          <!-- switcher for the forecast view -->
           <div class="forecast__header-switcher">
+            <!-- invisible checkbox for functionality in css -->
             <input
               type="checkbox"
               id="forecastSwitcher"
               class="forecast__header-switcher--checkbox"
             />
+            <!-- the real switcher element -->
             <label for="forecastSwitcher">
               <span class="forecast__header-switcher--left">Forecast</span>
               <span class="forecast__header-switcher--right">Air quality</span>
@@ -163,20 +167,214 @@
         </header>
 
         <div class="forecast__container">
+          <!-- CARD 1 -->
           <figure class="forecast__container-card forecast__active-card">
+            <!-- CARD HEADER -->
             <div class="forecast__container-card--header">
-              <span>Monday</span><span>11:42 PM</span>
+              <span>Monday</span><span class="numbers">11:42 PM</span>
             </div>
+            <!-- CARD MAIN -->
             <div class="forecast__container-card--main">
-              <span>16&#176;</span>
+              <div>
+                <span class="numbers">16&#176;</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="sun"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <ul>
+                  <li>
+                    Real Feel:
+                    <strong><span class="numbers">18</span>&#176;</strong>
+                  </li>
+                  <li>
+                    Wind:
+                    <strong><span class="numbers">5-8</span> km/h</strong>
+                  </li>
+                  <li>
+                    Humidity: <strong><span class="numbers">51%</span></strong>
+                  </li>
+                </ul>
+                <ul>
+                  <li>
+                    Sunrise:
+                    <strong><span class="numbers">6:02</span> AM</strong>
+                  </li>
+                  <li>
+                    Sunset:
+                    <strong><span class="numbers">9:18</span> PM</strong>
+                  </li>
+                </ul>
+              </div>
             </div>
           </figure>
-          <figure class="forecast__container-card">Tue</figure>
-          <figure class="forecast__container-card">Wed</figure>
-          <figure class="forecast__container-card">Thu</figure>
-          <figure class="forecast__container-card">Fri</figure>
-          <figure class="forecast__container-card">Sat</figure>
-          <figure class="forecast__container-card">Sun</figure>
+
+          <!-- CARD 2 -->
+          <figure class="forecast__container-card">
+            <!-- CARD HEADER -->
+            <div class="forecast__container-card--header">
+              <span>Tue</span>
+            </div>
+            <!-- CARD MAIN -->
+            <div class="forecast__container-card--main">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="sun"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                />
+              </svg>
+              <span class="numbers">10&#176;</span>
+            </div>
+          </figure>
+
+          <!-- CARD 3 -->
+          <figure class="forecast__container-card">
+            <!-- CARD HEADER -->
+            <div class="forecast__container-card--header">
+              <span>Wed</span>
+            </div>
+            <!-- CARD MAIN -->
+            <div class="forecast__container-card--main">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="sun"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                />
+              </svg>
+              <span class="numbers">15&#176;</span>
+            </div>
+          </figure>
+
+          <!-- CARD 4 -->
+          <figure class="forecast__container-card">
+            <!-- CARD HEADER -->
+            <div class="forecast__container-card--header">
+              <span>Thu</span>
+            </div>
+            <!-- CARD MAIN -->
+            <div class="forecast__container-card--main">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="sun"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                />
+              </svg>
+              <span class="numbers">11&#176;</span>
+            </div>
+          </figure>
+
+          <!-- CARD 5 -->
+          <figure class="forecast__container-card">
+            <!-- CARD HEADER -->
+            <div class="forecast__container-card--header">
+              <span>Fri</span>
+            </div>
+            <!-- CARD MAIN -->
+            <div class="forecast__container-card--main">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="sun"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                />
+              </svg>
+              <span class="numbers">18&#176;</span>
+            </div>
+          </figure>
+
+          <!-- CARD 6 -->
+          <figure class="forecast__container-card">
+            <!-- CARD HEADER -->
+            <div class="forecast__container-card--header">
+              <span>Sat</span>
+            </div>
+            <!-- CARD MAIN -->
+            <div class="forecast__container-card--main">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="sun"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                />
+              </svg>
+              <span class="numbers">12&#176;</span>
+            </div>
+          </figure>
+
+          <!-- CARD 7 -->
+          <figure class="forecast__container-card">
+            <!-- CARD HEADER -->
+            <div class="forecast__container-card--header">
+              <span>Sun</span>
+            </div>
+            <!-- CARD MAIN -->
+            <div class="forecast__container-card--main">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="sun"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                />
+              </svg>
+              <span class="numbers">10&#176;</span>
+            </div>
+          </figure>
         </div>
       </section>
 

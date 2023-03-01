@@ -1,0 +1,111 @@
+.forecast {
+  &__container {
+    //non active cards (or common values with the active one)
+    &-card {
+      border-radius: 3.2rem;
+      height: 21.9rem;
+      background-color: $color-grey-dark-4;
+      overflow: hidden; //making the border radius work
+
+      //header of the card elements
+      &--header {
+        position: relative; //for the bottom line
+        padding: 1.2rem 2rem;
+        text-align: center;
+        font-size: 1.9rem;
+        color: $color-grey-light;
+        font-weight: 700;
+
+        //the grey separator line
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 25%;
+          width: 50%;
+          height: 2px;
+          background-color: $color-grey-lines;
+          border-radius: 100px;
+        }
+      }
+      &--main {
+        padding: 0.5rem 2rem;
+        //CENTER ELEMENT (for example: svg icon)
+        & > :first-child {
+          margin-top: 1rem;
+        }
+        //BOTTOM ELEMENT (for example: degree celsius)
+        & > :last-child {
+          font-size: 4rem;
+          font-weight: 700;
+
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+  }
+  //active card style
+  &__active-card {
+    background-color: $color-lightblue-main;
+
+    & > .forecast__container-card {
+      //header of the active card (example: day + time)
+      &--header {
+        background-color: $color-lightblue-main-shade;
+        color: black;
+
+        display: flex;
+        justify-content: space-between;
+
+        &::after {
+          display: none; //don't need the separator line
+        }
+      }
+      //main content of the active card (example: stats)
+      &--main {
+        color: black;
+        padding: 0.5rem 2rem;
+        //top row: degree celsius + svg icon
+        & > :first-child {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          margin-top: 0;
+          font-size: 6rem;
+          font-weight: 700;
+
+          & > span {
+            line-height: 1;
+          }
+          & > svg {
+            height: 8.5rem;
+            width: 8.5rem;
+          }
+        }
+        //bottom row: stats
+        & > :last-child {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          & > ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-size: 1.2rem;
+            color: $color-blueish-grey;
+            font-weight: 400;
+
+            //main datas to highlight
+            & > li > strong {
+              color: #131618;
+              font-weight: 700;
+            }
+          }
+        }
+      }
+    }
+  }
+}
