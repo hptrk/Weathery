@@ -6,23 +6,51 @@
       background-color: $color-grey-dark-4;
       overflow: hidden;
       &--header {
-        padding: 1.5rem 2rem; //TEMP
+        position: relative;
+        padding: 1.2rem 2rem; //TEMP
+        text-align: center;
         font-size: 1.9rem;
         color: $color-grey-light;
         font-weight: 700;
+
+        &::after {
+          content: "";
+          width: 50%;
+          height: 2px;
+          position: absolute;
+          bottom: 0;
+          left: 25%;
+          background-color: $color-grey-lines;
+          border-radius: 100px;
+        }
+      }
+      &--main {
+        padding: 0.5rem 2rem;
+        & > :first-child {
+          margin-top: 1rem;
+        }
+        & > :last-child {
+          font-size: 4rem;
+        }
       }
     }
   }
+
   &__active-card {
     background-color: $color-lightblue-main;
 
     & > .forecast__container-card {
       &--header {
+        //border-bottom: none;
         background-color: $color-lightblue-main-shade;
         color: black;
 
         display: flex;
         justify-content: space-between;
+
+        &::after {
+          display: none;
+        }
       }
       &--main {
         color: black;

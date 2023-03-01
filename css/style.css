@@ -226,10 +226,27 @@ body {
   background-color: #1b1a1d;
   overflow: hidden; }
   .forecast__container-card--header {
-    padding: 1.5rem 2rem;
+    position: relative;
+    padding: 1.2rem 2rem;
+    text-align: center;
     font-size: 1.9rem;
     color: #e7e7e8;
     font-weight: 700; }
+    .forecast__container-card--header::after {
+      content: "";
+      width: 50%;
+      height: 2px;
+      position: absolute;
+      bottom: 0;
+      left: 25%;
+      background-color: #242426;
+      border-radius: 100px; }
+  .forecast__container-card--main {
+    padding: 0.5rem 2rem; }
+    .forecast__container-card--main > :first-child {
+      margin-top: 1rem; }
+    .forecast__container-card--main > :last-child {
+      font-size: 4rem; }
 
 .forecast__active-card {
   background-color: #bbd8ec; }
@@ -238,6 +255,8 @@ body {
     color: black;
     display: flex;
     justify-content: space-between; }
+    .forecast__active-card > .forecast__container-card--header::after {
+      display: none; }
   .forecast__active-card > .forecast__container-card--main {
     color: black;
     padding: 0.5rem 2rem; }
