@@ -63,13 +63,12 @@
           justify-content: space-between;
           align-items: center;
 
+          margin-top: 0;
           font-size: 6rem;
           font-weight: 700;
 
           & > span {
             line-height: 1;
-            position: relative;
-            left: -0.2rem; //ONLY IF IT NEEDS TO BE IN LINE WITH THE DAY (will change with other font)
           }
           & > svg {
             height: 8.5rem;

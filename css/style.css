@@ -54,7 +54,7 @@ body {
   cursor: default !important; }
 
 .numbers {
-  font-family: "Rajdhani", sans-serif; }
+  font-family: "Red Hat Display", sans-serif; }
 
 .navigation__icon-container {
   display: flex;
@@ -270,12 +270,11 @@ body {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-top: 0;
       font-size: 6rem;
       font-weight: 700; }
       .forecast__active-card > .forecast__container-card--main > :first-child > span {
-        line-height: 1;
-        position: relative;
-        left: -0.2rem; }
+        line-height: 1; }
       .forecast__active-card > .forecast__container-card--main > :first-child > svg {
         height: 8.5rem;
         width: 8.5rem; }
