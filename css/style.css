@@ -237,11 +237,11 @@ body {
     font-weight: 700; }
     .forecast__container-card--header::after {
       content: "";
-      width: 50%;
-      height: 2px;
       position: absolute;
       bottom: 0;
       left: 25%;
+      width: 50%;
+      height: 2px;
       background-color: #242426;
       border-radius: 100px; }
   .forecast__container-card--main {
