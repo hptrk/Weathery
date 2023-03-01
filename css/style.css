@@ -226,10 +226,10 @@ body {
   background-color: #1b1a1d;
   overflow: hidden; }
   .forecast__container-card--header {
-    padding: 1rem 2rem;
-    font-size: 1.8rem;
+    padding: 1.5rem 2rem;
+    font-size: 1.9rem;
     color: #e7e7e8;
-    font-weight: 600; }
+    font-weight: 700; }
 
 .forecast__active-card {
   background-color: #bbd8ec; }
@@ -238,6 +238,36 @@ body {
     color: black;
     display: flex;
     justify-content: space-between; }
+  .forecast__active-card > .forecast__container-card--main {
+    color: black;
+    padding: 0.5rem 2rem; }
+    .forecast__active-card > .forecast__container-card--main > :first-child {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 6rem;
+      font-weight: 700; }
+      .forecast__active-card > .forecast__container-card--main > :first-child > span {
+        line-height: 1;
+        position: relative;
+        left: -0.7rem; }
+      .forecast__active-card > .forecast__container-card--main > :first-child > svg {
+        height: 8.5rem;
+        width: 8.5rem; }
+    .forecast__active-card > .forecast__container-card--main > :last-child {
+      display: flex;
+      justify-content: space-between;
+      align-items: center; }
+      .forecast__active-card > .forecast__container-card--main > :last-child > ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        font-size: 1.2rem;
+        color: #4b565e;
+        font-weight: 400; }
+        .forecast__active-card > .forecast__container-card--main > :last-child > ul > li > strong {
+          color: #131618;
+          font-weight: 700; }
 
 .forecast__header-menu {
   display: flex;
