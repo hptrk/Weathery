@@ -35,7 +35,7 @@
 }
 .forecast {
   display: grid;
-  grid-template-rows: repeat(2, min-content);
+  grid-template-rows: 3.6rem min-content; //TEMPORARY
   row-gap: 2rem; //TEMPORARY
   &__header {
     display: flex;
@@ -47,4 +47,10 @@
     grid-template-columns: minmax(24rem, 2.4fr) repeat(6, minmax(10rem, 1fr)); //ONLY WORKS WITH MONDAY
     gap: 2rem;
   }
+}
+.diagram {
+  display: grid;
+  grid-template-rows: 3.6rem min-content; //TEMPORARY
+  row-gap: 2rem;
+  align-items: center;
 }
