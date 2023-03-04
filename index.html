@@ -13,6 +13,8 @@
 
     <link rel="stylesheet" href="css/style.css" />
     <link rel="shortcut icon" type="image/png" href="img/Weathery-icon.png" />
+
+    <script type="module" src="js/chart.js" defer></script>
     <title>Weathery</title>
   </head>
   <body>
@@ -383,7 +385,10 @@
           <h2 class="header-texts">Chance of rain</h2>
         </header>
 
-        <div class="diagram__container">this is the container</div>
+        <canvas class="diagram__container" height="200">
+          <!-- <div class="diagram__container-chances"></div>
+          <div class="diagram__container-time"></div> -->
+        </canvas>
       </section>
 
       <section class="map">this is the map</section>

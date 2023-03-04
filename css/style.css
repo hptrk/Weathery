@@ -359,7 +359,7 @@ body {
   grid-template-rows: 2fr 11fr 14fr;
   grid-template-columns: [left-start] 3fr [left-end right-start] 1fr [right-end];
   row-gap: 3rem;
-  column-gap: 2rem; }
+  column-gap: 3rem; }
 
 .navigation {
   height: 100%;
