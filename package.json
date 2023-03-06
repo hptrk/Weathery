@@ -5,12 +5,13 @@
   "default": "index.html",
   "scripts": {
     "watch:sass": "node-sass sass/main.scss css/style.css -w",
-    "devserver": "live-server",
+    "devserver": "parcel index.html",
     "start": "npm-run-all --parallel devserver watch:sass",
     "compile:sass": "node-sass sass/main.scss css/style.comp.css",
     "prefix:css": "postcss --use autoprefixer -b 'last 10 versions' css/style.comp.css -o css/style.prefix.css",
     "compress:css": "node-sass css/style.prefix.css css/style.css --output-style compressed",
-    "build:css": "npm-run-all compile:sass prefix:css compress:css"
+    "build:css": "npm-run-all compile:sass prefix:css compress:css",
+    "build": "parcel build index.html"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   "homepage": "https://github.com/hptrk/Weathery#readme",
   "dependencies": {
     "autoprefixer": "^10.4.13",
+    "chart.js": "^4.2.1",
     "concat": "^1.0.3",
     "core-js": "^3.28.0",
     "node-sass": "^8.0.0",
