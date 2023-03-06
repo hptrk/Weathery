@@ -1,12 +1,22 @@
-import Chart from "chart.js/auto"; //NOT AUTO // todo
+// instead of importing the whole library, taking advantage of tree-shaking
+import {
+  CategoryScale,
+  Chart,
+  LinearScale,
+  BarController,
+  BarElement,
+} from "chart.js";
+Chart.register(CategoryScale, LinearScale, BarController, BarElement);
+
+// MAIN OPTIONS
 Chart.defaults.font.size = 14;
 Chart.defaults.font.family = "Red Hat Display, sans-serif";
 Chart.defaults.font.weight = 600;
 Chart.defaults.font.lineHeight = 1;
-Chart.defaults.elements.bar.backgroundColor = "red";
 
-let delayed;
+let delayed; //for the animation delay
 
+// TEMPORARY STATIC DATA
 (async function () {
   const data = [
     { time: 10, chance: 50 },
@@ -20,38 +30,40 @@ let delayed;
 
   new Chart(document.querySelector(".diagram__container"), {
     type: "bar",
+    // -----------OPTIONS----------- //
     options: {
+      // ---SCALES--- //
       scales: {
         x: {
+          // X AXIS
           border: { display: false },
-          grid: {
-            lineWidth: 0,
-            tickLength: 0,
-          },
           ticks: {
             color: "#888",
           },
         },
         y: {
+          // Y AXIS
           border: { display: false },
           max: 100,
           min: 0,
           position: "left",
           grid: {
-            lineWidth: 1.5,
-            tickLength: 0,
+            lineWidth: 1.5, // width of the grey line
             color: "#242426",
           },
           ticks: {
             color: "#888",
-            count: 6, //100, 80, 60, 40, 20, 0
+            count: 6, // 100, 80, 60, 40, 20, 0
           },
         },
       },
-      responsive: true,
+
+      responsive: true, // benefits on resizing
+      // ---ANIMATION--- //
       animation: {
-        duration: 1000,
-        easing: "easeOutBack",
+        duration: 1000, // duration of loading animation
+        easing: "easeOutBack", // easing animation
+        // loading animation
         onComplete: () => {
           delayed = true;
         },
@@ -62,11 +74,12 @@ let delayed;
             context.mode === "default" &&
             !delayed
           ) {
-            delay = context.dataIndex * 200 + context.datasetIndex * 100;
+            delay = context.dataIndex * 200 + context.datasetIndex * 100; // amount of delay
           }
           return delay;
         },
-      }, //might disable if loading is too slow
+      }, // might disable if loading is too slow
+      // ---LAYOUT SETTINGS--- //
       layout: { padding: 0 },
       plugins: {
         legend: {
@@ -76,19 +89,20 @@ let delayed;
           enabled: false,
         },
       },
-      //performance
-      normalized: true,
+      normalized: true, // for performance
     },
+
+    // -----------DATA----------- //
     data: {
       labels: data.map((row) => row.time),
       datasets: [
         {
           data: data.map((row) => row.chance),
-          backgroundColor: "#bbd8ec",
-          hoverBackgroundColor: "#96adbd",
+          backgroundColor: "#bbd8ec", // background color of the bars
+          hoverBackgroundColor: "#96adbd", // on hover
           borderRadius: 100,
           barThickness: 12,
-          borderSkipped: false,
+          borderSkipped: false, // this helps rounding the corners in the bottom too
         },
       ],
     },
