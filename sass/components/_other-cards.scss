@@ -1,0 +1,53 @@
+.other {
+  &__container {
+    &-card {
+      background-color: $color-grey-dark-4;
+      height: 9.2rem;
+      width: 100%;
+      border-radius: 3.2rem;
+      padding: 1.2rem 2rem 1.2rem 2.5rem;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &--texts {
+        display: flex;
+        flex-direction: column;
+        // COUNTRY
+        & > span:nth-child(1) {
+          font-size: 1.2rem;
+          font-weight: 400;
+          line-height: 0.7;
+          color: $color-grey-light-2;
+          margin-top: 0.3rem;
+        }
+        // CITY
+        & > span:nth-child(2) {
+          font-size: 2rem;
+          font-weight: 600;
+          margin-bottom: 0.1rem;
+        }
+        // WEATHER DESCRIPTION
+        & > span:nth-child(3) {
+          font-size: 1.5rem;
+          font-weight: 400;
+          color: $color-lightblue-main;
+        }
+      }
+      &--weather {
+        display: flex;
+        align-items: center;
+        & > span {
+          font-size: 3.5rem;
+          margin-right: 1rem;
+          font-weight: 700;
+        }
+        & > svg {
+          height: 6rem;
+          width: 6rem;
+        }
+      }
+    }
+  }
+}
