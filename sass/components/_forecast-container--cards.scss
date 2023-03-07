@@ -79,10 +79,8 @@
           & > span {
             line-height: 1;
           }
-          & > svg {
-            height: 8.5rem;
-            width: 8.5rem;
-          }
+
+          // ICON IS STYLED WITH UTILITY CLASS
         }
         //bottom row: stats
         & > :last-child {

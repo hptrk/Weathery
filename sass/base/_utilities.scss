@@ -4,6 +4,31 @@
     cursor: default !important;
   }
 }
+
 .numbers {
   font-family: $font-numbers;
+}
+
+.icon {
+  &-weather {
+    // small round gradient in the background of the icons
+    background-image: radial-gradient(
+      closest-side,
+      $color-grey-dark 60%,
+      $color-grey-dark-4
+    );
+
+    height: 6.5rem;
+    width: 6.5rem;
+    &--active {
+      background-image: radial-gradient(
+        closest-side,
+        $color-lightblue-main-shade 65%,
+        $color-lightblue-main
+      );
+
+      height: 8.5rem;
+      width: 8.5rem;
+    }
+  }
 }

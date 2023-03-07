@@ -60,6 +60,15 @@ body {
 .numbers {
   font-family: "Red Hat Display", sans-serif; }
 
+.icon-weather {
+  background-image: radial-gradient(closest-side, #232325 60%, #1b1a1d);
+  height: 6.5rem;
+  width: 6.5rem; }
+  .icon-weather--active {
+    background-image: radial-gradient(closest-side, #adcade 65%, #bbd8ec);
+    height: 8.5rem;
+    width: 8.5rem; }
+
 .navigation__icon-container {
   display: flex;
   gap: 2.5rem;
@@ -275,9 +284,6 @@ body {
       font-weight: 700; }
       .forecast__active-card > .forecast__container-card--main > :first-child > span {
         line-height: 1; }
-      .forecast__active-card > .forecast__container-card--main > :first-child > svg {
-        height: 8.5rem;
-        width: 8.5rem; }
     .forecast__active-card > .forecast__container-card--main > :last-child {
       display: flex;
       justify-content: space-between;
@@ -378,12 +384,11 @@ body {
     display: flex;
     align-items: center; }
     .other__container-card--weather > span {
+      height: 4.8rem;
+      width: 5.6rem;
       font-size: 3.5rem;
       margin-right: 1rem;
       font-weight: 700; }
-    .other__container-card--weather > svg {
-      height: 6rem;
-      width: 6rem; }
 
 .container {
   width: 140rem;
