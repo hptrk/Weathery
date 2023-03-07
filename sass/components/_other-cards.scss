@@ -1,19 +1,22 @@
 .other {
   &__container {
+    // CARDS
     &-card {
-      background-color: $color-grey-dark-4;
       height: 9.2rem;
       width: 100%;
       border-radius: 3.2rem;
       padding: 1.2rem 2rem 1.2rem 2.5rem;
+      background-color: $color-grey-dark-4;
 
       display: flex;
       justify-content: space-between;
       align-items: center;
 
+      // LEFT SIDE OF THE CARD (country, city, weather)
       &--texts {
         display: flex;
         flex-direction: column;
+
         // COUNTRY
         & > span:nth-child(1) {
           font-size: 1.2rem;
@@ -22,12 +25,14 @@
           color: $color-grey-light-2;
           margin-top: 0.3rem;
         }
+
         // CITY
         & > span:nth-child(2) {
           font-size: 2rem;
           font-weight: 600;
           margin-bottom: 0.1rem;
         }
+
         // WEATHER DESCRIPTION
         & > span:nth-child(3) {
           font-size: 1.5rem;
@@ -35,14 +40,19 @@
           color: $color-lightblue-main;
         }
       }
+      // RIGHT SIDE OF THE CARD (temperature, icon)
       &--weather {
         display: flex;
         align-items: center;
+
+        // TEMPERATURE
         & > span {
           font-size: 3.5rem;
           margin-right: 1rem;
           font-weight: 700;
         }
+
+        // ICON
         & > svg {
           height: 6rem;
           width: 6rem;

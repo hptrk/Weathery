@@ -349,11 +349,11 @@ body {
     color: #888; }
 
 .other__container-card {
-  background-color: #1b1a1d;
   height: 9.2rem;
   width: 100%;
   border-radius: 3.2rem;
   padding: 1.2rem 2rem 1.2rem 2.5rem;
+  background-color: #1b1a1d;
   display: flex;
   justify-content: space-between;
   align-items: center; }
