@@ -1,6 +1,6 @@
 .container {
   width: 140rem;
-  min-height: 85vh;
+  height: 79rem;
   border-radius: 3rem;
   padding: 2.5rem;
   background-color: $color-container-background;
@@ -11,11 +11,6 @@
   grid-template-columns: [left-start] 3fr [left-end right-start] 1fr [right-end];
   row-gap: 3rem;
   column-gap: 3rem;
-
-  & > section,
-  & > header {
-    //background-color: gray; //temporary
-  }
 }
 .navigation {
   height: 100%;
