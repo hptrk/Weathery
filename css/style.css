@@ -448,6 +448,17 @@ body {
     flex-direction: column;
     gap: 1rem; }
 
+.map {
+  display: grid;
+  grid-template-rows: 3.6rem min-content;
+  row-gap: 2rem;
+  align-items: center; }
+  .map__container {
+    background-color: #1b1a1d;
+    border-radius: 3.2rem;
+    width: 100%;
+    height: 29.6rem; }
+
 body {
   background-image: linear-gradient(to left bottom, #212529, #343a40);
   background-size: cover;
