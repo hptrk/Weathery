@@ -18,6 +18,7 @@
   align-items: center;
 }
 .settings {
+  height: 100%;
   display: flex;
   align-items: center;
 }
@@ -45,15 +46,14 @@
 }
 .diagram {
   display: grid;
-  grid-template-rows: 3.6rem min-content; //TEMPORARY
+  grid-template-rows: 3.6rem 1fr; //TEMPORARY
   row-gap: 2rem;
   align-items: center;
 }
 .other {
   display: grid;
-  grid-template-rows: 3.6rem min-content; //TEMPORARY
+  grid-template-rows: 3.6rem 1fr; //TEMPORARY
   row-gap: 2rem;
-  align-items: center;
   &__container {
     display: flex;
     flex-direction: column;

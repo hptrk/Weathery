@@ -28,7 +28,7 @@ let delayed; //for the animation delay
     { time: 2, chance: 90 },
   ];
 
-  new Chart(document.querySelector(".diagram__container"), {
+  new Chart(document.getElementById("diagram"), {
     type: "bar",
     // -----------OPTIONS----------- //
     options: {
@@ -59,6 +59,7 @@ let delayed; //for the animation delay
       },
 
       responsive: true, // benefits on resizing
+      aspectRatio: 2 / 1.34, //default is 2/1 | this is a more responsible way to adjust height
       // ---ANIMATION--- //
       animation: {
         duration: 1000, // duration of loading animation
