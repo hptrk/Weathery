@@ -469,17 +469,17 @@ body {
   .container {
     width: 100%; } }
 
-@media screen and (max-width: 76.875em) {
-  .container {
-    border-radius: 0; }
-  body {
-    background-image: none !important;
-    background-color: #101014; } }
-
 @media screen and (max-height: 48.75em) and (max-width: 81.25em) {
   body {
     background-image: none !important;
-    background-color: #101014 !important; } }
+    background-color: #101014;
+    box-shadow: none; } }
+
+@media screen and (max-width: 76.875em) {
+  body {
+    background-image: none !important;
+    background-color: #101014;
+    box-shadow: none; } }
 
 body {
   background-image: linear-gradient(to left bottom, #212529, #343a40);

@@ -17,6 +17,7 @@
   @media screen and (max-height: 48.75em) and (max-width: 81.25em) {
     // h:780px w:1300px
     @content;
+    // needed for a little adjustment with height resizing
   }
 }
 
