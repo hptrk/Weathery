@@ -1,0 +1,28 @@
+// MEDIA QUERIES
+
+@mixin big-desktop {
+  @media screen and (max-width: 100em) {
+    // 1600px
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (max-width: 81.25em) {
+    // 1300px
+    @content;
+  }
+}
+@mixin desktop--height {
+  @media screen and (max-height: 48.75em) and (max-width: 81.25em) {
+    // h:780px w:1300px
+    @content;
+  }
+}
+
+@mixin desktop-smaller {
+  @media screen and (max-width: 76.875em) {
+    // 1230px
+    @content;
+  }
+}

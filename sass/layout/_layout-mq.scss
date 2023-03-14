@@ -1,3 +1,10 @@
+@media screen and (max-width: 100em) {
+  // 1600px
+  html {
+    font-size: 55%;
+  }
+}
+
 @media screen and (max-width: 81.25em) {
   // 1300px
   .container {
