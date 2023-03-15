@@ -27,3 +27,10 @@
     @content;
   }
 }
+
+@mixin laptops {
+  @media screen and (max-width: 68.75em) {
+    // 1100px
+    @content;
+  }
+}
