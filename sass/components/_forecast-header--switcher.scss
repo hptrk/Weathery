@@ -69,3 +69,22 @@
     }
   }
 }
+
+/// MEDIA QUERIES ///
+// 1100px
+@include laptops {
+  .forecast {
+    &__header {
+      &-switcher {
+        &--checkbox {
+          //background of the whole element
+          & + label {
+            width: 25rem;
+            height: 4.5rem;
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+  }
+}

@@ -57,6 +57,7 @@
       width: 4px;
       height: 1.8rem;
       margin-top: 2rem;
+
       &,
       &::before {
         display: inline-block;
@@ -65,7 +66,7 @@
         transition: all 0.2s;
         transition-timing-function: ease-out;
       }
-
+      // MOVING DOT
       &::before {
         content: "";
         position: absolute;
@@ -81,6 +82,54 @@
     }
     &-box:hover &-info {
       margin-top: 2.2rem;
+    }
+  }
+}
+
+/// MEDIA QUERIES ///
+// 1100px
+@include laptops {
+  .navigation {
+    &__icon {
+      // round background of the icons
+      &-box {
+        width: 6.25rem;
+        height: 6.25rem;
+      }
+      // LIST ICON STYLE
+      &-list {
+        &,
+        &::before,
+        &::after {
+          width: 3.125rem;
+          height: 2px;
+        }
+        &::before {
+          top: -0.9rem;
+        }
+        &::after {
+          top: 0.9rem;
+        }
+      }
+      // INFO ICON STYLE
+      &-info {
+        width: 5px;
+        height: 2.25rem;
+        margin-top: 2.5rem;
+        // MOVING DOT
+        &::before {
+          top: -0.9rem;
+          width: 5px;
+          height: 5px;
+        }
+      }
+      //INFO ICON HOVER FUNCTIONALITY
+      &-box:hover &-info::before {
+        transform: translateY(-0.5rem);
+      }
+      &-box:hover &-info {
+        margin-top: 2.75rem;
+      }
     }
   }
 }

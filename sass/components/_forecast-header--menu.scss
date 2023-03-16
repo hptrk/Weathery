@@ -22,3 +22,15 @@
     }
   }
 }
+
+/// MEDIA QUERIES ///
+// 1100px
+@include laptops {
+  .forecast {
+    &__header {
+      &-menu {
+        font-size: 2.5rem;
+      }
+    }
+  }
+}
