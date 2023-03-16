@@ -53,6 +53,10 @@ body {
   font-size: 1.8rem;
   font-weight: 500; }
 
+@media screen and (max-width: 68.75em) {
+  .header-texts {
+    font-size: 2.25rem; } }
+
 .forecast__active-item {
   color: #e7e7e8;
   cursor: default !important; }
@@ -133,6 +137,30 @@ body {
 .navigation__icon-box:hover .navigation__icon-info {
   margin-top: 2.2rem; }
 
+@media screen and (max-width: 68.75em) {
+  .navigation__icon-box {
+    width: 6.25rem;
+    height: 6.25rem; }
+  .navigation__icon-list, .navigation__icon-list::before, .navigation__icon-list::after {
+    width: 3.125rem;
+    height: 2px; }
+  .navigation__icon-list::before {
+    top: -0.9rem; }
+  .navigation__icon-list::after {
+    top: 0.9rem; }
+  .navigation__icon-info {
+    width: 5px;
+    height: 2.25rem;
+    margin-top: 2.5rem; }
+    .navigation__icon-info::before {
+      top: -0.9rem;
+      width: 5px;
+      height: 5px; }
+  .navigation__icon-box:hover .navigation__icon-info::before {
+    transform: translateY(-0.5rem); }
+  .navigation__icon-box:hover .navigation__icon-info {
+    margin-top: 2.75rem; } }
+
 .navigation__location {
   display: flex;
   align-items: center;
@@ -179,6 +207,17 @@ body {
     .navigation__searchbar-input::placeholder {
       color: #888; }
 
+@media screen and (max-width: 68.75em) {
+  .navigation__searchbar {
+    width: 80%;
+    height: 6.25rem;
+    font-size: 2rem; }
+    .navigation__searchbar-icon {
+      transition: all 0.2s;
+      transition-timing-function: ease-out;
+      height: 3rem;
+      width: 3rem; } }
+
 .settingsbox__profilepic {
   display: flex;
   align-items: center;
@@ -189,6 +228,11 @@ body {
     width: 5rem;
     height: 5rem;
     transform: scale(1.2308); }
+
+@media screen and (max-width: 68.75em) {
+  .settingsbox__profilepic-icon {
+    width: 6.25rem;
+    height: 6.25rem; } }
 
 .settingsbox__switcher-checkbox {
   display: none; }
@@ -231,6 +275,18 @@ body {
     transition-delay: 0.1s;
     fill: black;
     stroke: black; }
+
+@media screen and (max-width: 68.75em) {
+  .settingsbox__switcher-checkbox + label {
+    height: 6.25rem;
+    width: 12.5rem;
+    padding: 1rem; }
+    .settingsbox__switcher-checkbox + label > svg {
+      height: 4.125rem;
+      width: 4.125rem; }
+    .settingsbox__switcher-checkbox + label::before {
+      height: 6.25rem;
+      width: 6.25rem; } }
 
 .forecast__container-card {
   border-radius: 3.2rem;
@@ -314,6 +370,10 @@ body {
     .forecast__header-menu--item:not(.forecast__active-item):hover {
       transform: scaleX(1.05); }
 
+@media screen and (max-width: 68.75em) {
+  .forecast__header-menu {
+    font-size: 2.5rem; } }
+
 .forecast__header-switcher--checkbox {
   display: none; }
   .forecast__header-switcher--checkbox + label {
@@ -356,6 +416,12 @@ body {
   .forecast__header-switcher--checkbox:checked + label > :first-child {
     color: #888; }
 
+@media screen and (max-width: 68.75em) {
+  .forecast__header-switcher--checkbox + label {
+    width: 25rem;
+    height: 4.5rem;
+    font-size: 1.5rem; } }
+
 .other__container-card {
   height: 9.2rem;
   width: 100%;
@@ -368,32 +434,20 @@ body {
   .other__container-card--texts {
     display: flex;
     flex-direction: column; }
-    @media screen and (max-width: 68.75em) {
-      .other__container-card--texts {
-        align-items: center; } }
     .other__container-card--texts > span:nth-child(1) {
       font-size: 1.2rem;
       font-weight: 400;
       line-height: 0.7;
       color: #888;
       margin-top: 0.3rem; }
-      @media screen and (max-width: 68.75em) {
-        .other__container-card--texts > span:nth-child(1) {
-          font-size: 1.7rem; } }
     .other__container-card--texts > span:nth-child(2) {
       font-size: 2rem;
       font-weight: 600;
       margin-bottom: 0.1rem; }
-      @media screen and (max-width: 68.75em) {
-        .other__container-card--texts > span:nth-child(2) {
-          font-size: 2.5rem; } }
     .other__container-card--texts > span:nth-child(3) {
       font-size: 1.5rem;
       font-weight: 400;
       color: #bbd8ec; }
-      @media screen and (max-width: 68.75em) {
-        .other__container-card--texts > span:nth-child(3) {
-          font-size: 2rem; } }
   .other__container-card--weather {
     display: flex;
     align-items: center; }
@@ -404,14 +458,27 @@ body {
       margin-right: 1rem;
       font-weight: 700;
       text-align: center; }
-    @media screen and (max-width: 68.75em) {
-      .other__container-card--weather {
-        flex-direction: column-reverse;
-        gap: 1rem; }
-        .other__container-card--weather > span {
-          margin-right: 0;
-          margin-bottom: 1.2rem;
-          font-size: 4.5rem; } }
+
+@media screen and (max-width: 68.75em) {
+  .other__container-card {
+    width: 18rem;
+    height: 100%;
+    flex-direction: column; }
+    .other__container-card--texts {
+      align-items: center; }
+      .other__container-card--texts > span:nth-child(1) {
+        font-size: 1.7rem; }
+      .other__container-card--texts > span:nth-child(2) {
+        font-size: 2.5rem;
+        margin-bottom: -0.2rem; }
+      .other__container-card--texts > span:nth-child(3) {
+        font-size: 2rem; }
+    .other__container-card--weather {
+      flex-direction: column-reverse; }
+      .other__container-card--weather > span {
+        margin-right: 0;
+        margin-bottom: 1.2rem;
+        font-size: 4.5rem; } }
 
 .container {
   width: 140rem;
@@ -509,6 +576,8 @@ body {
     height: 100%; } }
 
 @media screen and (max-width: 68.75em) {
+  html {
+    font-size: 52%; }
   .container {
     grid-template-rows: repeat(4, min-content);
     grid-template-columns: repeat(4, 1fr);
@@ -534,10 +603,6 @@ body {
     .other__container {
       flex-direction: row;
       gap: 2rem; }
-      .other__container-card {
-        width: 19rem;
-        height: 100%;
-        flex-direction: column; }
   .map {
     grid-row: 4;
     grid-column: 1 / -1; }

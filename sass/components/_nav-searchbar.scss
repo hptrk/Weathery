@@ -45,3 +45,22 @@
     }
   }
 }
+
+/// MEDIA QUERIES ///
+// 1100px
+@include laptops {
+  .navigation {
+    &__searchbar {
+      width: 80%;
+      height: 6.25rem;
+      font-size: 2rem;
+
+      &-icon {
+        transition: all 0.2s;
+        transition-timing-function: ease-out;
+        height: 3rem;
+        width: 3rem;
+      }
+    }
+  }
+}

@@ -73,6 +73,8 @@
   }
 }
 
+/// MEDIA QUERIES ///
+
 // 1600px
 @include big-desktop {
   // decrease overall size
@@ -122,13 +124,17 @@
 
 // 1100px
 @include laptops {
+  html {
+    font-size: 52%;
+  }
+
+  // LAYOUT CHANGE
   .container {
     grid-template-rows: repeat(4, min-content);
     grid-template-columns: repeat(4, 1fr);
     row-gap: 3rem;
     column-gap: 3rem;
   }
-
   .header {
     grid-row: 1;
     grid-column: 1 / -2;
@@ -153,11 +159,6 @@
     &__container {
       flex-direction: row;
       gap: 2rem;
-      &-card {
-        width: 19rem;
-        height: 100%;
-        flex-direction: column;
-      }
     }
   }
   .map {
