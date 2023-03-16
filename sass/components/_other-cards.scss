@@ -93,11 +93,12 @@
         // DOWN PART OF THE CARD
         &--weather {
           flex-direction: column-reverse; // icon is above the temperature
+          gap: 1rem;
 
           // TEMPERATURE
           & > span {
             margin-right: 0;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.3rem;
             font-size: 4.5rem;
           }
         }

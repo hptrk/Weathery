@@ -21,3 +21,23 @@
     }
   }
 }
+
+/// MEDIA QUERIES ///
+// 1100px
+@include laptops {
+  .navigation {
+    &__location {
+      &-text {
+        font-size: 2.25rem;
+        &--city {
+          font-size: 2.5rem;
+        }
+      }
+
+      position: absolute;
+      top: 0.3rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}

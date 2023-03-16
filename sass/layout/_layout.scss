@@ -124,16 +124,13 @@
 
 // 1100px
 @include laptops {
-  html {
-    font-size: 52%;
-  }
-
   // LAYOUT CHANGE
   .container {
     grid-template-rows: repeat(4, min-content);
     grid-template-columns: repeat(4, 1fr);
     row-gap: 3rem;
     column-gap: 3rem;
+    margin-top: 2rem; // space for the location on the top
   }
   .header {
     grid-row: 1;

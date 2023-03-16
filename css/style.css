@@ -176,6 +176,17 @@ body {
       font-size: 2rem;
       font-weight: 700; }
 
+@media screen and (max-width: 68.75em) {
+  .navigation__location {
+    position: absolute;
+    top: 0.3rem;
+    left: 50%;
+    transform: translateX(-50%); }
+    .navigation__location-text {
+      font-size: 2.25rem; }
+      .navigation__location-text--city {
+        font-size: 2.5rem; } }
+
 .navigation__searchbar {
   position: relative;
   width: 55%;
@@ -474,10 +485,11 @@ body {
       .other__container-card--texts > span:nth-child(3) {
         font-size: 2rem; }
     .other__container-card--weather {
-      flex-direction: column-reverse; }
+      flex-direction: column-reverse;
+      gap: 1rem; }
       .other__container-card--weather > span {
         margin-right: 0;
-        margin-bottom: 1.2rem;
+        margin-bottom: 1.3rem;
         font-size: 4.5rem; } }
 
 .container {
@@ -576,13 +588,12 @@ body {
     height: 100%; } }
 
 @media screen and (max-width: 68.75em) {
-  html {
-    font-size: 52%; }
   .container {
     grid-template-rows: repeat(4, min-content);
     grid-template-columns: repeat(4, 1fr);
     row-gap: 3rem;
-    column-gap: 3rem; }
+    column-gap: 3rem;
+    margin-top: 2rem; }
   .header {
     grid-row: 1;
     grid-column: 1 / -2; }
