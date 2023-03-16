@@ -59,3 +59,28 @@
     }
   }
 }
+/// MEDIA QUERIES ///
+// 1100px
+@include laptops {
+  .settingsbox {
+    &__switcher {
+      &-checkbox {
+        & + label {
+          height: 6.25rem;
+          width: 12.5rem;
+          padding: 1rem;
+
+          & > svg {
+            height: 4.125rem;
+            width: 4.125rem;
+          }
+
+          &::before {
+            height: 6.25rem;
+            width: 6.25rem;
+          }
+        }
+      }
+    }
+  }
+}

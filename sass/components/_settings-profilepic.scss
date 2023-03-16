@@ -13,3 +13,15 @@
     }
   }
 }
+/// MEDIA QUERIES ///
+// 1100px
+@include laptops {
+  .settingsbox {
+    &__profilepic {
+      &-icon {
+        width: 6.25rem;
+        height: 6.25rem;
+      }
+    }
+  }
+}
