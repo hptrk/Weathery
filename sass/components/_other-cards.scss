@@ -16,9 +16,6 @@
       &--texts {
         display: flex;
         flex-direction: column;
-        @include laptops {
-          align-items: center;
-        }
 
         // COUNTRY
         & > span:nth-child(1) {
@@ -27,9 +24,6 @@
           line-height: 0.7;
           color: $color-grey-light-2;
           margin-top: 0.3rem;
-          @include laptops {
-            font-size: 1.7rem;
-          }
         }
 
         // CITY
@@ -37,9 +31,6 @@
           font-size: 2rem;
           font-weight: 600;
           margin-bottom: 0.1rem;
-          @include laptops {
-            font-size: 2.5rem;
-          }
         }
 
         // WEATHER DESCRIPTION
@@ -47,9 +38,6 @@
           font-size: 1.5rem;
           font-weight: 400;
           color: $color-lightblue-main;
-          @include laptops {
-            font-size: 2rem;
-          }
         }
       }
       // RIGHT SIDE OF THE CARD (temperature, icon)
@@ -68,10 +56,43 @@
         }
 
         // ICON IS STYLED WITH UTILITY CLASS
+      }
+    }
+  }
+}
 
-        @include laptops {
-          flex-direction: column-reverse;
-          gap: 1rem;
+/// MEDIA QUERIES ///
+// 1100px
+@include laptops {
+  .other {
+    &__container {
+      &-card {
+        width: 18rem;
+        height: 100%;
+        flex-direction: column;
+        // UPPER PART OF THE CARD (country, city, weather)
+        &--texts {
+          align-items: center;
+
+          // COUNTRY
+          & > span:nth-child(1) {
+            font-size: 1.7rem;
+          }
+          // CITY
+          & > span:nth-child(2) {
+            font-size: 2.5rem;
+            margin-bottom: -0.2rem;
+          }
+
+          // WEATHER DESCRIPTION
+          & > span:nth-child(3) {
+            font-size: 2rem;
+          }
+        }
+
+        // DOWN PART OF THE CARD
+        &--weather {
+          flex-direction: column-reverse; // icon is above the temperature
 
           // TEMPERATURE
           & > span {
