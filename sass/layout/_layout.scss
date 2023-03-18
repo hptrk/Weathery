@@ -143,6 +143,9 @@
   .forecast {
     grid-row: 2;
     grid-column: 1 / -1;
+    &__container {
+      gap: 2%;
+    }
   }
   .diagram {
     grid-row: 3;
@@ -152,7 +155,7 @@
   .other {
     grid-row: 3;
     grid-column: 3 / -1;
-    justify-content: center;
+    justify-content: end;
     &__container {
       flex-direction: row;
       gap: 2rem;

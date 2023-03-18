@@ -109,3 +109,59 @@
     }
   }
 }
+
+/// MEDIA QUERIES ///
+// 1230px
+@include desktop-smaller {
+  .forecast {
+    &__active-card {
+      & > .forecast__container-card {
+        &--main {
+          & > :last-child {
+            & > ul {
+              font-size: 1.35rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// 1100px
+@include laptops {
+  .forecast {
+    &__active-card {
+      & > .forecast__container-card {
+        // header of the active card (example: day + time)
+        &--header {
+          font-size: 2.4rem;
+        }
+
+        // main content of the active card (example: stats)
+        &--main {
+          position: relative;
+          padding: 0 2rem;
+          // top row: degree celsius + svg icon
+          & > :first-child {
+            font-size: 6.5rem;
+          }
+
+          // bottom row: stats
+          & > :last-child {
+            // left side of the stats (first 3 line)
+            & > :first-child {
+              margin-top: -1.4rem;
+            }
+            & > ul {
+              font-size: 1.7rem;
+              // little change at 1000px (prevent breaking)
+              @media screen and (max-width: 62.5em) {
+                font-size: 1.55rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
