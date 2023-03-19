@@ -198,3 +198,63 @@
     }
   }
 }
+// 700px
+@include small-phones {
+  // LAYOUT CHANGE
+  .container {
+    grid-template-rows: repeat(5, min-content);
+    grid-template-columns: 1fr;
+    row-gap: 6rem; //more whitespace
+    margin-top: 0; // remove space for the location on the top
+  }
+  .header {
+    grid-row: 1;
+    grid-column: 1 / -1;
+  }
+  .settings {
+    grid-row: 1; //
+    grid-column: -2 / -1; ///
+    align-items: start;
+  }
+  .forecast {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    &__container {
+      grid-template-columns: minmax(26rem, 2.6fr) repeat(
+          6,
+          minmax(12rem, 1.2fr)
+        ); //ONLY WORKS WITH MONDAY
+      gap: 2rem;
+    }
+  }
+  .diagram {
+    grid-row: 3;
+    grid-column: 1 / -1;
+    justify-content: center;
+  }
+  .other {
+    grid-row: 4;
+    grid-column: 1 / -1;
+
+    &__container {
+      flex-direction: row;
+    }
+  }
+  .map {
+    grid-row: 5;
+  }
+
+  // design changes in the navigation
+  .navigation {
+    height: 100%;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: min-content 1fr 1fr;
+
+    row-gap: 2rem;
+
+    &__searchbar {
+      grid-column: 1 / -1;
+    }
+  }
+}

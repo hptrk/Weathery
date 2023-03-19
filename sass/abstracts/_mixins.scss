@@ -46,3 +46,9 @@
     @content;
   }
 }
+@mixin small-phones {
+  @media screen and (max-width: 43.75em) {
+    // 700px
+    @content;
+  }
+}

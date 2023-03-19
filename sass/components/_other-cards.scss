@@ -131,3 +131,48 @@
     }
   }
 }
+
+// 700px
+@include small-phones {
+  .other {
+    &__container {
+      &-card {
+        width: 18rem;
+        height: 100%;
+        flex-direction: column;
+        // UPPER PART OF THE CARD (country, city, weather)
+        &--texts {
+          align-items: center;
+
+          // COUNTRY
+          & > span:nth-child(1) {
+            font-size: 1.7rem;
+          }
+          // CITY
+          & > span:nth-child(2) {
+            font-size: 2.5rem;
+            margin-bottom: -0.2rem;
+          }
+
+          // WEATHER DESCRIPTION
+          & > span:nth-child(3) {
+            font-size: 2rem;
+          }
+        }
+
+        // DOWN PART OF THE CARD
+        &--weather {
+          flex-direction: column-reverse; // icon is above the temperature
+          gap: 1rem;
+
+          // TEMPERATURE
+          & > span {
+            margin-right: 0;
+            margin-bottom: 1.3rem;
+            font-size: 4.5rem;
+          }
+        }
+      }
+    }
+  }
+}

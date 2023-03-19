@@ -64,3 +64,12 @@
     }
   }
 }
+
+// 700 px
+@include small-phones {
+  .navigation {
+    &__searchbar {
+      width: 100%;
+    }
+  }
+}
