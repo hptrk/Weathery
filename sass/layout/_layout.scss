@@ -128,7 +128,7 @@
   .container {
     grid-template-rows: repeat(4, min-content);
     grid-template-columns: repeat(4, 1fr);
-    row-gap: 4rem;
+    row-gap: 4rem; //more whitespace
     margin-top: 2rem; // space for the location on the top
   }
   .header {
@@ -155,7 +155,8 @@
   .other {
     grid-row: 3;
     grid-column: 3 / -1;
-    justify-content: end;
+    justify-content: center;
+    margin-right: 2rem;
     &__container {
       flex-direction: row;
       gap: 2rem;
@@ -172,8 +173,28 @@
 
 // 880px
 @include wide-phones {
-  // LAYOUT CHANGE
+  .container {
+    row-gap: 5rem; //more whitespace
+  }
   .diagram {
     justify-content: start;
+  }
+  .other {
+    justify-content: end;
+    margin-right: 0;
+  }
+}
+// 800px
+@include phones {
+  .diagram {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .other {
+    margin-left: auto;
+    margin-right: auto;
+    &__container {
+      flex-direction: column;
+    }
   }
 }

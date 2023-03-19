@@ -40,3 +40,9 @@
     @content;
   }
 }
+@mixin phones {
+  @media screen and (max-width: 50em) {
+    // 800px
+    @content;
+  }
+}

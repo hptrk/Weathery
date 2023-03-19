@@ -520,6 +520,18 @@ body {
         margin-bottom: 1.3rem;
         font-size: 4.5rem; } }
 
+@media screen and (max-width: 50em) {
+  .other__container-card {
+    height: 9.2rem;
+    width: 38rem;
+    flex-direction: row; }
+    .other__container-card--weather {
+      flex-direction: row;
+      gap: 1rem; }
+      .other__container-card--weather > span {
+        font-size: 4rem;
+        margin-right: 1rem; } }
+
 .container {
   width: 140rem;
   height: 79rem;
@@ -640,7 +652,8 @@ body {
   .other {
     grid-row: 3;
     grid-column: 3 / -1;
-    justify-content: end; }
+    justify-content: center;
+    margin-right: 2rem; }
     .other__container {
       flex-direction: row;
       gap: 2rem; }
@@ -651,8 +664,23 @@ body {
       height: 40rem; } }
 
 @media screen and (max-width: 55em) {
+  .container {
+    row-gap: 5rem; }
   .diagram {
-    justify-content: start; } }
+    justify-content: start; }
+  .other {
+    justify-content: end;
+    margin-right: 0; } }
+
+@media screen and (max-width: 50em) {
+  .diagram {
+    margin-left: auto;
+    margin-right: auto; }
+  .other {
+    margin-left: auto;
+    margin-right: auto; }
+    .other__container {
+      flex-direction: column; } }
 
 body {
   background-image: linear-gradient(to left bottom, #212529, #343a40);

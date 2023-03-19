@@ -106,3 +106,28 @@
     }
   }
 }
+
+// 800px
+@include phones {
+  .other {
+    &__container {
+      &-card {
+        height: 9.2rem;
+        width: 38rem;
+        flex-direction: row;
+
+        // DOWN PART OF THE CARD
+        &--weather {
+          flex-direction: row;
+          gap: 1rem;
+
+          // TEMPERATURE
+          & > span {
+            font-size: 4rem;
+            margin-right: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
