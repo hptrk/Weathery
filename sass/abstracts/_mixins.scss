@@ -34,3 +34,9 @@
     @content;
   }
 }
+@mixin wide-phones {
+  @media screen and (max-width: 55em) {
+    // 880px
+    @content;
+  }
+}

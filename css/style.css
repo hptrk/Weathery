@@ -387,6 +387,14 @@ body {
     @media screen and (max-width: 68.75em) and (max-width: 62.5em) {
       .forecast__active-card > .forecast__container-card--main > :last-child > ul {
         font-size: 1.55rem; } }
+    @media screen and (max-width: 68.75em) and (max-width: 55em) {
+      .forecast__active-card > .forecast__container-card--main > :last-child > ul {
+        font-size: 1.4rem;
+        margin-top: 0; } }
+
+@media screen and (max-width: 55em) {
+  .forecast__container {
+    overflow: scroll; } }
 
 .forecast__header-menu {
   display: flex;
@@ -641,6 +649,10 @@ body {
     grid-column: 1 / -1; }
     .map__container {
       height: 40rem; } }
+
+@media screen and (max-width: 55em) {
+  .diagram {
+    justify-content: start; } }
 
 body {
   background-image: linear-gradient(to left bottom, #212529, #343a40);

@@ -158,10 +158,21 @@
               @media screen and (max-width: 62.5em) {
                 font-size: 1.55rem;
               }
+              @include wide-phones {
+                font-size: 1.4rem;
+                margin-top: 0;
+              }
             }
           }
         }
       }
+    }
+  }
+}
+@include wide-phones {
+  .forecast {
+    &__container {
+      overflow: scroll;
     }
   }
 }

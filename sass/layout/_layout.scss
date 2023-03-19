@@ -169,3 +169,11 @@
     }
   }
 }
+
+// 880px
+@include wide-phones {
+  // LAYOUT CHANGE
+  .diagram {
+    justify-content: start;
+  }
+}
