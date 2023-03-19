@@ -158,8 +158,9 @@
               @media screen and (max-width: 62.5em) {
                 font-size: 1.55rem;
               }
+              // 880px
               @include wide-phones {
-                font-size: 1.4rem;
+                font-size: 1.35rem;
                 margin-top: 0;
               }
             }
@@ -169,6 +170,7 @@
     }
   }
 }
+// 880px
 @include wide-phones {
   .forecast {
     &__container {

@@ -115,6 +115,9 @@
         height: 9.2rem;
         width: 38rem;
         flex-direction: row;
+        &--texts {
+          align-items: start;
+        }
 
         // DOWN PART OF THE CARD
         &--weather {

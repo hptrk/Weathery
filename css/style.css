@@ -404,7 +404,7 @@ body {
         font-size: 1.55rem; } }
     @media screen and (max-width: 68.75em) and (max-width: 55em) {
       .forecast__active-card > .forecast__container-card--main > :last-child > ul {
-        font-size: 1.4rem;
+        font-size: 1.35rem;
         margin-top: 0; } }
 
 @media screen and (max-width: 55em) {
@@ -540,6 +540,8 @@ body {
     height: 9.2rem;
     width: 38rem;
     flex-direction: row; }
+    .other__container-card--texts {
+      align-items: start; }
     .other__container-card--weather {
       flex-direction: row;
       gap: 1rem; }
