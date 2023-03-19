@@ -611,8 +611,7 @@ body {
   .container {
     grid-template-rows: repeat(4, min-content);
     grid-template-columns: repeat(4, 1fr);
-    row-gap: 3rem;
-    column-gap: 3rem;
+    row-gap: 4rem;
     margin-top: 2rem; }
   .header {
     grid-row: 1;
@@ -622,7 +621,8 @@ body {
     grid-column: -2 / -1; }
   .forecast {
     grid-row: 2;
-    grid-column: 1 / -1; }
+    grid-column: 1 / -1;
+    row-gap: 2.5rem; }
     .forecast__container {
       gap: 2%; }
   .diagram {
