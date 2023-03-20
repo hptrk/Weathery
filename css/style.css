@@ -199,6 +199,14 @@ body {
       .navigation__location-text--city {
         font-size: 2.2rem; } }
 
+@media screen and (max-width: 31.25em) {
+  .navigation__location {
+    position: absolute;
+    top: 0.3rem;
+    width: 100%;
+    display: flex;
+    justify-content: center; } }
+
 .navigation__searchbar {
   position: relative;
   width: 55%;
@@ -788,6 +796,10 @@ body {
       .forecast__header-switcher {
         grid-row: 1;
         justify-self: center; } }
+
+@media screen and (max-width: 31.25em) {
+  .container {
+    margin-top: 2rem; } }
 
 body {
   background-image: linear-gradient(to left bottom, #212529, #343a40);

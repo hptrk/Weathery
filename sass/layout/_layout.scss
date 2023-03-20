@@ -295,3 +295,10 @@
     }
   }
 }
+
+// 500px
+@include mini-phones-2 {
+  .container {
+    margin-top: 2rem; // space for the location on the top
+  }
+}

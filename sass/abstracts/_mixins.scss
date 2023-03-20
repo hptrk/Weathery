@@ -58,3 +58,9 @@
     @content;
   }
 }
+@mixin mini-phones-2 {
+  @media screen and (max-width: 31.25em) {
+    // 500px
+    @content;
+  }
+}

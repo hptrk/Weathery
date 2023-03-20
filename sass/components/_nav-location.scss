@@ -61,3 +61,16 @@
     }
   }
 }
+// 500px
+@include mini-phones-2 {
+  .navigation {
+    &__location {
+      position: absolute;
+      top: 0.3rem;
+      // center the text again
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
