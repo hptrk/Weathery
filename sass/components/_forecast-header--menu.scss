@@ -34,3 +34,14 @@
     }
   }
 }
+
+// 520px
+@include mini-phones {
+  .forecast {
+    &__header {
+      &-menu {
+        font-size: 2.8rem;
+      }
+    }
+  }
+}

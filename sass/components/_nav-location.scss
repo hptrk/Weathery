@@ -52,10 +52,12 @@
         }
       }
 
+      //back to the flow
       position: static;
       top: 0;
       left: 0;
       transform: none;
+      width: 150%; // the longer names won't break
     }
   }
 }

@@ -184,6 +184,7 @@
     margin-right: 0;
   }
 }
+
 // 800px
 @include phones {
   .diagram {
@@ -198,13 +199,17 @@
     }
   }
 }
+
 // 700px
 @include small-phones {
+  html {
+    font-size: 45%;
+  }
   // LAYOUT CHANGE
   .container {
     grid-template-rows: repeat(5, min-content);
     grid-template-columns: 1fr;
-    row-gap: 6rem; //more whitespace
+    row-gap: 5rem; //more whitespace
     margin-top: 0; // remove space for the location on the top
   }
   .header {
@@ -255,6 +260,38 @@
 
     &__searchbar {
       grid-column: 1 / -1;
+    }
+  }
+}
+
+// 520px
+@include mini-phones {
+  html {
+    font-size: 42%;
+  }
+  .container {
+    gap: 3rem;
+  }
+  .navigation {
+    row-gap: 2.5rem;
+  }
+  .forecast {
+    grid-template-rows: repeat(2, min-content);
+    //margin-top: -3rem;
+    &__header {
+      display: grid;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+
+      &-menu {
+        grid-row: 2;
+        justify-self: center;
+      }
+      &-switcher {
+        grid-row: 1;
+        justify-self: center;
+      }
     }
   }
 }
