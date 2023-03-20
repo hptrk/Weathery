@@ -302,3 +302,17 @@
     margin-top: 2rem; // space for the location on the top
   }
 }
+
+// 430px
+@include smallest {
+  html {
+    font-size: 35%;
+  }
+}
+
+// 350px
+@include tiny {
+  html {
+    font-size: 30%;
+  }
+}

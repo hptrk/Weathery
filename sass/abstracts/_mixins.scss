@@ -64,3 +64,15 @@
     @content;
   }
 }
+@mixin smallest {
+  @media screen and (max-width: 26.875em) {
+    // 430px
+    @content;
+  }
+}
+@mixin tiny {
+  @media screen and (max-width: 21.875em) {
+    // 350px
+    @content;
+  }
+}

@@ -801,6 +801,14 @@ body {
   .container {
     margin-top: 2rem; } }
 
+@media screen and (max-width: 26.875em) {
+  html {
+    font-size: 35%; } }
+
+@media screen and (max-width: 21.875em) {
+  html {
+    font-size: 30%; } }
+
 body {
   background-image: linear-gradient(to left bottom, #212529, #343a40);
   background-size: cover;
