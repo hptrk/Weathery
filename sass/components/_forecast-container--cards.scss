@@ -174,7 +174,8 @@
 @include wide-phones {
   .forecast {
     &__container {
-      overflow: scroll;
+      overflow-y: hidden;
+      overflow-x: scroll;
     }
   }
 }

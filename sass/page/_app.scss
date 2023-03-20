@@ -7,3 +7,30 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+//// CUSTOM SCROLL BAR
+// the entire scrollbar
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 1rem;
+  height: 1rem;
+}
+
+// background of the scrollbar except button or resizer
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+// scrollbar itself
+::-webkit-scrollbar-thumb {
+  background-color: $color-grey-dark;
+  border-radius: 100px;
+}
+
+// set button(top and bottom of the scrollbar)
+::-webkit-scrollbar-button {
+  display: none;
+}
+::-webkit-scrollbar-corner {
+  display: none;
+}
