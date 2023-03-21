@@ -71,6 +71,23 @@
 }
 
 /// MEDIA QUERIES ///
+// 1230px
+@include desktop-smaller {
+  .forecast {
+    &__header {
+      &-switcher {
+        &--checkbox {
+          //background of the whole element
+          & + label {
+            width: 22rem;
+            height: 3.96rem;
+            font-size: 1.4rem;
+          }
+        }
+      }
+    }
+  }
+}
 // 1100px
 @include laptops {
   .forecast {

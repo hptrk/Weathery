@@ -24,6 +24,16 @@
 }
 
 /// MEDIA QUERIES ///
+// 1230px
+@include desktop-smaller {
+  .forecast {
+    &__header {
+      &-menu {
+        font-size: 2.4rem;
+      }
+    }
+  }
+}
 // 1100px
 @include laptops {
   .forecast {

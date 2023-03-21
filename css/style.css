@@ -433,6 +433,10 @@ body {
     .forecast__header-menu--item:not(.forecast__active-item):hover {
       transform: scaleX(1.05); }
 
+@media screen and (max-width: 76.875em) {
+  .forecast__header-menu {
+    font-size: 2.4rem; } }
+
 @media screen and (max-width: 68.75em) {
   .forecast__header-menu {
     font-size: 2.5rem; } }
@@ -482,6 +486,12 @@ body {
     color: black; }
   .forecast__header-switcher--checkbox:checked + label > :first-child {
     color: #888; }
+
+@media screen and (max-width: 76.875em) {
+  .forecast__header-switcher--checkbox + label {
+    width: 22rem;
+    height: 3.96rem;
+    font-size: 1.4rem; } }
 
 @media screen and (max-width: 68.75em) {
   .forecast__header-switcher--checkbox + label {
