@@ -27,6 +27,12 @@
 @include laptops {
   .navigation {
     &__location {
+      // pin
+      &-icon {
+        height: 2.8rem;
+        width: 2.8rem;
+      }
+      // location text
       &-text {
         font-size: 2.25rem;
         &--city {
@@ -35,7 +41,7 @@
       }
 
       position: absolute;
-      top: 0.3rem;
+      top: 0.8rem;
       left: 50%;
       transform: translateX(-50%);
     }
@@ -45,13 +51,6 @@
 @include small-phones {
   .navigation {
     &__location {
-      &-text {
-        font-size: 1.98rem;
-        &--city {
-          font-size: 2.2rem;
-        }
-      }
-
       //back to the flow
       position: static;
       top: 0;
@@ -66,7 +65,7 @@
   .navigation {
     &__location {
       position: absolute;
-      top: 0.3rem;
+      top: 0.8rem;
       // center the text again
       width: 100%;
       display: flex;

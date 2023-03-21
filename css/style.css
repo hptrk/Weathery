@@ -179,9 +179,12 @@ body {
 @media screen and (max-width: 68.75em) {
   .navigation__location {
     position: absolute;
-    top: 0.3rem;
+    top: 0.8rem;
     left: 50%;
     transform: translateX(-50%); }
+    .navigation__location-icon {
+      height: 2.8rem;
+      width: 2.8rem; }
     .navigation__location-text {
       font-size: 2.25rem; }
       .navigation__location-text--city {
@@ -193,16 +196,12 @@ body {
     top: 0;
     left: 0;
     transform: none;
-    width: 150%; }
-    .navigation__location-text {
-      font-size: 1.98rem; }
-      .navigation__location-text--city {
-        font-size: 2.2rem; } }
+    width: 150%; } }
 
 @media screen and (max-width: 31.25em) {
   .navigation__location {
     position: absolute;
-    top: 0.3rem;
+    top: 0.8rem;
     width: 100%;
     display: flex;
     justify-content: center; } }
@@ -685,7 +684,7 @@ body {
     grid-template-rows: repeat(4, min-content);
     grid-template-columns: repeat(4, 1fr);
     row-gap: 4rem;
-    margin-top: 2rem; }
+    margin-top: 4rem; }
   .header {
     grid-row: 1;
     grid-column: 1 / -2; }

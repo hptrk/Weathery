@@ -129,7 +129,7 @@
     grid-template-rows: repeat(4, min-content);
     grid-template-columns: repeat(4, 1fr);
     row-gap: 4rem; //more whitespace
-    margin-top: 2rem; // space for the location on the top
+    margin-top: 4rem; // space for the location on the top
   }
   .header {
     grid-row: 1;
