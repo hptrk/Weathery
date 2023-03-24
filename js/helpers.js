@@ -1,5 +1,7 @@
 import { TIMEOUT_SEC } from './config';
 
+////////////////////
+// rejecting timeout needed for promise race
 const timeout = function (s) {
   return new Promise(function (_, reject) {
     setTimeout(() => {
@@ -7,23 +9,24 @@ const timeout = function (s) {
     }, s * 1000);
   });
 };
-//////////
+
+////////////////////
 // AJAX CALL
 export const AJAX = async function (url) {
   //GET
   try {
     const fetchPro = fetch(url);
-    const res = await Promise.race([fetchPro, timeout(TIMEOUT_SEC)]);
+    const res = await Promise.race([fetchPro, timeout(TIMEOUT_SEC)]); //if the request is taking too long, it will throw an error
     const data = await res.json();
 
-    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+    if (!res.ok) throw new Error(`${data.reason} (${res.status})`);
     return data;
   } catch (err) {
     throw err;
   }
 };
 
-//////////
+////////////////////
 // GET DAILY WEATHER OBJECT
 export const getDaily = function (data, dayNumber) {
   const { daily } = data;
@@ -37,7 +40,7 @@ export const getDaily = function (data, dayNumber) {
   };
 };
 
-//////////
+////////////////////
 // GET HOURLY WEATHER OBJECT
 export const getHourly = function (data, dayNumber) {
   const { hourly } = data;
