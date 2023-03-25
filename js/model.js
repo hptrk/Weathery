@@ -4,6 +4,7 @@ import { AJAX, getDaily, getHourly } from './helpers';
 
 // current state object
 export const state = {
+  location: { latitude: '', longitude: '' },
   weather: {},
   savedCities: [],
   search: {
@@ -22,6 +23,7 @@ const createWeatherObject = function (data) {
       temperature: current.temperature,
       windSpeed: current.windspeed,
       weathercode: current.weathercode,
+      //BUG!! TODO (0.LINE)
       relativeHumidity: getHourly(data, 0).relativeHumidity, // current day = 0
       apparentTemp: getHourly(data, 0).apparentTemp,
     },
@@ -38,7 +40,7 @@ const createWeatherObject = function (data) {
 };
 
 // loading the data from open-meteo API
-export const loadWeather = async function (lat, long) {
+const loadWeather = async function (lat, long) {
   try {
     const data = await AJAX(API_URL(lat, long));
     console.log(data); // TEST
@@ -49,4 +51,23 @@ export const loadWeather = async function (lat, long) {
     throw err;
   }
 };
-loadWeather('47.55', '21.62'); // TEST
+
+// load current position + weather
+export const loadLocation = () => {
+  // geolocation - SUCCESS
+  const success = position => {
+    state.location.latitude = position.coords.latitude;
+    state.location.longitude = position.coords.longitude;
+    loadWeather(state.location.latitude, state.location.longitude); // load weather with current position
+  };
+  // geolocation - ERROR
+  const error = () => {
+    console.error('💥 Unable to retrieve your position 💥');
+  };
+
+  if (!navigator.geolocation) {
+    console.error('💥 Geolocation is not supported by your browser 💥');
+  } else {
+    navigator.geolocation.getCurrentPosition(success, error);
+  }
+};
