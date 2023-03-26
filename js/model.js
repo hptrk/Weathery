@@ -38,8 +38,23 @@ const createWeatherObject = function (data) {
   };
 };
 
+// load current position + weather
+export const loadLocation = async () => {
+  if (!navigator.geolocation)
+    return console.error('💥 Geolocation is not supported by your browser 💥');
+
+  const pos = await new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+  state.location.latitude = pos.coords.latitude;
+  state.location.longitude = pos.coords.longitude;
+};
+
 // loading the data from open-meteo API
-const loadWeather = async function (lat, long) {
+export const loadWeather = async function (
+  lat = state.location.latitude,
+  long = state.location.longitude
+) {
   try {
     const data = await AJAX(API_URL(lat, long));
     console.log(data); // TEST
@@ -48,25 +63,5 @@ const loadWeather = async function (lat, long) {
   } catch (err) {
     console.error(`${err} 💥`);
     throw err;
-  }
-};
-
-// load current position + weather
-export const loadLocation = () => {
-  // geolocation - SUCCESS
-  const success = position => {
-    state.location.latitude = position.coords.latitude;
-    state.location.longitude = position.coords.longitude;
-    loadWeather(state.location.latitude, state.location.longitude); // load weather with current position
-  };
-  // geolocation - ERROR
-  const error = () => {
-    console.error('💥 Unable to retrieve your position 💥');
-  };
-
-  if (!navigator.geolocation) {
-    console.error('💥 Geolocation is not supported by your browser 💥');
-  } else {
-    navigator.geolocation.getCurrentPosition(success, error);
   }
 };
