@@ -25,6 +25,8 @@ const createWeatherObject = function (data) {
       weathercode: current.weathercode,
       relativeHumidity: getHourly(data, 0).relativeHumidity, // current day = 0
       apparentTemp: getHourly(data, 0).apparentTemp,
+      sunrise: getDaily(data, 0).sunrise,
+      sunset: getDaily(data, 0).sunset,
     },
     // NEXT 6 DAYS FROM THE CURRENT DAY
     days: {
