@@ -27,6 +27,12 @@ export const AJAX = async function (url) {
 };
 
 ////////////////////
+// GET CURRENT HOUR (for API array)
+const getHour = () => {
+  return new Date().getHours();
+};
+
+////////////////////
 // GET DAILY WEATHER OBJECT
 export const getDaily = function (data, dayNumber) {
   const { daily } = data;
@@ -44,9 +50,11 @@ export const getDaily = function (data, dayNumber) {
 // GET HOURLY WEATHER OBJECT
 export const getHourly = function (data, dayNumber) {
   const { hourly } = data;
+  const prevDays = 24 * dayNumber; // if we need data for the second day, it will count in the previous 2 days (48 h)
 
   return {
-    apparentTemp: hourly.apparent_temperature[dayNumber],
-    relativeHumidity: hourly.relativehumidity_2m[dayNumber],
+    apparentTemp: hourly.apparent_temperature[prevDays + getHour()],
+    relativeHumidity: hourly.relativehumidity_2m[prevDays + getHour()],
+    // example: if its 20:22, it will return the element with the index of 20 from the array
   };
 };

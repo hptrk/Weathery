@@ -23,7 +23,6 @@ const createWeatherObject = function (data) {
       temperature: current.temperature,
       windSpeed: current.windspeed,
       weathercode: current.weathercode,
-      //BUG!! TODO (0.LINE)
       relativeHumidity: getHourly(data, 0).relativeHumidity, // current day = 0
       apparentTemp: getHourly(data, 0).apparentTemp,
     },
