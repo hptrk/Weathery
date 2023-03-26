@@ -18,7 +18,7 @@
 
         //the grey separator line
         &::after {
-          content: "";
+          content: '';
           position: absolute;
           bottom: 0;
           left: 25%;
@@ -32,7 +32,7 @@
         padding: 0.5rem 2rem;
         //CENTER ELEMENT (for example: svg icon)
         & > :first-child {
-          margin: 1rem auto 0 auto;
+          margin: 0.5rem auto 0 auto;
           display: flex;
           justify-content: center;
         }
@@ -43,6 +43,14 @@
 
           display: flex;
           justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          gap: 0;
+          & > :last-child {
+            color: $color-lightblue-main;
+            margin-top: -1rem;
+            font-size: 2rem;
+          }
         }
       }
     }
@@ -89,6 +97,7 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
+          flex-direction: row;
 
           & > ul {
             list-style: none;
