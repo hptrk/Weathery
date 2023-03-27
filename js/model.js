@@ -1,9 +1,17 @@
 import { async } from 'regenerator-runtime';
 import { API_URL } from './config';
-import { AJAX, getDaily, getHourly, round } from './helpers';
+import {
+  AJAX,
+  getDaily,
+  getHourly,
+  round,
+  runEverySec,
+  leadingZero,
+} from './helpers';
 
 // current state object
 export const state = {
+  currentTime: '',
   location: { latitude: '', longitude: '' },
   weather: {},
   savedCities: [],
@@ -66,4 +74,21 @@ export const loadWeather = async function (
     console.error(`${err} 💥`);
     throw err;
   }
+};
+
+export const loadTime = function () {
+  function getTime() {
+    const now = new Date(); // full date
+    // Add leading zero to single-digit numbers
+    let hours = leadingZero(now.getHours());
+    let minutes = leadingZero(now.getMinutes());
+    let seconds = leadingZero(now.getSeconds());
+
+    // Update the time
+    state.currentTime = `${hours}:${minutes}:${seconds}`;
+  }
+  // Need to call the function first for instant time information
+  getTime();
+  // The time will update every second
+  runEverySec(getTime);
 };

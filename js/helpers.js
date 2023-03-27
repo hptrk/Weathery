@@ -64,3 +64,17 @@ export const getHourly = function (data, dayNumber) {
     // example: if its 20:22, it will return the element with the index of 20 from the array
   };
 };
+
+////////////////////
+// GET HOURLY WEATHER OBJECT
+export const runEverySec = f => {
+  setInterval(() => {
+    f();
+  }, 1000);
+};
+
+////////////////////
+// PUT LEADING ZERO INTO SINGLE DIGIT NUMBERS
+export const leadingZero = number => {
+  return `${number}`.padStart(2, '0');
+};

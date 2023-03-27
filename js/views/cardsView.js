@@ -6,6 +6,7 @@ import day_rain_thunder from '../../icons/day_rain_thunder.svg';
 import day_rain from '../../icons/day_rain.svg';
 import rain_thunder from '../../icons/rain_thunder.svg';
 import rain from '../../icons/rain.svg';
+import { runEverySec } from '../helpers';
 
 class CardsView extends View {
   _parentElement = document.querySelector('.forecast__container');
@@ -15,12 +16,30 @@ class CardsView extends View {
     window.addEventListener('load', handler);
   }
 
+  updateClock(data) {
+    const cardHeaderElement = document.querySelector(
+      '.forecast__container-card--header'
+    );
+    function updateClock() {
+      cardHeaderElement.innerHTML = ''; // clear
+      cardHeaderElement.insertAdjacentHTML(
+        'afterbegin',
+        `<span>Monday</span><span class="numbers">${data.currentTime}</span>`
+      ); // fill
+    }
+    // Need to call the function first for instant DOM update
+    updateClock();
+    // The DOM will update every second
+    runEverySec(updateClock);
+  }
+
   _generateMarkup() {
+    console.log(this._data);
     return `
     <figure class="forecast__container-card forecast__active-card">
 
             <div class="forecast__container-card--header">
-              <span>Monday</span><span class="numbers">11:42</span>
+             
             </div>
 
             <div class="forecast__container-card--main">

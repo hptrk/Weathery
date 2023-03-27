@@ -371,6 +371,9 @@ body {
     padding: 0.9rem 2rem;
     display: flex;
     justify-content: space-between; }
+    .forecast__active-card > .forecast__container-card--header > :last-child {
+      width: 9.5rem;
+      text-align: left; }
     .forecast__active-card > .forecast__container-card--header::after {
       display: none; }
   .forecast__active-card > .forecast__container-card--main {

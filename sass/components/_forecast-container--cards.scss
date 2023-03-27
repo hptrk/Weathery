@@ -69,6 +69,10 @@
 
         display: flex;
         justify-content: space-between;
+        & > :last-child {
+          width: 9.5rem;
+          text-align: left;
+        }
 
         &::after {
           display: none; //don't need the separator line

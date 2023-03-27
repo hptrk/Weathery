@@ -11,6 +11,12 @@ const controlWeather = async function () {
 
     // 3) Render the weather to the DOM
     cardsView.render(model.state.weather);
+
+    // 4) Load the data for real time clock
+    model.loadTime();
+
+    // 5) Render the clock to the DOM
+    cardsView.updateClock(model.state);
   } catch (err) {
     console.log(err);
   }
