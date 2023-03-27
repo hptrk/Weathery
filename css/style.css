@@ -414,7 +414,12 @@ body {
     .forecast__active-card > .forecast__container-card--main > :first-child {
       font-size: 6.5rem; }
     .forecast__active-card > .forecast__container-card--main > :last-child > :first-child {
-      margin-top: -1.4rem; }
+      margin-top: -1.4rem; } }
+    @media screen and (max-width: 68.75em) and (max-width: 55em) {
+      .forecast__active-card > .forecast__container-card--main > :last-child > :first-child {
+        margin-top: -0.3rem; } }
+
+@media screen and (max-width: 68.75em) {
     .forecast__active-card > .forecast__container-card--main > :last-child > ul {
       font-size: 1.7rem; } }
     @media screen and (max-width: 68.75em) and (max-width: 62.5em) {
@@ -422,8 +427,7 @@ body {
         font-size: 1.55rem; } }
     @media screen and (max-width: 68.75em) and (max-width: 55em) {
       .forecast__active-card > .forecast__container-card--main > :last-child > ul {
-        font-size: 1.35rem;
-        margin-top: 0; } }
+        font-size: 1.35rem; } }
 
 @media screen and (max-width: 55em) {
   .forecast__container {

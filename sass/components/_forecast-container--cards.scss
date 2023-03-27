@@ -162,6 +162,10 @@
             // left side of the stats (first 3 line)
             & > :first-child {
               margin-top: -1.4rem;
+              // 880px
+              @include wide-phones {
+                margin-top: -0.3rem;
+              }
             }
             & > ul {
               font-size: 1.7rem;
@@ -172,7 +176,6 @@
               // 880px
               @include wide-phones {
                 font-size: 1.35rem;
-                margin-top: 0;
               }
             }
           }
