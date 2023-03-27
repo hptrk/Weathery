@@ -1,6 +1,6 @@
 import { async } from 'regenerator-runtime';
 import { API_URL } from './config';
-import { AJAX, getDaily, getHourly } from './helpers';
+import { AJAX, getDaily, getHourly, round } from './helpers';
 
 // current state object
 export const state = {
@@ -20,7 +20,7 @@ const createWeatherObject = function (data) {
   return {
     // CURRENT DAY
     current: {
-      temperature: current.temperature,
+      temperature: round(current.temperature),
       windSpeed: current.windspeed,
       weathercode: current.weathercode,
       relativeHumidity: getHourly(data, 0).relativeHumidity, // current day = 0

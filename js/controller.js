@@ -11,12 +11,11 @@ const controlWeather = async function () {
 
     // 3) Render the weather to the DOM
     cardsView.render(model.state.weather);
-    console.log(model.state.weather);
   } catch (err) {
     console.log(err);
   }
 };
 const init = function () {
-  controlWeather();
+  cardsView.addHandlerRender(controlWeather);
 };
 init();

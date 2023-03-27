@@ -11,6 +11,12 @@ const timeout = function (s) {
 };
 
 ////////////////////
+// ROUND VALUE
+export const round = value => {
+  return Math.round(value);
+};
+
+////////////////////
 // AJAX CALL
 export const AJAX = async function (url) {
   //GET
@@ -39,8 +45,8 @@ export const getDaily = function (data, dayNumber) {
 
   return {
     weathercode: daily.weathercode[dayNumber],
-    minTemp: daily.temperature_2m_min[dayNumber],
-    maxTemp: daily.temperature_2m_max[dayNumber],
+    minTemp: round(daily.temperature_2m_min[dayNumber]),
+    maxTemp: round(daily.temperature_2m_max[dayNumber]),
     sunrise: daily.sunrise[dayNumber],
     sunset: daily.sunset[dayNumber],
   };
@@ -53,7 +59,7 @@ export const getHourly = function (data, dayNumber) {
   const prevDays = 24 * dayNumber; // if we need data for the second day, it will count in the previous 2 days (48 h)
 
   return {
-    apparentTemp: hourly.apparent_temperature[prevDays + getHour()],
+    apparentTemp: round(hourly.apparent_temperature[prevDays + getHour()]),
     relativeHumidity: hourly.relativehumidity_2m[prevDays + getHour()],
     // example: if its 20:22, it will return the element with the index of 20 from the array
   };

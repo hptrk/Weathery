@@ -367,6 +367,8 @@ body {
   .forecast__active-card > .forecast__container-card--header {
     background-color: #adcade;
     color: black;
+    font-size: 2.3rem;
+    padding: 0.9rem 2rem;
     display: flex;
     justify-content: space-between; }
     .forecast__active-card > .forecast__container-card--header::after {

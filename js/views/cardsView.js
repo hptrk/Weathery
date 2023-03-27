@@ -20,7 +20,7 @@ class CardsView extends View {
     <figure class="forecast__container-card forecast__active-card">
 
             <div class="forecast__container-card--header">
-              <span>Monday</span><span class="numbers">11:42 PM</span>
+              <span>Monday</span><span class="numbers">11:42</span>
             </div>
 
             <div class="forecast__container-card--main">
@@ -59,13 +59,13 @@ class CardsView extends View {
                     Sunrise:
                     <strong><span class="numbers">${this._data.current.sunrise.slice(
                       -5
-                    )}</span> AM</strong>
+                    )}</span></strong>
                   </li>
                   <li>
                     Sunset:
                     <strong><span class="numbers">${this._data.current.sunset.slice(
                       -5
-                    )}</span> PM</strong>
+                    )}</span></strong>
                   </li>
                 </ul>
               </div>
