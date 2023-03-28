@@ -69,9 +69,21 @@
 
         display: flex;
         justify-content: space-between;
+
+        // REAL TIME CLOCK
         & > :last-child {
-          width: 9.5rem;
-          text-align: left;
+          margin-right: 1.4rem;
+          position: relative;
+
+          // seconds
+          & > .sec {
+            position: absolute;
+            font-size: 1.3rem;
+            padding-left: 0.2rem;
+            bottom: 13%;
+            font-weight: 700;
+            color: $color-blueish-grey;
+          }
         }
 
         &::after {

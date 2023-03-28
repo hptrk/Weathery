@@ -20,17 +20,20 @@ class CardsView extends View {
     const cardHeaderElement = document.querySelector(
       '.forecast__container-card--header'
     );
-    function updateClock() {
+    function updateDOM() {
       cardHeaderElement.innerHTML = ''; // clear
       cardHeaderElement.insertAdjacentHTML(
         'afterbegin',
-        `<span>Monday</span><span class="numbers">${data.currentTime}</span>`
+        `<span>Monday</span><span class="numbers">${data.currentTime.slice(
+          0,
+          5
+        )}<span class="sec">${data.currentTime.slice(6)}</span></span>`
       ); // fill
     }
     // Need to call the function first for instant DOM update
-    updateClock();
+    updateDOM();
     // The DOM will update every second
-    runEverySec(updateClock);
+    runEverySec(updateDOM);
   }
 
   _generateMarkup() {

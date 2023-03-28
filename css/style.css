@@ -372,8 +372,15 @@ body {
     display: flex;
     justify-content: space-between; }
     .forecast__active-card > .forecast__container-card--header > :last-child {
-      width: 9.5rem;
-      text-align: left; }
+      margin-right: 1.4rem;
+      position: relative; }
+      .forecast__active-card > .forecast__container-card--header > :last-child > .sec {
+        position: absolute;
+        font-size: 1.3rem;
+        padding-left: 0.2rem;
+        bottom: 13%;
+        font-weight: 700;
+        color: #4b565e; }
     .forecast__active-card > .forecast__container-card--header::after {
       display: none; }
   .forecast__active-card > .forecast__container-card--main {
