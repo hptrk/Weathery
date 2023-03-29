@@ -13,16 +13,8 @@ import {
 // current state object
 export const state = {
   currentTime: '',
-  dayNames: {
-    zero: '', //current day
-    one: '', //tomorrow... etc
-    two: '',
-    three: '',
-    four: '',
-    five: '',
-    six: '',
-  },
-  location: { latitude: '', longitude: '' },
+  dayNames: {}, // zero: current day, one: tomorrow, etc..
+  location: {}, // latitude: x, longitude: y
   weather: {},
   savedCities: [],
   search: {
