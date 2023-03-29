@@ -7,7 +7,6 @@ import {
   round,
   runEverySec,
   leadingZero,
-  getFollowingDay,
   updateDayNames,
 } from './helpers';
 

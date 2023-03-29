@@ -9,11 +9,11 @@ const controlWeather = async function () {
     // 2) Load weather based on current location
     await model.loadWeather();
 
-    // 3) Render the weather to the DOM
-    cardsView.render(model.state.weather);
-
-    // 4) Load the data for real time clock
+    // 3) Load the data for real time clock
     model.loadTime();
+
+    // 4) Render the weather to the DOM
+    cardsView.render(model.state);
 
     // 5) Render the clock to the DOM
     cardsView.updateClock(model.state);

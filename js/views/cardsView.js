@@ -24,7 +24,9 @@ class CardsView extends View {
       cardHeaderElement.innerHTML = ''; // clear
       cardHeaderElement.insertAdjacentHTML(
         'afterbegin',
-        `<span>Monday</span><span class="numbers">${data.currentTime.slice(
+        `<span>${
+          data.dayNames.zero
+        }</span><span class="numbers">${data.currentTime.slice(
           0,
           5
         )}<span class="sec">${data.currentTime.slice(6)}</span></span>`
@@ -37,7 +39,6 @@ class CardsView extends View {
   }
 
   _generateMarkup() {
-    console.log(this._data);
     return `
     <figure class="forecast__container-card forecast__active-card">
 
@@ -48,7 +49,7 @@ class CardsView extends View {
             <div class="forecast__container-card--main">
               <div>
                 <span class="numbers">${
-                  this._data.current.temperature
+                  this._data.weather.current.temperature
                 }&#176;</span>
                 <img
                   src="${day_rain_thunder}"
@@ -61,31 +62,31 @@ class CardsView extends View {
                   <li>
                     Real Feel:
                     <strong><span class="numbers">${
-                      this._data.current.apparentTemp
+                      this._data.weather.current.apparentTemp
                     }</span>&#176;</strong>
                   </li>
                   <li>
                     Wind:
                     <strong><span class="numbers">${
-                      this._data.current.windSpeed
+                      this._data.weather.current.windSpeed
                     }</span> km/h</strong>
                   </li>
                   <li>
                     Humidity: <strong><span class="numbers">${
-                      this._data.current.relativeHumidity
+                      this._data.weather.current.relativeHumidity
                     }%</span></strong>
                   </li>
                 </ul>
                 <ul>
                   <li>
                     Sunrise:
-                    <strong><span class="numbers">${this._data.current.sunrise.slice(
+                    <strong><span class="numbers">${this._data.weather.current.sunrise.slice(
                       -5
                     )}</span></strong>
                   </li>
                   <li>
                     Sunset:
-                    <strong><span class="numbers">${this._data.current.sunset.slice(
+                    <strong><span class="numbers">${this._data.weather.current.sunset.slice(
                       -5
                     )}</span></strong>
                   </li>
@@ -97,7 +98,7 @@ class CardsView extends View {
           <figure class="forecast__container-card">
 
             <div class="forecast__container-card--header">
-              <span>Tue</span>
+              <span>${this._data.dayNames.one.slice(0, 3)}</span>
             </div>
 
             <div class="forecast__container-card--main">
@@ -107,8 +108,8 @@ class CardsView extends View {
                 class="icon-weather"
               />
               <div class="numbers">
-                <span>${this._data.days.one.maxTemp}&#176;</span>
-                <span>${this._data.days.one.minTemp}&#176;</span>
+                <span>${this._data.weather.days.one.maxTemp}&#176;</span>
+                <span>${this._data.weather.days.one.minTemp}&#176;</span>
               </div>
             </div>
           </figure>
@@ -116,14 +117,14 @@ class CardsView extends View {
           <figure class="forecast__container-card">
 
             <div class="forecast__container-card--header">
-              <span>Wed</span>
+              <span>${this._data.dayNames.two.slice(0, 3)}</span>
             </div>
 
             <div class="forecast__container-card--main">
               <img src="${day_rain}" alt="Rainy" class="icon-weather" />
               <div class="numbers">
-                <span>${this._data.days.two.maxTemp}&#176;</span>
-                <span>${this._data.days.two.minTemp}&#176;</span>
+                <span>${this._data.weather.days.two.maxTemp}&#176;</span>
+                <span>${this._data.weather.days.two.minTemp}&#176;</span>
               </div>
             </div>
           </figure>
@@ -131,7 +132,7 @@ class CardsView extends View {
           <figure class="forecast__container-card">
 
             <div class="forecast__container-card--header">
-              <span>Thu</span>
+              <span>${this._data.dayNames.three.slice(0, 3)}</span>
             </div>
 
             <div class="forecast__container-card--main">
@@ -141,8 +142,8 @@ class CardsView extends View {
                 class="icon-weather"
               />
               <div class="numbers">
-                <span>${this._data.days.three.maxTemp}&#176;</span>
-                <span>${this._data.days.three.minTemp}&#176;</span>
+                <span>${this._data.weather.days.three.maxTemp}&#176;</span>
+                <span>${this._data.weather.days.three.minTemp}&#176;</span>
               </div>
             </div>
           </figure>
@@ -150,7 +151,7 @@ class CardsView extends View {
           <figure class="forecast__container-card">
 
             <div class="forecast__container-card--header">
-              <span>Fri</span>
+              <span>${this._data.dayNames.four.slice(0, 3)}</span>
             </div>
 
             <div class="forecast__container-card--main">
@@ -160,8 +161,8 @@ class CardsView extends View {
                 class="icon-weather"
               />
               <div class="numbers">
-                <span>${this._data.days.four.maxTemp}&#176;</span>
-                <span>${this._data.days.four.minTemp}&#176;</span>
+                <span>${this._data.weather.days.four.maxTemp}&#176;</span>
+                <span>${this._data.weather.days.four.minTemp}&#176;</span>
               </div>
             </div>
           </figure>
@@ -169,7 +170,7 @@ class CardsView extends View {
           <figure class="forecast__container-card">
 
             <div class="forecast__container-card--header">
-              <span>Sat</span>
+              <span>${this._data.dayNames.five.slice(0, 3)}</span>
             </div>
 
             <div class="forecast__container-card--main">
@@ -179,8 +180,8 @@ class CardsView extends View {
                 class="icon-weather"
               />
               <div class="numbers">
-                <span>${this._data.days.five.maxTemp}&#176;</span>
-                <span>${this._data.days.five.minTemp}&#176;</span>
+                <span>${this._data.weather.days.five.maxTemp}&#176;</span>
+                <span>${this._data.weather.days.five.minTemp}&#176;</span>
               </div>
             </div>
           </figure>
@@ -188,14 +189,14 @@ class CardsView extends View {
           <figure class="forecast__container-card">
 
             <div class="forecast__container-card--header">
-              <span>Sun</span>
+              <span>${this._data.dayNames.six.slice(0, 3)}</span>
             </div>
 
             <div class="forecast__container-card--main">
               <img src="${rain}" alt="Rain" class="icon-weather" />
               <div class="numbers">
-                <span>${this._data.days.six.maxTemp}&#176;</span>
-                <span>${this._data.days.six.minTemp}&#176;</span>
+                <span>${this._data.weather.days.six.maxTemp}&#176;</span>
+                <span>${this._data.weather.days.six.minTemp}&#176;</span>
               </div>
             </div>
           </figure>
