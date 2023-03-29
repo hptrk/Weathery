@@ -8,6 +8,7 @@ import {
   runEverySec,
   leadingZero,
   updateDayNames,
+  getFromCode,
 } from './helpers';
 
 // current state object
@@ -34,6 +35,7 @@ const createWeatherObject = function (data) {
       temperature: round(current.temperature),
       windSpeed: current.windspeed,
       weathercode: current.weathercode,
+      description: getFromCode(current.weathercode),
       relativeHumidity: getHourly(data, 0).relativeHumidity, // current day = 0
       apparentTemp: getHourly(data, 0).apparentTemp,
       sunrise: getDaily(data, 0).sunrise,
