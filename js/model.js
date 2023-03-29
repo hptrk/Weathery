@@ -7,11 +7,22 @@ import {
   round,
   runEverySec,
   leadingZero,
+  getFollowingDay,
+  updateDayNames,
 } from './helpers';
 
 // current state object
 export const state = {
   currentTime: '',
+  dayNames: {
+    zero: '', //current day
+    one: '', //tomorrow... etc
+    two: '',
+    three: '',
+    four: '',
+    five: '',
+    six: '',
+  },
   location: { latitude: '', longitude: '' },
   weather: {},
   savedCities: [],
@@ -19,6 +30,7 @@ export const state = {
     query: '',
     results: [],
   },
+  locale: 'en-US', // will be automatic later
 };
 
 // creates a weather object based on open-meteo API
@@ -77,6 +89,9 @@ export const loadWeather = async function (
 };
 
 export const loadTime = function () {
+  // load day names on page load
+  updateDayNames(state);
+
   function getTime() {
     const now = new Date(); // full date
     // Add leading zero to single-digit numbers
@@ -86,7 +101,11 @@ export const loadTime = function () {
 
     // Update the time
     state.currentTime = `${hours}:${minutes}:${seconds}`;
+
+    // If it is midnight, update the day names
+    if (state.currentTime === `00:00:00`) updateDayNames(state);
   }
+
   // Need to call the function first for instant time information
   getTime();
   // The time will update every second

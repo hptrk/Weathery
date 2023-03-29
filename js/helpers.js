@@ -78,3 +78,23 @@ export const runEverySec = f => {
 export const leadingZero = number => {
   return `${number}`.padStart(2, '0');
 };
+
+////////////////////
+// GET FOLLOWING DAY NAMES
+export const getFollowingDay = (day, locale) => {
+  const date = new Date();
+  date.setDate(date.getDate() + day); // set the following day
+  return date.toLocaleDateString(locale, { weekday: 'long' }); // return the name of it
+};
+
+////////////////////
+// UPDATE DAY NAMES
+export const updateDayNames = state => {
+  state.dayNames.zero = getFollowingDay(0, state.locale); // current day
+  state.dayNames.one = getFollowingDay(1, state.locale);
+  state.dayNames.two = getFollowingDay(2, state.locale);
+  state.dayNames.three = getFollowingDay(3, state.locale);
+  state.dayNames.four = getFollowingDay(4, state.locale);
+  state.dayNames.five = getFollowingDay(5, state.locale);
+  state.dayNames.six = getFollowingDay(6, state.locale);
+};
