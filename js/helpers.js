@@ -46,6 +46,11 @@ export const getDaily = function (data, dayNumber) {
   return {
     weathercode: daily.weathercode[dayNumber],
     description: getFromCode(daily.weathercode[dayNumber]),
+    icon: getFromCode(
+      daily.weathercode[dayNumber],
+      false,
+      isDayTime(daily.sunrise[dayNumber], daily.sunset[dayNumber])
+    ),
     minTemp: round(daily.temperature_2m_min[dayNumber]),
     maxTemp: round(daily.temperature_2m_max[dayNumber]),
     sunrise: daily.sunrise[dayNumber],
@@ -143,4 +148,32 @@ export const getFromCode = (code, desc = true, day = true) => {
   // if it is false, return the icon file name
   if (desc) return codes[code][0];
   if (!desc) return codes[code][1];
+};
+
+////////////////////
+// DECIDE IF THE HELPER FUNCTION HAS TO RETURN DAY OR NIGHT ICONS
+export const isDayTime = (sunrise, sunset) => {
+  const dateNow = new Date();
+  const hourNow = dateNow.getHours();
+  const minNow = dateNow.getMinutes();
+
+  // if the time starts with '0' (06:07), then only use the second char
+  function checkZero(s) {
+    return s[0] === '0' ? +s[1] : +s;
+  }
+
+  const sunriseHour = checkZero(sunrise.slice(11, 13));
+  const sunriseMin = checkZero(sunrise.slice(14, 16));
+  const sunsetHour = checkZero(sunset.slice(11, 13));
+  const sunsetMin = checkZero(sunset.slice(14, 16));
+  // return true if it is sunrise or sunset hour, and the minutes are before/after
+  if (
+    (hourNow === sunriseHour && sunriseMin <= minNow) ||
+    (hourNow === sunsetHour && sunsetMin > minNow)
+  )
+    return true;
+  // return true if the hour is between the sunrise and the sunset
+  if (hourNow > sunriseHour && hourNow < sunsetHour) return true;
+  // if nothing is returned, then it is night time (return false)
+  return false;
 };

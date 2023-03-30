@@ -9,6 +9,7 @@ import {
   leadingZero,
   updateDayNames,
   getFromCode,
+  isDayTime,
 } from './helpers';
 
 // current state object
@@ -36,6 +37,11 @@ const createWeatherObject = function (data) {
       windSpeed: current.windspeed,
       weathercode: current.weathercode,
       description: getFromCode(current.weathercode),
+      icon: getFromCode(
+        current.weathercode,
+        false,
+        isDayTime(getDaily(data, 0).sunrise, getDaily(data, 0).sunset)
+      ),
       relativeHumidity: getHourly(data, 0).relativeHumidity, // current day = 0
       apparentTemp: getHourly(data, 0).apparentTemp,
       sunrise: getDaily(data, 0).sunrise,
@@ -72,9 +78,8 @@ export const loadWeather = async function (
 ) {
   try {
     const data = await AJAX(API_URL(lat, long));
-    console.log(data); // TEST
+
     state.weather = createWeatherObject(data);
-    console.log(state.weather); // TEST
   } catch (err) {
     console.error(`${err} 💥`);
     throw err;
