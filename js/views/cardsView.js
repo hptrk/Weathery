@@ -1,11 +1,25 @@
-import { icon } from 'leaflet';
 import View from './View.js';
+
+//------ ICON IMPORTS ------//
 import day_clear from '../../icons/day_clear.svg';
+import night_clear from '../../icons/night_clear.svg';
 import day_partial_cloud from '../../icons/day_partial_cloud.svg';
-import day_rain_thunder from '../../icons/day_rain_thunder.svg';
+import night_partial_cloud from '../../icons/night_partial_cloud.svg';
+import overcast from '../../icons/overcast.svg';
+import fog from '../../icons/fog.svg';
+import angry_clouds from '../../icons/angry_clouds.svg';
 import day_rain from '../../icons/day_rain.svg';
-import rain_thunder from '../../icons/rain_thunder.svg';
+import night_rain from '../../icons/night_rain.svg';
+import day_sleet from '../../icons/day_sleet.svg';
+import night_sleet from '../../icons/night_sleet.svg';
 import rain from '../../icons/rain.svg';
+import rain_thunder from '../../icons/rain_thunder.svg';
+import sleet from '../../icons/sleet.svg';
+import day_snow from '../../icons/day_snow.svg';
+import night_snow from '../../icons/night_snow.svg';
+import snow from '../../icons/snow.svg';
+import thunder from '../../icons/thunder.svg';
+
 import { runEverySec } from '../helpers';
 
 class CardsView extends View {
