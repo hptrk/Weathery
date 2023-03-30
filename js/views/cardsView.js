@@ -66,8 +66,8 @@ class CardsView extends View {
                   this._data.weather.current.temperature
                 }&#176;</span>
                 <img
-                  src="${day_rain_thunder}"
-                  alt="Sunny"
+                  src="${this._data.weather.current.icon}"
+                  alt="${this._data.weather.current.description}"
                   class="icon-weather--active"
                 />
               </div>
@@ -117,8 +117,8 @@ class CardsView extends View {
 
             <div class="forecast__container-card--main">
               <img
-                src="${day_partial_cloud}"
-                alt="Partial cloudy"
+              src="${this._data.weather.days.one.icon}"
+              alt="${this._data.weather.days.one.description}"
                 class="icon-weather"
               />
               <div class="numbers">
@@ -135,7 +135,11 @@ class CardsView extends View {
             </div>
 
             <div class="forecast__container-card--main">
-              <img src="${day_rain}" alt="Rainy" class="icon-weather" />
+              <img 
+              src="${this._data.weather.days.two.icon}"
+              alt="${this._data.weather.days.two.description}"
+              class="icon-weather"
+               />
               <div class="numbers">
                 <span>${this._data.weather.days.two.maxTemp}&#176;</span>
                 <span>${this._data.weather.days.two.minTemp}&#176;</span>
@@ -151,8 +155,8 @@ class CardsView extends View {
 
             <div class="forecast__container-card--main">
               <img
-                src="${rain_thunder}"
-                alt="Thunder"
+              src="${this._data.weather.days.three.icon}"
+              alt="${this._data.weather.days.three.description}"
                 class="icon-weather"
               />
               <div class="numbers">
@@ -170,8 +174,8 @@ class CardsView extends View {
 
             <div class="forecast__container-card--main">
               <img
-                src="${rain_thunder}"
-                alt="Thunder"
+              src="${this._data.weather.days.four.icon}"
+              alt="${this._data.weather.days.four.description}"
                 class="icon-weather"
               />
               <div class="numbers">
@@ -189,8 +193,8 @@ class CardsView extends View {
 
             <div class="forecast__container-card--main">
               <img
-                src="${day_partial_cloud}"
-                alt="Partial cloudy"
+              src="${this._data.weather.days.five.icon}"
+              alt="${this._data.weather.days.five.description}"
                 class="icon-weather"
               />
               <div class="numbers">
@@ -207,7 +211,10 @@ class CardsView extends View {
             </div>
 
             <div class="forecast__container-card--main">
-              <img src="${rain}" alt="Rain" class="icon-weather" />
+              <img 
+              src="${this._data.weather.days.six.icon}"
+              alt="${this._data.weather.days.six.description}"
+              class="icon-weather" />
               <div class="numbers">
                 <span>${this._data.weather.days.six.maxTemp}&#176;</span>
                 <span>${this._data.weather.days.six.minTemp}&#176;</span>
