@@ -1,26 +1,5 @@
 import View from './View.js';
-
-//------ ICON IMPORTS ------//
-import day_clear from '../../icons/day_clear.svg';
-import night_clear from '../../icons/night_clear.svg';
-import day_partial_cloud from '../../icons/day_partial_cloud.svg';
-import night_partial_cloud from '../../icons/night_partial_cloud.svg';
-import overcast from '../../icons/overcast.svg';
-import fog from '../../icons/fog.svg';
-import angry_clouds from '../../icons/angry_clouds.svg';
-import day_rain from '../../icons/day_rain.svg';
-import night_rain from '../../icons/night_rain.svg';
-import day_sleet from '../../icons/day_sleet.svg';
-import night_sleet from '../../icons/night_sleet.svg';
-import rain from '../../icons/rain.svg';
-import rain_thunder from '../../icons/rain_thunder.svg';
-import sleet from '../../icons/sleet.svg';
-import day_snow from '../../icons/day_snow.svg';
-import night_snow from '../../icons/night_snow.svg';
-import snow from '../../icons/snow.svg';
-import thunder from '../../icons/thunder.svg';
-
-import { runEverySec } from '../helpers';
+import { runEverySec, getSVGLink } from '../helpers';
 
 class CardsView extends View {
   _parentElement = document.querySelector('.forecast__container');
@@ -66,7 +45,7 @@ class CardsView extends View {
                   this._data.weather.current.temperature
                 }&#176;</span>
                 <img
-                  src="${this._data.weather.current.icon}"
+                  src="${getSVGLink(this._data.weather.current.icon)}"
                   alt="${this._data.weather.current.description}"
                   class="icon-weather--active"
                 />
@@ -117,7 +96,7 @@ class CardsView extends View {
 
             <div class="forecast__container-card--main">
               <img
-              src="${this._data.weather.days.one.icon}"
+              src="${getSVGLink(this._data.weather.days.one.icon)}"
               alt="${this._data.weather.days.one.description}"
                 class="icon-weather"
               />
@@ -136,7 +115,7 @@ class CardsView extends View {
 
             <div class="forecast__container-card--main">
               <img 
-              src="${this._data.weather.days.two.icon}"
+              src="${getSVGLink(this._data.weather.days.two.icon)}"
               alt="${this._data.weather.days.two.description}"
               class="icon-weather"
                />
@@ -155,7 +134,7 @@ class CardsView extends View {
 
             <div class="forecast__container-card--main">
               <img
-              src="${this._data.weather.days.three.icon}"
+              src="${getSVGLink(this._data.weather.days.three.icon)}"
               alt="${this._data.weather.days.three.description}"
                 class="icon-weather"
               />
@@ -174,7 +153,7 @@ class CardsView extends View {
 
             <div class="forecast__container-card--main">
               <img
-              src="${this._data.weather.days.four.icon}"
+              src="${getSVGLink(this._data.weather.days.four.icon)}"
               alt="${this._data.weather.days.four.description}"
                 class="icon-weather"
               />
@@ -193,7 +172,7 @@ class CardsView extends View {
 
             <div class="forecast__container-card--main">
               <img
-              src="${this._data.weather.days.five.icon}"
+              src="${getSVGLink(this._data.weather.days.five.icon)}"
               alt="${this._data.weather.days.five.description}"
                 class="icon-weather"
               />
@@ -212,7 +191,7 @@ class CardsView extends View {
 
             <div class="forecast__container-card--main">
               <img 
-              src="${this._data.weather.days.six.icon}"
+              src="${getSVGLink(this._data.weather.days.six.icon)}"
               alt="${this._data.weather.days.six.description}"
               class="icon-weather" />
               <div class="numbers">

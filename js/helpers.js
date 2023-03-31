@@ -1,5 +1,25 @@
 import { TIMEOUT_SEC } from './config';
 
+//------ ICON IMPORTS ------//
+import day_clear from '../icons/day_clear.svg';
+import night_clear from '../icons/night_clear.svg';
+import day_partial_cloud from '../icons/day_partial_cloud.svg';
+import night_partial_cloud from '../icons/night_partial_cloud.svg';
+import overcast from '../icons/overcast.svg';
+import fog from '../icons/fog.svg';
+import angry_clouds from '../icons/angry_clouds.svg';
+import day_rain from '../icons/day_rain.svg';
+import night_rain from '../icons/night_rain.svg';
+import day_sleet from '../icons/day_sleet.svg';
+import night_sleet from '../icons/night_sleet.svg';
+import rain from '../icons/rain.svg';
+import rain_thunder from '../icons/rain_thunder.svg';
+import sleet from '../icons/sleet.svg';
+import day_snow from '../icons/day_snow.svg';
+import night_snow from '../icons/night_snow.svg';
+import snow from '../icons/snow.svg';
+import thunder from '../icons/thunder.svg';
+
 ////////////////////
 // rejecting timeout needed for promise race
 const timeout = function (s) {
@@ -148,6 +168,33 @@ export const getFromCode = (code, desc = true, day = true) => {
   // if it is false, return the icon file name
   if (desc) return codes[code][0];
   if (!desc) return codes[code][1];
+};
+
+////////////////////
+// GET THE URL OF THE SVG ELEMENT
+// 'iconfilename': link
+export const getSVGLink = iconName => {
+  const svglinks = {
+    day_clear: day_clear,
+    night_clear: night_clear,
+    day_partial_cloud: day_partial_cloud,
+    night_partial_cloud: night_partial_cloud,
+    overcast: overcast,
+    fog: fog,
+    angry_clouds: angry_clouds,
+    day_rain: day_rain,
+    night_rain: night_rain,
+    day_sleet: day_sleet,
+    night_sleet: night_sleet,
+    rain: rain,
+    rain_thunder: rain_thunder,
+    sleet: sleet,
+    day_snow: day_snow,
+    night_snow: night_snow,
+    snow: snow,
+    thunder: thunder,
+  };
+  return svglinks[iconName];
 };
 
 ////////////////////
