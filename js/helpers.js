@@ -19,6 +19,7 @@ import day_snow from '../icons/day_snow.svg';
 import night_snow from '../icons/night_snow.svg';
 import snow from '../icons/snow.svg';
 import thunder from '../icons/thunder.svg';
+import { icon } from 'leaflet';
 
 ////////////////////
 // rejecting timeout needed for promise race
@@ -90,14 +91,21 @@ export const getDaily = function (data, dayNumber) {
   // temperature and weather code needed only from the day ZERO(current), and day ONE(tomorrow)
   let temp = null;
   let wcode = null;
+  let icons = null;
 
   if (dayNumber === 0) {
     temp = getTodayTomorrow(hourly.temperature_2m, 0);
     wcode = getTodayTomorrow(hourly.weathercode, 0);
+    icons = wcode.map(code =>
+      getFromCode(code, false, isDayTime(daily.sunrise[0], daily.sunset[0]))
+    );
   }
   if (dayNumber === 1) {
     temp = getTodayTomorrow(hourly.temperature_2m, 1);
     wcode = getTodayTomorrow(hourly.weathercode, 1);
+    icons = wcode.map(code =>
+      getFromCode(code, false, isDayTime(daily.sunrise[1], daily.sunset[1]))
+    );
   }
 
   return {
@@ -114,6 +122,7 @@ export const getDaily = function (data, dayNumber) {
     sunset: daily.sunset[dayNumber],
     temperature: temp,
     weathercodes: wcode,
+    icons: icons,
   };
 };
 
