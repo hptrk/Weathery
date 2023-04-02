@@ -13,10 +13,10 @@ const controlWeather = async function () {
     // 3) Load the data for real time clock
     model.loadTime();
 
-    // 4) Render the weather to the DOM
+    // 4) Render the weather
     cardsView.render(model.state);
 
-    // 5) Render the clock to the DOM
+    // 5) Render the clock
     cardsView.updateClock(model.state);
   } catch (err) {
     console.log(err);
@@ -25,11 +25,14 @@ const controlWeather = async function () {
 
 const controlToday = async function () {
   try {
-    // 1) Render todays data to the DOM
+    // 1) Render todays data
     todayView.render(model.state);
 
-    // 2) Render the clock to the DOM
+    // 2) Render the clock
     todayView.updateClock(model.state);
+
+    // 3) Render the cards
+    todayView.generateCards(model.state);
   } catch (err) {
     console.log(err);
   }

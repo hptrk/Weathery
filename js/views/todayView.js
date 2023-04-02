@@ -1,6 +1,6 @@
 import { mark } from 'regenerator-runtime';
 import View from './View.js';
-import { runEverySec, getSVGLink } from '../helpers.js';
+import { runEverySec, getSVGLink, getHourly } from '../helpers.js';
 
 class TodayView extends View {
   _parentElement = document.querySelector('.forecast__container');
@@ -31,25 +31,36 @@ class TodayView extends View {
     runEverySec(updateDOM);
   }
 
-  _generateCard() {
-    const hour = new Date().getHours();
-    return `<figure class="forecast__container-card">
+  generateCards() {
+    // this is how many cards should be displayed
+    const cardNumber = this._data.weather.days.zero.icons.length;
+    // this function will create 1 card (should run at least 6 times)
+    const card = i => {
+      const date = new Date();
+      date.setTime(date.getTime() + (i + 1) * 60 * 60 * 1000); // set the hour mark of the card
+
+      return `<figure class="forecast__container-card">
 
     <div class="forecast__container-card--header">
-      <span>${hour}:00</span>
+      <span>${date.getHours()}:00</span>
     </div>
 
     <div class="forecast__container-card--main">
       <img
-      src="${getSVGLink(this._data.weather.days.zero.icons[0])}"
+      src="${getSVGLink(this._data.weather.days.zero.icons[i])}"
         class="icon-weather"
       />
       <div class="numbers">
-        <span>${this._data.weather.days.zero.temperature[0]}&#176;</span>
+        <span>${this._data.weather.days.zero.temperature[i]}&#176;</span>
         <span></span>
       </div>
     </div>
   </figure>`;
+    };
+    // this forEach runs the card() function 'cardNumber' times
+    Array.from({ length: cardNumber }).forEach(
+      (_, i) => this._parentElement.insertAdjacentHTML('beforeend', card(i)) // add the card to the DOM
+    );
   }
 
   _generateMarkup() {
@@ -108,7 +119,6 @@ class TodayView extends View {
               </div>
             </div>
           </figure>
-          ${this._generateCard()}
     `;
     return markup;
   }
