@@ -49,6 +49,7 @@ const createWeatherObject = function (data) {
     },
     // NEXT 6 DAYS FROM THE CURRENT DAY
     days: {
+      zero: getDaily(data, 0),
       one: getDaily(data, 1),
       two: getDaily(data, 2),
       three: getDaily(data, 3),
