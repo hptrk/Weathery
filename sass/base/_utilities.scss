@@ -2,6 +2,7 @@
   &__active-item {
     color: $color-grey-light;
     cursor: default !important;
+    pointer-events: none;
   }
 }
 

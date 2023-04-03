@@ -59,7 +59,8 @@ body {
 
 .forecast__active-item {
   color: #e7e7e8;
-  cursor: default !important; }
+  cursor: default !important;
+  pointer-events: none; }
 
 .numbers {
   font-family: "Red Hat Display", sans-serif; }
@@ -661,8 +662,8 @@ body {
     justify-content: space-between; }
   .forecast__container {
     display: grid;
-    grid-template-columns: 24rem;
-    grid-auto-columns: 10rem;
+    grid-template-columns: minmax(24rem, 30rem);
+    grid-auto-columns: minmax(10rem, 15rem);
     grid-auto-flow: column;
     gap: 2rem; }
 
