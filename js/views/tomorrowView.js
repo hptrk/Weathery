@@ -1,13 +1,15 @@
 import { mark } from 'regenerator-runtime';
 import View from './View.js';
-import { runEverySec, getSVGLink } from '../helpers.js';
+import { runEverySec, getSVGLink, hoursString } from '../helpers.js';
 
-class TodayView extends View {
+class TomorrowView extends View {
   _parentElement = document.querySelector('.forecast__container');
-  _todayButton = document.querySelectorAll('.forecast__header-menu--item')[0];
+  _tomorrowButton = document.querySelectorAll(
+    '.forecast__header-menu--item'
+  )[1];
 
   addHandlerRender(handler) {
-    this._todayButton.addEventListener('click', handler);
+    this._tomorrowButton.addEventListener('click', handler);
   }
   updateClock(data) {
     const cardHeaderElement = document.querySelector(
@@ -33,7 +35,7 @@ class TodayView extends View {
 
   generateCards() {
     // this is how many cards should be displayed
-    const cardNumber = this._data.weather.days.zero.icons.length;
+    const cardNumber = this._data.weather.days.one.icons.length;
     // this function will create 1 card (should run at least 6 times)
     const card = i => {
       const date = new Date();
@@ -42,16 +44,16 @@ class TodayView extends View {
       return `<figure class="forecast__container-card">
 
     <div class="forecast__container-card--header">
-      <span>${date.getHours()}:00</span>
+      <span>${hoursString[i]}</span>
     </div>
 
     <div class="forecast__container-card--main">
       <img
-      src="${getSVGLink(this._data.weather.days.zero.icons[i])}"
+      src="${getSVGLink(this._data.weather.days.one.icons[i])}"
         class="icon-weather"
       />
       <div class="numbers">
-        <span>${this._data.weather.days.zero.temperature[i]}&#176;</span>
+        <span>${this._data.weather.days.one.temperature[i]}&#176;</span>
         <span></span>
       </div>
     </div>
@@ -123,4 +125,4 @@ class TodayView extends View {
     return markup;
   }
 }
-export default new TodayView();
+export default new TomorrowView();
