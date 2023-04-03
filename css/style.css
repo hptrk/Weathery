@@ -434,10 +434,10 @@ body {
 
 @media screen and (max-width: 68.75em) {
     .forecast__active-card > .forecast__container-card--main > :last-child > ul {
-      font-size: 1.7rem; } }
+      font-size: 1.46rem; } }
     @media screen and (max-width: 68.75em) and (max-width: 62.5em) {
       .forecast__active-card > .forecast__container-card--main > :last-child > ul {
-        font-size: 1.55rem; } }
+        font-size: 1.4rem; } }
     @media screen and (max-width: 68.75em) and (max-width: 55em) {
       .forecast__active-card > .forecast__container-card--main > :last-child > ul {
         font-size: 1.35rem; } }

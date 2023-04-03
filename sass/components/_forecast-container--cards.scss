@@ -186,10 +186,10 @@
               }
             }
             & > ul {
-              font-size: 1.7rem;
+              font-size: 1.46rem;
               // little change at 1000px (prevent breaking)
               @media screen and (max-width: 62.5em) {
-                font-size: 1.55rem;
+                font-size: 1.4rem;
               }
               // 880px
               @include wide-phones {

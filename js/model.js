@@ -34,7 +34,7 @@ const createWeatherObject = function (data) {
     // CURRENT DAY
     current: {
       temperature: round(current.temperature),
-      windSpeed: current.windspeed,
+      windSpeed: round(current.windspeed),
       weathercode: current.weathercode,
       description: getFromCode(current.weathercode),
       icon: getFromCode(
