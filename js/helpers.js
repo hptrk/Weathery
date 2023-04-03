@@ -76,7 +76,7 @@ const getTodayTomorrow = (data, dayNumber) => {
   //
   // IF time < 18, it will return values for all of the remaining hours
   if (dayNumber === 0 && hour < 18)
-    return mapArrayRounded(data.slice(hour + 1, 23));
+    return mapArrayRounded(data.slice(hour + 1, 24));
   // IF time >= 18, it will return 6 values including hours from tomorrow
   else if (dayNumber === 0 && hour >= 18) {
     return mapArrayRounded(data.slice(hour + 1, hour + 1 + 6));
@@ -87,6 +87,32 @@ const getTodayTomorrow = (data, dayNumber) => {
 // GET DAILY WEATHER OBJECT
 export const getDaily = function (data, dayNumber) {
   const { daily, hourly } = data;
+  const hoursString = [
+    '00:00',
+    '01:00',
+    '02:00',
+    '03:00',
+    '04:00',
+    '05:00',
+    '06:00',
+    '07:00',
+    '08:00',
+    '09:00',
+    '10:00',
+    '11:00',
+    '12:00',
+    '13:00',
+    '14:00',
+    '15:00',
+    '16:00',
+    '17:00',
+    '18:00',
+    '19:00',
+    '20:00',
+    '21:00',
+    '22:00',
+    '23:00',
+  ]; // this array is for the third parameter of the isDayTime() function
 
   // temperature and weather code needed only from the day ZERO(current), and day ONE(tomorrow)
   let temp = null;
@@ -96,15 +122,27 @@ export const getDaily = function (data, dayNumber) {
   if (dayNumber === 0) {
     temp = getTodayTomorrow(hourly.temperature_2m, 0);
     wcode = getTodayTomorrow(hourly.weathercode, 0);
-    icons = wcode.map(code =>
-      getFromCode(code, false, isDayTime(daily.sunrise[0], daily.sunset[0]))
+    icons = wcode.map((code, index) =>
+      getFromCode(
+        code,
+        false,
+        isDayTime(
+          daily.sunrise[0],
+          daily.sunset[0],
+          hoursString[getHour() + 1 + index]
+        )
+      )
     );
   }
   if (dayNumber === 1) {
     temp = getTodayTomorrow(hourly.temperature_2m, 1);
     wcode = getTodayTomorrow(hourly.weathercode, 1);
-    icons = wcode.map(code =>
-      getFromCode(code, false, isDayTime(daily.sunrise[1], daily.sunset[1]))
+    icons = wcode.map((code, index) =>
+      getFromCode(
+        code,
+        false,
+        isDayTime(daily.sunrise[1], daily.sunset[1], hoursString[index])
+      )
     );
   }
 
@@ -247,10 +285,13 @@ export const getSVGLink = iconName => {
 
 ////////////////////
 // DECIDE IF THE HELPER FUNCTION HAS TO RETURN DAY OR NIGHT ICONS
-export const isDayTime = (sunrise, sunset) => {
+export const isDayTime = (sunrise, sunset, now = '0') => {
   const dateNow = new Date();
-  const hourNow = dateNow.getHours();
-  const minNow = dateNow.getMinutes();
+  // if the function is called with a static now value, it should count with that value. e.g: '19:00'
+  // if "now" stays 0, then work with the current hour
+  const hourNow = now === '0' ? dateNow.getHours() : checkZero(now.slice(0, 2));
+  const minNow =
+    now === '0' ? dateNow.getMinutes() : checkZero(now.slice(3, 5));
 
   // if the time starts with '0' (06:07), then only use the second char
   function checkZero(s) {

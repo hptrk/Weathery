@@ -33,6 +33,7 @@ const controlToday = async function () {
 
     // 3) Render the cards
     todayView.generateCards(model.state);
+    console.log(model.state);
   } catch (err) {
     console.log(err);
   }
