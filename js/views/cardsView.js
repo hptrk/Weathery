@@ -4,9 +4,27 @@ import { runEverySec, getSVGLink } from '../helpers';
 class CardsView extends View {
   _parentElement = document.querySelector('.forecast__container');
   _errorMessage = 'We could not load the weather for you. Please try again!';
+  _buttons = document.querySelectorAll('.forecast__header-menu--item');
+  _todayButton = this._buttons[0];
+  _tomorrowButton = this._buttons[1];
+  _nextDaysButton = this._buttons[2];
+
+  constructor() {
+    super();
+    this._addListener();
+  }
 
   addHandlerRender(handler) {
     window.addEventListener('load', handler);
+    this._nextDaysButton.addEventListener('click', handler);
+  }
+
+  _addListener() {
+    this._nextDaysButton.addEventListener('click', () => {
+      this._nextDaysButton.classList.toggle('forecast__active-item');
+      this._tomorrowButton.classList.remove('forecast__active-item');
+      this._todayButton.classList.remove('forecast__active-item');
+    });
   }
 
   updateClock(data) {

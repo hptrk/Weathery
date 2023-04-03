@@ -4,11 +4,28 @@ import { runEverySec, getSVGLink } from '../helpers.js';
 
 class TodayView extends View {
   _parentElement = document.querySelector('.forecast__container');
-  _todayButton = document.querySelectorAll('.forecast__header-menu--item')[0];
+  _buttons = document.querySelectorAll('.forecast__header-menu--item');
+  _todayButton = this._buttons[0];
+  _tomorrowButton = this._buttons[1];
+  _nextDaysButton = this._buttons[2];
+
+  constructor() {
+    super();
+    this._addListener();
+  }
 
   addHandlerRender(handler) {
     this._todayButton.addEventListener('click', handler);
   }
+
+  _addListener() {
+    this._todayButton.addEventListener('click', () => {
+      this._todayButton.classList.toggle('forecast__active-item');
+      this._tomorrowButton.classList.remove('forecast__active-item');
+      this._nextDaysButton.classList.remove('forecast__active-item');
+    });
+  }
+
   updateClock(data) {
     const cardHeaderElement = document.querySelector(
       '.forecast__container-card--header'
