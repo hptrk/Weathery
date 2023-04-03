@@ -1,5 +1,6 @@
 .forecast {
   &__container {
+    overflow-x: scroll;
     //non active cards (or common values with the active one)
     &-card {
       border-radius: 3.2rem;

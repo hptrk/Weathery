@@ -40,7 +40,9 @@
   }
   &__container {
     display: grid;
-    grid-template-columns: minmax(24rem, 2.4fr) repeat(6, minmax(10rem, 1fr)); //ONLY WORKS WITH MONDAY
+    grid-template-columns: 24rem; // first active card
+    grid-auto-columns: 10rem; // little cards will be 10 rem
+    grid-auto-flow: column;
     gap: 2rem;
   }
 }
@@ -225,10 +227,8 @@
     grid-row: 2;
     grid-column: 1 / -1;
     &__container {
-      grid-template-columns: minmax(26rem, 2.6fr) repeat(
-          6,
-          minmax(12rem, 1.2fr)
-        ); //ONLY WORKS WITH MONDAY
+      grid-template-columns: 26rem; // first active card
+      grid-auto-columns: 12rem; // little cards will be 10 rem
       gap: 2rem;
     }
   }
