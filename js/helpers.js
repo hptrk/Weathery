@@ -19,6 +19,7 @@ import day_snow from '../icons/day_snow.svg';
 import night_snow from '../icons/night_snow.svg';
 import snow from '../icons/snow.svg';
 import thunder from '../icons/thunder.svg';
+import { N, NE, E, SE, S, SW, W, NW } from '../icons/directionSVGS';
 import { icon } from 'leaflet';
 
 ////////////////////
@@ -344,4 +345,15 @@ const degreeToDirection = deg => {
   if (deg > 202.5 && deg < 247.5) return 'SW';
   if (deg > 247.5 && deg < 292.5) return 'W';
   if (deg > 292.5 && deg < 337.5) return 'NW';
+};
+
+export const getArrowSVGCode = direction => {
+  if (direction === 'N') return N;
+  if (direction === 'NE') return NE;
+  if (direction === 'E') return E;
+  if (direction === 'SE') return SE;
+  if (direction === 'S') return S;
+  if (direction === 'SW') return SW;
+  if (direction === 'W') return W;
+  if (direction === 'NW') return NW;
 };
