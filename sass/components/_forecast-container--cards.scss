@@ -1,3 +1,6 @@
+.is-flipped {
+  transform: rotateY(180deg);
+}
 .forecast {
   &__container {
     overflow-x: scroll;
@@ -6,7 +9,21 @@
       border-radius: 3.2rem;
       height: 21.9rem;
       background-color: $color-grey-dark-4;
-      overflow: hidden; //making the border radius work
+
+      // FOR THE FLIPPING PART
+      transition: transform 1s;
+      transform-style: preserve-3d;
+      position: relative;
+      perspective: 1000px;
+
+      &_front,
+      &_back {
+        backface-visibility: hidden;
+        position: absolute;
+      }
+      &_back {
+        transform: rotateY(180deg);
+      }
 
       //header of the card elements
       &--header {
@@ -59,6 +76,7 @@
   //active card style
   &__active-card {
     background-color: $color-lightblue-main;
+    overflow: hidden; //making the border radius work
 
     & > .forecast__container-card {
       //header of the active card (example: day + time)
