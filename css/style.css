@@ -74,6 +74,10 @@ body {
     height: 8.5rem;
     width: 8.5rem; }
 
+.windspeedUnit {
+  font-size: 1.6rem !important;
+  margin-top: -1.3rem !important; }
+
 .navigation__icon-container {
   display: flex;
   gap: 2.5rem;
@@ -323,13 +327,27 @@ body {
       height: 6.25rem;
       width: 6.25rem; } }
 
+.is-flipped {
+  transform: rotateY(180deg); }
+
 .forecast__container {
-  overflow-x: scroll; }
+  overflow-x: scroll;
+  overflow-y: hidden; }
   .forecast__container-card {
     border-radius: 3.2rem;
     height: 21.9rem;
     background-color: #1b1a1d;
-    overflow: hidden; }
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    position: relative;
+    perspective: 1000px; }
+    .forecast__container-card_front, .forecast__container-card_back {
+      backface-visibility: hidden;
+      position: absolute; }
+    .forecast__container-card_back {
+      width: 100%;
+      height: 100%;
+      transform: rotateY(180deg); }
     .forecast__container-card--header {
       position: relative;
       padding: 1.2rem 2rem;
@@ -366,7 +384,8 @@ body {
           font-size: 2rem; }
 
 .forecast__active-card {
-  background-color: #bbd8ec; }
+  background-color: #bbd8ec;
+  overflow: hidden; }
   .forecast__active-card > .forecast__container-card--header {
     background-color: #adcade;
     color: black;
