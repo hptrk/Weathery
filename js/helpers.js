@@ -120,6 +120,8 @@ export const getDaily = function (data, dayNumber) {
   let temp = null;
   let wcode = null;
   let icons = null;
+  let windspeed_hourly = null;
+  let wind_direction_hourly = null;
 
   if (dayNumber === 0) {
     temp = getTodayTomorrow(hourly.temperature_2m, 0);
@@ -135,6 +137,10 @@ export const getDaily = function (data, dayNumber) {
         )
       )
     );
+    windspeed_hourly = getTodayTomorrow(hourly.windspeed_10m, 0);
+    wind_direction_hourly = getTodayTomorrow(hourly.winddirection_10m, 0).map(
+      i => degreeToDirection(i)
+    );
   }
   if (dayNumber === 1) {
     temp = getTodayTomorrow(hourly.temperature_2m, 1);
@@ -145,6 +151,10 @@ export const getDaily = function (data, dayNumber) {
         false,
         isDayTime(daily.sunrise[1], daily.sunset[1], hoursString[index])
       )
+    );
+    windspeed_hourly = getTodayTomorrow(hourly.windspeed_10m, 1);
+    wind_direction_hourly = getTodayTomorrow(hourly.winddirection_10m, 1).map(
+      i => degreeToDirection(i)
     );
   }
 
@@ -163,6 +173,12 @@ export const getDaily = function (data, dayNumber) {
     temperature: temp,
     weathercodes: wcode,
     icons: icons,
+    windspeed_hourly: windspeed_hourly,
+    wind_direction_hourly: wind_direction_hourly,
+    windspeed: round(daily.windspeed_10m_max[dayNumber]),
+    wind_direction: degreeToDirection(
+      daily.winddirection_10m_dominant[dayNumber]
+    ),
   };
 };
 
@@ -314,4 +330,18 @@ export const isDayTime = (sunrise, sunset, now = '0') => {
   if (hourNow > sunriseHour && hourNow < sunsetHour) return true;
   // if nothing is returned, then it is night time (return false)
   return false;
+};
+
+////////////////////
+// CONVERTS DEGREES TO DIRECTIONS (for the wind direction)
+const degreeToDirection = deg => {
+  // data is not a fractioned number, so the function can work with .5 values
+  if (deg > 337.5 || deg < 22.5) return 'N';
+  if (deg > 22.5 && deg < 67.5) return 'NE';
+  if (deg > 67.5 && deg < 112.5) return 'E';
+  if (deg > 112.5 && deg < 157.5) return 'SE';
+  if (deg > 157.5 && deg < 202.5) return 'S';
+  if (deg > 202.5 && deg < 247.5) return 'SW';
+  if (deg > 247.5 && deg < 292.5) return 'W';
+  if (deg > 292.5 && deg < 337.5) return 'NW';
 };
