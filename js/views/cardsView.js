@@ -1,5 +1,5 @@
 import View from './View.js';
-import { runEverySec, getSVGLink } from '../helpers';
+import { runEverySec, getSVGLink, getArrowSVGCode } from '../helpers';
 
 class CardsView extends View {
   _parentElement = document.querySelector('.forecast__container');
@@ -8,6 +8,7 @@ class CardsView extends View {
   _todayButton = this._buttons[0];
   _tomorrowButton = this._buttons[1];
   _nextDaysButton = this._buttons[2];
+  _switcher = document.getElementById('forecastSwitcher');
 
   constructor() {
     super();
@@ -20,10 +21,22 @@ class CardsView extends View {
   }
 
   _addListener() {
+    // CLICK ON NEXT 7 DAYS
     this._nextDaysButton.addEventListener('click', () => {
       this._nextDaysButton.classList.toggle('forecast__active-item');
       this._tomorrowButton.classList.remove('forecast__active-item');
       this._todayButton.classList.remove('forecast__active-item');
+    });
+
+    // CLICK ON SWITCHER (forecast - wind)
+    this._switcher.addEventListener('change', () => {
+      const cards = document.querySelectorAll('.forecast__container-card');
+      cards.forEach(async (c, i) => {
+        setTimeout(() => {
+          if (i === 0) return; // SKIP first card (active)
+          c.classList.toggle('is-flipped');
+        }, i * 100); // 100MS delay for each card (animation)
+      });
     });
   }
 
@@ -107,6 +120,7 @@ class CardsView extends View {
           </figure>
 
           <figure class="forecast__container-card">
+          <div class="forecast__container-card_front">
 
             <div class="forecast__container-card--header">
               <span>${this._data.dayNames.one.slice(0, 3)}</span>
@@ -114,8 +128,8 @@ class CardsView extends View {
 
             <div class="forecast__container-card--main">
               <img
-              src="${getSVGLink(this._data.weather.days.one.icon)}"
-              alt="${this._data.weather.days.one.description}"
+                src="${getSVGLink(this._data.weather.days.one.icon)}"
+                alt="${this._data.weather.days.one.description}"
                 class="icon-weather"
               />
               <div class="numbers">
@@ -123,101 +137,215 @@ class CardsView extends View {
                 <span>${this._data.weather.days.one.minTemp}&#176;</span>
               </div>
             </div>
-          </figure>
 
-          <figure class="forecast__container-card">
+          </div>
+
+          <div class="forecast__container-card_back">
 
             <div class="forecast__container-card--header">
-              <span>${this._data.dayNames.two.slice(0, 3)}</span>
+             <span>${this._data.dayNames.one.slice(0, 3)}</span>
             </div>
 
             <div class="forecast__container-card--main">
-              <img 
+              ${getArrowSVGCode(this._data.weather.days.one.wind_direction)}
+              <div class="numbers">
+               <span>${this._data.weather.days.one.windspeed}</span>
+               <span class="windspeedUnit">km/h</span>
+              </div>
+            </div>
+          </div>
+
+        </figure>
+
+        <figure class="forecast__container-card">
+        <div class="forecast__container-card_front">
+
+          <div class="forecast__container-card--header">
+            <span>${this._data.dayNames.two.slice(0, 3)}</span>
+          </div>
+
+          <div class="forecast__container-card--main">
+            <img
               src="${getSVGLink(this._data.weather.days.two.icon)}"
               alt="${this._data.weather.days.two.description}"
               class="icon-weather"
-               />
-              <div class="numbers">
-                <span>${this._data.weather.days.two.maxTemp}&#176;</span>
-                <span>${this._data.weather.days.two.minTemp}&#176;</span>
-              </div>
+            />
+            <div class="numbers">
+              <span>${this._data.weather.days.two.maxTemp}&#176;</span>
+              <span>${this._data.weather.days.two.minTemp}&#176;</span>
             </div>
-          </figure>
+          </div>
 
-          <figure class="forecast__container-card">
+        </div>
 
-            <div class="forecast__container-card--header">
-              <span>${this._data.dayNames.three.slice(0, 3)}</span>
+        <div class="forecast__container-card_back">
+
+          <div class="forecast__container-card--header">
+           <span>${this._data.dayNames.two.slice(0, 3)}</span>
+          </div>
+
+          <div class="forecast__container-card--main">
+          ${getArrowSVGCode(this._data.weather.days.two.wind_direction)}
+            <div class="numbers">
+             <span>${this._data.weather.days.two.windspeed}</span>
+             <span class="windspeedUnit">km/h</span>
             </div>
+          </div>
+        </div>
 
-            <div class="forecast__container-card--main">
-              <img
+      </figure>
+
+        <figure class="forecast__container-card">
+        <div class="forecast__container-card_front">
+
+          <div class="forecast__container-card--header">
+            <span>${this._data.dayNames.three.slice(0, 3)}</span>
+          </div>
+
+          <div class="forecast__container-card--main">
+            <img
               src="${getSVGLink(this._data.weather.days.three.icon)}"
               alt="${this._data.weather.days.three.description}"
-                class="icon-weather"
-              />
-              <div class="numbers">
-                <span>${this._data.weather.days.three.maxTemp}&#176;</span>
-                <span>${this._data.weather.days.three.minTemp}&#176;</span>
-              </div>
+              class="icon-weather"
+            />
+            <div class="numbers">
+              <span>${this._data.weather.days.three.maxTemp}&#176;</span>
+              <span>${this._data.weather.days.three.minTemp}&#176;</span>
             </div>
-          </figure>
+          </div>
 
-          <figure class="forecast__container-card">
+        </div>
 
-            <div class="forecast__container-card--header">
-              <span>${this._data.dayNames.four.slice(0, 3)}</span>
+        <div class="forecast__container-card_back">
+
+          <div class="forecast__container-card--header">
+           <span>${this._data.dayNames.three.slice(0, 3)}</span>
+          </div>
+
+          <div class="forecast__container-card--main">
+          ${getArrowSVGCode(this._data.weather.days.three.wind_direction)}
+            <div class="numbers">
+             <span>${this._data.weather.days.three.windspeed}</span>
+             <span class="windspeedUnit">km/h</span>
             </div>
+          </div>
+        </div>
 
-            <div class="forecast__container-card--main">
-              <img
+       </figure>
+
+        <figure class="forecast__container-card">
+        <div class="forecast__container-card_front">
+
+          <div class="forecast__container-card--header">
+            <span>${this._data.dayNames.four.slice(0, 3)}</span>
+          </div>
+
+          <div class="forecast__container-card--main">
+            <img
               src="${getSVGLink(this._data.weather.days.four.icon)}"
               alt="${this._data.weather.days.four.description}"
-                class="icon-weather"
-              />
-              <div class="numbers">
-                <span>${this._data.weather.days.four.maxTemp}&#176;</span>
-                <span>${this._data.weather.days.four.minTemp}&#176;</span>
-              </div>
+              class="icon-weather"
+            />
+            <div class="numbers">
+              <span>${this._data.weather.days.four.maxTemp}&#176;</span>
+              <span>${this._data.weather.days.four.minTemp}&#176;</span>
             </div>
-          </figure>
+          </div>
 
-          <figure class="forecast__container-card">
+        </div>
 
-            <div class="forecast__container-card--header">
-              <span>${this._data.dayNames.five.slice(0, 3)}</span>
+        <div class="forecast__container-card_back">
+
+          <div class="forecast__container-card--header">
+           <span>${this._data.dayNames.four.slice(0, 3)}</span>
+          </div>
+
+          <div class="forecast__container-card--main">
+          ${getArrowSVGCode(this._data.weather.days.four.wind_direction)}
+            <div class="numbers">
+             <span>${this._data.weather.days.four.windspeed}</span>
+             <span class="windspeedUnit">km/h</span>
             </div>
+          </div>
+        </div>
 
-            <div class="forecast__container-card--main">
-              <img
-              src="${getSVGLink(this._data.weather.days.five.icon)}"
-              alt="${this._data.weather.days.five.description}"
-                class="icon-weather"
-              />
-              <div class="numbers">
-                <span>${this._data.weather.days.five.maxTemp}&#176;</span>
-                <span>${this._data.weather.days.five.minTemp}&#176;</span>
-              </div>
-            </div>
-          </figure>
+      </figure>
 
-          <figure class="forecast__container-card">
+      <figure class="forecast__container-card">
+      <div class="forecast__container-card_front">
 
-            <div class="forecast__container-card--header">
-              <span>${this._data.dayNames.six.slice(0, 3)}</span>
-            </div>
+        <div class="forecast__container-card--header">
+          <span>${this._data.dayNames.five.slice(0, 3)}</span>
+        </div>
 
-            <div class="forecast__container-card--main">
-              <img 
-              src="${getSVGLink(this._data.weather.days.six.icon)}"
-              alt="${this._data.weather.days.six.description}"
-              class="icon-weather" />
-              <div class="numbers">
-                <span>${this._data.weather.days.six.maxTemp}&#176;</span>
-                <span>${this._data.weather.days.six.minTemp}&#176;</span>
-              </div>
-            </div>
-          </figure>
+        <div class="forecast__container-card--main">
+          <img
+            src="${getSVGLink(this._data.weather.days.five.icon)}"
+            alt="${this._data.weather.days.five.description}"
+            class="icon-weather"
+          />
+          <div class="numbers">
+            <span>${this._data.weather.days.five.maxTemp}&#176;</span>
+            <span>${this._data.weather.days.five.minTemp}&#176;</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="forecast__container-card_back">
+
+        <div class="forecast__container-card--header">
+         <span>${this._data.dayNames.five.slice(0, 3)}</span>
+        </div>
+
+        <div class="forecast__container-card--main">
+        ${getArrowSVGCode(this._data.weather.days.five.wind_direction)}
+          <div class="numbers">
+           <span>${this._data.weather.days.five.windspeed}</span>
+           <span class="windspeedUnit">km/h</span>
+          </div>
+        </div>
+      </div>
+
+    </figure>
+
+    <figure class="forecast__container-card">
+    <div class="forecast__container-card_front">
+
+      <div class="forecast__container-card--header">
+        <span>${this._data.dayNames.six.slice(0, 3)}</span>
+      </div>
+
+      <div class="forecast__container-card--main">
+        <img
+          src="${getSVGLink(this._data.weather.days.six.icon)}"
+          alt="${this._data.weather.days.six.description}"
+          class="icon-weather"
+        />
+        <div class="numbers">
+          <span>${this._data.weather.days.six.maxTemp}&#176;</span>
+          <span>${this._data.weather.days.six.minTemp}&#176;</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="forecast__container-card_back">
+
+      <div class="forecast__container-card--header">
+       <span>${this._data.dayNames.six.slice(0, 3)}</span>
+      </div>
+
+      <div class="forecast__container-card--main">
+      ${getArrowSVGCode(this._data.weather.days.six.wind_direction)}
+        <div class="numbers">
+         <span>${this._data.weather.days.six.windspeed}</span>
+         <span class="windspeedUnit">km/h</span>
+        </div>
+      </div>
+    </div>
+
+  </figure>
     `;
   }
 }
