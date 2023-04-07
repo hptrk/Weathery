@@ -9,6 +9,7 @@ class TodayView extends View {
   _tomorrowButton = this._buttons[1];
   _nextDaysButton = this._buttons[2];
   _switcher = document.getElementById('forecastSwitcher');
+  _checkbox = document.querySelector('.forecast__header-switcher--checkbox');
 
   constructor() {
     super();
@@ -25,6 +26,7 @@ class TodayView extends View {
       this._todayButton.classList.toggle('forecast__active-item');
       this._tomorrowButton.classList.remove('forecast__active-item');
       this._nextDaysButton.classList.remove('forecast__active-item');
+      this._resetSwitcher(); // back to forecast state
     });
 
     // CLICK ON SWITCHER (forecast - wind)
@@ -59,6 +61,10 @@ class TodayView extends View {
     updateDOM();
     // The DOM will update every second
     runEverySec(updateDOM);
+  }
+
+  _resetSwitcher() {
+    this._checkbox.checked = false; // reset the switcher back to the forecast state
   }
 
   generateCards() {
