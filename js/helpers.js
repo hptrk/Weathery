@@ -56,7 +56,7 @@ export const AJAX = async function (url) {
 
 ////////////////////
 // GET CURRENT HOUR (for API array)
-const getHour = () => {
+export const getHour = () => {
   return new Date().getHours();
 };
 

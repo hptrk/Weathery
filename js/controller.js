@@ -3,6 +3,7 @@ import cardsView from './views/cardsView.js';
 import todayView from './views/todayView.js';
 import tomorrowView from './views/tomorrowView.js';
 import chartView from './views/chartView.js';
+import { control } from 'leaflet';
 
 const controlWeather = async function () {
   try {
@@ -20,6 +21,9 @@ const controlWeather = async function () {
 
     // 5) Render the clock
     cardsView.updateClock(model.state);
+
+    // 6) Render chart (for 7 days)
+    chartView.renderChart(model.state);
   } catch (err) {
     console.log(err);
   }
@@ -47,15 +51,9 @@ const controlTomorrow = function () {
   tomorrowView.generateCards(model.state);
 };
 
-const controlChart = function () {
-  // 1) Render chart (for 7 days)
-  chartView.renderChart(model.state);
-};
-
 const init = function () {
   cardsView.addHandlerRender(controlWeather);
   todayView.addHandlerRender(controlToday);
   tomorrowView.addHandlerRender(controlTomorrow);
-  chartView.addHandlerRender(controlChart);
 };
 init();

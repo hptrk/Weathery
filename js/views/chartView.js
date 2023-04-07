@@ -1,4 +1,5 @@
 import View from './View.js';
+import { getHour } from '../helpers.js';
 // instead of importing the whole library, taking advantage of tree-shaking (better performance)
 import {
   CategoryScale,
@@ -22,17 +23,17 @@ class ChartView extends View {
     window.addEventListener('load', handler);
   }
 
-  // TEMPORARY STATIC DATA
-  renderChart() {
-    const data = [
-      { time: 10, chance: 50 },
-      { time: 11, chance: 40 },
-      { time: 12, chance: 80 },
-      { time: 1, chance: 20 },
-      { time: 2, chance: 65 },
-      { time: 3, chance: 50 },
-      { time: 2, chance: 90 },
-    ];
+  renderChart(data) {
+    const daysArrayKeys = Object.keys(data.weather.days); // zero, one, two....
+    const daysArrayValues = Object.values(data.weather.days); // data for: zero, one, two....
+    const dayNames = Object.values(data.dayNames); // 0: current day (friday) / 1: tomorrow (saturday)
+
+    const chart_data = [...Array(7)].map(x => []); // empty array with 7 empty arrays
+
+    daysArrayKeys.forEach((_, i) => {
+      chart_data[i].time = dayNames[i].slice(0, 3);
+      chart_data[i].chance = daysArrayValues[i].precipitation_probability_max;
+    });
 
     new Chart(document.getElementById('diagram'), {
       type: 'bar',
@@ -101,10 +102,10 @@ class ChartView extends View {
 
       // -----------DATA----------- //
       data: {
-        labels: data.map(row => row.time),
+        labels: chart_data.map(row => row.time),
         datasets: [
           {
-            data: data.map(row => row.chance),
+            data: chart_data.map(row => row.chance),
             backgroundColor: '#bbd8ec', // background color of the bars
             hoverBackgroundColor: '#96adbd', // on hover
             borderRadius: 100,
