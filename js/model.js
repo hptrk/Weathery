@@ -10,6 +10,7 @@ import {
   updateDayNames,
   getFromCode,
   isDayTime,
+  getHourlyCurrent,
 } from './helpers';
 
 // current state object
@@ -42,8 +43,8 @@ const createWeatherObject = function (data) {
         false,
         isDayTime(getDaily(data, 0).sunrise, getDaily(data, 0).sunset)
       ),
-      relativeHumidity: getHourly(data, 0).relativeHumidity, // current day = 0
-      apparentTemp: getHourly(data, 0).apparentTemp,
+      relativeHumidity: getHourlyCurrent(data, 0).relativeHumidity, // current day = 0
+      apparentTemp: getHourlyCurrent(data, 0).apparentTemp,
       sunrise: getDaily(data, 0).sunrise,
       sunset: getDaily(data, 0).sunset,
     },

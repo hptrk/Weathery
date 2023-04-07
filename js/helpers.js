@@ -62,54 +62,32 @@ const getHour = () => {
 
 ////////////////////
 // get data from TODAY/TOMORROW to display on cards
-const getTodayTomorrow = (data, dayNumber) => {
+const getTodayTomorrow = (data, dayNumber, precprob = false) => {
   const hour = getHour(); // current hour
   const mapArrayRounded = array => {
     // DRY code helper
     return array.map(i => round(i));
   };
 
-  // TOMORROW
+  // ---TOMORROW---
   if (dayNumber === 1) return mapArrayRounded(data.slice(24, 48)); // 00:00-23:00
 
-  // TODAY
+  // ---TODAY---
+  const skipNum = precprob ? 0 : 1; // if we need the precipitation probability, the current data is needed for chart
   // (need to return at least 6 values becaues there are 6 cards)
   //
   // IF time < 18, it will return values for all of the remaining hours
   if (dayNumber === 0 && hour < 18)
-    return mapArrayRounded(data.slice(hour + 1, 24));
+    return mapArrayRounded(data.slice(hour + skipNum, 24));
   // IF time >= 18, it will return 6 values including hours from tomorrow
   else if (dayNumber === 0 && hour >= 18) {
-    return mapArrayRounded(data.slice(hour + 1, hour + 1 + 6));
+    return mapArrayRounded(data.slice(hour + skipNum, hour + 1 + 6));
   }
 };
 
 // this array is for the third parameter of the isDayTime() function
-export const hoursString = [
-  '00:00',
-  '01:00',
-  '02:00',
-  '03:00',
-  '04:00',
-  '05:00',
-  '06:00',
-  '07:00',
-  '08:00',
-  '09:00',
-  '10:00',
-  '11:00',
-  '12:00',
-  '13:00',
-  '14:00',
-  '15:00',
-  '16:00',
-  '17:00',
-  '18:00',
-  '19:00',
-  '20:00',
-  '21:00',
-  '22:00',
-  '23:00',
+// prettier-ignore
+export const hoursString = ['00:00','01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00',
 ];
 
 ////////////////////
@@ -123,6 +101,7 @@ export const getDaily = function (data, dayNumber) {
   let icons = null;
   let windspeed_hourly = null;
   let wind_direction_hourly = null;
+  let precipitation_probability_hourly = null;
 
   if (dayNumber === 0) {
     temp = getTodayTomorrow(hourly.temperature_2m, 0);
@@ -142,6 +121,11 @@ export const getDaily = function (data, dayNumber) {
     wind_direction_hourly = getTodayTomorrow(hourly.winddirection_10m, 0).map(
       i => degreeToDirection(i)
     );
+    precipitation_probability_hourly = getTodayTomorrow(
+      hourly.precipitation_probability,
+      0,
+      true
+    );
   }
   if (dayNumber === 1) {
     temp = getTodayTomorrow(hourly.temperature_2m, 1);
@@ -156,6 +140,11 @@ export const getDaily = function (data, dayNumber) {
     windspeed_hourly = getTodayTomorrow(hourly.windspeed_10m, 1);
     wind_direction_hourly = getTodayTomorrow(hourly.winddirection_10m, 1).map(
       i => degreeToDirection(i)
+    );
+    precipitation_probability_hourly = getTodayTomorrow(
+      hourly.precipitation_probability,
+      1,
+      true
     );
   }
 
@@ -180,12 +169,15 @@ export const getDaily = function (data, dayNumber) {
     wind_direction: degreeToDirection(
       daily.winddirection_10m_dominant[dayNumber]
     ),
+    precipitation_probability_max:
+      daily.precipitation_probability_max[dayNumber],
+    precipitation_probability_hourly: precipitation_probability_hourly,
   };
 };
 
 ////////////////////
-// GET HOURLY WEATHER OBJECT
-export const getHourly = function (data, dayNumber) {
+// GET HOURLY WEATHER OBJECT FOR CURRENT TEMP
+export const getHourlyCurrent = function (data, dayNumber) {
   const { hourly } = data;
   const prevDays = 24 * dayNumber; // if we need data for the second day, it will count in the previous 2 days (48 h)
 
