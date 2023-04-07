@@ -1,6 +1,11 @@
 import { mark } from 'regenerator-runtime';
 import View from './View.js';
-import { runEverySec, getSVGLink, hoursString } from '../helpers.js';
+import {
+  runEverySec,
+  getSVGLink,
+  hoursString,
+  getArrowSVGCode,
+} from '../helpers.js';
 
 class TomorrowView extends View {
   _parentElement = document.querySelector('.forecast__container');
@@ -8,6 +13,7 @@ class TomorrowView extends View {
   _todayButton = this._buttons[0];
   _tomorrowButton = this._buttons[1];
   _nextDaysButton = this._buttons[2];
+  _switcher = document.getElementById('forecastSwitcher');
 
   constructor() {
     super();
@@ -19,10 +25,22 @@ class TomorrowView extends View {
   }
 
   _addListener() {
+    // CLICK ON NEXT 7 DAYS
     this._tomorrowButton.addEventListener('click', () => {
       this._tomorrowButton.classList.toggle('forecast__active-item');
       this._todayButton.classList.remove('forecast__active-item');
       this._nextDaysButton.classList.remove('forecast__active-item');
+    });
+
+    // CLICK ON SWITCHER (forecast - wind)
+    this._switcher.addEventListener('change', () => {
+      const cards = document.querySelectorAll('.forecast__container-card');
+      cards.forEach((c, i) => {
+        setTimeout(() => {
+          if (i === 0) return; // SKIP first card (active)
+          c.classList.toggle('is-flipped');
+        }, i * 100); // 100MS delay for each card (animation)
+      });
     });
   }
 
@@ -56,23 +74,45 @@ class TomorrowView extends View {
       const date = new Date();
       date.setTime(date.getTime() + (i + 1) * 60 * 60 * 1000); // set the hour mark of the card
 
-      return `<figure class="forecast__container-card">
+      return `
+  <figure class="forecast__container-card">
+          <div class="forecast__container-card_front">
 
-    <div class="forecast__container-card--header">
-      <span>${hoursString[i]}</span>
-    </div>
+            <div class="forecast__container-card--header">
+              <span>${hoursString[i]}</span>
+            </div>
 
-    <div class="forecast__container-card--main">
-      <img
-      src="${getSVGLink(this._data.weather.days.one.icons[i])}"
-        class="icon-weather"
-      />
-      <div class="numbers">
-        <span>${this._data.weather.days.one.temperature[i]}&#176;</span>
-        <span></span>
-      </div>
-    </div>
-  </figure>`;
+            <div class="forecast__container-card--main">
+              <img
+                src="${getSVGLink(this._data.weather.days.one.icons[i])}"
+                class="icon-weather"
+              />
+              <div class="numbers">
+                <span>${this._data.weather.days.one.temperature[i]}&#176;</span>
+                <span></span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="forecast__container-card_back">
+
+            <div class="forecast__container-card--header">
+             <span>${hoursString[i]}</span>
+            </div>
+
+            <div class="forecast__container-card--main">
+              ${getArrowSVGCode(
+                this._data.weather.days.one.wind_direction_hourly[i]
+              )}
+              <div class="numbers">
+               <span>${this._data.weather.days.one.windspeed_hourly[i]}</span>
+               <span class="windspeedUnit">km/h</span>
+              </div>
+            </div>
+          </div>
+
+        </figure>`;
     };
     // this forEach runs the card() function 'cardNumber' times
     Array.from({ length: cardNumber }).forEach(

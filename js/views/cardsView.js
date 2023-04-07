@@ -31,7 +31,7 @@ class CardsView extends View {
     // CLICK ON SWITCHER (forecast - wind)
     this._switcher.addEventListener('change', () => {
       const cards = document.querySelectorAll('.forecast__container-card');
-      cards.forEach(async (c, i) => {
+      cards.forEach((c, i) => {
         setTimeout(() => {
           if (i === 0) return; // SKIP first card (active)
           c.classList.toggle('is-flipped');
