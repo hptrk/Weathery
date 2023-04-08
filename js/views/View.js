@@ -16,6 +16,10 @@ export default class View {
   _clear() {
     this._parentElement.innerHTML = '';
   }
+  renderCards(data) {
+    this._data = data;
+    this._generateCards();
+  }
 
   renderError(message = this._errorMessage) {}
 }

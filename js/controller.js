@@ -22,10 +22,13 @@ const controlLoadWeather = async function () {
     // 5) Render the clock
     cardsView.updateClock(model.state);
 
-    // 6) Fade the DOM in
+    // 6) Render the small cards
+    cardsView.renderCards(model.state);
+
+    // 7) Fade the DOM in
     cardsView._loadFadeIn();
 
-    // 7) Render chart (for 7 days)
+    // 8) Render chart (for 7 days)
     chartView.renderChart(model.state);
   } catch (err) {
     console.log(err);
@@ -33,51 +36,48 @@ const controlLoadWeather = async function () {
 };
 
 const controlNextDays = async function () {
-  // 0) Fade out previous content
-  await cardsView._loadFadeOut();
+  try {
+    // 0) Fade out previous content
+    await cardsView._loadFadeOut();
 
-  // 1) Render the weather for the next days
-  cardsView.render(model.state);
+    // 1) Render the small cards
+    cardsView.renderCards(model.state);
 
-  // 2) Render the clock
-  cardsView.updateClock(model.state);
-
-  // 3) Fade the DOM in
-  cardsView._loadFadeIn();
+    // 2) Fade the DOM in
+    cardsView._loadFadeIn();
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const controlToday = async function () {
-  // 0) Fade out previous content
-  await cardsView._loadFadeOut();
+  try {
+    // 0) Fade out previous content
+    await cardsView._loadFadeOut();
 
-  // 1) Render today's data
-  todayView.render(model.state);
+    // 1) Render the cards
+    todayView.renderCards(model.state);
 
-  // 2) Render the clock
-  todayView.updateClock(model.state);
-
-  // 3) Render the cards
-  todayView.generateCards(model.state);
-
-  // 4) Fade the DOM in
-  todayView._loadFadeIn();
+    // 2) Fade the DOM in
+    todayView._loadFadeIn();
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const controlTomorrow = async function () {
-  // 0) Fade out previous content
-  await cardsView._loadFadeOut();
+  try {
+    // 0) Fade out previous content
+    await cardsView._loadFadeOut();
 
-  // 1) Render tomorrow's data
-  tomorrowView.render(model.state);
+    // 1) Render the cards
+    tomorrowView.renderCards(model.state);
 
-  // 2) Render the clock
-  tomorrowView.updateClock(model.state);
-
-  // 3) Render the cards
-  tomorrowView.generateCards(model.state);
-
-  // 4) Fade the DOM in
-  tomorrowView._loadFadeIn();
+    // 2) Fade the DOM in
+    tomorrowView._loadFadeIn();
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const init = function () {
