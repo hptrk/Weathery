@@ -33,6 +33,16 @@ const timeout = function (s) {
 };
 
 ////////////////////
+// Sleeper timeout mainly for waiting fadeOut animations
+export const sleep = function (s) {
+  return new Promise(function (resolve, _) {
+    setTimeout(() => {
+      resolve();
+    }, s * 1000);
+  });
+};
+
+////////////////////
 // ROUND VALUE
 export const round = value => {
   return Math.round(value);

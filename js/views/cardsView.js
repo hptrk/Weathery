@@ -1,5 +1,5 @@
 import View from './View.js';
-import { runEverySec, getSVGLink, getArrowSVGCode } from '../helpers';
+import { runEverySec, getSVGLink, getArrowSVGCode, sleep } from '../helpers';
 
 class CardsView extends View {
   _parentElement = document.querySelector('.forecast__container');
@@ -352,6 +352,28 @@ class CardsView extends View {
 
   </figure>
     `;
+  }
+  _loadFadeIn() {
+    const cards = document.querySelectorAll('.forecast__container-card--main');
+    cards.forEach(c => {
+      this._fadeIn(c);
+    });
+  }
+  async _loadFadeOut() {
+    // works for ALL view
+    const cards = document.querySelectorAll('.forecast__container-card--main');
+    cards.forEach((c, i) => {
+      if (i === 0) return;
+      this._fadeOut(c);
+    });
+    await sleep(0.2);
+  }
+
+  _fadeIn(element) {
+    element.classList.add('fade-in');
+  }
+  _fadeOut(element) {
+    element.classList.toggle('fade-out');
   }
 }
 export default new CardsView();

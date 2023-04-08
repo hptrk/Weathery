@@ -182,5 +182,16 @@ class TodayView extends View {
     `;
     return markup;
   }
+  _loadFadeIn() {
+    const cards = document.querySelectorAll('.forecast__container-card--main');
+    cards.forEach(c => {
+      this._fadeIn(c);
+    });
+  }
+
+  _fadeIn(element) {
+    element.classList.toggle('fade-in');
+  }
 }
+
 export default new TodayView();

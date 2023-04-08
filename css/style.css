@@ -78,6 +78,30 @@ body {
   font-size: 1.6rem !important;
   margin-top: -1.3rem !important; }
 
+.is-flipped {
+  transform: rotateY(180deg); }
+
+@keyframes fade-in {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes fade-out {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+
+.fade-in {
+  animation-name: fade-in;
+  animation-duration: 0.4s; }
+
+.fade-out {
+  animation-name: fade-out;
+  animation-duration: 0.2s;
+  opacity: 0; }
+
 .navigation__icon-container {
   display: flex;
   gap: 2.5rem;
@@ -326,9 +350,6 @@ body {
     .settingsbox__switcher-checkbox + label::before {
       height: 6.25rem;
       width: 6.25rem; } }
-
-.is-flipped {
-  transform: rotateY(180deg); }
 
 .forecast__container {
   overflow-x: scroll;
