@@ -17,7 +17,6 @@ class CardsView extends View {
   }
 
   addHandlerRender(handler) {
-    window.addEventListener('load', handler);
     this._nextDaysButton.addEventListener('click', handler);
   }
 

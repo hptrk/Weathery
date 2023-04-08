@@ -5,7 +5,7 @@ import tomorrowView from './views/tomorrowView.js';
 import chartView from './views/chartView.js';
 import { control } from 'leaflet';
 
-const controlWeather = async function () {
+const controlLoadWeather = async function () {
   try {
     // 1) Load current location
     await model.loadLocation();
@@ -27,6 +27,14 @@ const controlWeather = async function () {
   } catch (err) {
     console.log(err);
   }
+};
+
+const controlNextDays = function () {
+  // 1) Render the weather for the next days
+  cardsView.render(model.state);
+
+  // 2) Render the clock
+  cardsView.updateClock(model.state);
 };
 
 const controlToday = function () {
@@ -52,8 +60,9 @@ const controlTomorrow = function () {
 };
 
 const init = function () {
-  cardsView.addHandlerRender(controlWeather);
-  todayView.addHandlerRender(controlToday);
-  tomorrowView.addHandlerRender(controlTomorrow);
+  controlLoadWeather(); // Window load
+  cardsView.addHandlerRender(controlNextDays); // 'Next 7 days' button click
+  todayView.addHandlerRender(controlToday); // 'Today' button click
+  tomorrowView.addHandlerRender(controlTomorrow); // 'Tomorrow' button click
 };
 init();
