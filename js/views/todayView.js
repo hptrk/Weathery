@@ -103,18 +103,6 @@ class TodayView extends View {
       (_, i) => this._parentElement.insertAdjacentHTML('beforeend', card(i)) // add the card to the DOM
     );
   }
-
-  _loadFadeIn() {
-    const cards = document.querySelectorAll('.forecast__container-card--main');
-    cards.forEach((c, i) => {
-      if (i === 0) return;
-      this._fadeIn(c);
-    });
-  }
-
-  _fadeIn(element) {
-    element.classList.toggle('fade-in');
-  }
 }
 
 export default new TodayView();

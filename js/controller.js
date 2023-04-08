@@ -26,7 +26,7 @@ const controlLoadWeather = async function () {
     cardsView.renderCards(model.state);
 
     // 7) Fade the DOM in
-    cardsView._loadFadeIn();
+    cardsView.loadFadeIn();
 
     // 8) Render chart (for 7 days)
     chartView.renderChart(model.state);
@@ -38,13 +38,13 @@ const controlLoadWeather = async function () {
 const controlNextDays = async function () {
   try {
     // 0) Fade out previous content
-    await cardsView._loadFadeOut();
+    await cardsView.loadFadeOut();
 
     // 1) Render the small cards
     cardsView.renderCards(model.state);
 
     // 2) Fade the DOM in
-    cardsView._loadFadeIn();
+    cardsView.loadFadeIn();
   } catch (err) {
     console.log(err);
   }
@@ -53,13 +53,13 @@ const controlNextDays = async function () {
 const controlToday = async function () {
   try {
     // 0) Fade out previous content
-    await cardsView._loadFadeOut();
+    await cardsView.loadFadeOut();
 
     // 1) Render the cards
     todayView.renderCards(model.state);
 
     // 2) Fade the DOM in
-    todayView._loadFadeIn();
+    cardsView.loadFadeIn();
   } catch (err) {
     console.log(err);
   }
@@ -68,13 +68,13 @@ const controlToday = async function () {
 const controlTomorrow = async function () {
   try {
     // 0) Fade out previous content
-    await cardsView._loadFadeOut();
+    await cardsView.loadFadeOut();
 
     // 1) Render the cards
     tomorrowView.renderCards(model.state);
 
     // 2) Fade the DOM in
-    tomorrowView._loadFadeIn();
+    cardsView.loadFadeIn();
   } catch (err) {
     console.log(err);
   }

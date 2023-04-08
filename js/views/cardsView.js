@@ -174,13 +174,15 @@ class CardsView extends View {
           </figure>
     `;
   }
-  _loadFadeIn() {
+
+  loadFadeIn() {
+    // works for ALL view
     const cards = document.querySelectorAll('.forecast__container-card--main');
     cards.forEach(c => {
       this._fadeIn(c);
     });
   }
-  async _loadFadeOut() {
+  async loadFadeOut() {
     // works for ALL view
     const cards = document.querySelectorAll('.forecast__container-card--main');
     cards.forEach((c, i) => {
