@@ -362,6 +362,9 @@ body {
     transform-style: preserve-3d;
     position: relative;
     perspective: 1000px; }
+    .forecast__container-card:not(.forecast__active-card) {
+      display: flex;
+      justify-content: center; }
     .forecast__container-card_front, .forecast__container-card_back {
       backface-visibility: hidden;
       position: absolute; }
@@ -702,7 +705,7 @@ body {
     justify-content: space-between; }
   .forecast__container {
     display: grid;
-    grid-template-columns: minmax(24rem, 30rem);
+    grid-template-columns: 24rem;
     grid-auto-columns: minmax(10rem, 15rem);
     grid-auto-flow: column;
     gap: 2rem; }

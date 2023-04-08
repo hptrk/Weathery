@@ -13,6 +13,10 @@
       transform-style: preserve-3d;
       position: relative;
       perspective: 1000px;
+      &:not(.forecast__active-card) {
+        display: flex;
+        justify-content: center;
+      }
 
       &_front,
       &_back {

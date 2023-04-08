@@ -40,7 +40,7 @@
   }
   &__container {
     display: grid;
-    grid-template-columns: minmax(24rem, 30rem); // first active card
+    grid-template-columns: 24rem; // first active card
     grid-auto-columns: minmax(10rem, 15rem); // little cards will be 10 rem
     grid-auto-flow: column;
     gap: 2rem;
