@@ -95,11 +95,11 @@ body {
 
 .fade-in {
   animation-name: fade-in;
-  animation-duration: 0.4s; }
+  animation-duration: 0.8s; }
 
 .fade-out {
   animation-name: fade-out;
-  animation-duration: 0.2s;
+  animation-duration: 0.4s;
   opacity: 0; }
 
 .navigation__icon-container {

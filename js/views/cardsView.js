@@ -77,7 +77,7 @@ class CardsView extends View {
       <div class="forecast__container-card_front">
 
         <div class="forecast__container-card--header">
-          <span>${this._data.dayNames.one.slice(0, 3)}</span>
+          <span>${this._data.dayNames[num].slice(0, 3)}</span>
         </div>
 
         <div class="forecast__container-card--main">
@@ -201,10 +201,10 @@ class CardsView extends View {
     [cardsHeader, cardsMain].forEach(nodelist =>
       nodelist.forEach((c, i) => {
         if (i === 0) return;
-        this._fadeIn(c);
+        this._fadeOut(c);
       })
     );
-    await sleep(0.2);
+    await sleep(0.3);
   }
 
   _fadeIn(element) {
