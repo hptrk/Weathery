@@ -177,18 +177,33 @@ class CardsView extends View {
 
   loadFadeIn() {
     // works for ALL view
-    const cards = document.querySelectorAll('.forecast__container-card--main');
-    cards.forEach(c => {
-      this._fadeIn(c);
-    });
+    const cardsHeader = document.querySelectorAll(
+      '.forecast__container-card--header'
+    );
+    const cardsMain = document.querySelectorAll(
+      '.forecast__container-card--main'
+    );
+
+    [cardsHeader, cardsMain].forEach(nodelist =>
+      nodelist.forEach(c => {
+        this._fadeIn(c);
+      })
+    );
   }
   async loadFadeOut() {
     // works for ALL view
-    const cards = document.querySelectorAll('.forecast__container-card--main');
-    cards.forEach((c, i) => {
-      if (i === 0) return;
-      this._fadeOut(c);
-    });
+    const cardsHeader = document.querySelectorAll(
+      '.forecast__container-card--header'
+    );
+    const cardsMain = document.querySelectorAll(
+      '.forecast__container-card--main'
+    );
+    [cardsHeader, cardsMain].forEach(nodelist =>
+      nodelist.forEach((c, i) => {
+        if (i === 0) return;
+        this._fadeIn(c);
+      })
+    );
     await sleep(0.2);
   }
 
