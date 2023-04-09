@@ -1,5 +1,6 @@
 .navigation {
   &__searchbar {
+    z-index: 9999;
     position: relative;
     width: 55%;
     height: 5rem;
@@ -41,6 +42,66 @@
       //text when nothing is typed in
       &::placeholder {
         color: $color-grey-light-2;
+      }
+    }
+    &-results {
+      z-index: 1001;
+      position: absolute;
+      top: 5rem;
+      left: 0;
+      width: 100%;
+      background-color: $color-grey-dark-2;
+      border-radius: 0 0 3rem 3rem;
+      box-shadow: $shadow-big;
+
+      &--box {
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 5rem;
+        padding: 1.25rem 2.5rem;
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background-color: $color-grey-lines;
+          border-radius: 100px;
+        }
+        .results {
+          &-icon {
+            height: 2.4rem;
+            width: 2.4rem;
+          }
+          &-city {
+            margin-left: 1.5rem;
+            font-size: 2rem;
+            color: $color-lightblue-main;
+            font-weight: 600;
+            & > span {
+              font-weight: 800;
+            }
+          }
+          &-country {
+            margin-left: 1rem;
+            color: $color-grey-light-2;
+          }
+          &-save {
+            transition: all 0.3s;
+            cursor: pointer;
+            color: $color-lightblue-main-shade-2;
+            height: 3rem;
+            width: 3rem;
+            margin-left: auto;
+
+            &:hover {
+              color: $color-grey-light;
+              transform: scale(1.2);
+            }
+          }
+        }
       }
     }
   }
