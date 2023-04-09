@@ -134,7 +134,8 @@ export const loadSearchResults = async function (
 ) {
   try {
     const { results } = await AJAX(AUTOCOMPLETE(text, closest));
-    state.search.results = results;
+    results.sort((a, b) => b.rank.importance - a.rank.importance); // sort results by importance
+    state.search.results = results; // load into state object
   } catch (err) {
     console.error(`${err} 💥`);
   }
