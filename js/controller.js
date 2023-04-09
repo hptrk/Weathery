@@ -18,6 +18,9 @@ const controlLoadWeather = async function () {
     // 0) Load the data for real time clock
     model.loadTime();
 
+    // 0) Prevent default behaviour on submit
+    searchView.addSubmitPreventer();
+
     // 1) Render the location
     locationView.render(model.state.location);
 

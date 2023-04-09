@@ -5,22 +5,32 @@ import { city } from '../../icons/city.js';
 class SearchView extends View {
   _parentElement = document.querySelector('.navigation__searchbar-results');
   _inputField = document.querySelector('.navigation__searchbar-input');
+  _searchbar = document.querySelector('.navigation__searchbar');
 
   addHandlerRender(render) {
     this._inputField.addEventListener('input', () => {
       this._inputField.value.length >= 3 && render(); // if the input field has at least 3 characters
+      this._inputField.value.length < 3 && this._removeBoxes();
+    });
+  }
+  addSubmitPreventer() {
+    this._searchbar.addEventListener('submit', e => {
+      e.preventDefault(); // prevent default submitting
     });
   }
 
   getValue() {
     return this._inputField.value;
   }
-  generateResults(data) {
+  _removeBoxes() {
     const boxes = document.querySelectorAll(
       '.navigation__searchbar-results--box'
     );
     boxes.forEach(box => box.remove()); // remove boxes
     // this is how many results should be displayed
+  }
+  generateResults(data) {
+    this._removeBoxes();
     const resultsNumber = data.length;
 
     const result = i => `
