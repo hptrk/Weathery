@@ -6,9 +6,9 @@ export const REVERSE_GEOCODE = function (lat, long) {
   // API FOR REVERSE GEOCODING
   return `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${long}&apiKey=5890a163a80f47f7850ecb63ea0bf851`;
 };
-export const AUTOCOMPLETE = function (text) {
+export const AUTOCOMPLETE = function (text, coords) {
   // API FOR CITY NAME AUTO COMPLETE
-  return `https://api.geoapify.com/v1/geocode/autocomplete?text=${text}&lang=en&limit=5&type=city&format=json&apiKey=5890a163a80f47f7850ecb63ea0bf851
+  return `https://api.geoapify.com/v1/geocode/autocomplete?text=${text}&lang=en&limit=5&type=city&bias=proximity:${coords[0]},${coords[1]}&format=json&apiKey=5890a163a80f47f7850ecb63ea0bf851
   `;
 };
 export const TIMEOUT_SEC = 10; // Reject a promise after X seconds

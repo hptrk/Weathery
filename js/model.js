@@ -128,12 +128,13 @@ export const loadCity = async function (lat, long) {
   }
 };
 
-export const loadSearchResults = async function (text = state.search.query) {
+export const loadSearchResults = async function (
+  text = state.search.query,
+  closest = [state.location.latitude, state.location.longitude]
+) {
   try {
-    const { query, results } = await AJAX(AUTOCOMPLETE(text));
+    const { results } = await AJAX(AUTOCOMPLETE(text, closest));
     state.search.results = results;
-    console.log(query);
-    console.log(results);
   } catch (err) {
     console.error(`${err} 💥`);
   }
