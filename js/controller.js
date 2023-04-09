@@ -4,6 +4,7 @@ import todayView from './views/todayView.js';
 import tomorrowView from './views/tomorrowView.js';
 import chartView from './views/chartView.js';
 import locationView from './views/locationView.js';
+import searchView from './views/searchView.js';
 import { control } from 'leaflet';
 
 const controlLoadWeather = async function () {
@@ -84,10 +85,19 @@ const controlTomorrow = async function () {
   }
 };
 
+const controlSearchResults = async function () {
+  // 0) Load search results from query
+  await model.loadSearchResults(searchView.getValue());
+
+  // 1) Generate search results
+  searchView.generateResults(model.state.search.results);
+};
+
 const init = function () {
   controlLoadWeather(); // Window load
   cardsView.addHandlerRender(controlNextDays); // 'Next 7 days' button click
   todayView.addHandlerRender(controlToday); // 'Today' button click
   tomorrowView.addHandlerRender(controlTomorrow); // 'Tomorrow' button click
+  searchView.addHandlerRender(controlSearchResults);
 };
 init();

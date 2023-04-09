@@ -129,7 +129,7 @@ export const loadCity = async function (lat, long) {
 };
 
 export const loadSearchResults = async function (
-  text = state.search.query,
+  text,
   closest = [state.location.latitude, state.location.longitude]
 ) {
   try {
