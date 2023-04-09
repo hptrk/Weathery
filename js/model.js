@@ -1,5 +1,5 @@
 import { async } from 'regenerator-runtime';
-import { WEATHER_API, REVERSE_GEOCODE } from './config';
+import { WEATHER_API, REVERSE_GEOCODE, AUTOCOMPLETE } from './config';
 import {
   AJAX,
   getDaily,
@@ -20,7 +20,7 @@ export const state = {
   weather: {},
   savedCities: [],
   search: {
-    query: '',
+    query: '', // query and results will refresh on every autocomplete
     results: [],
   },
   locale: 'en-US', // will be automatic later
@@ -123,6 +123,17 @@ export const loadCity = async function (lat, long) {
 
     state.location.city = data.city;
     state.location.country = data.country;
+  } catch (err) {
+    console.error(`${err} 💥`);
+  }
+};
+
+export const loadSearchResults = async function (text = state.search.query) {
+  try {
+    const { query, results } = await AJAX(AUTOCOMPLETE(text));
+    state.search.results = results;
+    console.log(query);
+    console.log(results);
   } catch (err) {
     console.error(`${err} 💥`);
   }
