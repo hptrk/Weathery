@@ -43,12 +43,6 @@ export const sleep = function (s) {
 };
 
 ////////////////////
-// ROUND VALUE
-export const round = value => {
-  return Math.round(value);
-};
-
-////////////////////
 // AJAX CALL
 export const AJAX = async function (url) {
   //GET
@@ -68,6 +62,12 @@ export const AJAX = async function (url) {
 // GET CURRENT HOUR (for API array)
 export const getHour = () => {
   return new Date().getHours();
+};
+
+////////////////////
+// ROUND VALUE
+export const round = value => {
+  return Math.round(value);
 };
 
 ////////////////////
