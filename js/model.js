@@ -1,16 +1,15 @@
 import { async } from 'regenerator-runtime';
-import { API_URL } from './config';
+import { WEATHER_API, REVERSE_GEOCODE } from './config';
 import {
   AJAX,
   getDaily,
-  getHourly,
+  getHourlyCurrent,
   round,
   runEverySec,
   leadingZero,
   updateDayNames,
   getFromCode,
   isDayTime,
-  getHourlyCurrent,
 } from './helpers';
 
 // current state object
@@ -27,6 +26,7 @@ export const state = {
   locale: 'en-US', // will be automatic later
 };
 
+// ---------- WORKING WITH WEATHER DATAS (forecast section) ---------- //
 // creates a weather object based on open-meteo API
 const createWeatherObject = function (data) {
   // API has some data about the current weather
@@ -79,7 +79,7 @@ export const loadWeather = async function (
   long = state.location.longitude
 ) {
   try {
-    const data = await AJAX(API_URL(lat, long));
+    const data = await AJAX(WEATHER_API(lat, long));
 
     state.weather = createWeatherObject(data);
   } catch (err) {
@@ -110,4 +110,13 @@ export const loadTime = function () {
   getTime();
   // The time will update every second
   runEverySec(getTime);
+};
+
+// ---------- REVERSE GEOCODING ---------- //
+const loadCity = async function (lat, long) {
+  try {
+    const data = await AJAX(REVERSE_GEOCODE(lat, long));
+  } catch (err) {
+    console.error(`${err} 💥`);
+  }
 };
