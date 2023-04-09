@@ -82,6 +82,8 @@ export const loadWeather = async function (
     const data = await AJAX(WEATHER_API(lat, long));
 
     state.weather = createWeatherObject(data);
+
+    await loadCity(lat, long);
   } catch (err) {
     console.error(`${err} 💥`);
     throw err;
@@ -113,9 +115,14 @@ export const loadTime = function () {
 };
 
 // ---------- REVERSE GEOCODING ---------- //
-const loadCity = async function (lat, long) {
+export const loadCity = async function (lat, long) {
   try {
-    const data = await AJAX(REVERSE_GEOCODE(lat, long));
+    const { features: res } = await AJAX(REVERSE_GEOCODE(lat, long));
+    const data = res[0].properties;
+    console.log(data);
+
+    state.location.city = data.city;
+    state.location.country = data.country;
   } catch (err) {
     console.error(`${err} 💥`);
   }
