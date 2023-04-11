@@ -4,6 +4,7 @@ import { city } from '../../icons/city.js';
 
 class SearchView extends View {
   _parentElement = document.querySelector('.navigation__searchbar-results');
+  _formElement = document.querySelector('.navigation__searchbar');
   _inputField = document.querySelector('.navigation__searchbar-input');
   _searchbar = document.querySelector('.navigation__searchbar');
 
@@ -13,10 +14,12 @@ class SearchView extends View {
       this._inputField.value.length < 3 && this._removeBoxes();
     });
   }
-  addSubmitPreventer() {
+  addBasicConfig() {
     this._searchbar.addEventListener('submit', e => {
       e.preventDefault(); // prevent default submitting
     });
+    // when something in the form element is clicked, focus the input
+    this._formElement.addEventListener('click', () => this._inputField.focus());
   }
 
   getValue() {

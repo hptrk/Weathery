@@ -19,7 +19,7 @@ const controlLoadWeather = async function () {
     model.loadTime();
 
     // 0) Prevent default behaviour on submit
-    searchView.addSubmitPreventer();
+    searchView.addBasicConfig();
 
     // 1) Render the location
     locationView.render(model.state.location);
