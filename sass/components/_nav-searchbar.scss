@@ -24,6 +24,7 @@
 
     //search svg icon
     &-icon {
+      z-index: 9999;
       transition: all 0.2s;
       transition-timing-function: ease-out;
       height: 2.4rem;
@@ -31,6 +32,7 @@
     }
     //text field
     &-input {
+      z-index: 9999;
       width: 100%;
       background: none;
       border: none;
@@ -45,14 +47,18 @@
       }
     }
     &-results {
-      z-index: 1001;
       position: absolute;
-      top: 5rem;
+      top: 2.5rem; // make room for a border radius hider div
       left: 0;
       width: 100%;
       background-color: $color-grey-dark-2;
       border-radius: 0 0 3rem 3rem;
       box-shadow: $shadow-big;
+
+      overflow: hidden; // the text appears with the background in the animation
+      transition: all 0.4s;
+      transition-timing-function: ease-in-out;
+      height: 0; // base height is 0, JS will change that (1box = 5rem)
 
       &--box {
         position: relative;
@@ -60,6 +66,8 @@
         align-items: center;
         height: 5rem;
         padding: 1.25rem 2.5rem;
+
+        // separator line
         &::after {
           content: '';
           position: absolute;

@@ -4,9 +4,8 @@ import { city } from '../../icons/city.js';
 
 class SearchView extends View {
   _parentElement = document.querySelector('.navigation__searchbar-results');
-  _formElement = document.querySelector('.navigation__searchbar');
+  _searchBar = document.querySelector('.navigation__searchbar');
   _inputField = document.querySelector('.navigation__searchbar-input');
-  _searchbar = document.querySelector('.navigation__searchbar');
 
   addHandlerRender(render) {
     this._inputField.addEventListener('input', () => {
@@ -15,34 +14,24 @@ class SearchView extends View {
     });
   }
   addBasicConfig() {
-    this._searchbar.addEventListener('submit', e => {
+    this._searchBar.addEventListener('submit', e => {
       e.preventDefault(); // prevent default submitting
     });
     // when something in the form element is clicked, focus the input
-    this._formElement.addEventListener('click', () => this._inputField.focus());
-    // if a letter is pressed on the keyboard, put the focus on the input
-    // the user can start searching for a city immediately
-    document.addEventListener('keydown', e => {
-      if (/^\p{L}$/u.test(e.key)) {
-        this._inputField.focus();
-        input.value += letter;
-      }
-    });
+    this._searchBar.addEventListener('click', () => this._inputField.focus());
   }
 
   getValue() {
     return this._inputField.value;
   }
   _removeBoxes() {
-    const boxes = document.querySelectorAll(
-      '.navigation__searchbar-results--box'
-    );
-    boxes.forEach(box => box.remove()); // remove boxes
-    // this is how many results should be displayed
+    this._parentElement.innerHTML = '';
+    this._parentElement.style.height = 0;
   }
   generateResults(data) {
-    this._removeBoxes();
-    const resultsNumber = data.length;
+    this._removeBoxes(); // remove previous data
+    const resultsNumber = data.length; // this is how many results should be displayed
+    const borderHider = '<div class="border-hider"></div>'; // with a height of 2.5rem (hidess the bottom borders)
 
     const result = i => `
 <div class="navigation__searchbar-results--box">
@@ -55,10 +44,14 @@ class SearchView extends View {
 </div>
 `;
 
+    this._parentElement.innerHTML += borderHider; // FIRST add the bottom border filler
+
     // this forEach runs the result() function 'resultsNumber' times
-    Array.from({ length: resultsNumber }).forEach(
-      (_, i) => this._parentElement.insertAdjacentHTML('beforeend', result(i)) // add the card to the DOM
-    );
+    Array.from({ length: resultsNumber }).forEach((_, i) => {
+      this._parentElement.innerHTML += result(i);
+    });
+    // add HEIGHT for animation
+    this._parentElement.style.height = resultsNumber * 5 + 2.5 + 'rem'; // *5 because 1 box is 5rem, +2.5 because of border hider
   }
 }
 export default new SearchView();

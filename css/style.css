@@ -102,6 +102,9 @@ body {
   animation-duration: 0.3s;
   opacity: 0; }
 
+.border-hider {
+  height: 2.5rem; }
+
 .navigation__icon-container {
   display: flex;
   gap: 2.5rem;
@@ -253,11 +256,13 @@ body {
   .navigation__searchbar:focus-within .navigation__searchbar-icon {
     transform: scale(1.1); }
   .navigation__searchbar-icon {
+    z-index: 9999;
     transition: all 0.2s;
     transition-timing-function: ease-out;
     height: 2.4rem;
     width: 2.4rem; }
   .navigation__searchbar-input {
+    z-index: 9999;
     width: 100%;
     background: none;
     border: none;
@@ -267,14 +272,17 @@ body {
     .navigation__searchbar-input::placeholder {
       color: #888; }
   .navigation__searchbar-results {
-    z-index: 1001;
     position: absolute;
-    top: 5rem;
+    top: 2.5rem;
     left: 0;
     width: 100%;
     background-color: #1e1e1e;
     border-radius: 0 0 3rem 3rem;
-    box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.3); }
+    box-shadow: 0 2.1rem 2rem rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transition: all 0.4s;
+    transition-timing-function: ease-in-out;
+    height: 0; }
     .navigation__searchbar-results--box {
       position: relative;
       display: flex;
