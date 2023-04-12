@@ -20,6 +20,14 @@ class SearchView extends View {
     });
     // when something in the form element is clicked, focus the input
     this._formElement.addEventListener('click', () => this._inputField.focus());
+    // if a letter is pressed on the keyboard, put the focus on the input
+    // the user can start searching for a city immediately
+    document.addEventListener('keydown', e => {
+      if (/^\p{L}$/u.test(e.key)) {
+        this._inputField.focus();
+        input.value += letter;
+      }
+    });
   }
 
   getValue() {
