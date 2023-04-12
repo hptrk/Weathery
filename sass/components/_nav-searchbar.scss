@@ -48,17 +48,37 @@
     }
     &-results {
       position: absolute;
-      top: 2.5rem; // make room for a border radius hider div
+      top: 0; // make room for a border radius hider div
       left: 0;
       width: 100%;
-      background-color: $color-grey-dark-2;
-      border-radius: 0 0 3rem 3rem;
-      box-shadow: $shadow-big;
-
+      //so the top border radius does not conflict
+      background: linear-gradient(
+        to bottom,
+        transparent 2.5rem,
+        $color-grey-dark-2 2.5rem
+      );
+      border-radius: 3rem;
+      //box-shadow: $shadow-big; // ADDED WITH JAVASCRIPT FOR ANIMATION
       overflow: hidden; // the text appears with the background in the animation
-      transition: all 0.4s;
+      transition: height 0.4s, box-shadow 0.4s;
       transition-timing-function: ease-in-out;
-      height: 0; // base height is 0, JS will change that (1box = 5rem)
+      height: 0rem; // base height is 0, JS will change that (1box = 5rem)
+
+      // shiny hover effect (cursor following)
+      &::after {
+        content: '';
+        position: absolute;
+        top: calc(var(--y, 0) * 1px - 150px);
+        left: calc(var(--x, 0) * 1px - 150px);
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+        transition: opacity 0.2s;
+        background: radial-gradient(#303030, #1e1e1e00 60%);
+      }
+      &:hover::after {
+        opacity: 0.2;
+      }
 
       &--box {
         position: relative;
@@ -95,6 +115,7 @@
             height: 3rem;
             width: 3rem;
             margin-left: auto;
+            z-index: 9999; // so its still clickable even with shiny hover effect
 
             &:hover {
               color: $color-grey-light;

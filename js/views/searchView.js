@@ -19,6 +19,12 @@ class SearchView extends View {
     });
     // when something in the form element is clicked, focus the input
     this._searchBar.addEventListener('click', () => this._inputField.focus());
+
+    this._parentElement.addEventListener('mousemove', e => {
+      const { x, y } = this._parentElement.getBoundingClientRect();
+      this._parentElement.style.setProperty('--x', e.clientX - x);
+      this._parentElement.style.setProperty('--y', e.clientY - y);
+    });
   }
 
   getValue() {
@@ -27,6 +33,7 @@ class SearchView extends View {
   _removeBoxes() {
     this._parentElement.innerHTML = '';
     this._parentElement.style.height = 0;
+    this._parentElement.style.boxShadow = 'none'; // animating the boxshadow
   }
   generateResults(data) {
     this._removeBoxes(); // remove previous data
@@ -51,7 +58,8 @@ class SearchView extends View {
       this._parentElement.innerHTML += result(i);
     });
     // add HEIGHT for animation
-    this._parentElement.style.height = resultsNumber * 5 + 2.5 + 'rem'; // *5 because 1 box is 5rem, +2.5 because of border hider
+    this._parentElement.style.height = resultsNumber * 5 + 5 + 'rem'; // *5 because 1 box is 5rem, +5 because of border hider
+    this._parentElement.style.boxShadow = '0 2.1rem 2rem rgba(0, 0, 0, 0.3)'; // animating the boxshadow
   }
 }
 export default new SearchView();
