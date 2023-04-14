@@ -295,12 +295,17 @@ body {
     .navigation__searchbar-results:hover::after {
       opacity: 0.2; }
     .navigation__searchbar-results--box {
+      cursor: pointer;
+      z-index: 9999;
       position: relative;
       display: flex;
       align-items: center;
       height: 5rem;
       padding: 1.25rem 2.5rem;
+      transition: all 0.4s;
       border-top: 2px solid #242426; }
+      .navigation__searchbar-results--box:hover {
+        transform: scale(1.02); }
       .navigation__searchbar-results--box .results-icon {
         height: 2.4rem;
         width: 2.4rem; }

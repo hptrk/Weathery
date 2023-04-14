@@ -81,11 +81,18 @@
       }
 
       &--box {
+        cursor: pointer;
+        z-index: 9999;
         position: relative;
         display: flex;
         align-items: center;
         height: 5rem;
         padding: 1.25rem 2.5rem;
+        transition: all 0.4s;
+
+        &:hover {
+          transform: scale(1.02);
+        }
 
         // separator line
         border-top: 2px solid $color-grey-lines;
