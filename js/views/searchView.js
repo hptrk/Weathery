@@ -13,6 +13,7 @@ class SearchView extends View {
       this._inputField.value.length < 3 && this._removeBoxes();
     });
   }
+
   addBasicConfig() {
     this._searchBar.addEventListener('submit', e => {
       e.preventDefault(); // prevent default submitting
@@ -36,15 +37,28 @@ class SearchView extends View {
   getValue() {
     return this._inputField.value;
   }
+
   _removeBoxes() {
     this._parentElement.innerHTML = '';
     this._parentElement.style.height = 0;
     this._parentElement.style.boxShadow = 'none'; // animating the boxshadow
   }
+
+  _preventFocusLoss(results) {
+    if (results) {
+      // if there are results
+      document.querySelectorAll('.results-save').forEach(btn =>
+        btn.addEventListener('mousedown', e => {
+          e.preventDefault(); // prevent losing focus on clicking the like button
+        })
+      );
+    }
+  }
+
   generateResults(data) {
     this._removeBoxes(); // remove previous data
     const resultsNumber = data.length; // this is how many results should be displayed
-    const borderHider = '<div class="border-hider"></div>'; // with a height of 2.5rem (hidess the bottom borders)
+    const borderHider = '<div class="border-hider"></div>'; // with a height of 5rem (hides the bottom borders)
 
     const result = i => `
 <div class="navigation__searchbar-results--box">
@@ -57,7 +71,7 @@ class SearchView extends View {
 </div>
 `;
 
-    this._parentElement.innerHTML += borderHider; // FIRST add the bottom border filler
+    this._parentElement.innerHTML += borderHider; // add the bottom border filler
 
     // this forEach runs the result() function 'resultsNumber' times
     Array.from({ length: resultsNumber }).forEach((_, i) => {
@@ -66,6 +80,8 @@ class SearchView extends View {
     // add HEIGHT for animation
     this._parentElement.style.height = resultsNumber * 5 + 5 + 'rem'; // *5 because 1 box is 5rem, +5 because of border hider
     this._parentElement.style.boxShadow = '0 2.1rem 2rem rgba(0, 0, 0, 0.3)'; // animating the boxshadow
+
+    this._preventFocusLoss(resultsNumber); // prevent losing focus on clicking the like button
   }
 }
 export default new SearchView();
