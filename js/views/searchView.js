@@ -20,10 +20,16 @@ class SearchView extends View {
     // when something in the form element is clicked, focus the input
     this._searchBar.addEventListener('click', () => this._inputField.focus());
 
+    // shiny hover effect
     this._parentElement.addEventListener('mousemove', e => {
       const { x, y } = this._parentElement.getBoundingClientRect();
       this._parentElement.style.setProperty('--x', e.clientX - x);
       this._parentElement.style.setProperty('--y', e.clientY - y);
+    });
+
+    // hide search results on focus loss
+    this._inputField.addEventListener('blur', () => {
+      this._removeBoxes();
     });
   }
 
