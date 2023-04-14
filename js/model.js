@@ -1,3 +1,5 @@
+//---------- The model represents and manages data, as well as the rules and behaviors associated with that data ----------//
+
 import { async } from 'regenerator-runtime';
 import { WEATHER_API, REVERSE_GEOCODE, AUTOCOMPLETE } from './config';
 import {

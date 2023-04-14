@@ -1,3 +1,5 @@
+//---------- This view is responsible for rendering the "Next 7 days" cards section ----------//
+
 import View from './View.js';
 import { runEverySec, getSVGLink, getArrowSVGCode, sleep } from '../helpers';
 

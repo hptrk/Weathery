@@ -1,3 +1,5 @@
+//---------- This view is responsible for rendering the "Today" cards section on click ----------//
+
 import { mark } from 'regenerator-runtime';
 import View from './View.js';
 import { runEverySec, getSVGLink, getArrowSVGCode } from '../helpers.js';

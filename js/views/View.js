@@ -1,3 +1,5 @@
+//---------- Main View file with helper functions ----------//
+
 import { mark } from 'regenerator-runtime';
 
 export default class View {

@@ -1,3 +1,5 @@
+//---------- This view is responsible for rendering the search results ----------//
+
 import View from './View.js';
 import { like, liked } from '../../icons/likeSVG.js';
 import { city } from '../../icons/city.js';

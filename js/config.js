@@ -1,3 +1,5 @@
+//---------- Storage for configuration/permanent data ----------//
+
 export const WEATHER_API = function (lat, long) {
   // API FOR WEATHER DATAS
   return `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,weathercode,windspeed_10m,winddirection_10m,precipitation_probability&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,windspeed_10m_max,winddirection_10m_dominant,precipitation_probability_max&current_weather=true&timezone=auto`;

@@ -1,3 +1,5 @@
+//---------- This file contains helper functions, which can make code more readable in the main MVC files ----------//
+
 import { TIMEOUT_SEC } from './config';
 
 //------ ICON IMPORTS ------//

@@ -1,3 +1,5 @@
+//---------- The controller handles user input and updates the model and/or view accordingly ----------//
+
 import * as model from './model.js';
 import cardsView from './views/cardsView.js';
 import todayView from './views/todayView.js';

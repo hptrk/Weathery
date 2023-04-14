@@ -1,3 +1,5 @@
+//---------- This view is responsible for rendering the current location to the navigation ----------//
+
 import View from './View.js';
 class LocationView extends View {
   _parentElement = document.querySelector('.navigation__location-text');

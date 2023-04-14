@@ -1,3 +1,5 @@
+//---------- This view is responsible for rendering the "Chance of rain" chart ----------//
+
 import View from './View.js';
 import { getHour } from '../helpers.js';
 // instead of importing the whole library, taking advantage of tree-shaking (better performance)

@@ -1,3 +1,5 @@
+//---------- This view is responsible for rendering the "Tomorrow" cards section on click ----------//
+
 import { mark } from 'regenerator-runtime';
 import View from './View.js';
 import {
