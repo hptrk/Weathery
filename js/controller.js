@@ -7,6 +7,7 @@ import tomorrowView from './views/tomorrowView.js';
 import chartView from './views/chartView.js';
 import locationView from './views/locationView.js';
 import searchView from './views/searchView.js';
+import cityView from './views/cityView.js';
 import { control } from 'leaflet';
 
 const controlLoadWeather = async function () {
@@ -103,6 +104,7 @@ const init = function () {
   cardsView.addHandlerRender(controlNextDays); // 'Next 7 days' button click
   todayView.addHandlerRender(controlToday); // 'Today' button click
   tomorrowView.addHandlerRender(controlTomorrow); // 'Tomorrow' button click
-  searchView.addHandlerRender(controlSearchResults);
+  searchView.addHandlerRender(controlSearchResults); // Search input
+  cityView.addHandlerRender(); //TEST//
 };
 init();

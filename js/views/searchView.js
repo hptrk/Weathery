@@ -40,20 +40,16 @@ class SearchView extends View {
     return this._inputField.value;
   }
 
-  _removeBoxes() {
-    this._parentElement.innerHTML = '';
-    this._parentElement.style.height = 0;
-    this._parentElement.style.boxShadow = 'none'; // animating the boxshadow
-  }
-
   _preventFocusLoss(results) {
     if (results) {
       // if there are results
-      document.querySelectorAll('.results-save').forEach(btn =>
-        btn.addEventListener('mousedown', e => {
-          e.preventDefault(); // prevent losing focus on clicking the like button
-        })
-      );
+      document
+        .querySelectorAll('.navigation__searchbar-results--box')
+        .forEach(btn =>
+          btn.addEventListener('mousedown', e => {
+            e.preventDefault(); // prevent losing focus on clicking the like button
+          })
+        );
     }
   }
 

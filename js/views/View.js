@@ -15,12 +15,20 @@ export default class View {
     this._clear();
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
+
   _clear() {
     this._parentElement.innerHTML = '';
   }
+
   renderCards(data) {
     this._data = data;
     this._generateCards();
+  }
+
+  _removeBoxes() {
+    this._parentElement.innerHTML = '';
+    this._parentElement.style.height = 0;
+    this._parentElement.style.boxShadow = 'none'; // animating the boxshadow
   }
 
   renderError(message = this._errorMessage) {}
