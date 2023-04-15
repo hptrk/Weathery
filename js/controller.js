@@ -100,7 +100,29 @@ const controlSearchResults = async function () {
 };
 
 const controlLoadCity = async function () {
-  console.log(cityView.indexOfClicked()); // TEST //
+  // Latitude, Longitude of clicked city
+  const { lat, lon } = model.state.search.results[cityView.indexOfClicked()];
+
+  // 0) Load weather of clicked city
+  await model.loadWeather(lat, lon);
+
+  // 1) Render the location
+  locationView.render(model.state.location);
+
+  // 2) Render the weather
+  cardsView.render(model.state);
+
+  // 3) Render the clock
+  cardsView.updateClock(model.state);
+
+  // 4) Render the small cards
+  cardsView.renderCards(model.state);
+
+  // 5) Fade the DOM in
+  cardsView.loadFadeIn();
+
+  // 6) Render chart (for 7 days)
+  chartView.renderChart(model.state);
 };
 
 const init = function () {

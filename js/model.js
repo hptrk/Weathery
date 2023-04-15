@@ -130,6 +130,8 @@ export const loadCity = async function (lat, long) {
   }
 };
 
+// ---------- SEARCH RESULTS ---------- //
+
 export const loadSearchResults = async function (
   text,
   closest = [state.location.latitude, state.location.longitude]

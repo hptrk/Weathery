@@ -1,7 +1,6 @@
 //---------- This view is responsible for rendering the "Chance of rain" chart ----------//
 
 import View from './View.js';
-import { getHour } from '../helpers.js';
 // instead of importing the whole library, taking advantage of tree-shaking (better performance)
 import {
   CategoryScale,
@@ -21,11 +20,11 @@ Chart.defaults.font.lineHeight = 1;
 class ChartView extends View {
   _delayed; //for the animation delay
 
-  addHandlerRender(handler) {
-    window.addEventListener('load', handler);
-  }
-
   renderChart(data) {
+    // IF there is a current chart, destroy it, so it can be applied to other cities with the same config
+    const currentChart = Chart.getChart('diagram');
+    if (currentChart) currentChart.destroy();
+
     const daysArrayKeys = Object.keys(data.weather.days); // zero, one, two....
     const daysArrayValues = Object.values(data.weather.days); // data for: zero, one, two....
     const dayNames = Object.values(data.dayNames); // 0: current day (friday) / 1: tomorrow (saturday)
