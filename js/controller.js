@@ -99,12 +99,16 @@ const controlSearchResults = async function () {
   searchView.generateResults(model.state.search.results);
 };
 
+const controlLoadCity = async function () {
+  console.log(cityView.indexOfClicked()); // TEST //
+};
+
 const init = function () {
   controlLoadWeather(); // Window load
   cardsView.addHandlerRender(controlNextDays); // 'Next 7 days' button click
   todayView.addHandlerRender(controlToday); // 'Today' button click
   tomorrowView.addHandlerRender(controlTomorrow); // 'Tomorrow' button click
   searchView.addHandlerRender(controlSearchResults); // Search input
-  cityView.addHandlerRender(); //TEST//
+  cityView.addHandlerRender(controlLoadCity); // Click on a city in the search results
 };
 init();
