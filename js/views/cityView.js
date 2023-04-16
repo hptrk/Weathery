@@ -2,6 +2,7 @@
 
 import View from './View.js';
 import { sleep } from '../helpers.js';
+import { E } from '../../icons/directionSVGS.js';
 
 class CityView extends View {
   _parentElement = document.querySelector('.navigation__searchbar-results');
@@ -14,15 +15,26 @@ class CityView extends View {
   _resultBoxes;
   _event;
   _clickedBox;
+  _pressedEnter = false;
   addHandlerRender(render) {
     this._parentElement.addEventListener('click', e => {
       this._event = e;
-      this._resetDefaultStates();
       render();
+      this._resetDefaultStates();
+    });
+    this._inputField.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        this._pressedEnter = true;
+        render() && this._resetDefaultStates();
+        this._pressedEnter = false; // reset to default
+      }
     });
   }
 
   indexOfClicked() {
+    // if enter was pressed, return the first city immediately
+    if (this._pressedEnter) return 0;
+
     this._resultBoxes = Array.from(this._parentElement.childNodes).filter(
       node =>
         node.nodeType === 1 && // TYPE 1: Element node
@@ -34,14 +46,17 @@ class CityView extends View {
     );
     const clickedIndex = this._resultBoxes.indexOf(this._clickedBox);
 
-    !this._event.target.classList.contains('results-save') &&
-      this._removeBoxes(); // hide results on click (except clicking on save)
-
     return clickedIndex; // this function returns a number (0-4) - index of clicked box
   }
 
   async _resetDefaultStates() {
-    this._checkbox.checked = false; // reset the switcher back to the forecast state
+    // hide results on click (except clicking on save)
+    (this._pressedEnter ||
+      !this._event.target.classList.contains('results-save')) && // ?. needed for when the enter was pressed
+      this._removeBoxes();
+
+    // reset the switcher back to the forecast state
+    this._checkbox.checked = false;
 
     // reset the active button back to "next 7 days"
     this._nextDaysButton.classList.add('forecast__active-item');
