@@ -10,7 +10,7 @@ import searchView from './views/searchView.js';
 import cityView from './views/cityView.js';
 import { control } from 'leaflet';
 
-const controlLoadWeather = async function () {
+const controlStarterState = async function () {
   try {
     // 0) Load current location
     await model.loadLocation();
@@ -126,7 +126,7 @@ const controlLoadCity = async function () {
 };
 
 const init = function () {
-  controlLoadWeather(); // Window load
+  controlStarterState(); // Window load
   cardsView.addHandlerRender(controlNextDays); // 'Next 7 days' button click
   todayView.addHandlerRender(controlToday); // 'Today' button click
   tomorrowView.addHandlerRender(controlTomorrow); // 'Tomorrow' button click
