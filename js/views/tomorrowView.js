@@ -62,6 +62,10 @@ class TomorrowView extends View {
     const card = i => {
       const date = new Date();
       date.setTime(date.getTime() + (i + 1) * 60 * 60 * 1000); // set the hour mark of the card
+      const precProb =
+        Math.round(
+          this._data.weather.days.one.precipitation_probability_hourly[i] / 5
+        ) * 5; // precipitation probability rounded to fives
 
       return `
   <figure class="forecast__container-card">
@@ -78,7 +82,7 @@ class TomorrowView extends View {
               />
               <div class="numbers">
                 <span>${this._data.weather.days.one.temperature[i]}&#176;</span>
-                <span></span>
+                <span>${precProb >= 10 ? precProb + '%' : ''}</span>
               </div>
             </div>
 

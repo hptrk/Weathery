@@ -18,7 +18,7 @@ import {
 export const state = {
   currentTime: '',
   dayNames: {}, // zero: current day, one: tomorrow, etc..
-  location: {}, // latitude: x, longitude: y
+  location: {}, // latitude: x, longitude: y, city: ..., country: ...
   weather: {},
   savedCities: [],
   search: {
