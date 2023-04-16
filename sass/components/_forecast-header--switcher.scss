@@ -25,15 +25,18 @@
 
           //styling of the sliding part
           &::before {
-            content: "";
+            content: '';
             position: absolute;
             left: 0;
             height: 100%;
             width: 50%; //half of the element, so it ends in the middle
             border-radius: 100px;
             background-color: $color-lightblue-main;
-            transition: all 0.4s;
+            transition: transform 0.4s, background-color 0.2s;
             transition-timing-function: ease-out;
+          }
+          &:hover::before {
+            background-color: $color-lightblue-main-shade-2;
           }
           //the real text on the elements
           & > :first-child,

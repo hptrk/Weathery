@@ -26,7 +26,7 @@
 
         //active setting background (round)
         &::before {
-          content: "";
+          content: '';
           position: absolute;
           right: 0; //because the default is dark mode
           height: 5rem;
@@ -36,6 +36,10 @@
           outline: 2px solid $color-grey-light;
           transition: all 0.2s;
           transition-timing-function: ease-out;
+        }
+        &:hover::before {
+          background-color: $color-lightblue-main-shade-2;
+          outline: 2px solid $color-grey-light-shade;
         }
       }
 

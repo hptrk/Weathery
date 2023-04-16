@@ -355,7 +355,10 @@ body {
     fill: #bbd8ec;
     width: 5rem;
     height: 5rem;
-    transform: scale(1.2308); }
+    transform: scale(1.2308);
+    transition: all 0.2s; }
+    .settingsbox__profilepic-icon:hover {
+      fill: #96adbd; }
 
 @media screen and (max-width: 68.75em) {
   .settingsbox__profilepic-icon {
@@ -381,7 +384,7 @@ body {
       width: 3.3rem;
       z-index: 1000; }
     .settingsbox__switcher-checkbox + label::before {
-      content: "";
+      content: '';
       position: absolute;
       right: 0;
       height: 5rem;
@@ -391,6 +394,9 @@ body {
       outline: 2px solid #e7e7e8;
       transition: all 0.2s;
       transition-timing-function: ease-out; }
+    .settingsbox__switcher-checkbox + label:hover::before {
+      background-color: #96adbd;
+      outline: 2px solid #d0d0d1; }
   .settingsbox__switcher-checkbox:checked + label::before {
     transform: translateX(-100%); }
   .settingsbox__switcher-checkbox:checked + label > .sun {
@@ -601,15 +607,17 @@ body {
     font-size: 1.2rem;
     font-weight: 700; }
     .forecast__header-switcher--checkbox + label::before {
-      content: "";
+      content: '';
       position: absolute;
       left: 0;
       height: 100%;
       width: 50%;
       border-radius: 100px;
       background-color: #bbd8ec;
-      transition: all 0.4s;
+      transition: transform 0.4s, background-color 0.2s;
       transition-timing-function: ease-out; }
+    .forecast__header-switcher--checkbox + label:hover::before {
+      background-color: #96adbd; }
     .forecast__header-switcher--checkbox + label > :first-child,
     .forecast__header-switcher--checkbox + label > :last-child {
       z-index: 1000;
