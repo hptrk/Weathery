@@ -5,6 +5,7 @@
       display: flex;
       gap: 2.5rem;
       margin-right: 3rem;
+      position: relative;
     }
     &-box {
       // round background of the icons
@@ -14,6 +15,7 @@
       border-radius: 100%;
       background-color: $color-grey-dark;
       text-align: center;
+      z-index: 999999;
     }
     //LIST ICON STYLE
     &-list {
@@ -33,7 +35,7 @@
       }
       &::before,
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         left: 0;
       }
@@ -68,7 +70,7 @@
       }
       // MOVING DOT
       &::before {
-        content: "";
+        content: '';
         position: absolute;
         left: 0;
         top: -0.8rem;
@@ -82,6 +84,89 @@
     }
     &-box:hover &-info {
       margin-top: 2.2rem;
+    }
+  }
+  //LIST ICON OPENED STATE
+  &__favorites {
+    position: absolute;
+    top: 120%;
+    left: 0;
+    z-index: 99999;
+    max-height: 54rem;
+    width: 40rem;
+    border-radius: 2rem;
+    box-shadow: $shadow-big; // same as search results shadow
+
+    display: flex;
+    flex-direction: column;
+
+    // separator line
+    & > :not(:last-child) {
+      border-bottom: 2px solid $color-grey-light-4;
+    }
+    // first box top border radius fix
+    & > :first-child {
+      border-radius: 2rem 2rem 0 0;
+    }
+    // last box bot border radius fix
+    & > :last-child {
+      border-radius: 0 0 2rem 2rem;
+    }
+
+    // location box
+    &-box {
+      background-color: $color-grey-dark-2;
+      padding: 1.4rem;
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      // lighter background for every second element
+      &:nth-child(2n) {
+        background-color: $color-grey-dark;
+      }
+
+      // city
+      &--location > :first-child {
+        font-size: 2rem;
+        color: $color-lightblue-main;
+        font-weight: 600;
+      }
+      // country
+      &--location > :last-child {
+        margin-left: 1rem;
+        color: $color-grey-light-2;
+      }
+      &--icons {
+        display: flex;
+        gap: 1rem;
+        & > svg {
+          transition: all 0.3s;
+          cursor: pointer;
+          color: $color-lightblue-main-shade-2;
+          height: 3.5rem;
+          width: 3.5rem;
+          z-index: 9999; // so its still clickable even with shiny hover effect
+          &:hover {
+            color: $color-grey-light;
+            transform: scale(1.2);
+          }
+        }
+      }
+    }
+    // triangle element on top of the whole section
+    &::before {
+      content: '';
+      position: absolute;
+      top: -4%;
+      left: 0;
+      z-index: -1;
+      // TRIANGLE ELEMENT
+      border-left: 25px solid transparent;
+      border-right: 30px solid transparent;
+      border-bottom: 30px solid $color-grey-dark-2;
     }
   }
 }

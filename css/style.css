@@ -108,7 +108,8 @@ body {
 .navigation__icon-container {
   display: flex;
   gap: 2.5rem;
-  margin-right: 3rem; }
+  margin-right: 3rem;
+  position: relative; }
 
 .navigation__icon-box {
   cursor: pointer;
@@ -116,7 +117,8 @@ body {
   height: 5rem;
   border-radius: 100%;
   background-color: #232325;
-  text-align: center; }
+  text-align: center;
+  z-index: 999999; }
 
 .navigation__icon-list {
   position: relative;
@@ -130,7 +132,7 @@ body {
     transition: all 0.2s;
     transition-timing-function: ease-out; }
   .navigation__icon-list::before, .navigation__icon-list::after {
-    content: "";
+    content: '';
     position: absolute;
     left: 0; }
   .navigation__icon-list::before {
@@ -156,7 +158,7 @@ body {
     transition: all 0.2s;
     transition-timing-function: ease-out; }
   .navigation__icon-info::before {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     top: -0.8rem;
@@ -168,6 +170,62 @@ body {
 
 .navigation__icon-box:hover .navigation__icon-info {
   margin-top: 2.2rem; }
+
+.navigation__favorites {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  z-index: 99999;
+  max-height: 54rem;
+  width: 40rem;
+  border-radius: 2rem;
+  box-shadow: 0 2.1rem 2rem rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column; }
+  .navigation__favorites > :not(:last-child) {
+    border-bottom: 2px solid #333; }
+  .navigation__favorites > :first-child {
+    border-radius: 2rem 2rem 0 0; }
+  .navigation__favorites > :last-child {
+    border-radius: 0 0 2rem 2rem; }
+  .navigation__favorites-box {
+    background-color: #1e1e1e;
+    padding: 1.4rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+    .navigation__favorites-box:nth-child(2n) {
+      background-color: #232325; }
+    .navigation__favorites-box--location > :first-child {
+      font-size: 2rem;
+      color: #bbd8ec;
+      font-weight: 600; }
+    .navigation__favorites-box--location > :last-child {
+      margin-left: 1rem;
+      color: #888; }
+    .navigation__favorites-box--icons {
+      display: flex;
+      gap: 1rem; }
+      .navigation__favorites-box--icons > svg {
+        transition: all 0.3s;
+        cursor: pointer;
+        color: #96adbd;
+        height: 3.5rem;
+        width: 3.5rem;
+        z-index: 9999; }
+        .navigation__favorites-box--icons > svg:hover {
+          color: #e7e7e8;
+          transform: scale(1.2); }
+  .navigation__favorites::before {
+    content: '';
+    position: absolute;
+    top: -4%;
+    left: 0;
+    z-index: -1;
+    border-left: 25px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 30px solid #1e1e1e; }
 
 @media screen and (max-width: 68.75em) {
   .navigation__icon-box {
