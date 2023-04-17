@@ -10,9 +10,13 @@ class SearchView extends View {
   _inputField = document.querySelector('.navigation__searchbar-input');
 
   addHandlerRender(render) {
-    this._inputField.addEventListener('input', () => {
+    this._inputField.addEventListener('input', async () => {
       this._inputField.value.length >= 3 && render(); // if the input field has at least 3 characters
-      this._inputField.value.length < 3 && this._removeBoxes();
+      if (this._inputField.value.length < 3) {
+        this._removeBoxes();
+        await sleep(0.4); // wait for animation
+        this._removeInnerHTML();
+      }
     });
   }
 
@@ -31,8 +35,10 @@ class SearchView extends View {
     });
 
     // hide search results on focus loss
-    this._inputField.addEventListener('blur', () => {
+    this._inputField.addEventListener('blur', async () => {
       this._removeBoxes();
+      await sleep(0.4); // wait for animation
+      this._removeInnerHTML();
     });
   }
 
@@ -55,6 +61,8 @@ class SearchView extends View {
 
   generateResults(data) {
     this._removeBoxes(); // remove previous data
+    this._removeInnerHTML();
+
     const resultsNumber = data.length; // this is how many results should be displayed
     const borderHider = '<div class="border-hider"></div>'; // with a height of 5rem (hides the bottom borders)
 

@@ -1,6 +1,7 @@
 //---------- Main View file with helper functions ----------//
 
 import { mark } from 'regenerator-runtime';
+import { sleep } from '../helpers';
 
 export default class View {
   _data;
@@ -26,9 +27,11 @@ export default class View {
   }
 
   _removeBoxes() {
-    this._parentElement.innerHTML = '';
     this._parentElement.style.height = 0;
     this._parentElement.style.boxShadow = 'none'; // animating the boxshadow
+  }
+  _removeInnerHTML() {
+    this._parentElement.innerHTML = '';
   }
 
   renderError(message = this._errorMessage) {}

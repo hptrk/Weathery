@@ -179,10 +179,15 @@ body {
   top: 120%;
   left: 0;
   z-index: 99999;
+  height: 0;
   max-height: 54rem;
   width: 40rem;
+  background-color: #1e1e1e;
   border-radius: 2rem;
-  box-shadow: 0 2.1rem 2rem rgba(0, 0, 0, 0.3);
+  transition: height 0.4s, box-shadow 0.2s;
+  transition-timing-function: ease-in-out;
+  height: 0rem;
+  overflow: hidden;
   display: flex;
   flex-direction: column; }
   .navigation__favorites > :not(:last-child) {
@@ -195,6 +200,8 @@ body {
     background-color: #1e1e1e;
     padding: 1.4rem;
     width: 100%;
+    height: 6rem;
+    transition: all 0.4s;
     display: flex;
     align-items: center;
     justify-content: space-between; }
