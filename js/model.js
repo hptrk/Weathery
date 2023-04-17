@@ -20,7 +20,7 @@ export const state = {
   dayNames: {}, // zero: current day, one: tomorrow, etc..
   location: {}, // latitude: x, longitude: y, city: ..., country: ...
   weather: {},
-  savedCities: [],
+  favorites: [], // latitude: x, longitude: y, city: ..., country: ...
   search: {
     query: '', // query and results will refresh on every autocomplete
     results: [],
@@ -143,4 +143,15 @@ export const loadSearchResults = async function (
   } catch (err) {
     console.error(`${err} 💥`);
   }
+};
+
+// ---------- ADD TO FAVORITES ---------- //
+
+export const addToFavorites = function (cityArray) {
+  state.favorites.push({
+    lat: cityArray.lat,
+    lon: cityArray.lon,
+    city: cityArray.city,
+    country: cityArray.country,
+  });
 };

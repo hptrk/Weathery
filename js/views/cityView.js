@@ -2,7 +2,6 @@
 
 import View from './View.js';
 import { sleep } from '../helpers.js';
-import { E } from '../../icons/directionSVGS.js';
 
 class CityView extends View {
   _parentElement = document.querySelector('.navigation__searchbar-results');
@@ -16,11 +15,14 @@ class CityView extends View {
   _event;
   _clickedBox;
   _pressedEnter = false;
+
   addHandlerRender(render) {
     this._parentElement.addEventListener('click', e => {
       this._event = e;
-      render();
-      this._resetDefaultStates();
+      // clicking on like button will not render/reset
+      !this._event.target.classList.contains('results-save') &&
+        render() &&
+        this._resetDefaultStates();
     });
     this._inputField.addEventListener('keydown', e => {
       if (e.key === 'Enter') {
@@ -28,6 +30,13 @@ class CityView extends View {
         render() && this._resetDefaultStates();
         this._pressedEnter = false; // reset to default
       }
+    });
+  }
+  addHandlerLike(handler) {
+    this._parentElement.addEventListener('click', e => {
+      this._event = e;
+      // if the like button was clicked, call the handler
+      this._event.target.classList.contains('results-save') && handler();
     });
   }
 
@@ -52,7 +61,7 @@ class CityView extends View {
   async _resetDefaultStates() {
     // hide results on click (except clicking on save)
     (this._pressedEnter ||
-      !this._event.target.classList.contains('results-save')) && // ?. needed for when the enter was pressed
+      !this._event.target.classList.contains('results-save')) &&
       this._removeBoxes();
 
     // reset the switcher back to the forecast state

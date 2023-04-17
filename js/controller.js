@@ -8,6 +8,7 @@ import chartView from './views/chartView.js';
 import locationView from './views/locationView.js';
 import searchView from './views/searchView.js';
 import cityView from './views/cityView.js';
+import favoriteView from './views/favoriteView.js';
 import { control } from 'leaflet';
 
 const controlStarterState = async function () {
@@ -125,6 +126,16 @@ const controlLoadCity = async function () {
   chartView.renderChart(model.state);
 };
 
+const controlAddFavorite = function () {
+  // 0) Load city to favorite object
+  model.addToFavorites(model.state.search.results[cityView.indexOfClicked()]);
+};
+
+const controlLoadFavorite = function () {
+  // 1) Render favorite cities
+  favoriteView.generateFavorites(model.state.favorites);
+};
+
 const init = function () {
   controlStarterState(); // Window load
   cardsView.addHandlerRender(controlNextDays); // 'Next 7 days' button click
@@ -132,5 +143,7 @@ const init = function () {
   tomorrowView.addHandlerRender(controlTomorrow); // 'Tomorrow' button click
   searchView.addHandlerRender(controlSearchResults); // Search input
   cityView.addHandlerRender(controlLoadCity); // Click on a city in the search results
+  cityView.addHandlerLike(controlAddFavorite); // Click on a like button
+  favoriteView.addHandlerRender(controlLoadFavorite); // Click on the menu (favorites) icon
 };
 init();

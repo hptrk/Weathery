@@ -15,8 +15,8 @@ dl,
 dd {
   margin: 0; }
 
-ul[role="list"],
-ol[role="list"] {
+ul[role='list'],
+ol[role='list'] {
   list-style: none;
   margin: 0;
   padding: 0; }
@@ -40,6 +40,9 @@ button,
 textarea,
 select {
   font: inherit; }
+
+path {
+  pointer-events: none; }
 
 body {
   font-family: "Mulish", sans-serif;
@@ -217,15 +220,15 @@ body {
         .navigation__favorites-box--icons > svg:hover {
           color: #e7e7e8;
           transform: scale(1.2); }
-  .navigation__favorites::before {
-    content: '';
-    position: absolute;
-    top: -4%;
-    left: 0;
-    z-index: -1;
-    border-left: 25px solid transparent;
-    border-right: 30px solid transparent;
-    border-bottom: 30px solid #1e1e1e; }
+    .navigation__favorites-box::before {
+      content: '';
+      position: absolute;
+      top: -4%;
+      left: 0;
+      z-index: -1;
+      border-left: 25px solid transparent;
+      border-right: 30px solid transparent;
+      border-bottom: 30px solid #1e1e1e; }
 
 @media screen and (max-width: 68.75em) {
   .navigation__icon-box {

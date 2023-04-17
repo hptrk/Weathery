@@ -155,18 +155,18 @@
           }
         }
       }
-    }
-    // triangle element on top of the whole section
-    &::before {
-      content: '';
-      position: absolute;
-      top: -4%;
-      left: 0;
-      z-index: -1;
-      // TRIANGLE ELEMENT
-      border-left: 25px solid transparent;
-      border-right: 30px solid transparent;
-      border-bottom: 30px solid $color-grey-dark-2;
+      // triangle element on top of the whole section
+      &::before {
+        content: '';
+        position: absolute;
+        top: -4%;
+        left: 0;
+        z-index: -1;
+        // TRIANGLE ELEMENT
+        border-left: 25px solid transparent;
+        border-right: 30px solid transparent;
+        border-bottom: 30px solid $color-grey-dark-2;
+      }
     }
   }
 }
