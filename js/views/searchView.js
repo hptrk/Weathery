@@ -29,6 +29,24 @@ class SearchView extends View {
       this._parentElement.style.setProperty('--x', e.clientX - x);
       this._parentElement.style.setProperty('--y', e.clientY - y);
     });
+
+    // hide search results on focus loss
+    this._inputField.addEventListener('blur', () => {
+      this._removeBoxes();
+    });
+  }
+
+  _preventFocusLoss(results) {
+    // if there are results
+    if (results) {
+      document
+        .querySelectorAll('.navigation__searchbar-results--box')
+        .forEach(btn =>
+          btn.addEventListener('mousedown', e => {
+            e.preventDefault(); // prevent losing focus on clicking
+          })
+        );
+    }
   }
 
   getValue() {
@@ -60,6 +78,8 @@ class SearchView extends View {
     // add HEIGHT for animation
     this._parentElement.style.height = resultsNumber * 5 + 5 + 'rem'; // *5 because 1 box is 5rem, +5 because of border hider
     this._parentElement.style.boxShadow = '0 2.1rem 2rem rgba(0, 0, 0, 0.3)'; // animating the boxshadow
+
+    this._preventFocusLoss(resultsNumber); // without this prevention the boxes would be removed too fast
   }
 }
 export default new SearchView();

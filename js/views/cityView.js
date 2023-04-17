@@ -20,9 +20,8 @@ class CityView extends View {
     this._parentElement.addEventListener('click', e => {
       this._event = e;
       // clicking on like button will not render/reset
-      !this._event.target.classList.contains('results-save') &&
-        render() &&
-        this._resetDefaultStates();
+      if (this._event.target.classList.contains('results-save')) return;
+      render() && this._resetDefaultStates();
     });
     this._inputField.addEventListener('keydown', e => {
       if (e.key === 'Enter') {
