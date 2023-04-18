@@ -126,9 +126,10 @@ const controlLoadCity = async function () {
   chartView.renderChart(model.state);
 };
 
-const controlAddFavorite = function () {
+const controlManageFavorite = function () {
   // 0) Load city to favorite object
-  model.addToFavorites(model.state.search.results[cityView.indexOfClicked()]);
+  // 0) Remove city from favorite object
+  model.manageFavorites(model.state.search.results[cityView.indexOfClicked()]);
 };
 
 const controlLoadFavorite = function () {
@@ -143,7 +144,7 @@ const init = function () {
   tomorrowView.addHandlerRender(controlTomorrow); // 'Tomorrow' button click
   searchView.addHandlerRender(controlSearchResults); // Search input
   cityView.addHandlerRender(controlLoadCity); // Click on a city in the search results
-  cityView.addHandlerLike(controlAddFavorite); // Click on a like button
+  cityView.addHandlerLike(controlManageFavorite); // Click on a like button
   favoriteView.addHandlerRender(controlLoadFavorite); // Click on the menu (favorites) icon
 };
 init();

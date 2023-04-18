@@ -237,12 +237,12 @@ body {
         transition: all 0.3s;
         cursor: pointer;
         color: #96adbd;
-        height: 3.5rem;
-        width: 3.5rem;
+        height: 3rem;
+        width: 3rem;
+        margin-left: auto;
         z-index: 9999; }
         .navigation__favorites-box--icons > svg:hover {
-          color: #e7e7e8;
-          transform: scale(1.2); }
+          color: #e7e7e8; }
     .navigation__favorites-box::before {
       content: '';
       position: absolute;

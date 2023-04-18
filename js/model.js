@@ -147,7 +147,20 @@ export const loadSearchResults = async function (
 
 // ---------- ADD TO FAVORITES ---------- //
 
-export const addToFavorites = function (cityArray) {
+export const manageFavorites = function (cityArray) {
+  // -- REMOVE FROM FAVORITE -- //
+  let removedFromFav = false;
+  // loop over the favorites to find a matching city
+  state.favorites.forEach((c, i) => {
+    if (c.lat === cityArray.lat && c.lon === cityArray.lon) {
+      state.favorites.splice(i, 1); // remove object
+      removedFromFav = true;
+      return;
+    }
+  });
+  if (removedFromFav) return; // prevent from pushing the city object again
+
+  // -- ADD TO FAVORITE -- //
   state.favorites.push({
     lat: cityArray.lat,
     lon: cityArray.lon,

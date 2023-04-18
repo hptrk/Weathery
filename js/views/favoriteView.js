@@ -35,7 +35,7 @@ class FavoriteView extends View {
               </div>
               <div class="navigation__favorites-box--icons">
                 ${pin}
-                ${like}
+                ${liked}
               </div>
       </div>`;
 
