@@ -3,6 +3,7 @@
 import View from './View.js';
 import { like, liked } from '../../icons/likeSVG.js';
 import { city } from '../../icons/city.js';
+import { sleep } from '../helpers.js';
 
 class SearchView extends View {
   _parentElement = document.querySelector('.navigation__searchbar-results');
@@ -14,7 +15,6 @@ class SearchView extends View {
       this._inputField.value.length >= 3 && render(); // if the input field has at least 3 characters
       if (this._inputField.value.length < 3) {
         this._removeBoxes();
-        await sleep(0.4); // wait for animation
         this._removeInnerHTML();
       }
     });
