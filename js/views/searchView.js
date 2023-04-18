@@ -59,7 +59,17 @@ class SearchView extends View {
     return this._inputField.value;
   }
 
-  generateResults(data) {
+  _likeAnimation() {
+    document
+      .querySelectorAll('.navigation__searchbar-results--box svg:last-child')
+      .forEach(heart =>
+        heart.addEventListener('click', () => {
+          heart.classList.toggle('like-clicked');
+        })
+      );
+  }
+
+  generateResults(data, favorites) {
     this._removeBoxes(); // remove previous data
     this._removeInnerHTML();
 
@@ -73,7 +83,12 @@ class SearchView extends View {
   <span class="results-city">${data[i].city}</span>
   <span class="results-country">${data[i].country}</span>
 
-  ${like}
+  ${
+    // if the city is in the favorites list already, display the filled heart icon
+    favorites.some(obj => obj.lat === data[i].lat && obj.lon === data[i].lon)
+      ? liked
+      : like
+  }
 </div>
 `;
 
@@ -83,6 +98,9 @@ class SearchView extends View {
     Array.from({ length: resultsNumber }).forEach((_, i) => {
       this._parentElement.innerHTML += result(i);
     });
+
+    this._likeAnimation();
+
     // add HEIGHT for animation
     this._parentElement.style.height = resultsNumber * 5 + 5 + 'rem'; // *5 because 1 box is 5rem, +5 because of border hider
     this._parentElement.style.boxShadow = '0 2.1rem 2rem rgba(0, 0, 0, 0.3)'; // animating the boxshadow

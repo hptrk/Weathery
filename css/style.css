@@ -108,6 +108,22 @@ body {
 .border-hider {
   height: 5rem; }
 
+@keyframes pulse {
+  50% {
+    scale: 0.9; }
+  100% {
+    scale: 1; } }
+
+.like-clicked {
+  fill: #96adbd !important;
+  color: #96adbd !important;
+  animation-name: pulse;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out; }
+  .like-clicked:hover {
+    fill: #e7e7e8 !important;
+    color: #e7e7e8 !important; }
+
 .navigation__icon-container {
   display: flex;
   gap: 2.5rem;
@@ -396,8 +412,7 @@ body {
         margin-left: auto;
         z-index: 9999; }
         .navigation__searchbar-results--box .results-save:hover {
-          color: #e7e7e8;
-          transform: scale(1.2); }
+          color: #e7e7e8; }
 
 @media screen and (max-width: 68.75em) {
   .navigation__searchbar {

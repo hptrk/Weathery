@@ -72,3 +72,24 @@
 .border-hider {
   height: 5rem;
 }
+
+@keyframes pulse {
+  50% {
+    scale: 0.9;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
+.like-clicked {
+  fill: $color-lightblue-main-shade-2 !important;
+  color: $color-lightblue-main-shade-2 !important;
+  animation-name: pulse;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+  &:hover {
+    fill: $color-grey-light !important;
+    color: $color-grey-light !important;
+  }
+}

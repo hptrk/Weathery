@@ -97,7 +97,7 @@ const controlSearchResults = async function () {
   await model.loadSearchResults(searchView.getValue());
 
   // 1) Generate search results
-  searchView.generateResults(model.state.search.results);
+  searchView.generateResults(model.state.search.results, model.state.favorites);
 };
 
 const controlLoadCity = async function () {
