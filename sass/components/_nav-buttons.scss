@@ -16,6 +16,19 @@
       background-color: $color-grey-dark;
       text-align: center;
       z-index: 999999;
+
+      // triangle element for gap hide
+      .gaphider {
+        position: absolute;
+        top: 101%;
+        left: 8%;
+        width: 20%;
+        height: 1.5rem;
+        border-left: 2.1rem solid transparent;
+        border-right: 2.1rem solid transparent;
+        border-bottom: 0 solid $color-grey-dark-2;
+        transition: border-bottom 0.2s;
+      }
     }
     //LIST ICON STYLE
     &-list {
@@ -100,7 +113,7 @@
     //box-shadow: $shadow-big; // ADDED WITH JAVASCRIPT FOR ANIMATION
     transition: height 0.4s, box-shadow 0.2s;
     transition-timing-function: ease-in-out;
-    height: 0rem; // base height is 0, JS will change that (1box = 5rem)
+    height: 0; // base height is 0, JS will change that (1box = 5rem)
     overflow: hidden;
 
     display: flex;
@@ -163,18 +176,6 @@
             color: $color-grey-light;
           }
         }
-      }
-      // triangle element on top of the whole section
-      &::before {
-        content: '';
-        position: absolute;
-        top: -4%;
-        left: 0;
-        z-index: -1;
-        // TRIANGLE ELEMENT
-        border-left: 25px solid transparent;
-        border-right: 30px solid transparent;
-        border-bottom: 30px solid $color-grey-dark-2;
       }
     }
   }

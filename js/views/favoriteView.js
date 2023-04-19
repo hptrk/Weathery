@@ -7,6 +7,7 @@ import { sleep } from '../helpers.js';
 class FavoriteView extends View {
   _parentElement = document.querySelector('.navigation__favorites');
   _menuButton = document.querySelectorAll('.navigation__icon-box')[0]; // [0]-menu, [1]-info
+  _triangle = document.querySelector('.gaphider');
   _isClicked = false;
 
   addHandlerRender(handler) {
@@ -16,6 +17,7 @@ class FavoriteView extends View {
   async generateFavorites(data) {
     // if it is already on screen, remove it
     if (this._isClicked) {
+      this._triangle.style.borderBottom = '0 solid #1e1e1e';
       this._removeBoxes();
       await sleep(0.4); // wait for animation
       this._removeInnerHTML();
@@ -25,6 +27,7 @@ class FavoriteView extends View {
     }
 
     const favoritesNumber = data.length; // this is how many favorite city should be displayed
+    if (!favoritesNumber) return;
 
     const result = i =>
       `
@@ -47,6 +50,11 @@ class FavoriteView extends View {
     // add HEIGHT for animation
     this._parentElement.style.height = favoritesNumber * 6 + 'rem'; //*6 because 1 box is 6rem
     this._parentElement.style.boxShadow = '0 2.1rem 2rem rgba(0, 0, 0, 0.3)'; // animating the boxshadow
+    this._parentElement.style.overflowY = `${
+      favoritesNumber > 9 ? 'scroll' : 'hidden'
+    }`;
+
+    this._triangle.style.borderBottom = '1.4rem solid #1e1e1e';
 
     this._isClicked = true;
   }
