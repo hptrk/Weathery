@@ -14,6 +14,20 @@ class FavoriteView extends View {
     this._menuButton.addEventListener('click', handler);
   }
 
+  _messageWhenEmpty() {
+    // TEXT //
+    this._triangle.style.borderBottom = '1.6rem solid #1e1e1e';
+    const text = document.createElement('span');
+    text.innerHTML =
+      'Currently, there are no saved cities. Please initiate a search to save one.<span class="emptySearch">Search &rarr;</span>';
+
+    text.classList.add('emptyText');
+
+    this._parentElement.insertAdjacentElement('beforeend', text);
+    this._parentElement.style.height = 12 + 'rem'; //*6 because 1 box is 6rem
+    this._parentElement.style.boxShadow = '0 2.1rem 2rem rgba(0, 0, 0, 0.3)'; // animating the boxshadow
+  }
+
   async generateFavorites(data) {
     // if it is already on screen, remove it
     if (this._isClicked) {
@@ -25,9 +39,14 @@ class FavoriteView extends View {
       this._isClicked = false;
       return;
     }
+    this._isClicked = true;
 
     const favoritesNumber = data.length; // this is how many favorite city should be displayed
-    if (!favoritesNumber) return;
+
+    if (!favoritesNumber) {
+      this._messageWhenEmpty();
+      return;
+    }
 
     const result = i =>
       `
@@ -54,9 +73,7 @@ class FavoriteView extends View {
       favoritesNumber > 9 ? 'scroll' : 'hidden'
     }`;
 
-    this._triangle.style.borderBottom = '1.4rem solid #1e1e1e';
-
-    this._isClicked = true;
+    this._triangle.style.borderBottom = '1.6rem solid #1e1e1e';
   }
 }
 export default new FavoriteView();
