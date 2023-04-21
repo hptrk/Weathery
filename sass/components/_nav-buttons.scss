@@ -167,16 +167,16 @@
     }
   }
 }
-// triangle element for gap hide
+// triangle element for gap hide (between the list icon and the saved city box)
 .gaphider {
   position: absolute;
-  top: 101%;
+  top: 101%; // hully hidden bottom
   left: 5%;
   width: 20%;
-  height: 1.6rem;
-  border-left: 2.1rem solid transparent;
+  height: 1.6rem; // same as border bottom
+  border-left: 2.1rem solid transparent; // needed for triangle
   border-right: 2.1rem solid transparent;
-  border-bottom: 0 solid $color-grey-dark-2;
+  border-bottom: 0 solid $color-grey-dark-2; // increase with JS (animation)
   transition: border-bottom 0.2s;
 }
 
