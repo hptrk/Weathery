@@ -7,6 +7,7 @@ import { sleep } from '../helpers.js';
 class FavoriteView extends View {
   _parentElement = document.querySelector('.navigation__favorites');
   _menuButton = document.querySelectorAll('.navigation__icon-box')[0]; // [0]-menu, [1]-info
+  _inputField = document.querySelector('.navigation__searchbar-input');
   _triangle = document.querySelector('.gaphider');
   _isClicked = false;
 
@@ -16,16 +17,23 @@ class FavoriteView extends View {
 
   _messageWhenEmpty() {
     // TEXT //
-    this._triangle.style.borderBottom = '1.6rem solid #1e1e1e';
-    const text = document.createElement('span');
-    text.innerHTML =
-      'Currently, there are no saved cities. Please initiate a search to save one.<span class="emptySearch">Search &rarr;</span>';
+    this._triangle.style.borderBottom = '1.6rem solid #1e1e1e'; // gap hider
+    const markup =
+      '<span class="emptyText">Currently, there are no saved cities. Please initiate a search to save one.<span class="emptySearch">Search &rarr;</span></span>';
 
-    text.classList.add('emptyText');
-
-    this._parentElement.insertAdjacentElement('beforeend', text);
-    this._parentElement.style.height = 12 + 'rem'; //*6 because 1 box is 6rem
+    this._parentElement.insertAdjacentHTML('beforeend', markup);
+    this._parentElement.style.height = 12 + 'rem'; // 2 box height
     this._parentElement.style.boxShadow = '0 2.1rem 2rem rgba(0, 0, 0, 0.3)'; // animating the boxshadow
+
+    // clicking the search button
+    document.querySelector('.emptySearch').addEventListener('click', () => {
+      // hide element
+      this._triangle.style.borderBottom = '0 solid #1e1e1e';
+      this._removeBoxes();
+      this._removeInnerHTML();
+      // input focus
+      this._inputField.focus();
+    });
   }
 
   async generateFavorites(data) {
