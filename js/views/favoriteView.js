@@ -10,9 +10,27 @@ class FavoriteView extends View {
   _inputField = document.querySelector('.navigation__searchbar-input');
   _triangle = document.querySelector('.gaphider');
   _isClicked = false;
+  _favBoxes;
+  _clickedBox;
+  _event;
 
   addHandlerRender(handler) {
     this._menuButton.addEventListener('click', handler);
+  }
+  addHandlerLike(handler) {
+    this._parentElement.addEventListener('click', e => {
+      this._event = e;
+      // if the like button was clicked, call the handler
+      this._event.target.classList.contains('results-save') && handler();
+    });
+  }
+  addHandlerLoad(handler) {
+    this._parentElement.addEventListener('click', e => {
+      this._event = e;
+      !this._event.target.classList.contains('results-save') &&
+        this._event.target.closest('.navigation__favorites-box') &&
+        handler(false);
+    });
   }
 
   _messageWhenEmpty() {
@@ -82,6 +100,18 @@ class FavoriteView extends View {
     }`;
 
     this._triangle.style.borderBottom = '1.6rem solid #1e1e1e';
+  }
+
+  indexOfClicked() {
+    this._favBoxes = Array.from(this._parentElement.childNodes).filter(
+      node =>
+        node.nodeType === 1 && // TYPE 1: Element node
+        node.classList.contains('navigation__favorites-box')
+    ); // only children with this exact class
+
+    this._clickedBox = this._event.target.closest('.navigation__favorites-box');
+    const clickedIndex = this._favBoxes.indexOf(this._clickedBox);
+    return clickedIndex;
   }
 }
 export default new FavoriteView();

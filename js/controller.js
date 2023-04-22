@@ -100,10 +100,12 @@ const controlSearchResults = async function () {
   searchView.generateResults(model.state.search.results, model.state.favorites);
 };
 
-const controlLoadCity = async function () {
+const controlLoadCity = async function (searchview = true) {
   // Latitude, Longitude of clicked city
-  const { lat, lon } = model.state.search.results[cityView.indexOfClicked()];
-
+  const { lat, lon } =
+    model.state.search.results[
+      searchview ? cityView.indexOfClicked() : favoriteView.indexOfClicked()
+    ];
   // 0) Load weather of clicked city
   await model.loadWeather(lat, lon);
 
@@ -131,6 +133,12 @@ const controlManageFavorite = function () {
   // 0) Remove city from favorite object
   model.manageFavorites(model.state.search.results[cityView.indexOfClicked()]);
 };
+const controlManageFavoriteList = function () {
+  // 0) Remove city from favorite object
+  model.manageFavorites(
+    model.state.search.results[favoriteView.indexOfClicked()]
+  );
+};
 
 const controlLoadFavorite = function () {
   // 1) Render favorite cities
@@ -144,7 +152,9 @@ const init = function () {
   tomorrowView.addHandlerRender(controlTomorrow); // 'Tomorrow' button click
   searchView.addHandlerRender(controlSearchResults); // Search input
   cityView.addHandlerRender(controlLoadCity); // Click on a city in the search results
-  cityView.addHandlerLike(controlManageFavorite); // Click on a like button
+  cityView.addHandlerLike(controlManageFavorite); // Click on a like button (search bar)
+  favoriteView.addHandlerLike(controlManageFavoriteList); // Click on a like button (favorites list)
   favoriteView.addHandlerRender(controlLoadFavorite); // Click on the menu (favorites) icon
+  favoriteView.addHandlerLoad(controlLoadCity); // Click on a city in the favorites list
 };
 init();
