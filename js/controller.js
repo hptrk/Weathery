@@ -135,9 +135,10 @@ const controlManageFavorite = function () {
 };
 const controlManageFavoriteList = function () {
   // 0) Remove city from favorite object
-  model.manageFavorites(
-    model.state.search.results[favoriteView.indexOfClicked()]
-  );
+  model.manageFavorites(model.state.favorites[favoriteView.indexOfClicked()]);
+
+  // 1) Refresh the view when removing a city
+  favoriteView.refreshOnClick();
 };
 
 const controlLoadFavorite = function () {

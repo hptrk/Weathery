@@ -100,6 +100,7 @@ class FavoriteView extends View {
     }`;
 
     this._triangle.style.borderBottom = '1.6rem solid #1e1e1e';
+    this._likeAnimation(); // when removing from list
   }
 
   indexOfClicked() {
@@ -112,6 +113,34 @@ class FavoriteView extends View {
     this._clickedBox = this._event.target.closest('.navigation__favorites-box');
     const clickedIndex = this._favBoxes.indexOf(this._clickedBox);
     return clickedIndex;
+  }
+
+  _likeAnimation() {
+    document
+      .querySelectorAll('.navigation__favorites-box--icons svg:last-child')
+      .forEach(heart =>
+        heart.addEventListener('click', () => {
+          heart.classList.toggle('like-clicked'); // basically removes this class (animation)
+        })
+      );
+  }
+
+  async refreshOnClick() {
+    // clicked city
+    const clickedElement = this._event.target.closest(
+      '.navigation__favorites-box'
+    );
+
+    clickedElement.classList.add('fade-out');
+    await sleep(0.3); // wait for animation
+    clickedElement.remove(); // remove from layout
+
+    // -- ANIMATION --
+    this._parentElement.style.height = `${
+      this._parentElement.clientHeight -
+      6 * parseFloat(getComputedStyle(document.documentElement).fontSize)
+    }px`;
+    if (this._parentElement.clientHeight <= 62) this._messageWhenEmpty(); // when empty, display empty message
   }
 }
 export default new FavoriteView();
