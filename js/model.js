@@ -173,8 +173,9 @@ export const manageFavorites = function (cityArray) {
 
 export const managePinned = function (cityArray) {
   state.favorites.forEach(c => {
+    // loop over the favorites to find the pinned city
     if (c.lat === cityArray.lat && c.lon === cityArray.lon) {
-      c.isPinned ? (c.isPinned = false) : (c.isPinned = true);
+      c.isPinned ? (c.isPinned = false) : (c.isPinned = true); // toggle the boolean
     }
   });
 };

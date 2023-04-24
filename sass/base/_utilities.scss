@@ -135,7 +135,7 @@
     &:hover::after {
       transform: scaleX(
         1.001
-      ); // 1 makes some kind of bug, the animation is not smooth enough at the end
+      ); // 1 makes some kind of bug in opera, the animation is not smooth enough at the end
     }
   }
 }

@@ -147,6 +147,7 @@ const controlLoadFavorite = function () {
 };
 
 const controlManagePins = function () {
+  // 0) Add/remove pinned city
   model.managePinned(model.state.favorites[favoriteView.indexOfClicked()]);
 };
 
@@ -161,6 +162,6 @@ const init = function () {
   favoriteView.addHandlerLike(controlManageFavoriteList); // Click on a like button (favorites list)
   favoriteView.addHandlerRender(controlLoadFavorite); // Click on the menu (favorites) icon
   favoriteView.addHandlerLoad(controlLoadCity); // Click on a city in the favorites list
-  favoriteView.addHandlerPin(controlManagePins);
+  favoriteView.addHandlerPin(controlManagePins); // Click on the pin icon
 };
 init();

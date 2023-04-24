@@ -49,11 +49,10 @@ class FavoriteView extends View {
   }
 
   // REPLACE PIN ICON (not possible with css, have to replace the whole element)
-  async _replacePinIcon(icon) {
+  _replacePinIcon(icon) {
     this._event.target
       .closest('.navigation__favorites-box--icons :first-child')
       .insertAdjacentHTML('beforebegin', icon);
-    this._event.target.classList.add('fade-out');
     this._event.target
       .closest('.navigation__favorites-box--icons :nth-child(2)')
       .remove();
