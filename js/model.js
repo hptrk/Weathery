@@ -168,3 +168,13 @@ export const manageFavorites = function (cityArray) {
     country: cityArray.country,
   });
 };
+
+// ---------- ADD TO PINNED CIIES ---------- //
+
+export const managePinned = function (cityArray) {
+  state.favorites.forEach(c => {
+    if (c.lat === cityArray.lat && c.lon === cityArray.lon) {
+      c.isPinned ? (c.isPinned = false) : (c.isPinned = true);
+    }
+  });
+};
