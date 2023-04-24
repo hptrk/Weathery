@@ -94,6 +94,14 @@
   }
 }
 
+.pin,
+.pinned {
+  transition: all 0.3s;
+  animation-name: pulse;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+}
+
 // saved cities + info button styling
 .empty {
   &Text {

@@ -146,6 +146,10 @@ const controlLoadFavorite = function () {
   favoriteView.generateFavorites(model.state.favorites);
 };
 
+const controlManagePins = function () {
+  model.managePinned(model.state.favorites[favoriteView.indexOfClicked()]);
+};
+
 const init = function () {
   controlStarterState(); // Window load
   cardsView.addHandlerRender(controlNextDays); // 'Next 7 days' button click
@@ -157,5 +161,6 @@ const init = function () {
   favoriteView.addHandlerLike(controlManageFavoriteList); // Click on a like button (favorites list)
   favoriteView.addHandlerRender(controlLoadFavorite); // Click on the menu (favorites) icon
   favoriteView.addHandlerLoad(controlLoadCity); // Click on a city in the favorites list
+  favoriteView.addHandlerPin(controlManagePins);
 };
 init();

@@ -3,12 +3,14 @@
 import View from './View.js';
 import { like, liked, pin, pinned } from '../../icons/likeSVG.js';
 import { sleep } from '../helpers.js';
+import { mark } from 'regenerator-runtime';
 
 class FavoriteView extends View {
   _parentElement = document.querySelector('.navigation__favorites');
   _menuButton = document.querySelectorAll('.navigation__icon-box')[0]; // [0]-menu, [1]-info
   _inputField = document.querySelector('.navigation__searchbar-input');
   _triangle = document.querySelector('.gaphider');
+  _iconsBox = document.querySelectorAll('.navigation__favorites-box--icons');
   _isClicked = false;
   _favBoxes;
   _clickedBox;
@@ -31,6 +33,30 @@ class FavoriteView extends View {
         this._event.target.closest('.navigation__favorites-box') &&
         handler(false);
     });
+  }
+  addHandlerPin(handler) {
+    this._parentElement.addEventListener('click', e => {
+      if (
+        e.target.classList.contains('pin') ||
+        e.target.classList.contains('pinned')
+      ) {
+        this._event = e;
+        handler(); // manage pinned cities in the model
+        // toggling between pin & pinned
+        this._replacePinIcon(e.target.classList.contains('pin') ? pinned : pin);
+      }
+    });
+  }
+
+  // REPLACE PIN ICON (not possible with css, have to replace the whole element)
+  async _replacePinIcon(icon) {
+    this._event.target
+      .closest('.navigation__favorites-box--icons :first-child')
+      .insertAdjacentHTML('beforebegin', icon);
+    this._event.target.classList.add('fade-out');
+    this._event.target
+      .closest('.navigation__favorites-box--icons :nth-child(2)')
+      .remove();
   }
 
   _messageWhenEmpty() {
@@ -78,11 +104,15 @@ class FavoriteView extends View {
       `
     <div class="navigation__favorites-box">
               <div class="navigation__favorites-box--location">
-                <span class="navigation__favorites-box--city">${data[i].city}</span>
-                <span class="navigation__favorites-box--country">${data[i].country}</span>
+                <span class="navigation__favorites-box--city">${
+                  data[i].city
+                }</span>
+                <span class="navigation__favorites-box--country">${
+                  data[i].country
+                }</span>
               </div>
               <div class="navigation__favorites-box--icons">
-                ${pin}
+                ${data[i].isPinned ? pinned : pin}
                 ${liked}
               </div>
       </div>`;
