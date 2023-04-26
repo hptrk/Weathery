@@ -29,7 +29,10 @@ class FavoriteView extends View {
   addHandlerLoad(handler) {
     this._parentElement.addEventListener('click', e => {
       this._event = e;
-      !this._event.target.classList.contains('results-save') &&
+      // if the clicked element is not the heart or pin icon, call the handler
+      !this._event.target.classList.contains('pin') &&
+        !this._event.target.classList.contains('pinned') &&
+        !this._event.target.classList.contains('results-save') &&
         this._event.target.closest('.navigation__favorites-box') &&
         handler(false);
     });
