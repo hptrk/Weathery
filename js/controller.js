@@ -101,11 +101,14 @@ const controlSearchResults = async function () {
 };
 
 const controlLoadCity = async function (searchview = true) {
+  // searchview = true -> Search result clicked
+  // searchview = false -> Favorite city clicked
+
   // Latitude, Longitude of clicked city
-  const { lat, lon } =
-    model.state.search.results[
-      searchview ? cityView.indexOfClicked() : favoriteView.indexOfClicked()
-    ];
+  const { lat, lon } = searchview
+    ? model.state.search.results[cityView.indexOfClicked()]
+    : model.state.favorites[favoriteView.indexOfClicked()];
+
   // 0) Load weather of clicked city
   await model.loadWeather(lat, lon);
 
