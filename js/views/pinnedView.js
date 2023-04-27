@@ -2,6 +2,7 @@
 
 import View from './View.js';
 import { getSVGLink } from '../helpers.js';
+import { pin } from '../../icons/likeSVG.js';
 
 class PinnedView extends View {
   _parentElement = document.querySelector('.other__container');
@@ -26,6 +27,21 @@ class PinnedView extends View {
     Array.from({ length: data.length }).forEach((_, i) =>
       this._parentElement.insertAdjacentHTML('beforeend', card(i))
     ); // add the pinned city to the DOM
+
+    // if there is space for pinned city
+    if (data.length < 3) {
+      // always 3 cards are shown
+      Array.from({ length: 3 - data.length }).forEach(_ =>
+        this._parentElement.insertAdjacentHTML(
+          'beforeend',
+          `
+          <figure class="other__container-card"> 
+          <span class="emptyText pinEmpty">${pin}<span class="emptySearch pinHere">Pin cities &rarr;</span></span>
+      </figure>
+        `
+        )
+      );
+    }
   }
 }
 export default new PinnedView();
