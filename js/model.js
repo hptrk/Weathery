@@ -23,6 +23,7 @@ export const state = {
   location: {}, // latitude: x, longitude: y, city: ..., country: ...
   weather: {},
   favorites: [], // latitude: x, longitude: y, city: ..., country: ...
+  pinned: [], // max 3 city object
   search: {
     query: '', // query and results will refresh on every autocomplete
     results: [],
@@ -65,6 +66,19 @@ const createWeatherObject = function (data) {
   };
 };
 
+const createPinnedObject = function (data) {
+  const { current_weather: current } = data;
+  return {
+    temperature: round(current.temperature),
+    description: getFromCode(current.weathercode),
+    icon: getFromCode(
+      current.weathercode,
+      false,
+      isDayTime(getDaily(data, 0).sunrise, getDaily(data, 0).sunset)
+    ),
+  };
+};
+
 // load current position + weather
 export const loadLocation = async () => {
   if (!navigator.geolocation)
@@ -80,14 +94,19 @@ export const loadLocation = async () => {
 // loading the data from open-meteo API
 export const loadWeather = async function (
   lat = state.location.latitude,
-  long = state.location.longitude
+  long = state.location.longitude,
+  pinnedCity = false
 ) {
   try {
     const data = await AJAX(WEATHER_API(lat, long));
 
-    state.weather = createWeatherObject(data);
-
-    await loadCity(lat, long);
+    // default state
+    if (!pinnedCity) {
+      state.weather = createWeatherObject(data);
+      await loadCity(lat, long);
+    }
+    // if pinned city data needed
+    if (pinnedCity) return createPinnedObject(data);
   } catch (err) {
     console.error(`${err} 💥`);
     throw err;
@@ -208,4 +227,21 @@ export const managePinned = function (cityArray) {
 // ---------- LOAD FAVORITES FROM LOCAL STORAGE ---------- //
 export const loadFavorites = function () {
   state.favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+};
+
+// ---------- REFRESH PINNED CITY OBJECT ---------- //
+export const refreshPinnedCities = async function () {
+  state.pinned = []; // clear
+  state.favorites.forEach(c => {
+    c.isPinned && state.pinned.push(c); // push pinned city
+  });
+
+  // fill pinned object with needed datas
+  // need to use for of becaues of awaiting the asynchronous 'loadWeather' (forEach does not work)
+  for (const c of state.pinned) {
+    const data = await loadWeather(c.lat, c.lon, true);
+    c.temperature = data.temperature;
+    c.description = data.description;
+    c.icon = data.icon;
+  }
 };
