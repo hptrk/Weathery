@@ -88,6 +88,7 @@
   }
   //LIST ICON OPENED STATE
   &__favorites {
+    cursor: pointer;
     position: absolute;
     top: 120%;
     left: 0;
@@ -118,6 +119,9 @@
     & > :last-child {
       border-radius: 0 0 2rem 2rem;
     }
+
+    // shiny hover effect (cursor following)
+    @include shiny-hover-effect;
 
     // location box
     &-box {

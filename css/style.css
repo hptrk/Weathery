@@ -225,6 +225,7 @@ body {
   margin-top: 2.2rem; }
 
 .navigation__favorites {
+  cursor: pointer;
   position: absolute;
   top: 120%;
   left: 0;
@@ -246,6 +247,18 @@ body {
     border-radius: 2rem 2rem 0 0; }
   .navigation__favorites > :last-child {
     border-radius: 0 0 2rem 2rem; }
+  .navigation__favorites::after {
+    content: '';
+    position: absolute;
+    top: calc(var(--y, 0) * 1px - 150px);
+    left: calc(var(--x, 0) * 1px - 150px);
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    background: radial-gradient(#96adbd, #1e1e1e00 60%); }
+  .navigation__favorites:hover::after {
+    opacity: 0.03; }
   .navigation__favorites-box {
     background-color: #1e1e1e;
     padding: 1.4rem;
@@ -411,9 +424,9 @@ body {
       height: 300px;
       opacity: 0;
       transition: opacity 0.2s;
-      background: radial-gradient(#303030, #1e1e1e00 60%); }
+      background: radial-gradient(#96adbd, #1e1e1e00 60%); }
     .navigation__searchbar-results:hover::after {
-      opacity: 0.2; }
+      opacity: 0.03; }
     .navigation__searchbar-results--box {
       cursor: pointer;
       z-index: 9999;

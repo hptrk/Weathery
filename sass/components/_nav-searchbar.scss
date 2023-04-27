@@ -65,20 +65,7 @@
       height: 0rem; // base height is 0, JS will change that (1box = 5rem)
 
       // shiny hover effect (cursor following)
-      &::after {
-        content: '';
-        position: absolute;
-        top: calc(var(--y, 0) * 1px - 150px);
-        left: calc(var(--x, 0) * 1px - 150px);
-        width: 300px;
-        height: 300px;
-        opacity: 0;
-        transition: opacity 0.2s;
-        background: radial-gradient(#303030, #1e1e1e00 60%);
-      }
-      &:hover::after {
-        opacity: 0.2;
-      }
+      @include shiny-hover-effect;
 
       // saved cities box
       &--box {

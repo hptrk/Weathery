@@ -76,3 +76,23 @@
     @content;
   }
 }
+// OTHER
+//
+// shiny hover effect (cursor following)
+@mixin shiny-hover-effect {
+  &::after {
+    content: '';
+    position: absolute;
+    top: calc(var(--y, 0) * 1px - 150px);
+    left: calc(var(--x, 0) * 1px - 150px);
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    background: radial-gradient(#96adbd, #1e1e1e00 60%);
+  }
+  &:hover::after {
+    opacity: 0.03;
+  }
+  @content;
+}

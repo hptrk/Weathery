@@ -18,6 +18,13 @@ class FavoriteView extends View {
 
   addHandlerRender(handler) {
     this._menuButton.addEventListener('click', handler);
+
+    // shiny hover effect
+    this._parentElement.addEventListener('mousemove', e => {
+      const { x, y } = this._parentElement.getBoundingClientRect();
+      this._parentElement.style.setProperty('--x', e.clientX - x);
+      this._parentElement.style.setProperty('--y', e.clientY - y);
+    });
   }
   addHandlerLike(handler) {
     this._parentElement.addEventListener('click', e => {
