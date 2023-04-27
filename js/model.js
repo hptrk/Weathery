@@ -13,6 +13,7 @@ import {
   getFromCode,
   isDayTime,
 } from './helpers';
+import { pinned } from '../icons/likeSVG';
 
 // current state object
 export const state = {
@@ -172,10 +173,21 @@ export const manageFavorites = function (cityArray) {
 // ---------- ADD TO PINNED CIIES ---------- //
 
 export const managePinned = function (cityArray) {
+  // counts pinned cities
+  const pinnedCount = state.favorites.reduce((acc, c) => {
+    if (c.isPinned) return acc + 1;
+    return acc;
+  }, 0);
+
   state.favorites.forEach(c => {
     // loop over the favorites to find the pinned city
     if (c.lat === cityArray.lat && c.lon === cityArray.lon) {
-      c.isPinned ? (c.isPinned = false) : (c.isPinned = true); // toggle the boolean
+      // toggle the boolean
+      if (!c.isPinned && pinnedCount < 3) {
+        c.isPinned = true; // add to pinned if limit (max 3) is not reached
+        return;
+      }
+      c.isPinned = false;
     }
   });
 };
