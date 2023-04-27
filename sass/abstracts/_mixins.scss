@@ -82,6 +82,7 @@
 @mixin shiny-hover-effect {
   &::after {
     content: '';
+    pointer-events: none; // fixes a bug where the element behind the effect could not be clicked
     position: absolute;
     top: calc(var(--y, 0) * 1px - 150px);
     left: calc(var(--x, 0) * 1px - 150px);

@@ -263,6 +263,7 @@ body {
     border-radius: 0 0 2rem 2rem; }
   .navigation__favorites::after {
     content: '';
+    pointer-events: none;
     position: absolute;
     top: calc(var(--y, 0) * 1px - 150px);
     left: calc(var(--x, 0) * 1px - 150px);
@@ -282,6 +283,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between; }
+    .navigation__favorites-box:hover {
+      transform: scale(1.02); }
     .navigation__favorites-box:nth-child(2n) {
       background-color: #232325; }
     .navigation__favorites-box--location > :first-child {
@@ -431,6 +434,7 @@ body {
     height: 0rem; }
     .navigation__searchbar-results::after {
       content: '';
+      pointer-events: none;
       position: absolute;
       top: calc(var(--y, 0) * 1px - 150px);
       left: calc(var(--x, 0) * 1px - 150px);

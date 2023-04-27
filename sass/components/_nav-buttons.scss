@@ -150,6 +150,10 @@
       align-items: center;
       justify-content: space-between;
 
+      &:hover {
+        transform: scale(1.02);
+      }
+
       // lighter background for every second element
       &:nth-child(2n) {
         background-color: $color-grey-dark;
