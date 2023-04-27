@@ -25,13 +25,24 @@
         <nav class="navigation">
           <!-- custom made icons in css (list, info) -->
           <div class="navigation__icon-container">
-            <div class="navigation__icon-box">
+            <!-- hidden checkbox -->
+            <input
+              type="checkbox"
+              class="navigation__icon-checkbox"
+              id="listIcon"
+            />
+
+            <!-- LIST ICON -->
+            <label for="listIcon" class="navigation__icon-box">
               <a class="navigation__icon-list"></a>
-              <div class="gaphider"></div>
-            </div>
+            </label>
+
+            <!-- FAVORITES -->
+            <div class="gaphider"></div>
             <!-- favorites section // filled with JS -->
             <div class="navigation__favorites"></div>
 
+            <!-- INFO ICON -->
             <div class="navigation__icon-box">
               <a class="navigation__icon-info"></a>
             </div>

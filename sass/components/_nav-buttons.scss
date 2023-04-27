@@ -17,6 +17,9 @@
       text-align: center;
       z-index: 999999;
     }
+    &-checkbox {
+      display: none;
+    }
     //LIST ICON STYLE
     &-list {
       position: relative;
@@ -52,6 +55,18 @@
     }
     &-box:hover &-list::after {
       transform: translateY(0.2rem);
+    }
+    // LIST ICON CLICK FUNCTIONALITY
+    &-checkbox:checked + &-box &-list {
+      background-color: transparent; // hide the line in the middle
+    }
+    &-checkbox:checked + &-box &-list::before {
+      top: 0;
+      transform: rotate(135deg); // rotate the top line
+    }
+    &-checkbox:checked + &-box &-list::after {
+      top: 0;
+      transform: rotate(-135deg); // rotate the bottom line
     }
     //INFO ICON STYLE
     &-info {

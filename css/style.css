@@ -173,6 +173,9 @@ body {
   text-align: center;
   z-index: 999999; }
 
+.navigation__icon-checkbox {
+  display: none; }
+
 .navigation__icon-list {
   position: relative;
   margin-top: 50%; }
@@ -198,6 +201,17 @@ body {
 
 .navigation__icon-box:hover .navigation__icon-list::after {
   transform: translateY(0.2rem); }
+
+.navigation__icon-checkbox:checked + .navigation__icon-box .navigation__icon-list {
+  background-color: transparent; }
+
+.navigation__icon-checkbox:checked + .navigation__icon-box .navigation__icon-list::before {
+  top: 0;
+  transform: rotate(135deg); }
+
+.navigation__icon-checkbox:checked + .navigation__icon-box .navigation__icon-list::after {
+  top: 0;
+  transform: rotate(-135deg); }
 
 .navigation__icon-info {
   position: relative;
