@@ -183,10 +183,18 @@ export const managePinned = function (cityArray) {
     // loop over the favorites to find the pinned city
     if (c.lat === cityArray.lat && c.lon === cityArray.lon) {
       // toggle the boolean
+      // add to pinned if limit (max 3) is not reached
       if (!c.isPinned && pinnedCount < 3) {
-        c.isPinned = true; // add to pinned if limit (max 3) is not reached
+        c.isPinned = true;
         return;
       }
+
+      // if limit reached, throw error
+      if (!c.isPinned && pinnedCount === 3)
+        throw new Error('You can have only 3 pinned cities!');
+      // with this error throw, the PIN svg animation won't happen
+
+      // else, unpin it
       c.isPinned = false;
     }
   });
