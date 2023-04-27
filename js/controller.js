@@ -9,6 +9,7 @@ import locationView from './views/locationView.js';
 import searchView from './views/searchView.js';
 import cityView from './views/cityView.js';
 import favoriteView from './views/favoriteView.js';
+import pinnedView from './views/pinnedView.js';
 import { control } from 'leaflet';
 
 const controlStarterState = async function () {
@@ -45,6 +46,12 @@ const controlStarterState = async function () {
 
     // 6) Render chart (for 7 days)
     chartView.renderChart(model.state);
+
+    // 7) Load default pinned cities
+    await model.refreshPinnedCities();
+
+    // 8) Render pinned cities
+    pinnedView.generatePinnedCities(model.state.pinned);
   } catch (err) {
     console.log(err);
   }
