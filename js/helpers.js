@@ -361,3 +361,7 @@ export const getArrowSVGCode = direction => {
   if (direction === 'W') return W;
   if (direction === 'NW') return NW;
 };
+
+export const updateLocalStorage = (name, object) => {
+  localStorage.setItem(`${name}`, JSON.stringify(object));
+};

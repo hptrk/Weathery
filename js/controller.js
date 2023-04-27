@@ -19,6 +19,9 @@ const controlStarterState = async function () {
     // 0) Load weather based on current location
     await model.loadWeather();
 
+    // 0) Load favorite cities from localStorage
+    model.loadFavorites();
+
     // 0) Load the data for real time clock
     model.loadTime();
 

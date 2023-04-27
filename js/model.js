@@ -12,6 +12,7 @@ import {
   updateDayNames,
   getFromCode,
   isDayTime,
+  updateLocalStorage,
 } from './helpers';
 import { pinned } from '../icons/likeSVG';
 
@@ -156,6 +157,7 @@ export const manageFavorites = function (cityArray) {
     if (c.lat === cityArray.lat && c.lon === cityArray.lon) {
       state.favorites.splice(i, 1); // remove object
       removedFromFav = true;
+      updateLocalStorage('favorites', state.favorites);
       return;
     }
   });
@@ -168,6 +170,7 @@ export const manageFavorites = function (cityArray) {
     city: cityArray.city,
     country: cityArray.country,
   });
+  updateLocalStorage('favorites', state.favorites);
 };
 
 // ---------- ADD TO PINNED CIIES ---------- //
@@ -186,6 +189,7 @@ export const managePinned = function (cityArray) {
       // add to pinned if limit (max 3) is not reached
       if (!c.isPinned && pinnedCount < 3) {
         c.isPinned = true;
+        updateLocalStorage('favorites', state.favorites);
         return;
       }
 
@@ -196,6 +200,12 @@ export const managePinned = function (cityArray) {
 
       // else, unpin it
       c.isPinned = false;
+      updateLocalStorage('favorites', state.favorites);
     }
   });
+};
+
+// ---------- LOAD FAVORITES FROM LOCAL STORAGE ---------- //
+export const loadFavorites = function () {
+  state.favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 };
