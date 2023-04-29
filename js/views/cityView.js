@@ -11,9 +11,7 @@ class CityView extends View {
   _todayButton = this._buttons[0];
   _tomorrowButton = this._buttons[1];
   _nextDaysButton = this._buttons[2];
-  _resultBoxes;
   _event;
-  _clickedBox;
   _pressedEnter = false;
 
   addHandlerRender(render) {
@@ -37,24 +35,6 @@ class CityView extends View {
       // if the like button was clicked, call the handler
       this._event.target.classList.contains('results-save') && handler();
     });
-  }
-
-  indexOfClicked() {
-    // if enter was pressed, return the first city immediately
-    if (this._pressedEnter) return 0;
-
-    this._resultBoxes = Array.from(this._parentElement.childNodes).filter(
-      node =>
-        node.nodeType === 1 && // TYPE 1: Element node
-        node.classList.contains('navigation__searchbar-results--box')
-    ); // only children with this exact class
-
-    this._clickedBox = this._event.target.closest(
-      '.navigation__searchbar-results--box'
-    );
-    const clickedIndex = this._resultBoxes.indexOf(this._clickedBox);
-
-    return clickedIndex; // this function returns a number (0-4) - index of clicked box
   }
 
   async _resetDefaultStates() {

@@ -34,5 +34,32 @@ export default class View {
     this._parentElement.innerHTML = '';
   }
 
+  // This function is used when clicking on a city in:
+  // -search list, pinned cities, favorite cities
+  indexOfClicked(el) {
+    // el:
+    // s -> search
+    // p -> pin
+    // f -> favorite
+    let element;
+    if (el === 's') element = 'navigation__searchbar-results--box';
+    if (el === 'p') element = 'other__container-card';
+    if (el === 'f') element = 'navigation__favorites-box';
+
+    // if enter was pressed, return the first city immediately // (only when clicking search results)
+    if (this._pressedEnter) return 0;
+
+    const childs = Array.from(this._parentElement.childNodes).filter(
+      node =>
+        node.nodeType === 1 && // TYPE 1: Element node
+        node.classList.contains(element)
+    ); // only children with this exact class
+
+    const clickedChild = this._event.target.closest(`.${element}`);
+    const clickedIndex = childs.indexOf(clickedChild);
+
+    return clickedIndex; // this function returns a number - index of clicked child
+  }
+
   renderError(message = this._errorMessage) {}
 }

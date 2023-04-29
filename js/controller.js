@@ -119,9 +119,9 @@ const controlLoadCity = async function (searchview = true, pinnedview = false) {
   // prettier-ignore
   // Latitude, Longitude of clicked city
   const { lat, lon } = 
-  searchview ? model.state.search.results[cityView.indexOfClicked()]
-    : pinnedview ? model.state.pinned[pinnedView.indexOfClicked()] 
-    : model.state.favorites[favoriteView.indexOfClicked()];
+  searchview ? model.state.search.results[cityView.indexOfClicked('s')]
+    : pinnedview ? model.state.pinned[pinnedView.indexOfClicked('p')] 
+    : model.state.favorites[favoriteView.indexOfClicked('f')];
 
   // 0) Load weather of clicked city
   await model.loadWeather(lat, lon);

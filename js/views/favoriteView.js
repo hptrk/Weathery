@@ -12,8 +12,6 @@ class FavoriteView extends View {
   _triangle = document.querySelector('.gaphider');
   _iconsBox = document.querySelectorAll('.navigation__favorites-box--icons');
   _isClicked = false;
-  _favBoxes;
-  _clickedBox;
   _event;
 
   addHandlerRender(handler) {
@@ -140,18 +138,6 @@ class FavoriteView extends View {
 
     this._triangle.style.borderBottom = '1.6rem solid #1e1e1e';
     this._likeAnimation(); // when removing from list
-  }
-
-  indexOfClicked() {
-    this._favBoxes = Array.from(this._parentElement.childNodes).filter(
-      node =>
-        node.nodeType === 1 && // TYPE 1: Element node
-        node.classList.contains('navigation__favorites-box')
-    ); // only children with this exact class
-
-    this._clickedBox = this._event.target.closest('.navigation__favorites-box');
-    const clickedIndex = this._favBoxes.indexOf(this._clickedBox);
-    return clickedIndex;
   }
 
   _likeAnimation() {
