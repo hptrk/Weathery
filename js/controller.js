@@ -176,5 +176,6 @@ const init = function () {
   favoriteView.addHandlerRender(controlLoadFavorite); // Click on the menu (favorites) icon
   favoriteView.addHandlerLoad(controlLoadCity); // Click on a city in the favorites list
   favoriteView.addHandlerPin(controlManagePins); // Click on the pin icon
+  pinnedView.addHandlerRender(controlLoadFavorite); // Click on 'Pin cities' (when empty)
 };
 init();
