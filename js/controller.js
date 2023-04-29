@@ -10,8 +10,7 @@ import searchView from './views/searchView.js';
 import cityView from './views/cityView.js';
 import favoriteView from './views/favoriteView.js';
 import pinnedView from './views/pinnedView.js';
-import { control } from 'leaflet';
-import { pin } from '../icons/likeSVG.js';
+import mapView from './views/mapView.js';
 
 const controlStarterState = async function () {
   try {
@@ -23,6 +22,9 @@ const controlStarterState = async function () {
 
     // 0) Load favorite cities from localStorage
     model.loadFavorites();
+
+    // 0) Load mini datas (icons, descriptions)
+    await model.loadFavoriteCitiesData();
 
     // 0) Load the data for real time clock
     model.loadTime();
@@ -49,10 +51,13 @@ const controlStarterState = async function () {
     chartView.renderChart(model.state);
 
     // 7) Load default pinned cities
-    await model.refreshPinnedCities();
+    model.refreshPinnedCities();
 
     // 8) Render pinned cities
     pinnedView.generatePinnedCities(model.state.pinned);
+
+    // 9) Render map
+    mapView.renderMap(model.state.favorites, controlLoadCity);
   } catch (err) {
     console.log(err);
   }
@@ -111,16 +116,22 @@ const controlSearchResults = async function () {
   searchView.generateResults(model.state.search.results, model.state.favorites);
 };
 
-const controlLoadCity = async function (searchview = true, pinnedview = false) {
-  // searchview = true -> Search result clicked
-  // searchview = false -> Favorite city clicked
-  // searchview = false pinnedview = true -> Pinned city clicked
+const controlLoadCity = async function (
+  searchview = true,
+  pinnedview = false,
+  clickedMarkerMap = undefined
+) {
+  // searchview=true -> Search result clicked
+  // searchview=false -> Favorite city clicked
+  // searchview=false pinnedview=true -> Pinned city clicked
+  // searchview=false pinnedview=false clickedMarkerMap=object -> Marker clicked on the map
 
   // prettier-ignore
   // Latitude, Longitude of clicked city
   const { lat, lon } = 
   searchview ? model.state.search.results[cityView.indexOfClicked('s')]
     : pinnedview ? model.state.pinned[pinnedView.indexOfClicked('p')] 
+    : clickedMarkerMap ? clickedMarkerMap
     : model.state.favorites[favoriteView.indexOfClicked('f')];
 
   // 0) Load weather of clicked city
@@ -148,12 +159,16 @@ const controlLoadCity = async function (searchview = true, pinnedview = false) {
 const controlManageFavorite = function () {
   // 0) Load city to favorite object
   // 0) Remove city from favorite object
-  model.manageFavorites(model.state.search.results[cityView.indexOfClicked()]);
+  model.manageFavorites(
+    model.state.search.results[cityView.indexOfClicked('s')]
+  );
 };
 
 const controlManageFavoriteList = function () {
   // 0) Remove city from favorite object
-  model.manageFavorites(model.state.favorites[favoriteView.indexOfClicked()]);
+  model.manageFavorites(
+    model.state.favorites[favoriteView.indexOfClicked('f')]
+  );
 
   // 1) Refresh the view when removing a city
   favoriteView.refreshOnClick();
@@ -166,7 +181,7 @@ const controlLoadFavorite = function () {
 
 const controlManagePins = function () {
   // 0) Add/remove pinned city
-  model.managePinned(model.state.favorites[favoriteView.indexOfClicked()]);
+  model.managePinned(model.state.favorites[favoriteView.indexOfClicked('f')]);
 };
 
 const init = function () {
@@ -182,6 +197,6 @@ const init = function () {
   favoriteView.addHandlerLoad(controlLoadCity); // Click on a city in the favorites list
   favoriteView.addHandlerPin(controlManagePins); // Click on the pin icon
   pinnedView.addHandlerRender(controlLoadFavorite); // Click on 'Pin cities' (when empty)
-  pinnedView.addHandlerLoad(controlLoadCity);
+  pinnedView.addHandlerLoad(controlLoadCity); // Click on a pinned city
 };
 init();

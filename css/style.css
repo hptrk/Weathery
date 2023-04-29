@@ -170,6 +170,13 @@ body {
 .pinHere {
   font-size: 2.2rem; }
 
+.map-icon {
+  background-color: #1b1a1d;
+  opacity: 85%;
+  border-radius: 17px;
+  border: 2px solid #e7e7e8;
+  padding: 0.5rem !important; }
+
 .navigation__icon-container {
   display: flex;
   gap: 2.5rem;

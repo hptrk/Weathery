@@ -66,7 +66,7 @@ const createWeatherObject = function (data) {
   };
 };
 
-const createPinnedObject = function (data) {
+const createMiniObject = function (data) {
   const { current_weather: current } = data;
   return {
     temperature: round(current.temperature),
@@ -95,18 +95,18 @@ export const loadLocation = async () => {
 export const loadWeather = async function (
   lat = state.location.latitude,
   long = state.location.longitude,
-  pinnedCity = false
+  miniLoad = false
 ) {
   try {
     const data = await AJAX(WEATHER_API(lat, long));
 
     // default state
-    if (!pinnedCity) {
+    if (!miniLoad) {
       state.weather = createWeatherObject(data);
       await loadCity(lat, long);
     }
-    // if pinned city data needed
-    if (pinnedCity) return createPinnedObject(data);
+    // if mini city data needed
+    if (miniLoad) return createMiniObject(data);
   } catch (err) {
     console.error(`${err} 💥`);
     throw err;
@@ -230,15 +230,17 @@ export const loadFavorites = function () {
 };
 
 // ---------- REFRESH PINNED CITY OBJECT ---------- //
-export const refreshPinnedCities = async function () {
+export const refreshPinnedCities = function () {
   state.pinned = []; // clear
   state.favorites.forEach(c => {
     c.isPinned && state.pinned.push(c); // push pinned city
   });
+};
 
-  // fill pinned object with needed datas
+// ---------- LOAD CITY MINI DATAS ---------- //
+export const loadFavoriteCitiesData = async function () {
   // need to use for of becaues of awaiting the asynchronous 'loadWeather' (forEach does not work)
-  for (const c of state.pinned) {
+  for (const c of state.favorites) {
     const data = await loadWeather(c.lat, c.lon, true);
     c.temperature = data.temperature;
     c.description = data.description;
