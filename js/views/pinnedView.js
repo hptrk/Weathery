@@ -6,10 +6,19 @@ import { pin } from '../../icons/likeSVG.js';
 
 class PinnedView extends View {
   _parentElement = document.querySelector('.other__container');
+  _pinnedBoxes;
+  _event;
 
   addHandlerRender(handler) {
     this._parentElement.addEventListener('click', e => {
       e.target.classList.contains('pinHere') && handler();
+    });
+  }
+
+  addHandlerLoad(handler) {
+    this._parentElement.addEventListener('click', e => {
+      this._event = e;
+      e.target.closest('.other__container-card') && handler(false, true);
     });
   }
 
@@ -52,6 +61,18 @@ class PinnedView extends View {
     ); // add the pinned city to the DOM
 
     this._cardWhenEmpty(data.length);
+  }
+
+  indexOfClicked() {
+    this._pinnedBoxes = Array.from(this._parentElement.childNodes).filter(
+      node =>
+        node.nodeType === 1 && // TYPE 1: Element node
+        node.classList.contains('other__container-card')
+    ); // only children with this exact class
+
+    this._clickedBox = this._event.target.closest('.other__container-card');
+    const clickedIndex = this._pinnedBoxes.indexOf(this._clickedBox);
+    return clickedIndex;
   }
 }
 export default new PinnedView();
