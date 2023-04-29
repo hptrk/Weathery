@@ -814,9 +814,16 @@ body {
   border-radius: 3.2rem;
   padding: 1.2rem 2rem 1.2rem 2.5rem;
   background-color: #1b1a1d;
+  transition: transform 0.4s;
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center; }
+  .other__container-card:hover {
+    transform: scale(1.04);
+    background-color: #232325; }
+  .other__container-card:hover .other__container-card--weather > .icon-weather {
+    background-image: radial-gradient(closest-side, #232325 60%, #232325); }
   .other__container-card--texts {
     display: flex;
     flex-direction: column; }
