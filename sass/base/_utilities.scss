@@ -162,3 +162,30 @@
   border: 2px solid $color-grey-light;
   padding: 0.5rem !important;
 }
+
+// LEAFLET POPUP
+.markerPopup {
+}
+.leaflet-popup {
+  &-content-wrapper {
+    background-color: $color-lightblue-main !important;
+    color: black !important;
+    font-weight: 700;
+    font-family: $font-primary;
+    font-size: 1.8rem;
+    margin: 0 !important;
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+  }
+  &-tip {
+    background-color: $color-lightblue-main !important;
+  }
+  &-content {
+    width: 100% !important;
+  }
+}
+a.leaflet-popup-close-button {
+  display: none !important;
+}

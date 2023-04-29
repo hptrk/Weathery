@@ -3,7 +3,7 @@
 import View from './View.js';
 import * as L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { getSVGLink } from '../helpers';
+import { getSVGLink, sleep } from '../helpers';
 
 class MapView extends View {
   renderMap(data, loadCity) {
@@ -26,11 +26,22 @@ class MapView extends View {
       const marker = L.marker([favCity.lat, favCity.lon], {
         icon: markerIcon,
       }).addTo(map);
+      marker.bindPopup(`<div class="markerPopup">${favCity.city}</div>`); // display the city name on hover
 
       // when clicking on the marker, the clicked city loads
       marker.on('click', () =>
         loadCity(false, false, { lat: favCity.lat, lon: favCity.lon })
       );
+
+      // on hover, display the name of the city
+      marker.on('mouseover', function () {
+        marker.openPopup();
+      });
+      // on mouseleave, close the popup
+      marker.on('mouseout', async function () {
+        await sleep(0.7);
+        marker.closePopup();
+      });
     });
 
     // when clicking on the map, load the closest city to the clicked coords
