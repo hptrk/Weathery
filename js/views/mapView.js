@@ -47,6 +47,13 @@ class MapView extends View {
     // when clicking on the map, load the closest city to the clicked coords
     map.on('click', e => {
       loadCity(false, false, { lat: e.latlng.lat, lon: e.latlng.lng });
+      map.flyTo(e.latlng, map.getZoom(), {
+        duration: 1,
+        easeLinearity: 0.5,
+        zoom: {
+          animate: true,
+        },
+      });
     });
   }
 }
