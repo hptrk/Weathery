@@ -6,16 +6,32 @@ import 'leaflet/dist/leaflet.css';
 import { getSVGLink, sleep } from '../helpers';
 
 class MapView extends View {
+  _map;
   renderMap(data, currentLocation, loadCity) {
-    const map = L.map('map').setView(
-      [currentLocation.latitude, currentLocation.longitude],
-      7
-    );
+    // Create map
+    this._map = this._createMap(currentLocation);
+    this._addTileLayer();
+
+    // Create markers for favorite cities
+    this._createMarkers(data);
+
+    // Handle map clicks: Load clicked city + Click animation effect
+    this._mapClicks(loadCity);
+  }
+
+  _createMap(currentLocation) {
+    const { latitude, longitude } = currentLocation; // get lat+lng from current position
+    return L.map('map').setView([latitude, longitude], 7); // 7 -> zoom level
+  }
+
+  _addTileLayer() {
     L.tileLayer(
       'https://tile.jawg.io/57bb42eb-11fa-40e2-9016-dd35d6c31660/{z}/{x}/{y}{r}.png?access-token=CIkVU1QoyQGSOb5J7ePgQnFfwZJYvYv0iQlqCJ6Q7XmM6lvu4g6QbBGlHXV1RHpQ',
       { maxZoom: 7, minZoom: 5 }
-    ).addTo(map);
+    ).addTo(this._map);
+  }
 
+  _createMarkers(data) {
     // loop over favorite cities
     data.forEach(favCity => {
       const markerIcon = L.icon({
@@ -28,7 +44,7 @@ class MapView extends View {
       // create marker for the cities
       const marker = L.marker([favCity.lat, favCity.lon], {
         icon: markerIcon,
-      }).addTo(map);
+      }).addTo(this._map);
       marker.bindPopup(`<div class="markerPopup">${favCity.city}</div>`); // display the city name on hover
 
       // when clicking on the marker, the clicked city loads
@@ -46,39 +62,48 @@ class MapView extends View {
         marker.closePopup();
       });
     });
+  }
 
-    // when clicking on the map, load the closest city to the clicked coords
-    map.on('click', async e => {
+  _mapClicks(loadCity) {
+    this._map.on('click', e => {
+      // when clicking on the map, load the closest city to the clicked coords
       loadCity(false, false, { lat: e.latlng.lat, lon: e.latlng.lng });
+      this._animateClick(e); // animate clicks
+    });
+  }
 
-      const marker = L.circle(e.latlng, {
-        color: '#adcade',
-        opacity: 0.8,
-        weight: 1,
-        fillColor: '#adcade',
-        fillOpacity: 0.5,
-        radius: 0,
-      }).addTo(map);
+  async _animateClick(e) {
+    // the animated element will be a marker
+    const marker = L.circle(e.latlng, {
+      color: '#adcade',
+      opacity: 0.8,
+      weight: 1,
+      fillColor: '#adcade',
+      fillOpacity: 0.5,
+      radius: 0,
+    }).addTo(this._map);
 
-      // animate the circle marker
-      let radius = 0;
-      const interval = setInterval(() => {
-        radius += 1000;
-        if (radius < 50000) marker.setRadius(radius);
-      }, 1);
-      setTimeout(function () {
-        clearInterval(interval);
-        map.removeLayer(marker);
-      }, 220);
+    // animate the circle marker
+    let radius = 0;
+    const interval = setInterval(() => {
+      radius += 1000;
+      if (radius < 50000) marker.setRadius(radius);
+    }, 1);
 
-      await sleep(0.2);
-      map.flyTo(e.latlng, map.getZoom(), {
-        duration: 1,
-        easeLinearity: 0.5,
-        zoom: {
-          animate: true,
-        },
-      });
+    // remove the marker after 220ms
+    setTimeout(() => {
+      clearInterval(interval);
+      this._map.removeLayer(marker);
+    }, 220);
+
+    // animate the map movement towards the clicked position
+    await sleep(0.2); // pause for the animation
+    this._map.flyTo(e.latlng, this._map.getZoom(), {
+      duration: 1,
+      easeLinearity: 0.5,
+      zoom: {
+        animate: true,
+      },
     });
   }
 }
