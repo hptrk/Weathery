@@ -158,6 +158,17 @@ const controlLoadCity = async function (
 
   // 6) Render chart (for 7 days)
   chartView.renderChart(model.state);
+
+  // 7) Center the position of the map
+  mapView.positionMapView([lat, lon]);
+
+  // 8) Create marker with the loaded city
+  mapView.createMarkers(
+    [{ lat: lat, lon: lon }],
+    controlLoadCity,
+    model.state,
+    false
+  );
 };
 
 const controlManageFavorite = function () {

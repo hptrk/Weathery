@@ -7,17 +7,28 @@ import { getSVGLink, sleep } from '../helpers';
 
 class MapView extends View {
   _map;
+
   renderMap(data, currentLocation, loadCity) {
     // Create map
     this._map = this._createMap(currentLocation);
     this._addTileLayer();
 
     // Create markers for favorite cities
-    this._createMarkers(data, loadCity);
+    this.createMarkers(data, loadCity);
 
     // Handle map clicks: Load clicked city + Click animation effect
     this._mapClicks(loadCity);
     console.log(loadCity);
+  }
+
+  positionMapView(latlon) {
+    this._map.flyTo(latlon, this._map.getZoom(), {
+      duration: 1,
+      easeLinearity: 0.5,
+      zoom: {
+        animate: true,
+      },
+    });
   }
 
   _createMap(currentLocation) {
@@ -32,11 +43,15 @@ class MapView extends View {
     ).addTo(this._map);
   }
 
-  _createMarkers(data, loadCity) {
-    // loop over favorite cities
+  createMarkers(data, loadCity, miniData, notUnknown = true) {
+    // loadCity will be 'null' when called with not favorited city
+    // loop over cities
     data.forEach(favCity => {
+      // marker icon
       const markerIcon = L.icon({
-        iconUrl: getSVGLink(favCity.icon),
+        iconUrl: getSVGLink(
+          notUnknown ? favCity.icon : miniData.weather.current.icon
+        ),
         iconSize: [50, 50],
         iconAnchor: [25, 25],
         className: 'map-icon',
@@ -46,7 +61,11 @@ class MapView extends View {
       const marker = L.marker([favCity.lat, favCity.lon], {
         icon: markerIcon,
       }).addTo(this._map);
-      marker.bindPopup(`<div class="markerPopup">${favCity.city}</div>`); // display the city name on hover
+      marker.bindPopup(
+        `<div class="markerPopup">${
+          notUnknown ? favCity.city : miniData.location.city
+        }</div>`
+      ); // display the city name on hover
 
       // when clicking on the marker, the clicked city loads
       marker.on('click', () =>
@@ -99,13 +118,7 @@ class MapView extends View {
 
     // animate the map movement towards the clicked position
     await sleep(0.2); // pause for the animation
-    this._map.flyTo(e.latlng, this._map.getZoom(), {
-      duration: 1,
-      easeLinearity: 0.5,
-      zoom: {
-        animate: true,
-      },
-    });
+    this.positionMapView(e.latlng);
   }
 }
 export default new MapView();
