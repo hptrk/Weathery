@@ -45,8 +45,30 @@ class MapView extends View {
     });
 
     // when clicking on the map, load the closest city to the clicked coords
-    map.on('click', e => {
+    map.on('click', async e => {
       loadCity(false, false, { lat: e.latlng.lat, lon: e.latlng.lng });
+
+      const marker = L.circle(e.latlng, {
+        color: '#adcade',
+        opacity: 0.8,
+        weight: 1,
+        fillColor: '#adcade',
+        fillOpacity: 0.5,
+        radius: 0,
+      }).addTo(map);
+
+      // animate the circle marker
+      let radius = 0;
+      const interval = setInterval(() => {
+        radius += 1000;
+        if (radius < 50000) marker.setRadius(radius);
+      }, 1);
+      setTimeout(function () {
+        clearInterval(interval);
+        map.removeLayer(marker);
+      }, 220);
+
+      await sleep(0.2);
       map.flyTo(e.latlng, map.getZoom(), {
         duration: 1,
         easeLinearity: 0.5,
