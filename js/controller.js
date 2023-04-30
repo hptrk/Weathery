@@ -57,7 +57,11 @@ const controlStarterState = async function () {
     pinnedView.generatePinnedCities(model.state.pinned);
 
     // 9) Render map
-    mapView.renderMap(model.state.favorites, controlLoadCity);
+    mapView.renderMap(
+      model.state.favorites,
+      model.state.location,
+      controlLoadCity
+    );
   } catch (err) {
     console.log(err);
   }
