@@ -13,10 +13,11 @@ class MapView extends View {
     this._addTileLayer();
 
     // Create markers for favorite cities
-    this._createMarkers(data);
+    this._createMarkers(data, loadCity);
 
     // Handle map clicks: Load clicked city + Click animation effect
     this._mapClicks(loadCity);
+    console.log(loadCity);
   }
 
   _createMap(currentLocation) {
@@ -31,7 +32,7 @@ class MapView extends View {
     ).addTo(this._map);
   }
 
-  _createMarkers(data) {
+  _createMarkers(data, loadCity) {
     // loop over favorite cities
     data.forEach(favCity => {
       const markerIcon = L.icon({
