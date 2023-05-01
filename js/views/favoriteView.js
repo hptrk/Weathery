@@ -8,6 +8,7 @@ import { mark } from 'regenerator-runtime';
 class FavoriteView extends View {
   _parentElement = document.querySelector('.navigation__favorites');
   _menuButton = document.querySelectorAll('.navigation__icon-box')[0]; // [0]-menu, [1]-info
+  _checkbox = document.querySelector('.navigation__icon-checkbox');
   _inputField = document.querySelector('.navigation__searchbar-input');
   _triangle = document.querySelector('.gaphider');
   _iconsBox = document.querySelectorAll('.navigation__favorites-box--icons');
@@ -34,6 +35,7 @@ class FavoriteView extends View {
   addHandlerLoad(handler) {
     this._parentElement.addEventListener('click', e => {
       this._event = e;
+      this._hideFavoriteList();
       // if the clicked element is not the heart or pin icon, call the handler
       !this._event.target.classList.contains('pin') &&
         !this._event.target.classList.contains('pinned') &&
@@ -166,6 +168,18 @@ class FavoriteView extends View {
       6 * parseFloat(getComputedStyle(document.documentElement).fontSize)
     }px`;
     if (this._parentElement.clientHeight <= 62) this._messageWhenEmpty(); // when empty, display empty message
+  }
+
+  async _hideFavoriteList() {
+    if (this._isClicked) {
+      this._triangle.style.borderBottom = '0 solid #1e1e1e';
+      this._removeBoxes();
+      await sleep(0.4); // wait for animation
+      this._checkbox.checked = false;
+      this._removeInnerHTML();
+
+      this._isClicked = false;
+    }
   }
 }
 export default new FavoriteView();
