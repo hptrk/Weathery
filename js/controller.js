@@ -181,18 +181,25 @@ const controlManageFavorite = async function () {
   // 0) Load mini datas (icons, descriptions)
   await model.loadFavoriteCitiesData();
 
-  // 1) Refresh the markers (Add/Remove)
+  // 1) Refresh the markers on the map (Add/Remove)
   mapView.removeMarkers();
   mapView.createMarkers(model.state.favorites, controlLoadCity);
 };
 
-const controlManageFavoriteList = function () {
+const controlManageFavoriteList = async function () {
   // 0) Remove city from favorite object
   model.manageFavorites(
     model.state.favorites[favoriteView.indexOfClicked('f')]
   );
 
-  // 1) Refresh the view when removing a city
+  // 0) Load mini datas (icons, descriptions)
+  await model.loadFavoriteCitiesData();
+
+  // 1) Refresh the markers on the map (Add/Remove)
+  mapView.removeMarkers();
+  mapView.createMarkers(model.state.favorites, controlLoadCity);
+
+  // 2) Refresh the view when removing a city
   favoriteView.refreshOnClick();
 };
 
