@@ -171,12 +171,19 @@ const controlLoadCity = async function (
   );
 };
 
-const controlManageFavorite = function () {
+const controlManageFavorite = async function () {
   // 0) Load city to favorite object
   // 0) Remove city from favorite object
   model.manageFavorites(
     model.state.search.results[cityView.indexOfClicked('s')]
   );
+
+  // 0) Load mini datas (icons, descriptions)
+  await model.loadFavoriteCitiesData();
+
+  // 1) Refresh the markers (Add/Remove)
+  mapView.removeMarkers();
+  mapView.createMarkers(model.state.favorites, controlLoadCity);
 };
 
 const controlManageFavoriteList = function () {

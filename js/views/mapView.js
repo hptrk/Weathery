@@ -120,5 +120,12 @@ class MapView extends View {
     await sleep(0.2); // pause for the animation
     this.positionMapView(e.latlng);
   }
+  removeMarkers() {
+    // retrieve all layers from the map
+    this._map.eachLayer(layer => {
+      // check if the layer is a marker
+      layer instanceof L.Marker && this._map.removeLayer(layer); // remove the marker from the map
+    });
+  }
 }
 export default new MapView();
