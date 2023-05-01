@@ -12,11 +12,16 @@ class FavoriteView extends View {
   _inputField = document.querySelector('.navigation__searchbar-input');
   _triangle = document.querySelector('.gaphider');
   _iconsBox = document.querySelectorAll('.navigation__favorites-box--icons');
+  _inputField = document.querySelector('.navigation__searchbar-input');
   _isClicked = false;
   _event;
 
   addHandlerRender(handler) {
-    this._menuButton.addEventListener('click', handler);
+    this._menuButton.addEventListener('click', handler); // open list
+    this._inputField.addEventListener('focus', () => {
+      //close list on searchbar focus
+      this._hideFavoriteList();
+    });
 
     // shiny hover effect
     this._parentElement.addEventListener('mousemove', e => {
@@ -35,13 +40,13 @@ class FavoriteView extends View {
   addHandlerLoad(handler) {
     this._parentElement.addEventListener('click', e => {
       this._event = e;
-      this._hideFavoriteList();
       // if the clicked element is not the heart or pin icon, call the handler
       !this._event.target.classList.contains('pin') &&
         !this._event.target.classList.contains('pinned') &&
         !this._event.target.classList.contains('results-save') &&
         this._event.target.closest('.navigation__favorites-box') &&
-        handler(false);
+        handler(false) &&
+        this._hideFavoriteList();
     });
   }
   addHandlerPin(handler) {
@@ -96,6 +101,7 @@ class FavoriteView extends View {
       this._removeBoxes();
       await sleep(0.4); // wait for animation
       this._removeInnerHTML();
+      this._checkbox.checked = false;
 
       this._isClicked = false;
       return;
