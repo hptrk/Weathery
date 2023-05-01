@@ -1,5 +1,7 @@
 .other {
   &__container {
+    transition: opacity 0.3s;
+    opacity: 1;
     // CARDS
     &-card {
       height: 9.2rem;

@@ -1,7 +1,7 @@
 //---------- This view is responsible for rendering 'Pinned cities' section ----------//
 
 import View from './View.js';
-import { getSVGLink } from '../helpers.js';
+import { getSVGLink, sleep } from '../helpers.js';
 import { pin } from '../../icons/likeSVG.js';
 
 class PinnedView extends View {
@@ -10,14 +10,16 @@ class PinnedView extends View {
 
   addHandlerRender(handler) {
     this._parentElement.addEventListener('click', e => {
-      e.target.classList.contains('pinHere') && handler();
+      e.target.closest('.pinBox') && handler();
     });
   }
 
   addHandlerLoad(handler) {
     this._parentElement.addEventListener('click', e => {
       this._event = e;
-      e.target.closest('.other__container-card') && handler(false, true);
+      e.target.closest('.other__container-card') &&
+        !e.target.closest('.pinBox') &&
+        handler(false, true);
     });
   }
 
@@ -25,20 +27,25 @@ class PinnedView extends View {
     // if there is space for pinned city
     if (length < 3) {
       // always 3 cards are shown
-      Array.from({ length: 3 - length }).forEach(_ =>
+      Array.from({ length: 3 - length }).forEach(_ => {
         this._parentElement.insertAdjacentHTML(
           'beforeend',
           `
-          <figure class="other__container-card"> 
+          <figure class="other__container-card pinBox"> 
           <span class="emptyText pinEmpty">${pin}<span class="emptySearch pinHere">Pin cities &rarr;</span></span>
       </figure>
         `
-        )
-      );
+        );
+        this._parentElement.style.opacity = '1';
+      });
     }
   }
 
-  generatePinnedCities(data) {
+  async generatePinnedCities(data) {
+    this._parentElement.style.opacity = '0';
+
+    await sleep(0.1);
+    this._parentElement.innerHTML = '';
     const card = i => {
       return `
     <figure class="other__container-card">
@@ -55,9 +62,10 @@ class PinnedView extends View {
     </figure>
     `;
     };
-    Array.from({ length: data.length }).forEach((_, i) =>
-      this._parentElement.insertAdjacentHTML('beforeend', card(i))
-    ); // add the pinned city to the DOM
+    Array.from({ length: data.length }).forEach((_, i) => {
+      this._parentElement.insertAdjacentHTML('beforeend', card(i));
+      this._parentElement.style.opacity = '1';
+    }); // add the pinned city to the DOM
 
     this._cardWhenEmpty(data.length);
   }

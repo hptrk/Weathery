@@ -197,6 +197,12 @@ const controlLoadFavorite = function () {
 const controlManagePins = function () {
   // 0) Add/remove pinned city
   model.managePinned(model.state.favorites[favoriteView.indexOfClicked('f')]);
+
+  // 0) Refresh state.pinned object
+  model.refreshPinnedCities();
+
+  // 1) Refresh pinned cards
+  pinnedView.generatePinnedCities(model.state.pinned);
 };
 
 const init = function () {
