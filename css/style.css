@@ -200,7 +200,7 @@ a.leaflet-popup-close-button {
 .navigation__icon-container {
   display: flex;
   gap: 2.5rem;
-  margin-right: 3rem;
+  margin-right: 1.5rem;
   position: relative; }
 
 .navigation__icon-box {
@@ -387,9 +387,9 @@ a.leaflet-popup-close-button {
   align-items: center;
   margin-right: auto;
   gap: 0.8rem; }
-  .navigation__location-icon {
-    height: 2.5rem;
-    width: 2.5rem; }
+  .navigation__location > svg {
+    height: 3rem;
+    width: 3rem; }
   .navigation__location-text {
     font-size: 1.8rem;
     font-weight: 300; }

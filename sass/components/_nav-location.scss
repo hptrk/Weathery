@@ -5,10 +5,10 @@
     align-items: center;
     margin-right: auto;
     gap: 0.8rem;
-    //pin icon
-    &-icon {
-      height: 2.5rem;
-      width: 2.5rem;
+    //like icon
+    & > svg {
+      height: 3rem;
+      width: 3rem;
     }
     //location text
     &-text {
