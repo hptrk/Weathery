@@ -1,8 +1,8 @@
 body {
   background-image: linear-gradient(
     to left bottom,
-    $color-background-dark,
-    $color-background-light
+    var(--color-background-dark),
+    var(--color-background-light)
   );
   background-size: cover;
   background-repeat: no-repeat;
@@ -23,7 +23,7 @@ body {
 
 // scrollbar itself
 ::-webkit-scrollbar-thumb {
-  background-color: $color-grey-dark;
+  background-color: var(--color-grey-dark);
   border-radius: 100px;
 }
 

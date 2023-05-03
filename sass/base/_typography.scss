@@ -4,7 +4,7 @@ body {
   font-size: 1.6rem;
   text-rendering: optimizeLegibility; //might change if loading speed is slow
   line-height: 1.6;
-  color: $color-grey-light;
+  color: var(--color-grey-light);
 }
 .header-texts {
   font-size: 1.8rem;

@@ -9,11 +9,11 @@
         & + label {
           position: relative;
           cursor: pointer;
-          background-color: $color-grey-dark-2;
+          background-color: var(--color-grey-dark-2);
           border-radius: 100px;
           height: 3.6rem;
           width: 20rem;
-          color: $color-grey-light-2;
+          color: var(--color-grey-light-2);
 
           display: grid;
           grid-template-columns: 1fr 1fr; //equal width for the options
@@ -31,12 +31,12 @@
             height: 100%;
             width: 50%; //half of the element, so it ends in the middle
             border-radius: 100px;
-            background-color: $color-lightblue-main;
+            background-color: var(--color-lightblue-main);
             transition: transform 0.4s, background-color 0.2s;
             transition-timing-function: ease-out;
           }
           &:hover::before {
-            background-color: $color-lightblue-main-shade-2;
+            background-color: var(--color-lightblue-main-shade-2);
           }
           //the real text on the elements
           & > :first-child,
@@ -57,7 +57,7 @@
         }
         &:not(:checked) + label > :last-child {
           //right text
-          color: $color-grey-light-2;
+          color: var(--color-grey-light-2);
         }
         //// IF THE SWITCH IS ON THE RIGHT
         &:checked + label > :last-child {
@@ -66,7 +66,7 @@
         }
         &:checked + label > :first-child {
           //left text
-          color: $color-grey-light-2;
+          color: var(--color-grey-light-2);
         }
       }
     }

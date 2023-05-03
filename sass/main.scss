@@ -1,21 +1,21 @@
-@import "./abstracts/functions";
-@import "./abstracts/mixins";
-@import "./abstracts/variables";
+@import './abstracts/functions';
+@import './abstracts/mixins';
+@import './abstracts/variables';
 
-@import "./base/base";
-@import "./base/typography";
-@import "./base/utilities";
+@import './base/base';
+@import './base/typography';
+@import './base/utilities';
 
-@import "./components/nav-buttons";
-@import "./components/nav-location";
-@import "./components/nav-searchbar";
-@import "./components/settings-profilepic";
-@import "./components/settings-themeswitcher";
-@import "./components/forecast-container--cards";
-@import "./components/forecast-header--menu";
-@import "./components/forecast-header--switcher";
-@import "./components/other-cards";
+@import './components/nav-buttons';
+@import './components/nav-location';
+@import './components/nav-searchbar';
+@import './components/settings-profilepic';
+@import './components/settings-themeswitcher';
+@import './components/forecast-container--cards';
+@import './components/forecast-header--menu';
+@import './components/forecast-header--switcher';
+@import './components/other-cards';
 
-@import "./layout/layout";
+@import './layout/layout';
 
-@import "./page/app";
+@import './page/app';

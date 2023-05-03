@@ -11,8 +11,8 @@
         width: 10rem;
         padding: 0.8rem;
         border-radius: 100px;
-        background-color: $color-grey-dark-3;
-        outline: 2px solid $color-grey-lines;
+        background-color: var(--color-grey-dark-3);
+        outline: 2px solid var(--color-grey-lines);
 
         display: flex;
         align-items: center;
@@ -32,14 +32,14 @@
           height: 5rem;
           width: 5rem;
           border-radius: 100%;
-          background-color: $color-lightblue-main;
-          outline: 2px solid $color-grey-light;
+          background-color: var(--color-lightblue-main);
+          outline: 2px solid var(--color-grey-light);
           transition: all 0.2s;
           transition-timing-function: ease-out;
         }
         &:hover::before {
-          background-color: $color-lightblue-main-shade-2;
-          outline: 2px solid $color-grey-light-shade;
+          background-color: var(--color-lightblue-main-shade-2);
+          outline: 2px solid var(--color-grey-light-shade);
         }
       }
 

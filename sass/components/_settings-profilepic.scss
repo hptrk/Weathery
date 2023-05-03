@@ -6,13 +6,13 @@
     cursor: pointer;
 
     &-icon {
-      fill: $color-lightblue-main;
+      fill: var(--color-lightblue-main);
       width: 5rem;
       height: 5rem;
       transform: scale(1.2308);
       transition: all 0.2s;
       &:hover {
-        fill: $color-lightblue-main-shade-2;
+        fill: var(--color-lightblue-main-shade-2);
       }
     }
   }

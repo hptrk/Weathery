@@ -13,7 +13,7 @@
       width: $width-header-buttons;
       height: $height-header-buttons;
       border-radius: 100%;
-      background-color: $color-grey-dark;
+      background-color: var(--color-grey-dark);
       text-align: center;
       z-index: 999999;
     }
@@ -32,7 +32,7 @@
         width: 2.5rem; //currently half of the background width
         height: 2px;
         border-radius: 100px;
-        background-color: $color-grey-light;
+        background-color: var(--color-grey-light);
         transition: all 0.2s;
         transition-timing-function: ease-out;
       }
@@ -78,7 +78,7 @@
       &,
       &::before {
         display: inline-block;
-        background-color: $color-grey-light;
+        background-color: var(--color-grey-light);
         border-radius: 10px;
         transition: all 0.2s;
         transition-timing-function: ease-out;
@@ -111,7 +111,7 @@
     height: 0;
     max-height: 54rem;
     width: 40rem;
-    background-color: $color-grey-dark-2;
+    background-color: var(--color-grey-dark-2);
     border-radius: 2rem;
     //box-shadow: $shadow-big; // ADDED WITH JAVASCRIPT FOR ANIMATION
     transition: height 0.4s, box-shadow 0.2s;
@@ -124,7 +124,7 @@
 
     // separator line
     & > :not(:last-child) {
-      border-bottom: 2px solid $color-grey-light-4;
+      border-bottom: 2px solid var(--color-grey-light-4);
     }
     // first box top border radius fix
     & > :first-child {
@@ -140,7 +140,7 @@
 
     // location box
     &-box {
-      background-color: $color-grey-dark-2;
+      background-color: var(--color-grey-dark-2);
       padding: 1.4rem;
       width: 100%;
       height: 6rem;
@@ -156,19 +156,19 @@
 
       // lighter background for every second element
       &:nth-child(2n) {
-        background-color: $color-grey-dark;
+        background-color: var(--color-grey-dark);
       }
 
       // city
       &--location > :first-child {
         font-size: 2rem;
-        color: $color-lightblue-main;
+        color: var(--color-lightblue-main);
         font-weight: 600;
       }
       // country
       &--location > :last-child {
         margin-left: 1rem;
-        color: $color-grey-light-2;
+        color: var(--color-grey-light-2);
       }
       &--icons {
         display: flex;
@@ -176,14 +176,14 @@
         & > svg {
           transition: all 0.3s;
           cursor: pointer;
-          color: $color-lightblue-main-shade-2;
+          color: var(--color-lightblue-main-shade-2);
           height: 3rem;
           width: 3rem;
           margin-left: auto;
           z-index: 9999; // so its still clickable even with shiny hover effect
 
           &:hover {
-            color: $color-grey-light;
+            color: var(--color-grey-light);
           }
         }
       }
@@ -199,7 +199,7 @@
   height: 1.6rem; // same as border bottom
   border-left: 2.1rem solid transparent; // needed for triangle
   border-right: 2.1rem solid transparent;
-  border-bottom: 0 solid $color-grey-dark-2; // increase with JS (animation)
+  border-bottom: 0 solid var(--color-grey-dark-2); // increase with JS (animation)
   transition: border-bottom 0.2s;
 }
 

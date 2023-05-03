@@ -3,7 +3,7 @@
   height: 79rem;
   border-radius: 3rem;
   padding: 2.5rem;
-  background-color: $color-container-background;
+  background-color: var(--color-container-background);
   box-shadow: $shadow-dark;
 
   display: grid;
@@ -68,7 +68,7 @@
   row-gap: 2rem;
   align-items: center;
   &__container {
-    background-color: $color-grey-dark-4; //TEMPORARY
+    background-color: var(--color-grey-dark-4); //TEMPORARY
     border-radius: 3.2rem;
     width: 100%;
     height: 29.6rem;
@@ -98,7 +98,7 @@
   // make the background completely dark
   body {
     background-image: none !important;
-    background-color: $color-container-background;
+    background-color: var(--color-container-background);
   }
   .container {
     box-shadow: none;
@@ -116,7 +116,7 @@
   // make the background completely dark
   body {
     background-image: none !important;
-    background-color: $color-container-background;
+    background-color: var(--color-container-background);
   }
   .container {
     box-shadow: none;

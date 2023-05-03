@@ -1,6 +1,6 @@
 .forecast {
   &__active-item {
-    color: $color-grey-light;
+    color: var(--color-grey-light);
     cursor: default !important;
     pointer-events: none;
   }
@@ -15,8 +15,8 @@
     // small round gradient in the background of the icons
     background-image: radial-gradient(
       closest-side,
-      $color-grey-dark 60%,
-      $color-grey-dark-4
+      var(--color-grey-dark) 60%,
+      var(--color-grey-dark-4)
     );
 
     height: 6.5rem;
@@ -24,8 +24,8 @@
     &--active {
       background-image: radial-gradient(
         closest-side,
-        $color-lightblue-main-shade 65%,
-        $color-lightblue-main
+        var(--color-lightblue-main-shade) 65%,
+        var(--color-lightblue-main)
       );
 
       height: 8.5rem;
@@ -83,14 +83,14 @@
 }
 
 .like-clicked {
-  fill: $color-lightblue-main-shade-2 !important;
-  color: $color-lightblue-main-shade-2 !important;
+  fill: var(--color-lightblue-main-shade-2) !important;
+  color: var(--color-lightblue-main-shade-2) !important;
   animation-name: pulse;
   animation-duration: 0.3s;
   animation-timing-function: ease-in-out;
   &:hover {
-    fill: $color-grey-light !important;
-    color: $color-grey-light !important;
+    fill: var(--color-grey-light) !important;
+    color: var(--color-grey-light) !important;
   }
 }
 
@@ -115,7 +115,7 @@
   &Search {
     // hides box, put focus on input field
     cursor: pointer;
-    color: $color-lightblue-main;
+    color: var(--color-lightblue-main);
     position: relative;
     margin-top: 0.7rem;
     font-size: 2rem;
@@ -129,7 +129,7 @@
       transform: scaleX(0); // scale up with :hover
       top: 90%;
       left: 0;
-      background-color: $color-grey-light;
+      background-color: var(--color-grey-light);
       width: 100%;
       height: 1px;
     }
@@ -156,17 +156,17 @@
 }
 
 .map-icon {
-  background-color: $color-grey-dark-4;
+  background-color: var(--color-grey-dark-4);
   opacity: 85%;
   border-radius: 17px;
-  border: 2px solid $color-grey-light;
+  border: 2px solid var(--color-grey-light);
   padding: 0.5rem !important;
 }
 
 // LEAFLET POPUP
 .leaflet-popup {
   &-content-wrapper {
-    background-color: $color-lightblue-main !important;
+    background-color: var(--color-lightblue-main) !important;
     color: black !important;
     font-weight: 700;
     font-family: $font-primary;
@@ -177,7 +177,7 @@
     align-items: center;
   }
   &-tip {
-    background-color: $color-lightblue-main !important;
+    background-color: var(--color-lightblue-main) !important;
   }
   &-content {
     width: 100% !important;
