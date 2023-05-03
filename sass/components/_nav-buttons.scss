@@ -124,7 +124,7 @@
 
     // separator line
     & > :not(:last-child) {
-      border-bottom: 2px solid var(--color-grey-light-4);
+      border-bottom: 2px solid var(--color-favorite-separator);
     }
     // first box top border radius fix
     & > :first-child {
