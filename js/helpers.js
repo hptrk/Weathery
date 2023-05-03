@@ -365,3 +365,55 @@ export const getArrowSVGCode = direction => {
 export const updateLocalStorage = (name, object) => {
   localStorage.setItem(`${name}`, JSON.stringify(object));
 };
+
+// CURRENT AND LIGHT MODE COLORS
+export const darkModeColors = {
+  '--color-grey-light': '#e7e7e8',
+  '--color-grey-light-shade': '#d0d0d1',
+  '--color-grey-light-2': '#888',
+  '--color-grey-light-3': '#6d6d71',
+  '--color-grey-light-4': '#333',
+  '--color-blueish-grey': '#4b565e',
+  '--color-blueish-black': '#131618',
+
+  '--color-background-dark': '#212529',
+  '--color-background-light': '#343a40',
+
+  '--color-container-background': '#101014',
+
+  '--color-grey-dark': '#232325',
+  '--color-grey-dark-2': '#1e1e1e',
+  '--color-grey-dark-3': '#1a191c',
+  '--color-grey-dark-4': '#1b1a1d',
+  '--color-grey-lines': '#242426',
+  '--color-favorite-separator': '#333',
+
+  '--color-lightblue-main': '#bbd8ec',
+  '--color-lightblue-main-shade': '#adcade',
+  '--color-lightblue-main-shade-2': '#96adbd',
+};
+export const lightModeColors = {
+  '--color-grey-light': '#171717',
+  '--color-grey-light-shade': '#2a2a2a',
+  '--color-grey-light-2': '#333',
+  '--color-grey-light-3': '#949494',
+  '--color-grey-light-4': '#333',
+  '--color-blueish-grey': '#1e2226',
+  '--color-blueish-black': '#08090a',
+
+  '--color-background-dark': '#a6a8a9',
+  '--color-background-light': '#aeb0b3',
+
+  '--color-container-background': '#f2f2f2',
+
+  '--color-grey-dark': '#ccc',
+  '--color-grey-dark-2': '#ccc',
+  '--color-grey-dark-3': '#cdcdcd',
+  '--color-grey-dark-4': '#dedede',
+  '--color-grey-lines': '#ddd',
+  '--color-favorite-separator': '#333',
+
+  '--color-lightblue-main': '#5f92b5',
+  '--color-lightblue-main-shade': '#5683a3',
+  '--color-lightblue-main-shade-2': '#4c7591',
+};

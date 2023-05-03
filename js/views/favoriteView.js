@@ -75,7 +75,7 @@ class FavoriteView extends View {
 
   _messageWhenEmpty() {
     // TEXT //
-    this._triangle.style.borderBottom = '1.6rem solid #1e1e1e'; // gap hider
+    this._triangle.style.borderBottom = '1.6rem solid var(--color-grey-dark-2)'; // gap hider
     const markup =
       '<span class="emptyText">Currently, there are no saved cities. Please initiate a search to save one.<span class="emptySearch">Search &rarr;</span></span>';
 
@@ -86,7 +86,7 @@ class FavoriteView extends View {
     // clicking the search button
     document.querySelector('.emptySearch').addEventListener('click', () => {
       // hide element
-      this._triangle.style.borderBottom = '0 solid #1e1e1e';
+      this._triangle.style.borderBottom = '0 solid var(--color-grey-dark-2)';
       this._removeBoxes();
       this._removeInnerHTML();
       // input focus
@@ -97,7 +97,7 @@ class FavoriteView extends View {
   async generateFavorites(data) {
     // if it is already on screen, remove it
     if (this._isClicked) {
-      this._triangle.style.borderBottom = '0 solid #1e1e1e';
+      this._triangle.style.borderBottom = '0 solid var(--color-grey-dark-2)';
       this._removeBoxes();
       await sleep(0.4); // wait for animation
       this._removeInnerHTML();
@@ -144,7 +144,7 @@ class FavoriteView extends View {
       favoritesNumber > 9 ? 'scroll' : 'hidden'
     }`;
 
-    this._triangle.style.borderBottom = '1.6rem solid #1e1e1e';
+    this._triangle.style.borderBottom = '1.6rem solid var(--color-grey-dark-2)';
     this._likeAnimation(); // when removing from list
   }
 
@@ -178,7 +178,7 @@ class FavoriteView extends View {
 
   async _hideFavoriteList() {
     if (this._isClicked) {
-      this._triangle.style.borderBottom = '0 solid #1e1e1e';
+      this._triangle.style.borderBottom = '0 solid var(--color-grey-dark-2)';
       this._removeBoxes();
       await sleep(0.4); // wait for animation
       this._checkbox.checked = false;

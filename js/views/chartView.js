@@ -60,7 +60,7 @@ class ChartView extends View {
               color: '#242426',
             },
             ticks: {
-              color: '#888',
+              color: '#666',
               count: 6, // 100, 80, 60, 40, 20, 0
             },
           },
@@ -107,8 +107,8 @@ class ChartView extends View {
         datasets: [
           {
             data: chart_data.map(row => row.chance),
-            backgroundColor: '#bbd8ec', // background color of the bars
-            hoverBackgroundColor: '#96adbd', // on hover
+            backgroundColor: '#5f92b5', // background color of the bars
+            hoverBackgroundColor: '#4c7591', // on hover
             borderRadius: 100,
             barThickness: 12,
             borderSkipped: false, // this helps rounding the corners in the bottom too

@@ -221,7 +221,19 @@ const controlManagePins = function () {
 };
 
 const controlChangeTheme = function () {
+  // 0) Remove map (for switching it)
+  mapView.removeMap();
+
+  // 1) Change the color theme of the site
   themeView.changeTheme();
+
+  // 2) Render the custom map with the correct theme color
+  mapView.renderMap(
+    model.state.favorites,
+    model.state.location,
+    controlLoadCity,
+    themeView.isLightMode()
+  );
 };
 
 const init = function () {

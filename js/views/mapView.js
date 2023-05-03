@@ -8,17 +8,16 @@ import { getSVGLink, sleep } from '../helpers';
 class MapView extends View {
   _map;
 
-  renderMap(data, currentLocation, loadCity) {
+  renderMap(data, currentLocation, loadCity, isLightMode) {
     // Create map
     this._map = this._createMap(currentLocation);
-    this._addTileLayer();
+    this._addTileLayer(isLightMode);
 
     // Create markers for favorite cities
     this.createMarkers(data, loadCity);
 
     // Handle map clicks: Load clicked city + Click animation effect
     this._mapClicks(loadCity);
-    console.log(loadCity);
   }
 
   positionMapView(latlon) {
@@ -36,9 +35,13 @@ class MapView extends View {
     return L.map('map').setView([latitude, longitude], 7); // 7 -> zoom level
   }
 
-  _addTileLayer() {
+  _addTileLayer(isLightMode) {
     L.tileLayer(
-      'https://tile.jawg.io/57bb42eb-11fa-40e2-9016-dd35d6c31660/{z}/{x}/{y}{r}.png?access-token=CIkVU1QoyQGSOb5J7ePgQnFfwZJYvYv0iQlqCJ6Q7XmM6lvu4g6QbBGlHXV1RHpQ',
+      `https://tile.jawg.io/${
+        isLightMode
+          ? '735c5d29-8b81-4d01-90a1-0ed205afe9fa'
+          : '57bb42eb-11fa-40e2-9016-dd35d6c31660'
+      }/{z}/{x}/{y}{r}.png?access-token=CIkVU1QoyQGSOb5J7ePgQnFfwZJYvYv0iQlqCJ6Q7XmM6lvu4g6QbBGlHXV1RHpQ`,
       { maxZoom: 7, minZoom: 5 }
     ).addTo(this._map);
   }
@@ -126,6 +129,9 @@ class MapView extends View {
       // check if the layer is a marker
       layer instanceof L.Marker && this._map.removeLayer(layer); // remove the marker from the map
     });
+  }
+  removeMap() {
+    this._map.remove();
   }
 }
 export default new MapView();
