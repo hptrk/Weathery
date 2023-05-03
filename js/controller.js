@@ -11,6 +11,7 @@ import cityView from './views/cityView.js';
 import favoriteView from './views/favoriteView.js';
 import pinnedView from './views/pinnedView.js';
 import mapView from './views/mapView.js';
+import themeView from './views/themeView.js';
 
 const controlStarterState = async function () {
   try {
@@ -219,6 +220,10 @@ const controlManagePins = function () {
   pinnedView.generatePinnedCities(model.state.pinned);
 };
 
+const controlChangeTheme = function () {
+  themeView.changeTheme();
+};
+
 const init = function () {
   controlStarterState(); // Window load
   cardsView.addHandlerRender(controlNextDays); // 'Next 7 days' button click
@@ -233,5 +238,6 @@ const init = function () {
   favoriteView.addHandlerPin(controlManagePins); // Click on the pin icon
   pinnedView.addHandlerRender(controlLoadFavorite); // Click on 'Pin cities' (when empty)
   pinnedView.addHandlerLoad(controlLoadCity); // Click on a pinned city
+  themeView.addHandlerChangeTheme(controlChangeTheme); // Change theme to light/dark mode
 };
 init();
