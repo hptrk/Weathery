@@ -50,8 +50,8 @@
         //sun icon
         transition-property: stroke, fill;
         transition-delay: 0.1s;
-        fill: black;
-        stroke: black;
+        fill: var(--color-grey-dark-3);
+        stroke: var(--color-grey-dark-3);
       }
       &:not(:checked) + label > .moon {
         //moon icon

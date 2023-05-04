@@ -611,8 +611,8 @@ a.leaflet-popup-close-button {
   .settingsbox__switcher-checkbox:checked + label > .sun {
     transition-property: stroke, fill;
     transition-delay: 0.1s;
-    fill: black;
-    stroke: black; }
+    fill: var(--color-grey-dark-3);
+    stroke: var(--color-grey-dark-3); }
   .settingsbox__switcher-checkbox:not(:checked) + label > .moon {
     transition-property: stroke, fill;
     transition-delay: 0.1s;
