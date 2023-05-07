@@ -19,7 +19,6 @@ class ThemeView extends View {
     this._setStyle('--color-grey-light-shade', mode);
     this._setStyle('--color-grey-light-2', mode);
     this._setStyle('--color-grey-light-3', mode);
-    this._setStyle('--color-grey-light-4', mode);
     this._setStyle('--color-blueish-grey', mode);
     this._setStyle('--color-blueish-black', mode);
 
@@ -33,7 +32,6 @@ class ThemeView extends View {
     this._setStyle('--color-grey-dark-3', mode);
     this._setStyle('--color-grey-dark-4', mode);
     this._setStyle('--color-grey-lines', mode);
-    this._setStyle('--color-favorite-separator', mode);
 
     this._setStyle('--color-lightblue-main', mode);
     this._setStyle('--color-lightblue-main-shade', mode);
