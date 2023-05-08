@@ -8,6 +8,7 @@ import { mark } from 'regenerator-runtime';
 class FavoriteView extends View {
   _parentElement = document.querySelector('.navigation__favorites');
   _menuButton = document.querySelectorAll('.navigation__icon-box')[0]; // [0]-menu, [1]-info
+  _infoButton = document.querySelectorAll('.navigation__icon-box')[1];
   _checkbox = document.querySelector('.navigation__icon-checkbox');
   _inputField = document.querySelector('.navigation__searchbar-input');
   _triangle = document.querySelector('.gaphider');
@@ -97,13 +98,7 @@ class FavoriteView extends View {
   async generateFavorites(data) {
     // if it is already on screen, remove it
     if (this._isClicked) {
-      this._triangle.style.borderBottom = '0 solid var(--color-grey-dark-2)';
-      this._removeBoxes();
-      await sleep(0.4); // wait for animation
-      this._removeInnerHTML();
-      this._checkbox.checked = false;
-
-      this._isClicked = false;
+      this._hideFavoriteList();
       return;
     }
     this._isClicked = true;
@@ -144,8 +139,11 @@ class FavoriteView extends View {
       favoritesNumber > 9 ? 'scroll' : 'hidden'
     }`;
 
+    this._triangle.style.left = '5%';
+    await sleep(0); // bugfix for switching the gaphider's left position when clicking the info box
     this._triangle.style.borderBottom = '1.6rem solid var(--color-grey-dark-2)';
     this._likeAnimation(); // when removing from list
+    this._hideOnInfoClick(); // hide list when clicking on the info button
   }
 
   _likeAnimation() {
@@ -186,6 +184,11 @@ class FavoriteView extends View {
 
       this._isClicked = false;
     }
+  }
+  _hideOnInfoClick() {
+    this._infoButton.addEventListener('click', async () => {
+      this._hideFavoriteList();
+    });
   }
 }
 export default new FavoriteView();

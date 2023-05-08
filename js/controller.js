@@ -12,6 +12,7 @@ import favoriteView from './views/favoriteView.js';
 import pinnedView from './views/pinnedView.js';
 import mapView from './views/mapView.js';
 import themeView from './views/themeView.js';
+import infoView from './views/infoView.js';
 
 const controlStarterState = async function () {
   try {
@@ -236,6 +237,10 @@ const controlChangeTheme = function () {
   );
 };
 
+const controlDisplayInfoBox = function () {
+  infoView.renderInfoBox();
+};
+
 const init = function () {
   controlStarterState(); // Window load
   cardsView.addHandlerRender(controlNextDays); // 'Next 7 days' button click
@@ -251,5 +256,6 @@ const init = function () {
   pinnedView.addHandlerRender(controlLoadFavorite); // Click on 'Pin cities' (when empty)
   pinnedView.addHandlerLoad(controlLoadCity); // Click on a pinned city
   themeView.addHandlerChangeTheme(controlChangeTheme); // Change theme to light/dark mode
+  infoView.addHandlerRender(controlDisplayInfoBox); // Click on the info icon
 };
 init();

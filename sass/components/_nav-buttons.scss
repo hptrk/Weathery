@@ -189,12 +189,67 @@
       }
     }
   }
+  &__info {
+    position: absolute;
+    top: 120%;
+    left: 60%;
+    z-index: 99999;
+    height: 0;
+    width: 40rem;
+    background-color: var(--color-grey-dark-2);
+    border-radius: 2rem;
+    //box-shadow: $shadow-big; // ADDED WITH JAVASCRIPT FOR ANIMATION
+    transition: height 0.4s, box-shadow 0.2s;
+    transition-timing-function: ease-in-out;
+    height: 0; // base height is 0, JS will change it
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+
+    // shiny hover effect (cursor following)
+    @include shiny-hover-effect;
+
+    &-text {
+      font-size: 1.77rem;
+      margin: 0 3rem;
+    }
+    &-copyright {
+      color: var(--color-lightblue-main);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+    }
+    .weathery-logo {
+      width: 5.5rem;
+      height: 5.5rem;
+      background-image: url('../icons/Weathery-icon.png');
+      background-size: cover;
+      margin-top: 1rem;
+    }
+    .github-logo {
+      cursor: pointer;
+      width: 3rem;
+      height: 3rem;
+      fill: var(--color-lightblue-main);
+      margin-bottom: 0.5rem;
+
+      &:hover {
+        fill: var(--color-lightblue-main-shade-2);
+      }
+    }
+  }
 }
 // triangle element for gap hide (between the list icon and the saved city box)
 .gaphider {
   position: absolute;
   top: 101%; // hully hidden bottom
-  left: 5%;
+  left: 5%; // adjusted with JS  (list: 5%, info: 65%)
   width: 20%;
   height: 1.6rem; // same as border bottom
   border-left: 2.1rem solid transparent; // needed for triangle
