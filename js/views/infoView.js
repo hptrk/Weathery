@@ -34,7 +34,7 @@ class InfoView extends View {
     }
     this._isClicked = true;
 
-    this._parentElement.innerHTML = `
+    const markup = `
     <div class="weathery-logo"></div>
     <div class="navigation__info-text">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -45,6 +45,7 @@ class InfoView extends View {
         <div class="navigation__info-copyright">&copy; 2023 Weathery  ${githubLogo}</div>
 
     `;
+    this._parentElement.insertAdjacentHTML('beforeend', markup);
     // add HEIGHT for animation
     this._parentElement.style.height = '30rem'; //*6 because 1 box is 6rem
     this._parentElement.style.boxShadow = '0 2.1rem 2rem rgba(0, 0, 0, 0.3)'; // animating the boxshadow
@@ -60,6 +61,7 @@ class InfoView extends View {
       this._triangle.style.borderBottom = '0 solid var(--color-grey-dark-2)';
       this._removeBoxes();
       await sleep(0.4); // wait for animation
+      this._removeInnerHTML();
 
       this._isClicked = false;
     }
