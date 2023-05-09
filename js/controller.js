@@ -238,6 +238,7 @@ const controlChangeTheme = function () {
 };
 
 const controlDisplayInfoBox = function () {
+  // 1) Display/remove info box
   infoView.renderInfoBox();
 };
 

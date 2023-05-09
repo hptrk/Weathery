@@ -42,7 +42,7 @@ class InfoView extends View {
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
                 nisi ut aliquip ex ea commodo laborum.
     </div>
-        <div class="navigation__info-copyright">&copy; 2023 Weathery  ${githubLogo}</div>
+        <div class="navigation__info-copyright">&copy; 2023 Weathery ${githubLogo}</div>
 
     `;
     this._parentElement.insertAdjacentHTML('beforeend', markup);
@@ -54,6 +54,7 @@ class InfoView extends View {
     this._triangle.style.borderBottom = '1.6rem solid var(--color-grey-dark-2)';
 
     this._hideListOnClick(); // hide info box when clicking on the list
+    this._addGithubLogoListener(); // open Weathery github page on click
   }
 
   async _hideInfoBox() {
@@ -69,6 +70,13 @@ class InfoView extends View {
   _hideListOnClick() {
     this._menuButton.addEventListener('click', async () => {
       this._hideInfoBox();
+    });
+  }
+
+  _addGithubLogoListener() {
+    this._parentElement.addEventListener('click', e => {
+      e.target.classList.contains('github-logo') &&
+        window.open('https://github.com/hptrk/Weathery', '_blank');
     });
   }
 }
