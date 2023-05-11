@@ -43,7 +43,7 @@ export default class View {
     // f -> favorite
     let element;
     if (el === 's') element = 'navigation__searchbar-results--box';
-    if (el === 'p') element = 'other__container-card';
+    if (el === 'p') element = 'pinned__container-card';
     if (el === 'f') element = 'navigation__favorites-box';
 
     // if enter was pressed, return the first city immediately // (only when clicking search results)

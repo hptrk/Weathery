@@ -1,4 +1,4 @@
-.other {
+.pinned {
   &__container {
     transition: opacity 0.3s;
     opacity: 1;
@@ -81,7 +81,7 @@
 /// MEDIA QUERIES ///
 // 1100px
 @include laptops {
-  .other {
+  .pinned {
     &__container {
       &-card {
         width: 18rem;
@@ -126,7 +126,7 @@
 
 // 800px
 @include phones {
-  .other {
+  .pinned {
     &__container {
       &-card {
         height: 9.2rem;
@@ -154,7 +154,7 @@
 
 // 700px
 @include small-phones {
-  .other {
+  .pinned {
     &__container {
       &-card {
         width: 18rem;

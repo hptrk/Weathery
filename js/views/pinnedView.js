@@ -5,7 +5,7 @@ import { getSVGLink, sleep } from '../helpers.js';
 import { pin } from '../../icons/likeSVG.js';
 
 class PinnedView extends View {
-  _parentElement = document.querySelector('.other__container');
+  _parentElement = document.querySelector('.pinned__container');
   _event;
 
   addHandlerRender(handler) {
@@ -17,7 +17,7 @@ class PinnedView extends View {
   addHandlerLoad(handler) {
     this._parentElement.addEventListener('click', e => {
       this._event = e;
-      e.target.closest('.other__container-card') &&
+      e.target.closest('.pinned__container-card') &&
         !e.target.closest('.pinBox') &&
         handler(false, true);
     });
@@ -31,7 +31,7 @@ class PinnedView extends View {
         this._parentElement.insertAdjacentHTML(
           'beforeend',
           `
-          <figure class="other__container-card pinBox"> 
+          <figure class="pinned__container-card pinBox"> 
           <span class="emptyText pinEmpty">${pin}<span class="emptySearch pinHere">Pin cities &rarr;</span></span>
       </figure>
         `
@@ -48,14 +48,14 @@ class PinnedView extends View {
     this._parentElement.innerHTML = '';
     const card = i => {
       return `
-    <figure class="other__container-card">
-        <div class="other__container-card--texts">
+    <figure class="pinned__container-card">
+        <div class="pinned__container-card--texts">
            <span>${data[i].country}</span>
            <span>${data[i].city}</span>
            <span>${data[i].description}</span>
          </div>
 
-        <div class="other__container-card--weather">
+        <div class="pinned__container-card--weather">
           <span class="numbers">${data[i].temperature}&#176;</span>
           <img src="${getSVGLink(data[i].icon)}" class="icon-weather" />
         </div>
