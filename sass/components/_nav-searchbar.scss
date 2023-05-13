@@ -124,7 +124,7 @@
 
 /// MEDIA QUERIES ///
 // 1100px
-@include laptops {
+@include desktop-sm {
   .navigation {
     &__searchbar {
       width: 80%;
@@ -142,7 +142,7 @@
 }
 
 // 700 px
-@include small-phones {
+@include tablet-sm {
   .navigation {
     &__searchbar {
       width: 100%;

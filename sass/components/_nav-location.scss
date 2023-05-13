@@ -24,7 +24,7 @@
 
 /// MEDIA QUERIES ///
 // 1100px
-@include laptops {
+@include desktop-sm {
   .navigation {
     &__location {
       // pin
@@ -48,7 +48,7 @@
   }
 }
 // 700px
-@include small-phones {
+@include tablet-sm {
   .navigation {
     &__location {
       //back to the flow
@@ -61,7 +61,7 @@
   }
 }
 // 500px
-@include mini-phones-2 {
+@include mobile-md {
   .navigation {
     &__location {
       position: absolute;

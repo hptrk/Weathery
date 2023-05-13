@@ -168,7 +168,7 @@
 
 /// MEDIA QUERIES ///
 // 1230px
-@include desktop-smaller {
+@include desktop-md {
   .forecast {
     &__active-card {
       & > .forecast__container-card {
@@ -184,7 +184,7 @@
   }
 }
 // 1100px
-@include laptops {
+@include desktop-sm {
   .forecast {
     &__active-card {
       & > .forecast__container-card {
@@ -208,7 +208,7 @@
             & > :first-child {
               margin-top: -1.4rem;
               // 880px
-              @include wide-phones {
+              @include tablet-lg {
                 margin-top: -0.3rem;
               }
             }
@@ -219,7 +219,7 @@
                 font-size: 1.4rem;
               }
               // 880px
-              @include wide-phones {
+              @include tablet-lg {
                 font-size: 1.35rem;
               }
             }
@@ -230,7 +230,7 @@
   }
 }
 // 880px
-@include wide-phones {
+@include tablet-lg {
   .forecast {
     &__container {
       overflow-y: hidden;

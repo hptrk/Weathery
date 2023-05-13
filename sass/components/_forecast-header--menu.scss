@@ -25,7 +25,7 @@
 
 /// MEDIA QUERIES ///
 // 1230px
-@include desktop-smaller {
+@include desktop-md {
   .forecast {
     &__header {
       &-menu {
@@ -35,7 +35,7 @@
   }
 }
 // 1100px
-@include laptops {
+@include desktop-sm {
   .forecast {
     &__header {
       &-menu {
@@ -46,7 +46,7 @@
 }
 
 // 520px
-@include mini-phones {
+@include mobile-lg {
   .forecast {
     &__header {
       &-menu {

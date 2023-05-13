@@ -73,7 +73,7 @@
 /// MEDIA QUERIES ///
 
 // 1600px
-@include big-desktop {
+@include desktop-xl {
   // decrease overall size
   html {
     font-size: 55%;
@@ -81,7 +81,7 @@
 }
 
 // 1300px
-@include desktop {
+@include desktop-lg {
   // make the container to stick to the sides
   .container {
     width: 100%;
@@ -89,7 +89,7 @@
 }
 
 // height: 780px width: 1300px
-@include desktop--height {
+@include desktop-lg--height {
   // make the background completely dark
   body {
     background-image: none !important;
@@ -102,7 +102,7 @@
 }
 
 // 1230px
-@include desktop-smaller {
+@include desktop-md {
   // decrease overall size
   html {
     font-size: 48%;
@@ -120,7 +120,7 @@
 }
 
 // 1100px
-@include laptops {
+@include desktop-sm {
   // LAYOUT CHANGE
   .container {
     grid-template-rows: repeat(4, min-content);
@@ -169,7 +169,7 @@
 }
 
 // 880px
-@include wide-phones {
+@include tablet-lg {
   .container {
     row-gap: 5rem; //more whitespace
   }
@@ -183,7 +183,7 @@
 }
 
 // 800px
-@include phones {
+@include tablet-md {
   .diagram {
     margin-left: auto;
     margin-right: auto;
@@ -198,7 +198,7 @@
 }
 
 // 700px
-@include small-phones {
+@include tablet-sm {
   html {
     font-size: 45%;
   }
@@ -260,7 +260,7 @@
 }
 
 // 520px
-@include mini-phones {
+@include mobile-lg {
   html {
     font-size: 42%;
   }
@@ -292,21 +292,21 @@
 }
 
 // 500px
-@include mini-phones-2 {
+@include mobile-md {
   .container {
     margin-top: 2rem; // space for the location on the top
   }
 }
 
 // 430px
-@include smallest {
+@include mobile-sm {
   html {
     font-size: 35%;
   }
 }
 
 // 350px
-@include tiny {
+@include mobile-tiny {
   html {
     font-size: 30%;
   }

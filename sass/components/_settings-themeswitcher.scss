@@ -65,7 +65,7 @@
 }
 /// MEDIA QUERIES ///
 // 1100px
-@include laptops {
+@include desktop-sm {
   .settingsbox {
     &__switcher {
       &-checkbox {

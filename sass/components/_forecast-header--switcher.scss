@@ -75,7 +75,7 @@
 
 /// MEDIA QUERIES ///
 // 1230px
-@include desktop-smaller {
+@include desktop-md {
   .forecast {
     &__header {
       &-switcher {
@@ -92,7 +92,7 @@
   }
 }
 // 1100px
-@include laptops {
+@include desktop-sm {
   .forecast {
     &__header {
       &-switcher {

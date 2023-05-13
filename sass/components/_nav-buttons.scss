@@ -260,7 +260,7 @@
 
 /// MEDIA QUERIES ///
 // 1100px
-@include laptops {
+@include desktop-sm {
   .navigation {
     &__icon {
       // round background of the icons

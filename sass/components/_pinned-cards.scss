@@ -80,7 +80,7 @@
 
 /// MEDIA QUERIES ///
 // 1100px
-@include laptops {
+@include desktop-sm {
   .pinned {
     &__container {
       &-card {
@@ -125,7 +125,7 @@
 }
 
 // 800px
-@include phones {
+@include tablet-md {
   .pinned {
     &__container {
       &-card {
@@ -153,7 +153,7 @@
 }
 
 // 700px
-@include small-phones {
+@include tablet-sm {
   .pinned {
     &__container {
       &-card {
