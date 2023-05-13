@@ -46,11 +46,6 @@ class CityView extends View {
     // reset the switcher back to the forecast state
     this._checkbox.checked = false;
 
-    // reset the active button back to "next 7 days"
-    this._nextDaysButton.classList.add('forecast__active-item');
-    this._tomorrowButton.classList.remove('forecast__active-item');
-    this._todayButton.classList.remove('forecast__active-item');
-
     // clear the input field
     this._inputField.value = '';
 

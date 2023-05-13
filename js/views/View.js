@@ -5,6 +5,10 @@ import { sleep } from '../helpers';
 
 export default class View {
   _data;
+  _buttons = document.querySelectorAll('.forecast__header-menu--item');
+  _todayButton = this._buttons[0];
+  _tomorrowButton = this._buttons[1];
+  _nextDaysButton = this._buttons[2];
 
   //if render is false, create markup string instead of rendering to the DOM
   render(data, render = true) {
@@ -59,6 +63,13 @@ export default class View {
     const clickedIndex = childs.indexOf(clickedChild);
 
     return clickedIndex; // this function returns a number - index of clicked child
+  }
+
+  resetToNext7Days() {
+    // reset the active button back to "next 7 days"
+    this._nextDaysButton.classList.add('forecast__active-item');
+    this._tomorrowButton.classList.remove('forecast__active-item');
+    this._todayButton.classList.remove('forecast__active-item');
   }
 
   renderError(message = this._errorMessage) {}

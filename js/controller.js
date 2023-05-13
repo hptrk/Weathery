@@ -158,13 +158,16 @@ const controlLoadCity = async function (
   // 5) Fade the DOM in
   cardsView.loadFadeIn();
 
-  // 6) Render chart (for 7 days)
+  // 6) Reset the menu buttons back to 'Next 7 days'
+  cityView.resetToNext7Days();
+
+  // 7) Render chart (for 7 days)
   chartView.renderChart(model.state);
 
-  // 7) Center the position of the map
+  // 8) Center the position of the map
   mapView.positionMapView([lat, lon]);
 
-  // 8) Create marker with the loaded city
+  // 9) Create marker with the loaded city
   mapView.createMarkers(
     [{ lat: lat, lon: lon }],
     controlLoadCity,
