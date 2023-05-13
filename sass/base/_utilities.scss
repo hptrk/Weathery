@@ -186,3 +186,10 @@
 a.leaflet-popup-close-button {
   display: none !important;
 }
+
+// LEAFLET ZOOM
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+  background-color: var(--color-lightblue-main-shade) !important;
+  color: black !important;
+}

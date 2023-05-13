@@ -217,6 +217,11 @@ body {
 a.leaflet-popup-close-button {
   display: none !important; }
 
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+  background-color: var(--color-lightblue-main-shade) !important;
+  color: black !important; }
+
 .navigation__icon-container {
   display: flex;
   gap: 2.5rem;
