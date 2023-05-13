@@ -1063,13 +1063,13 @@ a.leaflet-popup-close-button {
 
 .diagram {
   display: grid;
-  grid-template-rows: 3.6rem 1fr;
+  grid-template-rows: 3.6rem min-content;
   row-gap: 2rem;
   align-items: center; }
 
 .pinned {
   display: grid;
-  grid-template-rows: 3.6rem 1fr;
+  grid-template-rows: 3.6rem min-content;
   row-gap: 2rem; }
   .pinned__container {
     display: flex;

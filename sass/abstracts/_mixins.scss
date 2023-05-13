@@ -78,6 +78,13 @@
 }
 // OTHER
 //
+// basic grid for a section
+@mixin layout-grid {
+  display: grid;
+  grid-template-rows: 3.6rem min-content; //TEMPORARY
+  row-gap: 2rem; //TEMPORARY
+  @content;
+}
 // shiny hover effect (cursor following)
 @mixin shiny-hover-effect {
   &::after {

@@ -30,9 +30,8 @@
   gap: 3rem;
 }
 .forecast {
-  display: grid;
-  grid-template-rows: 3.6rem min-content; //TEMPORARY
-  row-gap: 2rem; //TEMPORARY
+  @include layout-grid;
+
   &__header {
     display: flex;
     align-items: center;
@@ -47,15 +46,12 @@
   }
 }
 .diagram {
-  display: grid;
-  grid-template-rows: 3.6rem 1fr; //TEMPORARY
-  row-gap: 2rem;
+  @include layout-grid;
   align-items: center;
 }
 .pinned {
-  display: grid;
-  grid-template-rows: 3.6rem 1fr; //TEMPORARY
-  row-gap: 2rem;
+  @include layout-grid;
+
   &__container {
     display: flex;
     flex-direction: column;
@@ -63,9 +59,8 @@
   }
 }
 .map {
-  display: grid;
-  grid-template-rows: 3.6rem min-content; //TEMPORARY
-  row-gap: 2rem;
+  @include layout-grid;
+
   align-items: center;
   &__container {
     background-color: var(--color-grey-dark-4); //TEMPORARY
