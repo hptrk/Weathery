@@ -16,6 +16,7 @@ class MapView extends View {
   _resizeButton = document.querySelector('.map__header-resize');
   _isResized = false;
   _container = document.querySelector('.container');
+  _mapMessage = document.querySelector('.map__message');
 
   renderMap(data, currentLocation, loadCity, isLightMode) {
     // Create map
@@ -27,6 +28,9 @@ class MapView extends View {
 
     // Handle map clicks: Load clicked city + Click animation effect
     this._mapClicks(loadCity);
+
+    // Display or hide map info message
+    this._manageMapMessage();
   }
 
   positionMapView(latlon) {
@@ -170,6 +174,17 @@ class MapView extends View {
       : `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="resizebtn">
         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
         </svg>`;
+  }
+
+  async _manageMapMessage() {
+    this._mapMessage.innerHTML = ` Click <b>anywhere</b> on the map to instantly load the desired
+    location!`;
+    this._mapMessage.style.backgroundColor = 'var(--color-grey-light-shade)';
+
+    this._mapMessage.addEventListener('mouseenter', () => {
+      this._mapMessage.style.opacity = '0';
+      this._mapMessage.style.transform = 'scale(0.8)';
+    });
   }
 }
 export default new MapView();
