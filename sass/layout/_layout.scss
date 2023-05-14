@@ -46,7 +46,9 @@
   }
 }
 .diagram {
-  @include layout-grid;
+  display: grid;
+  grid-template-rows: 3.6rem 1fr;
+  row-gap: 2rem;
   align-items: center;
 }
 .pinned {
