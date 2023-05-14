@@ -3,10 +3,19 @@
 import View from './View.js';
 import * as L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { getSVGLink, sleep } from '../helpers';
+import {
+  getSVGLink,
+  sleep,
+  setMapFullscreen,
+  setMapToDefault,
+} from '../helpers';
 
 class MapView extends View {
   _map;
+  _currentPosition;
+  _resizeButton = document.querySelector('.map__header-resize');
+  _isResized = false;
+  _container = document.querySelector('.container');
 
   renderMap(data, currentLocation, loadCity, isLightMode) {
     // Create map
@@ -21,6 +30,7 @@ class MapView extends View {
   }
 
   positionMapView(latlon) {
+    this._currentPosition = latlon;
     this._map.flyTo(latlon, this._map.getZoom(), {
       duration: 1,
       easeLinearity: 0.5,
@@ -132,6 +142,34 @@ class MapView extends View {
   }
   removeMap() {
     this._map.remove();
+  }
+
+  manageResize() {
+    // set resize button to default
+    this._resizeButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="resizebtn">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+</svg>
+`;
+    this._manageResize(); // manage map resize
+  }
+
+  _manageResize() {
+    this._resizeButton.addEventListener('click', () => {
+      this._isResized ? setMapToDefault() : setMapFullscreen();
+      this._map.invalidateSize(); // reset leaflet size (prevent tiles not showing bug)
+      this._isResized = this._isResized ? false : true; // toggle isResized
+      this._toggleResizeBtn(); // change resize button
+    });
+  }
+
+  _toggleResizeBtn() {
+    this._resizeButton.innerHTML = this._isResized
+      ? `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="resizebtn">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 9V4.5M9 9H4.5M9 9L3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5l5.25 5.25" />
+        </svg>`
+      : `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="resizebtn">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+        </svg>`;
   }
 }
 export default new MapView();

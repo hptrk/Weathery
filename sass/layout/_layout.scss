@@ -60,8 +60,13 @@
 }
 .map {
   @include layout-grid;
-
   align-items: center;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   &__container {
     background-color: var(--color-grey-dark-4); //TEMPORARY
     border-radius: 3.2rem;

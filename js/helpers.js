@@ -413,3 +413,59 @@ export const lightModeColors = {
   '--color-lightblue-main-shade': '#5683a3',
   '--color-lightblue-main-shade-2': '#4c7591',
 };
+
+const navigation = document.querySelector('.navigation');
+const settings = document.querySelector('.settings');
+const settingsbox = document.querySelector('.settingsbox');
+const forecast = document.querySelector('.forecast');
+const diagram = document.querySelector('.diagram');
+const pinned = document.querySelector('.pinned');
+const map = document.querySelector('.map');
+const map__container = document.querySelector('.map__container');
+// DEFAULT STYLES (needed when resizing back to default)
+const defaultStyles = {
+  navigationDisplay: navigation.style.display,
+  settingsDisplay: settings.style.display,
+  settingsBoxDisplay: settingsbox.style.display,
+  forecastDisplay: forecast.style.display,
+  diagramDisplay: diagram.style.display,
+  pinnedDisplay: pinned.style.display,
+  mapAlignSelf: map.style.alignSelf,
+  mapJustifySelf: map.style.justifySelf,
+  mapGridRow: map.style.gridRow,
+  mapGridColumn: map.style.gridColumn,
+  mapHeight: map.style.height,
+  mapWidth: map.style.width,
+  mapContainerHeight: map__container.style.height,
+};
+
+export const setMapFullscreen = function () {
+  navigation.style.display = 'none';
+  settings.style.display = 'none';
+  settingsbox.style.display = 'none';
+  forecast.style.display = 'none';
+  diagram.style.display = 'none';
+  pinned.style.display = 'none';
+  map.style.alignSelf = 'center';
+  map.style.justifySelf = 'center';
+  map.style.gridRow = '1 / -1';
+  map.style.gridColumn = '1 / -1';
+  map.style.height = '100%';
+  map.style.width = '100%';
+  map__container.style.height = '67rem';
+};
+export const setMapToDefault = function () {
+  navigation.style.display = defaultStyles.navigationDisplay;
+  settings.style.display = defaultStyles.settingsDisplay;
+  settingsbox.style.display = defaultStyles.settingsBoxDisplay;
+  forecast.style.display = defaultStyles.forecastDisplay;
+  diagram.style.display = defaultStyles.diagramDisplay;
+  pinned.style.display = defaultStyles.pinnedDisplay;
+  map.style.alignSelf = defaultStyles.mapAlignSelf;
+  map.style.justifySelf = defaultStyles.mapJustifySelf;
+  map.style.gridRow = defaultStyles.mapGridRow;
+  map.style.gridColumn = defaultStyles.mapGridColumn;
+  map.style.height = defaultStyles.mapHeight;
+  map.style.width = defaultStyles.mapWidth;
+  map__container.style.height = defaultStyles.mapContainerHeight;
+};

@@ -64,6 +64,9 @@ const controlStarterState = async function () {
       model.state.location,
       controlLoadCity
     );
+
+    // 10) Management of map resizing
+    mapView.manageResize();
   } catch (err) {
     console.log(err);
   }

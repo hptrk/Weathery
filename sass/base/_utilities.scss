@@ -193,3 +193,17 @@ a.leaflet-popup-close-button {
   background-color: var(--color-lightblue-main-shade) !important;
   color: black !important;
 }
+
+// RESIZE BUTTON
+.resizebtn {
+  cursor: pointer;
+  position: relative;
+  top: 1rem;
+  right: 1rem;
+  width: 3rem;
+  height: 3rem;
+  transition: all 0.2s;
+  &:hover {
+    transform: scale(1.2);
+  }
+}
