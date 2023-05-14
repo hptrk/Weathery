@@ -133,7 +133,8 @@ class FavoriteView extends View {
     });
 
     // add HEIGHT for animation
-    this._parentElement.style.height = favoritesNumber * 6 + 'rem'; //*6 because 1 box is 6rem
+    this._parentElement.style.height =
+      favoritesNumber * (window.innerWidth > 1100 ? 6 : 9) + 'rem'; //*6 because 1 box is 6rem
     this._parentElement.style.boxShadow = '0 2.1rem 2rem rgba(0, 0, 0, 0.3)'; // animating the boxshadow
     this._parentElement.style.overflowY = `${
       favoritesNumber > 9 ? 'scroll' : 'hidden'

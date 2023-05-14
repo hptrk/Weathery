@@ -179,7 +179,7 @@
           color: var(--color-lightblue-main-shade-2);
           height: 3rem;
           width: 3rem;
-          margin-left: auto;
+          margin: 0;
           z-index: 9999; // so its still clickable even with shiny hover effect
 
           &:hover {
@@ -301,6 +301,48 @@
       }
       &-box:hover &-info {
         margin-top: 2.75rem;
+      }
+    }
+    &__favorites {
+      max-height: 100rem;
+      width: 50rem;
+      &-box {
+        height: 9rem;
+
+        &--location > :first-child {
+          font-size: 2.5rem;
+        }
+        // country
+        &--location > :last-child {
+          margin-left: 1.5rem;
+          font-size: 2rem;
+          color: var(--color-grey-light-2);
+        }
+        &--icons {
+          display: flex;
+          gap: 1rem;
+          & > svg {
+            height: 4rem;
+            width: 4rem;
+          }
+        }
+      }
+    }
+    &__info {
+      width: 50rem;
+      &-text {
+        font-size: 2.1rem;
+      }
+      .weathery-logo {
+        width: 7rem;
+        height: 7rem;
+      }
+      &-copyright {
+        font-size: 2rem;
+      }
+      .github-logo {
+        width: 4rem;
+        height: 4rem;
       }
     }
   }

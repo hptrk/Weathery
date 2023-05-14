@@ -47,7 +47,9 @@ class InfoView extends View {
     `;
     this._parentElement.insertAdjacentHTML('beforeend', markup);
     // add HEIGHT for animation
-    this._parentElement.style.height = '30rem'; //*6 because 1 box is 6rem
+    this._parentElement.style.height = `${
+      window.innerWidth > 1100 ? 30 : 36
+    }rem`;
     this._parentElement.style.boxShadow = '0 2.1rem 2rem rgba(0, 0, 0, 0.3)'; // animating the boxshadow
     this._triangle.style.left = '65%';
     await sleep(0); // bugfix for switching the gaphider's left position when clicking the list
