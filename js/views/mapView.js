@@ -177,14 +177,21 @@ class MapView extends View {
   }
 
   async _manageMapMessage() {
-    this._mapMessage.innerHTML = ` Click <b>anywhere</b> on the map to instantly load the desired
+    this._mapMessage.innerHTML = `Click <b>anywhere</b> on the map to instantly load the desired
     location!`;
     this._mapMessage.style.backgroundColor = 'var(--color-grey-light-shade)';
 
-    this._mapMessage.addEventListener('mouseenter', () => {
-      this._mapMessage.style.opacity = '0';
-      this._mapMessage.style.transform = 'scale(0.8)';
-    });
+    // hide map message on hover
+    this._mapMessage.addEventListener('mouseenter', () =>
+      this._hideMapMessage()
+    );
+    await sleep(15); // automatically hide map message after 15 sec
+    this._hideMapMessage();
+  }
+
+  _hideMapMessage() {
+    this._mapMessage.style.opacity = '0';
+    this._mapMessage.style.transform = 'scale(0.8)';
   }
 }
 export default new MapView();
