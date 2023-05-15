@@ -414,6 +414,8 @@ export const lightModeColors = {
   '--color-lightblue-main-shade-2': '#4c7591',
 };
 
+////////////////////
+// FULLSCREEN FUNCTIONALITY
 const navigation = document.querySelector('.navigation');
 const settings = document.querySelector('.settings');
 const settingsbox = document.querySelector('.settingsbox');
@@ -422,6 +424,7 @@ const diagram = document.querySelector('.diagram');
 const pinned = document.querySelector('.pinned');
 const map = document.querySelector('.map');
 const map__container = document.querySelector('.map__container');
+
 // DEFAULT STYLES (needed when resizing back to default)
 const defaultStyles = {
   navigationDisplay: navigation.style.display,
@@ -439,6 +442,7 @@ const defaultStyles = {
   mapContainerHeight: map__container.style.height,
 };
 
+// this function is used when the user clicks on the fullscreen icon (only the map will be visible)
 export const setMapFullscreen = function () {
   navigation.style.display = 'none';
   settings.style.display = 'none';
@@ -454,6 +458,7 @@ export const setMapFullscreen = function () {
   map.style.width = '100%';
   map__container.style.height = '67rem';
 };
+// this function is used when the user resets everything to default (the map will be the default size)
 export const setMapToDefault = function () {
   navigation.style.display = defaultStyles.navigationDisplay;
   settings.style.display = defaultStyles.settingsDisplay;
