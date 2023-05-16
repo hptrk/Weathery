@@ -5,6 +5,7 @@
   padding: 2.5rem;
   background-color: var(--color-container-background);
   box-shadow: $shadow-dark;
+  position: relative;
 
   display: grid;
   grid-template-rows: 2fr 11fr 12.5fr; //temporary

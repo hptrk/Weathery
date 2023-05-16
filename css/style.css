@@ -1077,6 +1077,20 @@ a.leaflet-popup-close-button {
         margin-bottom: 1.3rem;
         font-size: 4.5rem; } }
 
+.error-message {
+  position: absolute;
+  opacity: 0;
+  display: none;
+  top: 2%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 99999;
+  background-color: var(--color-grey-dark);
+  box-shadow: 0 2.1rem 2rem rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  width: 40rem;
+  height: 20rem; }
+
 .container {
   width: 140rem;
   height: 79rem;
@@ -1084,6 +1098,7 @@ a.leaflet-popup-close-button {
   padding: 2.5rem;
   background-color: var(--color-container-background);
   box-shadow: 1rem 2rem 4rem rgba(0, 0, 0, 0.3);
+  position: relative;
   display: grid;
   grid-template-rows: 2fr 11fr 12.5fr;
   grid-template-columns: [left-start] 3fr [left-end right-start] 1fr [right-end];

@@ -1,0 +1,14 @@
+.error-message {
+  position: absolute;
+  opacity: 0;
+  display: none;
+  top: 2%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 99999;
+  background-color: var(--color-grey-dark);
+  box-shadow: $shadow-big;
+  border-radius: 15px;
+  width: 40rem;
+  height: 20rem;
+}
