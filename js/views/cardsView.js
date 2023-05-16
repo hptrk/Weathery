@@ -5,13 +5,14 @@ import { runEverySec, getSVGLink, getArrowSVGCode, sleep } from '../helpers';
 
 class CardsView extends View {
   _parentElement = document.querySelector('.forecast__container');
-  _errorMessage = 'We could not load the weather for you. Please try again!';
   _buttons = document.querySelectorAll('.forecast__header-menu--item');
   _todayButton = this._buttons[0];
   _tomorrowButton = this._buttons[1];
   _nextDaysButton = this._buttons[2];
   _switcher = document.getElementById('forecastSwitcher');
   _checkbox = document.querySelector('.forecast__header-switcher--checkbox');
+  _errorMessage =
+    'Something went wrong while retrieving the weather for your city. Please refresh the page and try again.';
 
   constructor() {
     super();

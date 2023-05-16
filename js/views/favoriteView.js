@@ -16,6 +16,7 @@ class FavoriteView extends View {
   _inputField = document.querySelector('.navigation__searchbar-input');
   _isClicked = false;
   _event;
+  _errorMessage = `You've reached the maximum number of pinned cities. Please unpin a city before adding a new one.`;
 
   addHandlerRender(handler) {
     this._menuButton.addEventListener('click', handler); // open list
@@ -58,8 +59,6 @@ class FavoriteView extends View {
       ) {
         this._event = e;
         handler(); // manage pinned cities in the model
-        // toggling between pin & pinned
-        this._replacePinIcon(e.target.classList.contains('pin') ? pinned : pin);
       }
     });
   }
@@ -72,6 +71,11 @@ class FavoriteView extends View {
     this._event.target
       .closest('.navigation__favorites-box--icons :nth-child(2)')
       .remove();
+  }
+  togglePinIcon() {
+    this._replacePinIcon(
+      this._event.target.classList.contains('pin') ? pinned : pin
+    );
   }
 
   _messageWhenEmpty() {

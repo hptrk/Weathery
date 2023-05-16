@@ -214,7 +214,7 @@ export const managePinned = function (cityArray) {
 
       // if limit reached, throw error
       if (!c.isPinned && pinnedCount === 3)
-        throw new Error('You can have only 3 pinned cities!');
+        throw `You've reached the maximum number of pinned cities. Please unpin a city before adding a new one.`;
       // with this error throw, the PIN svg animation won't happen
 
       // else, unpin it

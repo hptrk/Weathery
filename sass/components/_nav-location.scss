@@ -41,7 +41,7 @@
       }
 
       position: absolute;
-      top: 0.8rem;
+      top: -2.5rem;
       left: 50%;
       transform: translateX(-50%);
     }
@@ -65,7 +65,7 @@
   .navigation {
     &__location {
       position: absolute;
-      top: 0.8rem;
+      top: -1.8rem;
       // center the text again
       width: 100%;
       display: flex;

@@ -67,8 +67,9 @@ const controlStarterState = async function () {
 
     // 10) Management of map resizing
     mapView.manageResize();
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    cardsView.renderError();
+    console.log(error);
   }
 };
 
@@ -217,14 +218,22 @@ const controlLoadFavorite = function () {
 };
 
 const controlManagePins = function () {
-  // 0) Add/remove pinned city
-  model.managePinned(model.state.favorites[favoriteView.indexOfClicked('f')]);
+  try {
+    // 0) Add/remove pinned city
+    model.managePinned(model.state.favorites[favoriteView.indexOfClicked('f')]);
 
-  // 0) Refresh state.pinned object
-  model.refreshPinnedCities();
+    // 0) Refresh state.pinned object
+    model.refreshPinnedCities();
 
-  // 1) Refresh pinned cards
-  pinnedView.generatePinnedCities(model.state.pinned);
+    // 1) Toggling between pin & pinned icon
+    favoriteView.togglePinIcon();
+
+    // 2) Refresh pinned cards
+    pinnedView.generatePinnedCities(model.state.pinned);
+  } catch (error) {
+    favoriteView.renderError(); // Pin limit reached
+    console.log(error);
+  }
 };
 
 const controlChangeTheme = function () {

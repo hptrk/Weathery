@@ -537,7 +537,7 @@ a.leaflet-popup-close-button {
 @media screen and (max-width: 68.75em) {
   .navigation__location {
     position: absolute;
-    top: 0.8rem;
+    top: -2.5rem;
     left: 50%;
     transform: translateX(-50%); }
     .navigation__location-icon {
@@ -559,7 +559,7 @@ a.leaflet-popup-close-button {
 @media screen and (max-width: 31.25em) {
   .navigation__location {
     position: absolute;
-    top: 0.8rem;
+    top: -1.8rem;
     width: 100%;
     display: flex;
     justify-content: center; } }

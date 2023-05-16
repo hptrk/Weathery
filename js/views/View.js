@@ -5,6 +5,7 @@ import { sleep } from '../helpers';
 
 export default class View {
   _data;
+  _errorBox = document.querySelector('.error-message');
   _buttons = document.querySelectorAll('.forecast__header-menu--item');
   _todayButton = this._buttons[0];
   _tomorrowButton = this._buttons[1];
@@ -72,5 +73,9 @@ export default class View {
     this._todayButton.classList.remove('forecast__active-item');
   }
 
-  renderError(message = this._errorMessage) {}
+  renderError(message = this._errorMessage) {
+    this._errorBox.style.display = 'block';
+    this._errorBox.style.opacity = '1';
+    this._errorBox.innerHTML = `${message}`;
+  }
 }
