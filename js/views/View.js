@@ -73,9 +73,21 @@ export default class View {
     this._todayButton.classList.remove('forecast__active-item');
   }
 
-  renderError(message = this._errorMessage) {
-    this._errorBox.style.display = 'block';
-    this._errorBox.style.opacity = '1';
+  async renderError(message = this._errorMessage) {
     this._errorBox.innerHTML = `${message}`;
+    this._errorBox.style.opacity = '1'; // reveal the box
+    this._errorBox.style.transform = 'translate(-50%, 0%) scale(1.1)'; // sliding in animation
+    await sleep(0.6); // wait for the sliding animation
+    this._errorBox.style.transform = 'translate(-50%, 0%) scale(1)'; // scale back to 1 for pulsating effect
+
+    // progress bar timer
+    this._errorBox.insertAdjacentHTML(
+      'beforeend',
+      `<div class="error-message__timer fade-in"></div>`
+    );
+    const timerElement = document.querySelector('.error-message__timer');
+    // animation
+    await sleep(0.1); // needed for changing the width
+    timerElement.style.width = '0%';
   }
 }

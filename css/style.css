@@ -1079,17 +1079,26 @@ a.leaflet-popup-close-button {
 
 .error-message {
   position: absolute;
-  opacity: 0;
-  display: none;
   top: 2%;
   left: 50%;
-  transform: translate(-50%, 0);
+  transform: translate(-50%, 50%) scale(0.9);
   z-index: 99999;
+  transition: all 0.5s;
+  opacity: 0;
   background-color: var(--color-grey-dark);
   box-shadow: 0 2.1rem 2rem rgba(0, 0, 0, 0.3);
   border-radius: 15px;
   width: 40rem;
-  height: 20rem; }
+  padding: 1.5rem 3rem;
+  text-align: center;
+  font-size: 1.8rem; }
+  .error-message__timer {
+    transition: width 8s ease-out;
+    background-color: var(--color-lightblue-main);
+    border-radius: 100px;
+    width: 80%;
+    height: 3px;
+    margin: 1.5rem auto 0 auto; }
 
 .container {
   width: 140rem;
