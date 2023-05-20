@@ -69,7 +69,7 @@ const controlStarterState = async function () {
     mapView.manageResize();
   } catch (error) {
     cardsView.renderError();
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -84,7 +84,8 @@ const controlNextDays = async function () {
     // 2) Fade the DOM in
     cardsView.loadFadeIn();
   } catch (err) {
-    console.log(err);
+    cardsView.renderError();
+    console.error(err);
   }
 };
 
@@ -99,7 +100,8 @@ const controlToday = async function () {
     // 2) Fade the DOM in
     cardsView.loadFadeIn();
   } catch (err) {
-    console.log(err);
+    cardsView.renderError();
+    console.error(err);
   }
 };
 
@@ -114,16 +116,25 @@ const controlTomorrow = async function () {
     // 2) Fade the DOM in
     cardsView.loadFadeIn();
   } catch (err) {
-    console.log(err);
+    cardsView.renderError();
+    console.error(err);
   }
 };
 
 const controlSearchResults = async function () {
-  // 0) Load search results from query
-  await model.loadSearchResults(searchView.getValue());
+  try {
+    // 0) Load search results from query
+    await model.loadSearchResults(searchView.getValue());
 
-  // 1) Generate search results
-  searchView.generateResults(model.state.search.results, model.state.favorites);
+    // 1) Generate search results
+    searchView.generateResults(
+      model.state.search.results,
+      model.state.favorites
+    );
+  } catch (err) {
+    searchView.renderError();
+    console.error(err);
+  }
 };
 
 const controlLoadCity = async function (
@@ -131,85 +142,98 @@ const controlLoadCity = async function (
   pinnedview = false,
   clickedMarkerMap = undefined
 ) {
-  // searchview=true -> Search result clicked
-  // searchview=false -> Favorite city clicked
-  // searchview=false pinnedview=true -> Pinned city clicked
-  // searchview=false pinnedview=false clickedMarkerMap=object -> Marker clicked on the map
+  try {
+    // searchview=true -> Search result clicked
+    // searchview=false -> Favorite city clicked
+    // searchview=false pinnedview=true -> Pinned city clicked
+    // searchview=false pinnedview=false clickedMarkerMap=object -> Marker clicked on the map
 
-  // prettier-ignore
-  // Latitude, Longitude of clicked city
-  const { lat, lon } = 
-  searchview ? model.state.search.results[cityView.indexOfClicked('s')]
+    // prettier-ignore
+    // Latitude, Longitude of clicked city
+    const { lat, lon } = 
+    searchview ? model.state.search.results[cityView.indexOfClicked('s')]
     : pinnedview ? model.state.pinned[pinnedView.indexOfClicked('p')] 
     : clickedMarkerMap ? clickedMarkerMap
     : model.state.favorites[favoriteView.indexOfClicked('f')];
 
-  // 0) Load weather of clicked city
-  await model.loadWeather(lat, lon);
+    // 0) Load weather of clicked city
+    await model.loadWeather(lat, lon);
 
-  // 1) Render the location
-  locationView.render(model.state.location);
+    // 1) Render the location
+    locationView.render(model.state.location);
 
-  // 2) Render the weather
-  cardsView.render(model.state);
+    // 2) Render the weather
+    cardsView.render(model.state);
 
-  // 3) Render the clock
-  cardsView.updateClock(model.state);
+    // 3) Render the clock
+    cardsView.updateClock(model.state);
 
-  // 4) Render the small cards
-  cardsView.renderCards(model.state);
+    // 4) Render the small cards
+    cardsView.renderCards(model.state);
 
-  // 5) Fade the DOM in
-  cardsView.loadFadeIn();
+    // 5) Fade the DOM in
+    cardsView.loadFadeIn();
 
-  // 6) Reset the menu buttons back to 'Next 7 days'
-  cityView.resetToNext7Days();
+    // 6) Reset the menu buttons back to 'Next 7 days'
+    cityView.resetToNext7Days();
 
-  // 7) Render chart (for 7 days)
-  chartView.renderChart(model.state);
+    // 7) Render chart (for 7 days)
+    chartView.renderChart(model.state);
 
-  // 8) Center the position of the map
-  mapView.positionMapView([lat, lon]);
+    // 8) Center the position of the map
+    mapView.positionMapView([lat, lon]);
 
-  // 9) Create marker with the loaded city
-  mapView.createMarkers(
-    [{ lat: lat, lon: lon }],
-    controlLoadCity,
-    model.state,
-    false
-  );
+    // 9) Create marker with the loaded city
+    mapView.createMarkers(
+      [{ lat: lat, lon: lon }],
+      controlLoadCity,
+      model.state,
+      false
+    );
+  } catch (err) {
+    cardsView.renderError();
+    console.error(err);
+  }
 };
 
 const controlManageFavorite = async function () {
-  // 0) Load city to favorite object
-  // 0) Remove city from favorite object
-  model.manageFavorites(
-    model.state.search.results[cityView.indexOfClicked('s')]
-  );
+  try {
+    // 0) Load city to favorite object
+    // 0) Remove city from favorite object
+    model.manageFavorites(
+      model.state.search.results[cityView.indexOfClicked('s')]
+    );
 
-  // 0) Load mini datas (icons, descriptions)
-  await model.loadFavoriteCitiesData();
+    // 0) Load mini datas (icons, descriptions)
+    await model.loadFavoriteCitiesData();
 
-  // 1) Refresh the markers on the map (Add/Remove)
-  mapView.removeMarkers();
-  mapView.createMarkers(model.state.favorites, controlLoadCity);
+    // 1) Refresh the markers on the map (Add/Remove)
+    mapView.removeMarkers();
+    mapView.createMarkers(model.state.favorites, controlLoadCity);
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 const controlManageFavoriteList = async function () {
-  // 0) Remove city from favorite object
-  model.manageFavorites(
-    model.state.favorites[favoriteView.indexOfClicked('f')]
-  );
+  try {
+    // 0) Remove city from favorite object
+    model.manageFavorites(
+      model.state.favorites[favoriteView.indexOfClicked('f')]
+    );
 
-  // 0) Load mini datas (icons, descriptions)
-  await model.loadFavoriteCitiesData();
+    // 0) Load mini datas (icons, descriptions)
+    await model.loadFavoriteCitiesData();
 
-  // 1) Refresh the markers on the map (Add/Remove)
-  mapView.removeMarkers();
-  mapView.createMarkers(model.state.favorites, controlLoadCity);
+    // 1) Refresh the markers on the map (Add/Remove)
+    mapView.removeMarkers();
+    mapView.createMarkers(model.state.favorites, controlLoadCity);
 
-  // 2) Refresh the view when removing a city
-  favoriteView.refreshOnClick();
+    // 2) Refresh the view when removing a city
+    favoriteView.refreshOnClick();
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 const controlLoadFavorite = function () {
@@ -232,7 +256,7 @@ const controlManagePins = function () {
     pinnedView.generatePinnedCities(model.state.pinned);
   } catch (error) {
     favoriteView.renderError(); // Pin limit reached
-    console.log(error);
+    console.error(error);
   }
 };
 

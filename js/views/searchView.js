@@ -9,6 +9,8 @@ class SearchView extends View {
   _parentElement = document.querySelector('.navigation__searchbar-results');
   _searchBar = document.querySelector('.navigation__searchbar');
   _inputField = document.querySelector('.navigation__searchbar-input');
+  _errorMessage =
+    'Something went wrong while loading your search results. Please refresh the page and try again.';
 
   addHandlerRender(render) {
     this._inputField.addEventListener('input', async () => {
