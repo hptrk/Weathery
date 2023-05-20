@@ -89,5 +89,11 @@ export default class View {
     // animation
     await sleep(0.1); // needed for changing the width
     timerElement.style.width = '0%';
+
+    // hide it after the timer went off
+    await sleep(7);
+    this._errorBox.style.opacity = '0'; // hide the box
+    await sleep(0.6);
+    this._errorBox.innerHTML = '';
   }
 }

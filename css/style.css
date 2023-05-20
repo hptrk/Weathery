@@ -1093,7 +1093,7 @@ a.leaflet-popup-close-button {
   text-align: center;
   font-size: 1.8rem; }
   .error-message__timer {
-    transition: width 8s ease-out;
+    transition: width 7s ease-out;
     background-color: var(--color-lightblue-main);
     border-radius: 100px;
     width: 80%;

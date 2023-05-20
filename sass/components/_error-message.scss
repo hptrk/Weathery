@@ -17,7 +17,7 @@
   font-size: 1.8rem;
 
   &__timer {
-    transition: width 8s ease-out;
+    transition: width 7s ease-out; // the message will be visible for 7 sec
     background-color: var(--color-lightblue-main);
     border-radius: 100px;
     width: 80%;
