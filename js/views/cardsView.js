@@ -26,96 +26,32 @@ class CardsView extends View {
   _addListener() {
     // CLICK ON NEXT 7 DAYS
     this._nextDaysButton.addEventListener('click', () => {
-      this._nextDaysButton.classList.toggle('forecast__active-item');
-      this._tomorrowButton.classList.remove('forecast__active-item');
-      this._todayButton.classList.remove('forecast__active-item');
+      this._focusOnNextDays(); // put visual focus back to Next 7 Days
       this._resetSwitcher(); // back to forecast state
     });
 
     // CLICK ON SWITCHER (forecast - wind)
     this._switcher.addEventListener('change', () => {
-      const cards = document.querySelectorAll('.forecast__container-card');
-      cards.forEach((c, i) => {
-        setTimeout(() => {
-          if (i === 0) return; // SKIP first card (active)
-          c.classList.toggle('is-flipped');
-        }, i * 100); // 100MS delay for each card (animation)
-      });
+      this._flipCards(); // show wind/forecast cards
     });
   }
 
   updateClock(data) {
-    const cardHeaderElement = document.querySelector(
-      '.forecast__container-card--header'
-    );
-    function updateDOM() {
-      cardHeaderElement.innerHTML = ''; // clear
-      cardHeaderElement.insertAdjacentHTML(
-        'afterbegin',
-        `<span>${
-          data.dayNames.zero
-        }</span><span class="numbers">${data.currentTime.slice(
-          0,
-          5
-        )}<span class="sec">${data.currentTime.slice(6)}</span></span>`
-      ); // fill
-    }
     // Need to call the function first for instant DOM update
-    updateDOM();
+    this._updateDOM(data);
     // The DOM will update every second
-    runEverySec(updateDOM);
-  }
-
-  _resetSwitcher() {
-    this._checkbox.checked = false; // reset the switcher back to the forecast state
+    runEverySec(() => this._updateDOM(data));
   }
 
   _generateCards() {
     const smallCards = document.querySelectorAll('.forecast__container-card');
     smallCards.forEach((card, i) => i !== 0 && card.remove()); // remove cards (skip the first big card)
 
-    const card = num => {
-      return `
-      <figure class="forecast__container-card">
-      <div class="forecast__container-card_front">
-
-        <div class="forecast__container-card--header">
-          <span>${this._data.dayNames[num].slice(0, 3)}</span>
-        </div>
-
-        <div class="forecast__container-card--main">
-          <img
-            src="${getSVGLink(this._data.weather.days[num].icon)}"
-            alt="${this._data.weather.days[num].description}"
-            class="icon-weather"
-          />
-          <div class="numbers">
-            <span>${this._data.weather.days[num].maxTemp}&#176;</span>
-            <span>${this._data.weather.days[num].minTemp}&#176;</span>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="forecast__container-card_back">
-
-        <div class="forecast__container-card--header">
-         <span>${this._data.dayNames[num].slice(0, 3)}</span>
-        </div>
-
-        <div class="forecast__container-card--main">
-          ${getArrowSVGCode(this._data.weather.days[num].wind_direction)}
-          <div class="numbers">
-           <span>${this._data.weather.days[num].windspeed}</span>
-           <span class="windspeedUnit">km/h</span>
-          </div>
-        </div>
-      </div>
-
-    </figure>`;
-    };
     ['one', 'two', 'three', 'four', 'five', 'six'].forEach(num =>
-      this._parentElement.insertAdjacentHTML('beforeend', card(num))
+      this._parentElement.insertAdjacentHTML(
+        'beforeend',
+        this._generateCard(num)
+      )
     );
   }
 
@@ -177,6 +113,79 @@ class CardsView extends View {
           </figure>
     `;
   }
+  _focusOnNextDays() {
+    this._nextDaysButton.classList.toggle('forecast__active-item');
+    this._tomorrowButton.classList.remove('forecast__active-item');
+    this._todayButton.classList.remove('forecast__active-item');
+  }
+
+  _resetSwitcher() {
+    this._checkbox.checked = false; // reset the switcher back to the forecast state
+  }
+
+  _flipCards() {
+    const cards = document.querySelectorAll('.forecast__container-card');
+    cards.forEach(async (c, i) => {
+      await sleep(i * 0.1); // 100MS delay for each card (animation)
+      if (i === 0) return; // SKIP first card
+      c.classList.toggle('is-flipped');
+    });
+  }
+
+  _updateDOM(data) {
+    const header = document.querySelector('.forecast__container-card--header'); // card's header
+    header.innerHTML = ''; // clear
+    header.insertAdjacentHTML(
+      'afterbegin',
+      `<span>${
+        data.dayNames.zero
+      }</span><span class="numbers">${data.currentTime.slice(
+        0,
+        5
+      )}<span class="sec">${data.currentTime.slice(6)}</span></span>`
+    ); // fill
+  }
+
+  _generateCard(num) {
+    return `
+    <figure class="forecast__container-card">
+    <div class="forecast__container-card_front">
+
+      <div class="forecast__container-card--header">
+        <span>${this._data.dayNames[num].slice(0, 3)}</span>
+      </div>
+
+      <div class="forecast__container-card--main">
+        <img
+          src="${getSVGLink(this._data.weather.days[num].icon)}"
+          alt="${this._data.weather.days[num].description}"
+          class="icon-weather"
+        />
+        <div class="numbers">
+          <span>${this._data.weather.days[num].maxTemp}&#176;</span>
+          <span>${this._data.weather.days[num].minTemp}&#176;</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="forecast__container-card_back">
+
+      <div class="forecast__container-card--header">
+       <span>${this._data.dayNames[num].slice(0, 3)}</span>
+      </div>
+
+      <div class="forecast__container-card--main">
+        ${getArrowSVGCode(this._data.weather.days[num].wind_direction)}
+        <div class="numbers">
+         <span>${this._data.weather.days[num].windspeed}</span>
+         <span class="windspeedUnit">km/h</span>
+        </div>
+      </div>
+    </div>
+
+  </figure>`;
+  }
 
   loadFadeIn() {
     // works for ALL view
@@ -193,6 +202,7 @@ class CardsView extends View {
       })
     );
   }
+
   async loadFadeOut() {
     // works for ALL view
     const cardsHeader = document.querySelectorAll(
