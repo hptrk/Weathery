@@ -67,9 +67,14 @@ const controlStarterState = async function () {
 
     // 10) Management of map resizing
     mapView.manageResize();
-  } catch (error) {
+  } catch (err) {
+    if (err.code === 1) {
+      cityView.renderError();
+      console.error(err);
+      return;
+    }
     cardsView.renderError();
-    console.error(error);
+    console.error(err);
   }
 };
 
