@@ -16,12 +16,14 @@ class CityView extends View {
   _errorMessage = 'Please allow access to your location for Weathery to work.';
 
   addHandlerRender(render) {
+    // Clicking on a city
     this._parentElement.addEventListener('click', e => {
       this._event = e;
       // clicking on like button will not render/reset
       if (this._event.target.classList.contains('results-save')) return;
       render() && this._resetDefaultStates();
     });
+    // Pressing enter
     this._inputField.addEventListener('keydown', e => {
       if (e.key === 'Enter') {
         this._pressedEnter = true;
@@ -30,7 +32,9 @@ class CityView extends View {
       }
     });
   }
+
   addHandlerLike(handler) {
+    // Clicking like button
     this._parentElement.addEventListener('click', e => {
       this._event = e;
       // if the like button was clicked, call the handler
