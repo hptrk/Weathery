@@ -18,12 +18,8 @@ class InfoView extends View {
       this._hideInfoBox();
     });
 
-    // shiny hover effect
-    this._parentElement.addEventListener('mousemove', e => {
-      const { x, y } = this._parentElement.getBoundingClientRect();
-      this._parentElement.style.setProperty('--x', e.clientX - x);
-      this._parentElement.style.setProperty('--y', e.clientY - y);
-    });
+    // Add shiny hover effect
+    this._addHoverEffect();
   }
 
   async renderInfoBox() {
