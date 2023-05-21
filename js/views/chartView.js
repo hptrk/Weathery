@@ -18,13 +18,12 @@ Chart.defaults.font.weight = 600;
 Chart.defaults.font.lineHeight = 1;
 
 class ChartView extends View {
+  _diagram = document.getElementById('diagram');
   _delayed; //for the animation delay
 
   renderChart(data) {
     // IF there is a current chart, destroy it, so it can be applied to other cities with the same config
-    const currentChart = Chart.getChart('diagram');
-    if (currentChart) currentChart.destroy();
-
+    this._checkCurrentChart();
     const daysArrayKeys = Object.keys(data.weather.days); // zero, one, two....
     const daysArrayValues = Object.values(data.weather.days); // data for: zero, one, two....
     const dayNames = Object.values(data.dayNames); // 0: current day (friday) / 1: tomorrow (saturday)
@@ -36,7 +35,11 @@ class ChartView extends View {
       chart_data[i].chance = daysArrayValues[i].precipitation_probability_max;
     });
 
-    new Chart(document.getElementById('diagram'), {
+    new Chart(this._diagram, this._precipitationChart(chart_data)); // create chart
+  }
+
+  _precipitationChart(chart_data) {
+    return {
       type: 'bar',
       // -----------OPTIONS----------- //
       options: {
@@ -115,7 +118,11 @@ class ChartView extends View {
           },
         ],
       },
-    });
+    };
+  }
+  _checkCurrentChart() {
+    const currentChart = Chart.getChart('diagram');
+    if (currentChart) currentChart.destroy();
   }
 }
 
