@@ -20,25 +20,20 @@ Chart.defaults.font.lineHeight = 1;
 class ChartView extends View {
   _diagram = document.getElementById('diagram');
   _delayed; //for the animation delay
+  _chartData = [...Array(7)].map(x => []); // empty array with 7 empty arrays
 
   renderChart(data) {
     // IF there is a current chart, destroy it, so it can be applied to other cities with the same config
     this._checkCurrentChart();
-    const daysArrayKeys = Object.keys(data.weather.days); // zero, one, two....
-    const daysArrayValues = Object.values(data.weather.days); // data for: zero, one, two....
-    const dayNames = Object.values(data.dayNames); // 0: current day (friday) / 1: tomorrow (saturday)
 
-    const chart_data = [...Array(7)].map(x => []); // empty array with 7 empty arrays
+    // Fill the chartData object with data which will be displayed (days+values)
+    this._fillChartData(data);
 
-    daysArrayKeys.forEach((_, i) => {
-      chart_data[i].time = dayNames[i].slice(0, 3);
-      chart_data[i].chance = daysArrayValues[i].precipitation_probability_max;
-    });
-
-    new Chart(this._diagram, this._precipitationChart(chart_data)); // create chart
+    // create chart
+    new Chart(this._diagram, this._precipitationChart());
   }
 
-  _precipitationChart(chart_data) {
+  _precipitationChart() {
     return {
       type: 'bar',
       // -----------OPTIONS----------- //
@@ -106,10 +101,10 @@ class ChartView extends View {
 
       // -----------DATA----------- //
       data: {
-        labels: chart_data.map(row => row.time),
+        labels: this._chartData.map(row => row.time),
         datasets: [
           {
-            data: chart_data.map(row => row.chance),
+            data: this._chartData.map(row => row.chance),
             backgroundColor: '#5f92b5', // background color of the bars
             hoverBackgroundColor: '#4c7591', // on hover
             borderRadius: 100,
@@ -120,9 +115,22 @@ class ChartView extends View {
       },
     };
   }
+
   _checkCurrentChart() {
     const currentChart = Chart.getChart('diagram');
     if (currentChart) currentChart.destroy();
+  }
+
+  _fillChartData(data) {
+    const daysArrayKeys = Object.keys(data.weather.days); // zero, one, two....
+    const daysArrayValues = Object.values(data.weather.days); // data for: zero, one, two....
+    const dayNames = Object.values(data.dayNames); // 0: current day (friday) / 1: tomorrow (saturday)
+
+    daysArrayKeys.forEach((_, i) => {
+      this._chartData[i].time = dayNames[i].slice(0, 3);
+      this._chartData[i].chance =
+        daysArrayValues[i].precipitation_probability_max;
+    });
   }
 }
 
