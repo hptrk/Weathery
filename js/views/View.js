@@ -73,6 +73,14 @@ export default class View {
     this._todayButton.classList.remove('forecast__active-item');
   }
 
+  _addHoverEffect() {
+    this._parentElement.addEventListener('mousemove', e => {
+      const { x, y } = this._parentElement.getBoundingClientRect();
+      this._parentElement.style.setProperty('--x', e.clientX - x);
+      this._parentElement.style.setProperty('--y', e.clientY - y);
+    });
+  }
+
   async renderError(message = this._errorMessage) {
     this._errorBox.innerHTML = `${message}`;
     this._errorBox.style.opacity = '1'; // reveal the box

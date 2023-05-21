@@ -1,12 +1,12 @@
 //---------- This view is responsible for rendering the "favorite cities" (top left menu icon) ----------//
 
 import View from './View.js';
-import { like, liked, pin, pinned } from '../../icons/likeSVG.js';
+import { liked, pin, pinned } from '../../icons/likeSVG.js';
 import { sleep } from '../helpers.js';
-import { mark } from 'regenerator-runtime';
 
 class FavoriteView extends View {
   _parentElement = document.querySelector('.navigation__favorites');
+  _favoriteData;
   _menuButton = document.querySelectorAll('.navigation__icon-box')[0]; // [0]-menu, [1]-info
   _infoButton = document.querySelectorAll('.navigation__icon-box')[1];
   _checkbox = document.querySelector('.navigation__icon-checkbox');
@@ -19,19 +19,18 @@ class FavoriteView extends View {
   _errorMessage = `You've reached the maximum number of pinned cities. Please unpin a city before adding a new one.`;
 
   addHandlerRender(handler) {
-    this._menuButton.addEventListener('click', handler); // open list
+    // Open favorite list on click
+    this._menuButton.addEventListener('click', handler);
+
+    // Close list on searchbar focus
     this._inputField.addEventListener('focus', () => {
-      //close list on searchbar focus
       this._hideFavoriteList();
     });
 
-    // shiny hover effect
-    this._parentElement.addEventListener('mousemove', e => {
-      const { x, y } = this._parentElement.getBoundingClientRect();
-      this._parentElement.style.setProperty('--x', e.clientX - x);
-      this._parentElement.style.setProperty('--y', e.clientY - y);
-    });
+    // Add shiny hover effect
+    this._addHoverEffect();
   }
+
   addHandlerLike(handler) {
     this._parentElement.addEventListener('click', e => {
       this._event = e;
@@ -39,6 +38,7 @@ class FavoriteView extends View {
       this._event.target.classList.contains('results-save') && handler();
     });
   }
+
   addHandlerLoad(handler) {
     this._parentElement.addEventListener('click', e => {
       this._event = e;
@@ -51,7 +51,9 @@ class FavoriteView extends View {
         this._hideFavoriteList();
     });
   }
+
   addHandlerPin(handler) {
+    // Clicking on pin icon
     this._parentElement.addEventListener('click', e => {
       if (
         e.target.classList.contains('pin') ||
@@ -63,7 +65,12 @@ class FavoriteView extends View {
     });
   }
 
-  // REPLACE PIN ICON (not possible with css, have to replace the whole element)
+  // Replace pin icon (not possible with css, have to replace the whole svg element)
+  togglePinIcon() {
+    this._replacePinIcon(
+      this._event.target.classList.contains('pin') ? pinned : pin
+    );
+  }
   _replacePinIcon(icon) {
     this._event.target
       .closest('.navigation__favorites-box--icons :first-child')
@@ -72,14 +79,16 @@ class FavoriteView extends View {
       .closest('.navigation__favorites-box--icons :nth-child(2)')
       .remove();
   }
-  togglePinIcon() {
-    this._replacePinIcon(
-      this._event.target.classList.contains('pin') ? pinned : pin
-    );
-  }
 
   _messageWhenEmpty() {
-    // TEXT //
+    // Define height, gap hider, text
+    this._fillElement();
+
+    // clicking the search button
+    this._handleSearchClick();
+  }
+
+  _fillElement() {
     this._triangle.style.borderBottom = '1.6rem solid var(--color-grey-dark-2)'; // gap hider
     const markup =
       '<span class="emptyText">Currently, there are no saved cities. Please initiate a search to save one.<span class="emptySearch">Search &rarr;</span></span>';
@@ -87,8 +96,9 @@ class FavoriteView extends View {
     this._parentElement.insertAdjacentHTML('beforeend', markup);
     this._parentElement.style.height = 12 + 'rem'; // 2 box height
     this._parentElement.style.boxShadow = '0 2.1rem 2rem rgba(0, 0, 0, 0.3)'; // animating the boxshadow
+  }
 
-    // clicking the search button
+  _handleSearchClick() {
     document.querySelector('.emptySearch').addEventListener('click', () => {
       // hide element
       this._triangle.style.borderBottom = '0 solid var(--color-grey-dark-2)';
@@ -100,54 +110,77 @@ class FavoriteView extends View {
   }
 
   async generateFavorites(data) {
-    // if it is already on screen, remove it
+    this._favoriteData = data;
+    // If it is shown, hide it
+    if (this._checkIfClicked()) return;
+
+    // Check if there are favorited cities
+    if (this._checkIfEmpty()) return;
+
+    // Display favorite cities
+    this._displayFavorites();
+
+    // Handle element's style and animations
+    this._handleStyleAnimatons();
+  }
+
+  _checkIfClicked() {
+    // if it is already on screen, hide it
     if (this._isClicked) {
       this._hideFavoriteList();
-      return;
+      return true;
     }
     this._isClicked = true;
-
-    const favoritesNumber = data.length; // this is how many favorite city should be displayed
-
-    if (!favoritesNumber) {
+    return false;
+  }
+  _checkIfEmpty() {
+    if (!this._favoriteData.length) {
       this._messageWhenEmpty();
-      return;
+      return true;
     }
+    return false;
+  }
 
-    const result = i =>
-      `
+  _displayFavorites() {
+    // this forEach runs the result() function 'favoriteData.length' times
+    Array.from({ length: this._favoriteData.length }).forEach((_, i) => {
+      this._parentElement.innerHTML += this._favCityMarkup(i);
+    });
+  }
+
+  _favCityMarkup(i) {
+    return `
     <div class="navigation__favorites-box">
               <div class="navigation__favorites-box--location">
                 <span class="navigation__favorites-box--city">${
-                  data[i].city
+                  this._favoriteData[i].city
                 }</span>
                 <span class="navigation__favorites-box--country">${
-                  data[i].country
+                  this._favoriteData[i].country
                 }</span>
               </div>
               <div class="navigation__favorites-box--icons">
-                ${data[i].isPinned ? pinned : pin}
+                ${this._favoriteData[i].isPinned ? pinned : pin}
                 ${liked}
               </div>
       </div>`;
+  }
 
-    // this forEach runs the result() function 'favoritesNumber' times
-    Array.from({ length: favoritesNumber }).forEach((_, i) => {
-      this._parentElement.innerHTML += result(i);
-    });
-
+  async _handleStyleAnimatons() {
     // add HEIGHT for animation
     this._parentElement.style.height =
-      favoritesNumber * (window.innerWidth > 1100 ? 6 : 9) + 'rem'; //*6 because 1 box is 6rem
-    this._parentElement.style.boxShadow = '0 2.1rem 2rem rgba(0, 0, 0, 0.3)'; // animating the boxshadow
+      this._favoriteData.length * (window.innerWidth > 1100 ? 6 : 9) + 'rem';
+    this._parentElement.style.boxShadow = '0 2.1rem 2rem rgba(0, 0, 0, 0.3)'; // animating the box shadow
     this._parentElement.style.overflowY = `${
-      favoritesNumber > 9 ? 'scroll' : 'hidden'
+      this._favoriteData.length > 9 ? 'scroll' : 'hidden'
     }`;
 
     this._triangle.style.left = '5%';
     await sleep(0); // bugfix for switching the gaphider's left position when clicking the info box
     this._triangle.style.borderBottom = '1.6rem solid var(--color-grey-dark-2)';
+
     this._likeAnimation(); // when removing from list
+
     this._hideOnInfoClick(); // hide list when clicking on the info button
   }
 
@@ -162,7 +195,15 @@ class FavoriteView extends View {
   }
 
   async refreshOnClick() {
-    // clicked city
+    // Remove clicked from layout
+    this._removeClicked();
+
+    // Animation on click
+    this._animationOnClick();
+  }
+
+  async _removeClicked() {
+    // Clicked city
     const clickedElement = this._event.target.closest(
       '.navigation__favorites-box'
     );
@@ -170,8 +211,9 @@ class FavoriteView extends View {
     clickedElement.classList.add('fade-out');
     await sleep(0.3); // wait for animation
     clickedElement.remove(); // remove from layout
+  }
 
-    // -- ANIMATION --
+  _animationOnClick() {
     this._parentElement.style.height = `${
       this._parentElement.clientHeight -
       6 * parseFloat(getComputedStyle(document.documentElement).fontSize)
@@ -190,8 +232,9 @@ class FavoriteView extends View {
       this._isClicked = false;
     }
   }
+
   _hideOnInfoClick() {
-    this._infoButton.addEventListener('click', async () => {
+    this._infoButton.addEventListener('click', () => {
       this._hideFavoriteList();
     });
   }
