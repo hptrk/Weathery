@@ -7,20 +7,71 @@ import { pin } from '../../icons/likeSVG.js';
 class PinnedView extends View {
   _parentElement = document.querySelector('.pinned__container');
   _event;
+  _pinnedData;
 
   addHandlerRender(handler) {
+    // Clicking on 'Pin cities' (when empty)
     this._parentElement.addEventListener('click', e => {
       e.target.closest('.pinBox') && handler();
     });
   }
 
   addHandlerLoad(handler) {
+    // Clicking on a pinned city
     this._parentElement.addEventListener('click', e => {
       this._event = e;
       e.target.closest('.pinned__container-card') &&
         !e.target.closest('.pinBox') &&
         handler(false, true);
     });
+  }
+
+  async generatePinnedCities(data) {
+    this._pinnedData = data;
+
+    // Put element to default empty state for clear transition
+    await this._putToDefaultState();
+
+    // add the pinned city to the DOM
+    this._displayPinnedCity();
+
+    this._cardWhenEmpty(data.length);
+  }
+
+  _displayPinnedCity() {
+    Array.from({ length: this._pinnedData.length }).forEach((_, i) => {
+      this._parentElement.insertAdjacentHTML(
+        'beforeend',
+        this._pinnedCardMarkup(i)
+      );
+      this._parentElement.style.opacity = '1';
+    });
+  }
+  _pinnedCardMarkup(i) {
+    return `
+      <figure class="pinned__container-card">
+          <div class="pinned__container-card--texts">
+             <span>${this._pinnedData[i].country}</span>
+             <span>${this._pinnedData[i].city}</span>
+             <span>${this._pinnedData[i].description}</span>
+           </div>
+  
+          <div class="pinned__container-card--weather">
+            <span class="numbers">${
+              this._pinnedData[i].temperature
+            }&#176;</span>
+            <img src="${getSVGLink(
+              this._pinnedData[i].icon
+            )}" class="icon-weather" />
+          </div>
+      </figure>
+      `;
+  }
+
+  async _putToDefaultState() {
+    this._parentElement.style.opacity = '0';
+    await sleep(0.1); // wait for animation
+    this._parentElement.innerHTML = '';
   }
 
   _cardWhenEmpty(length) {
@@ -39,35 +90,6 @@ class PinnedView extends View {
         this._parentElement.style.opacity = '1';
       });
     }
-  }
-
-  async generatePinnedCities(data) {
-    this._parentElement.style.opacity = '0';
-
-    await sleep(0.1);
-    this._parentElement.innerHTML = '';
-    const card = i => {
-      return `
-    <figure class="pinned__container-card">
-        <div class="pinned__container-card--texts">
-           <span>${data[i].country}</span>
-           <span>${data[i].city}</span>
-           <span>${data[i].description}</span>
-         </div>
-
-        <div class="pinned__container-card--weather">
-          <span class="numbers">${data[i].temperature}&#176;</span>
-          <img src="${getSVGLink(data[i].icon)}" class="icon-weather" />
-        </div>
-    </figure>
-    `;
-    };
-    Array.from({ length: data.length }).forEach((_, i) => {
-      this._parentElement.insertAdjacentHTML('beforeend', card(i));
-      this._parentElement.style.opacity = '1';
-    }); // add the pinned city to the DOM
-
-    this._cardWhenEmpty(data.length);
   }
 }
 export default new PinnedView();
