@@ -12,9 +12,11 @@ class InfoView extends View {
   _triangle = document.querySelector('.gaphider');
 
   addHandlerRender(handler) {
-    this._infoButton.addEventListener('click', handler); // open info box
+    // Open info box (click)
+    this._infoButton.addEventListener('click', handler);
+
+    // Close box on searchbar focus
     this._inputField.addEventListener('focus', () => {
-      // close box on searchbar focus
       this._hideInfoBox();
     });
 
@@ -23,13 +25,29 @@ class InfoView extends View {
   }
 
   async renderInfoBox() {
-    // if it is already on screen, remove it
+    // If it is shown, hide it
+    if (this._checkIfClicked()) return;
+
+    // Display favorite cities
+    this._displayInfo();
+
+    // Handle element's style and animations
+    this._handleStyleAnimatons();
+
+    this._hideListOnClick(); // hide info box when clicking on the list
+    this._addGithubLogoListener(); // open Weathery github page on click
+  }
+
+  _checkIfClicked() {
     if (this._isClicked) {
       this._hideInfoBox();
-      return;
+      return true;
     }
     this._isClicked = true;
+    return false;
+  }
 
+  _displayInfo() {
     const markup = `
     <div class="weathery-logo"></div>
     <div class="navigation__info-text">
@@ -42,7 +60,9 @@ class InfoView extends View {
 
     `;
     this._parentElement.insertAdjacentHTML('beforeend', markup);
-    // add HEIGHT for animation
+  }
+
+  async _handleStyleAnimatons() {
     this._parentElement.style.height = `${
       window.innerWidth > 1100 ? 30 : 36
     }rem`;
@@ -50,9 +70,6 @@ class InfoView extends View {
     this._triangle.style.left = '65%';
     await sleep(0); // bugfix for switching the gaphider's left position when clicking the list
     this._triangle.style.borderBottom = '1.6rem solid var(--color-grey-dark-2)';
-
-    this._hideListOnClick(); // hide info box when clicking on the list
-    this._addGithubLogoListener(); // open Weathery github page on click
   }
 
   async _hideInfoBox() {
