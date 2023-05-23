@@ -1,16 +1,16 @@
 .navigation {
-  //element container
+  // element container
   &__location {
     display: flex;
     align-items: center;
     margin-right: auto;
     gap: 0.8rem;
-    //like icon
+    // like icon
     & > svg {
       height: 3rem;
       width: 3rem;
     }
-    //location text
+    // location text
     &-text {
       font-size: 1.8rem;
       font-weight: 300;

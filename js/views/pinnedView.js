@@ -36,7 +36,7 @@ class PinnedView extends View {
     // Put element to default empty state for clear transition
     await this._putToDefaultState();
 
-    // add the pinned city to the DOM
+    // Add the pinned city to the DOM
     this._displayPinnedCity();
 
     this._cardWhenEmpty(data.length);

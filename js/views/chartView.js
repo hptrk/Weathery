@@ -19,7 +19,7 @@ Chart.defaults.font.lineHeight = 1;
 
 class ChartView extends View {
   _diagram = document.getElementById('diagram');
-  _delayed; //for the animation delay
+  _delayed; // for the animation delay
   _chartData = [...Array(7)].map(x => []); // empty array with 7 empty arrays
 
   // ---------- MAIN FUNCTION ---------- //
@@ -86,7 +86,7 @@ class ChartView extends View {
         },
 
         responsive: true, // benefits on resizing
-        aspectRatio: 2 / 1.34, //default is 2/1 | this is a more responsible way to adjust height
+        aspectRatio: 2 / 1.34, // default is 2/1 | this is a more responsible way to adjust height
         // ---ANIMATION--- //
         animation: {
           duration: 1000, // duration of loading animation

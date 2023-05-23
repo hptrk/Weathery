@@ -135,7 +135,7 @@ class FavoriteView extends View {
     // Define height, gap hider, text
     this._fillElement();
 
-    // clicking the search button
+    // Clicking the search button
     this._handleSearchClick();
   }
 
@@ -161,7 +161,7 @@ class FavoriteView extends View {
   }
 
   _displayFavorites() {
-    // this forEach runs the result() function 'favoriteData.length' times
+    // This forEach runs the result() function 'favoriteData.length' times
     Array.from({ length: this._favoriteData.length }).forEach((_, i) => {
       this._parentElement.innerHTML += this._favCityMarkup(i);
     });

@@ -20,7 +20,7 @@
     &-checkbox {
       display: none;
     }
-    //LIST ICON STYLE
+    // LIST ICON STYLE
     &-list {
       position: relative;
       margin-top: 50%;
@@ -29,7 +29,7 @@
       &::before,
       &::after {
         display: inline-block;
-        width: 2.5rem; //currently half of the background width
+        width: 2.5rem; // currently half of the background width
         height: 2px;
         border-radius: 100px;
         background-color: var(--color-grey-light);
@@ -49,7 +49,7 @@
         top: 0.8rem;
       }
     }
-    //LIST ICON  HOVER FUNCTIONALITY
+    // LIST ICON  HOVER FUNCTIONALITY
     &-box:hover &-list::before {
       transform: translateY(-0.2rem);
     }
@@ -68,7 +68,7 @@
       top: 0;
       transform: rotate(-135deg); // rotate the bottom line
     }
-    //INFO ICON STYLE
+    // INFO ICON STYLE
     &-info {
       position: relative;
       width: 4px;
@@ -93,7 +93,7 @@
         height: 4px;
       }
     }
-    //INFO ICON HOVER FUNCTIONALITY
+    // INFO ICON HOVER FUNCTIONALITY
     &-box:hover &-info::before {
       transform: translateY(-0.4rem);
     }
@@ -101,7 +101,7 @@
       margin-top: 2.2rem;
     }
   }
-  //LIST ICON OPENED STATE
+  // LIST ICON OPENED STATE
   &__favorites {
     cursor: pointer;
     position: absolute;
@@ -295,7 +295,7 @@
           height: 5px;
         }
       }
-      //INFO ICON HOVER FUNCTIONALITY
+      // INFO ICON HOVER FUNCTIONALITY
       &-box:hover &-info::before {
         transform: translateY(-0.5rem);
       }

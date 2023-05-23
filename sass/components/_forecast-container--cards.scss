@@ -2,7 +2,7 @@
   &__container {
     overflow-x: scroll;
     overflow-y: hidden;
-    //non active cards (or common values with the active one)
+    // non active cards (or common values with the active one)
     &-card {
       border-radius: 3.2rem;
       height: 21.9rem;
@@ -33,16 +33,16 @@
         }
       }
 
-      //header of the card elements
+      // header of the card elements
       &--header {
-        position: relative; //for the bottom line
+        position: relative; // for the bottom line
         padding: 1.2rem 2rem;
         text-align: center;
         font-size: 1.9rem;
         color: var(--color-grey-light);
         font-weight: 700;
 
-        //the grey separator line
+        // the grey separator line
         &::after {
           content: '';
           position: absolute;
@@ -56,13 +56,13 @@
       }
       &--main {
         padding: 0.5rem 0;
-        //CENTER ELEMENT (for example: svg icon)
+        // CENTER ELEMENT (for example: svg icon)
         & > :first-child {
           margin: 0.5rem auto 0 auto;
           display: flex;
           justify-content: center;
         }
-        //BOTTOM ELEMENT (for example: degree celsius)
+        // BOTTOM ELEMENT (for example: degree celsius)
         & > :last-child {
           font-size: 4rem;
           font-weight: 700;
@@ -72,7 +72,7 @@
           align-items: center;
           flex-direction: column;
           gap: 0;
-          //MINIMUM TEMPEREATURE (only on cardsview)
+          // MINIMUM TEMPEREATURE (only on cardsview)
           & > :last-child {
             color: var(--color-lightblue-main);
             margin-top: -1rem;
@@ -82,13 +82,13 @@
       }
     }
   }
-  //active card style
+  // active card style
   &__active-card {
     background-color: var(--color-lightblue-main);
-    overflow: hidden; //making the border radius work
+    overflow: hidden; // making the border radius work
 
     & > .forecast__container-card {
-      //header of the active card (example: day + time)
+      // header of the active card (example: day + time)
       &--header {
         background-color: var(--color-lightblue-main-shade);
         color: black;
@@ -116,14 +116,14 @@
         }
 
         &::after {
-          display: none; //don't need the separator line
+          display: none; // don't need the separator line
         }
       }
-      //main content of the active card (example: stats)
+      // main content of the active card (example: stats)
       &--main {
         color: black;
         padding: 0.5rem 2rem;
-        //top row: degree celsius + svg icon
+        // top row: degree celsius + svg icon
         & > :first-child {
           display: flex;
           justify-content: space-between;
@@ -139,7 +139,7 @@
 
           // ICON IS STYLED WITH UTILITY CLASS
         }
-        //bottom row: stats
+        // bottom row: stats
         & > :last-child {
           display: flex;
           justify-content: space-between;
@@ -154,7 +154,7 @@
             color: var(--color-blueish-grey);
             font-weight: 400;
 
-            //main datas to highlight
+            // main datas to highlight
             & > li > strong {
               color: #131618;
               font-weight: 700;

@@ -1,6 +1,6 @@
 .forecast {
   &__header {
-    //Today | Tomorrow | Next 7 days  section
+    // Today | Tomorrow | Next 7 days  section
     &-menu {
       display: flex;
       justify-content: space-between;
@@ -14,7 +14,7 @@
         cursor: pointer;
         transition: all 0.2s;
 
-        //hover effect on the non active options
+        // hover effect on the non active options
         &:not(.forecast__active-item):hover {
           transform: scaleX(1.05);
         }

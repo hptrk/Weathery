@@ -2,7 +2,7 @@ body {
   font-family: $font-primary;
   font-weight: 400;
   font-size: 1.6rem;
-  text-rendering: optimizeLegibility; //might change if loading speed is slow
+  text-rendering: optimizeLegibility; // might change if loading speed is slow
   line-height: 1.6;
   color: var(--color-grey-light);
 }

@@ -14,7 +14,7 @@
     transition: all 0.2s;
     transition-timing-function: ease-out;
 
-    //on focus
+    // on focus
     &:focus-within {
       transform: scale(1.02);
     }
@@ -22,7 +22,7 @@
       transform: scale(1.1);
     }
 
-    //search svg icon
+    // search svg icon
     &-icon {
       z-index: 9999;
       transition: all 0.2s;
@@ -30,7 +30,7 @@
       height: 2.4rem;
       width: 2.4rem;
     }
-    //text field
+    // text field
     &-input {
       z-index: 9999;
       width: 100%;
@@ -41,7 +41,7 @@
       &:focus {
         outline: none;
       }
-      //text when nothing is typed in
+      // text when nothing is typed in
       &::placeholder {
         color: var(--color-grey-light-2);
       }
@@ -51,7 +51,7 @@
       top: 0; // make room for a border radius hider div
       left: 0;
       width: 100%;
-      //so the top border radius does not conflict
+      // so the top border radius does not conflict
       background: linear-gradient(
         to bottom,
         transparent 2.5rem,

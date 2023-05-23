@@ -16,7 +16,7 @@ import {
 } from './helpers';
 import { pinned } from '../icons/likeSVG';
 
-// current state object
+// Current state object
 export const state = {
   currentTime: '',
   dayNames: {}, // zero: current day, one: tomorrow, etc..
@@ -32,7 +32,7 @@ export const state = {
 };
 
 // ---------- WORKING WITH WEATHER DATAS (forecast section) ---------- //
-// creates a weather object based on open-meteo API
+// Creates a weather object based on open-meteo API
 const createWeatherObject = function (data) {
   // API has some data about the current weather
   const { current_weather: current } = data;
@@ -79,7 +79,7 @@ const createMiniObject = function (data) {
   };
 };
 
-// load current position + weather
+// Load current position + weather
 export const loadLocation = async () => {
   if (!navigator.geolocation)
     return console.error('💥 Geolocation is not supported by your browser 💥');
@@ -91,7 +91,7 @@ export const loadLocation = async () => {
   state.location.longitude = pos.coords.longitude;
 };
 
-// loading the data from open-meteo API
+// Loading the data from open-meteo API
 export const loadWeather = async function (
   lat = state.location.latitude,
   long = state.location.longitude,

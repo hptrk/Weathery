@@ -1,9 +1,9 @@
 .settingsbox {
   &__switcher {
-    //invisible checkbox for toggle
+    // invisible checkbox for toggle
     &-checkbox {
       display: none;
-      //background of the whole element
+      // background of the whole element
       & + label {
         position: relative;
         cursor: pointer;
@@ -24,7 +24,7 @@
           z-index: 1000;
         }
 
-        //active setting background (round)
+        // active setting background (round)
         &::before {
           content: '';
           position: absolute;
@@ -44,17 +44,17 @@
       }
 
       &:checked + label::before {
-        transform: translateX(-100%); //move left with own size
+        transform: translateX(-100%); // move left with own size
       }
       &:checked + label > .sun {
-        //sun icon
+        // sun icon
         transition-property: stroke, fill;
         transition-delay: 0.1s;
         fill: var(--color-grey-dark-3);
         stroke: var(--color-grey-dark-3);
       }
       &:not(:checked) + label > .moon {
-        //moon icon
+        // moon icon
         transition-property: stroke, fill;
         transition-delay: 0.1s;
         fill: black;

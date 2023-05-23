@@ -25,7 +25,7 @@ import { N, NE, E, SE, S, SW, W, NW } from '../icons/directionSVGS';
 import { icon } from 'leaflet';
 
 ////////////////////
-// rejecting timeout needed for promise race
+// Rejecting timeout needed for promise race
 const timeout = function (s) {
   return new Promise(function (_, reject) {
     setTimeout(() => {
@@ -47,7 +47,7 @@ export const sleep = function (s) {
 ////////////////////
 // AJAX CALL
 export const AJAX = async function (url) {
-  //GET
+  // GET
   try {
     const fetchPro = fetch(url);
     const res = await Promise.race([fetchPro, timeout(TIMEOUT_SEC)]); //if the request is taking too long, it will throw an error
@@ -73,7 +73,7 @@ export const round = value => {
 };
 
 ////////////////////
-// get data from TODAY/TOMORROW to display on cards
+// Get data from TODAY/TOMORROW to display on cards
 const getTodayTomorrow = (data, dayNumber, precprob = false) => {
   const hour = getHour(); // current hour
   const mapArrayRounded = array => {
@@ -81,10 +81,10 @@ const getTodayTomorrow = (data, dayNumber, precprob = false) => {
     return array.map(i => round(i));
   };
 
-  // ---TOMORROW---
+  // ---TOMORROW--- //
   if (dayNumber === 1) return mapArrayRounded(data.slice(24, 48)); // 00:00-23:00
 
-  // ---TODAY---
+  // ---TODAY--- //
   const skipNum = precprob ? 0 : 1; // if we need the precipitation probability, the current data is needed for chart
   // (need to return at least 6 values becaues there are 6 cards)
   //
@@ -442,7 +442,7 @@ const defaultStyles = {
   mapContainerHeight: map__container.style.height,
 };
 
-// this function is used when the user clicks on the fullscreen icon (only the map will be visible)
+// This function is used when the user clicks on the fullscreen icon (only the map will be visible)
 export const setMapFullscreen = function () {
   navigation.style.display = 'none';
   settings.style.display = 'none';
@@ -458,7 +458,7 @@ export const setMapFullscreen = function () {
   map.style.width = '100%';
   map__container.style.height = '67rem';
 };
-// this function is used when the user resets everything to default (the map will be the default size)
+// This function is used when the user resets everything to default (the map will be the default size)
 export const setMapToDefault = function () {
   navigation.style.display = defaultStyles.navigationDisplay;
   settings.style.display = defaultStyles.settingsDisplay;

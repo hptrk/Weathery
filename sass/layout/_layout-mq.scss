@@ -53,7 +53,7 @@
   .container {
     grid-template-rows: repeat(4, min-content);
     grid-template-columns: repeat(4, 1fr);
-    row-gap: 4rem; //more whitespace
+    row-gap: 4rem; // more whitespace
     margin-top: 4rem; // space for the location on the top
   }
   .header {
@@ -99,7 +99,7 @@
 // 880px
 @include tablet-lg {
   .container {
-    row-gap: 5rem; //more whitespace
+    row-gap: 5rem; // more whitespace
   }
   .diagram {
     justify-content: start;
@@ -134,7 +134,7 @@
   .container {
     grid-template-rows: repeat(5, min-content);
     grid-template-columns: 1fr;
-    row-gap: 5rem; //more whitespace
+    row-gap: 5rem; // more whitespace
     margin-top: 0; // remove space for the location on the top
   }
   .header {

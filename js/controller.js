@@ -286,6 +286,8 @@ const controlDisplayInfoBox = function () {
   infoView.renderInfoBox();
 };
 
+// ---------- INITIALIZATION ---------- //
+
 const init = function () {
   controlStarterState(); // Window load
   cardsView.addHandlerRender(controlNextDays); // 'Next 7 days' button click
