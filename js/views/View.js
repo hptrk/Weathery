@@ -73,6 +73,32 @@ export default class View {
     this._todayButton.classList.remove('forecast__active-item');
   }
 
+  _flipCards() {
+    const cards = document.querySelectorAll('.forecast__container-card');
+    cards.forEach(async (c, i) => {
+      await sleep(i * 0.1); // 100MS delay for each card (animation)
+      if (i === 0) return; // SKIP first card
+      c.classList.toggle('is-flipped');
+    });
+  }
+
+  _resetSwitcher() {
+    this._checkbox.checked = false; // reset the switcher back to the forecast state
+  }
+
+  _resetCards() {
+    // remove cards (skip the first big card)
+    const smallCards = document.querySelectorAll('.forecast__container-card');
+    smallCards.forEach((card, i) => i !== 0 && card.remove());
+  }
+
+  _getCardHour(num) {
+    // set the hour mark of the card
+    const date = new Date();
+    date.setTime(date.getTime() + (num + 1) * 60 * 60 * 1000);
+    return date;
+  }
+
   _addHoverEffect() {
     this._parentElement.addEventListener('mousemove', e => {
       const { x, y } = this._parentElement.getBoundingClientRect();

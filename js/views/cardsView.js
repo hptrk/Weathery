@@ -44,15 +44,11 @@ class CardsView extends View {
   }
 
   _generateCards() {
-    const smallCards = document.querySelectorAll('.forecast__container-card');
-    smallCards.forEach((card, i) => i !== 0 && card.remove()); // remove cards (skip the first big card)
+    // Reset cards first (remove previous content)
+    this._resetCards();
 
-    ['one', 'two', 'three', 'four', 'five', 'six'].forEach(num =>
-      this._parentElement.insertAdjacentHTML(
-        'beforeend',
-        this._generateCard(num)
-      )
-    );
+    // Render weather cards
+    this._renderCards();
   }
 
   _generateMarkup() {
@@ -123,18 +119,11 @@ class CardsView extends View {
     this._checkbox.checked = false; // reset the switcher back to the forecast state
   }
 
-  _flipCards() {
-    const cards = document.querySelectorAll('.forecast__container-card');
-    cards.forEach(async (c, i) => {
-      await sleep(i * 0.1); // 100MS delay for each card (animation)
-      if (i === 0) return; // SKIP first card
-      c.classList.toggle('is-flipped');
-    });
-  }
-
   _updateDOM(data) {
     const header = document.querySelector('.forecast__container-card--header'); // card's header
-    header.innerHTML = ''; // clear
+    // clear
+    header.innerHTML = '';
+    // fill
     header.insertAdjacentHTML(
       'afterbegin',
       `<span>${
@@ -143,10 +132,20 @@ class CardsView extends View {
         0,
         5
       )}<span class="sec">${data.currentTime.slice(6)}</span></span>`
-    ); // fill
+    );
   }
 
-  _generateCard(num) {
+  _renderCards() {
+    // Add card to the DOM
+    ['one', 'two', 'three', 'four', 'five', 'six'].forEach(num =>
+      this._parentElement.insertAdjacentHTML(
+        'beforeend',
+        this._generateCardMarkup(num)
+      )
+    );
+  }
+
+  _generateCardMarkup(num) {
     return `
     <figure class="forecast__container-card">
     <div class="forecast__container-card_front">
