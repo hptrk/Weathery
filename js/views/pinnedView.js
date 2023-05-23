@@ -9,6 +9,8 @@ class PinnedView extends View {
   _event;
   _pinnedData;
 
+  // ---------- HANDLERS ---------- //
+
   addHandlerRender(handler) {
     // Clicking on 'Pin cities' (when empty)
     this._parentElement.addEventListener('click', e => {
@@ -26,6 +28,8 @@ class PinnedView extends View {
     });
   }
 
+  // ---------- MAIN FUNCTION ---------- //
+
   async generatePinnedCities(data) {
     this._pinnedData = data;
 
@@ -38,6 +42,14 @@ class PinnedView extends View {
     this._cardWhenEmpty(data.length);
   }
 
+  // ---------- HELPER FUNCTIONS ---------- //
+
+  async _putToDefaultState() {
+    this._parentElement.style.opacity = '0';
+    await sleep(0.1); // wait for animation
+    this._parentElement.innerHTML = '';
+  }
+
   _displayPinnedCity() {
     Array.from({ length: this._pinnedData.length }).forEach((_, i) => {
       this._parentElement.insertAdjacentHTML(
@@ -47,6 +59,7 @@ class PinnedView extends View {
       this._parentElement.style.opacity = '1';
     });
   }
+
   _pinnedCardMarkup(i) {
     return `
       <figure class="pinned__container-card">
@@ -66,12 +79,6 @@ class PinnedView extends View {
           </div>
       </figure>
       `;
-  }
-
-  async _putToDefaultState() {
-    this._parentElement.style.opacity = '0';
-    await sleep(0.1); // wait for animation
-    this._parentElement.innerHTML = '';
   }
 
   _cardWhenEmpty(length) {

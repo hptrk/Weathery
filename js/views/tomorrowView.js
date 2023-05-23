@@ -14,13 +14,11 @@ class TomorrowView extends View {
   _switcher = document.getElementById('forecastSwitcher');
   _checkbox = document.querySelector('.forecast__header-switcher--checkbox');
 
+  // ---------- DEFAULTS ---------- //
+
   constructor() {
     super();
     this._addListener();
-  }
-
-  addHandlerRender(handler) {
-    this._tomorrowButton.addEventListener('click', handler);
   }
 
   _addListener() {
@@ -36,6 +34,14 @@ class TomorrowView extends View {
     });
   }
 
+  // ---------- HANDLER ---------- //
+
+  addHandlerRender(handler) {
+    this._tomorrowButton.addEventListener('click', handler);
+  }
+
+  // ---------- MAIN FUNCTION ---------- //
+
   _generateCards() {
     // Reset cards first (remove previous content)
     this._resetCards();
@@ -46,6 +52,8 @@ class TomorrowView extends View {
     // Render weather cards
     this._renderCards();
   }
+
+  // ---------- HELPER FUNCTIONS ---------- //
 
   _renderCards() {
     // Add card to the DOM

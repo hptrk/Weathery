@@ -11,8 +11,10 @@ export default class View {
   _tomorrowButton = this._buttons[1];
   _nextDaysButton = this._buttons[2];
 
-  //if render is false, create markup string instead of rendering to the DOM
+  // ---------- RENDER FUNCTIONS ---------- //
+
   render(data, render = true) {
+    // If render is false, create markup string instead of rendering to the DOM
     this._data = data;
     const markup = this._generateMarkup();
 
@@ -22,13 +24,39 @@ export default class View {
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
-  _clear() {
-    this._parentElement.innerHTML = '';
-  }
-
   renderCards(data) {
     this._data = data;
     this._generateCards();
+  }
+
+  async renderError(message = this._errorMessage) {
+    this._errorBox.innerHTML = `${message}`;
+    this._errorBox.style.opacity = '1'; // reveal the box
+    this._errorBox.style.transform = 'translate(-50%, 0%) scale(1.1)'; // sliding in animation
+    await sleep(0.6); // wait for the sliding animation
+    this._errorBox.style.transform = 'translate(-50%, 0%) scale(1)'; // scale back to 1 for pulsating effect
+
+    // progress bar timer
+    this._errorBox.insertAdjacentHTML(
+      'beforeend',
+      `<div class="error-message__timer fade-in"></div>`
+    );
+    const timerElement = document.querySelector('.error-message__timer');
+    // animation
+    await sleep(0.1); // needed for changing the width
+    timerElement.style.width = '0%';
+
+    // hide it after the timer went off
+    await sleep(7);
+    this._errorBox.style.opacity = '0'; // hide the box
+    await sleep(0.6);
+    this._errorBox.innerHTML = '';
+  }
+
+  // ---------- HELPER FUNCTIONS ---------- //
+
+  _clear() {
+    this._parentElement.innerHTML = '';
   }
 
   _removeBoxes() {
@@ -105,29 +133,5 @@ export default class View {
       this._parentElement.style.setProperty('--x', e.clientX - x);
       this._parentElement.style.setProperty('--y', e.clientY - y);
     });
-  }
-
-  async renderError(message = this._errorMessage) {
-    this._errorBox.innerHTML = `${message}`;
-    this._errorBox.style.opacity = '1'; // reveal the box
-    this._errorBox.style.transform = 'translate(-50%, 0%) scale(1.1)'; // sliding in animation
-    await sleep(0.6); // wait for the sliding animation
-    this._errorBox.style.transform = 'translate(-50%, 0%) scale(1)'; // scale back to 1 for pulsating effect
-
-    // progress bar timer
-    this._errorBox.insertAdjacentHTML(
-      'beforeend',
-      `<div class="error-message__timer fade-in"></div>`
-    );
-    const timerElement = document.querySelector('.error-message__timer');
-    // animation
-    await sleep(0.1); // needed for changing the width
-    timerElement.style.width = '0%';
-
-    // hide it after the timer went off
-    await sleep(7);
-    this._errorBox.style.opacity = '0'; // hide the box
-    await sleep(0.6);
-    this._errorBox.innerHTML = '';
   }
 }

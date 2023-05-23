@@ -14,13 +14,11 @@ class CardsView extends View {
   _errorMessage =
     'Something went wrong while retrieving the weather for your city. Please refresh the page and try again.';
 
+  // ---------- DEFAULTS ---------- //
+
   constructor() {
     super();
     this._addListener();
-  }
-
-  addHandlerRender(handler) {
-    this._nextDaysButton.addEventListener('click', handler);
   }
 
   _addListener() {
@@ -36,12 +34,13 @@ class CardsView extends View {
     });
   }
 
-  updateClock(data) {
-    // Need to call the function first for instant DOM update
-    this._updateDOM(data);
-    // The DOM will update every second
-    runEverySec(() => this._updateDOM(data));
+  // ---------- HANDLER ---------- //
+
+  addHandlerRender(handler) {
+    this._nextDaysButton.addEventListener('click', handler);
   }
+
+  // ---------- MAIN FUNCTIONS ---------- //
 
   _generateCards() {
     // Reset cards first (remove previous content)
@@ -49,6 +48,46 @@ class CardsView extends View {
 
     // Render weather cards
     this._renderCards();
+  }
+
+  updateClock(data) {
+    // Need to call the function first for instant DOM update
+    this._updateDOM(data);
+    // The DOM will update every second
+    runEverySec(() => this._updateDOM(data));
+  }
+
+  loadFadeIn() {
+    // works for ALL view
+    const cardsHeader = document.querySelectorAll(
+      '.forecast__container-card--header'
+    );
+    const cardsMain = document.querySelectorAll(
+      '.forecast__container-card--main'
+    );
+
+    [cardsHeader, cardsMain].forEach(nodelist =>
+      nodelist.forEach(c => {
+        this._fadeIn(c);
+      })
+    );
+  }
+
+  async loadFadeOut() {
+    // works for ALL view
+    const cardsHeader = document.querySelectorAll(
+      '.forecast__container-card--header'
+    );
+    const cardsMain = document.querySelectorAll(
+      '.forecast__container-card--main'
+    );
+    [cardsHeader, cardsMain].forEach(nodelist =>
+      nodelist.forEach((c, i) => {
+        if (i === 0) return;
+        this._fadeOut(c);
+      })
+    );
+    await sleep(0.3);
   }
 
   _generateMarkup() {
@@ -109,31 +148,8 @@ class CardsView extends View {
           </figure>
     `;
   }
-  _focusOnNextDays() {
-    this._nextDaysButton.classList.toggle('forecast__active-item');
-    this._tomorrowButton.classList.remove('forecast__active-item');
-    this._todayButton.classList.remove('forecast__active-item');
-  }
 
-  _resetSwitcher() {
-    this._checkbox.checked = false; // reset the switcher back to the forecast state
-  }
-
-  _updateDOM(data) {
-    const header = document.querySelector('.forecast__container-card--header'); // card's header
-    // clear
-    header.innerHTML = '';
-    // fill
-    header.insertAdjacentHTML(
-      'afterbegin',
-      `<span>${
-        data.dayNames.zero
-      }</span><span class="numbers">${data.currentTime.slice(
-        0,
-        5
-      )}<span class="sec">${data.currentTime.slice(6)}</span></span>`
-    );
-  }
+  // ---------- HELPER FUNCTIONS ---------- //
 
   _renderCards() {
     // Add card to the DOM
@@ -186,37 +202,20 @@ class CardsView extends View {
   </figure>`;
   }
 
-  loadFadeIn() {
-    // works for ALL view
-    const cardsHeader = document.querySelectorAll(
-      '.forecast__container-card--header'
+  _updateDOM(data) {
+    const header = document.querySelector('.forecast__container-card--header'); // card's header
+    // clear
+    header.innerHTML = '';
+    // fill
+    header.insertAdjacentHTML(
+      'afterbegin',
+      `<span>${
+        data.dayNames.zero
+      }</span><span class="numbers">${data.currentTime.slice(
+        0,
+        5
+      )}<span class="sec">${data.currentTime.slice(6)}</span></span>`
     );
-    const cardsMain = document.querySelectorAll(
-      '.forecast__container-card--main'
-    );
-
-    [cardsHeader, cardsMain].forEach(nodelist =>
-      nodelist.forEach(c => {
-        this._fadeIn(c);
-      })
-    );
-  }
-
-  async loadFadeOut() {
-    // works for ALL view
-    const cardsHeader = document.querySelectorAll(
-      '.forecast__container-card--header'
-    );
-    const cardsMain = document.querySelectorAll(
-      '.forecast__container-card--main'
-    );
-    [cardsHeader, cardsMain].forEach(nodelist =>
-      nodelist.forEach((c, i) => {
-        if (i === 0) return;
-        this._fadeOut(c);
-      })
-    );
-    await sleep(0.3);
   }
 
   _fadeIn(element) {
@@ -224,6 +223,16 @@ class CardsView extends View {
   }
   _fadeOut(element) {
     element.classList.toggle('fade-out');
+  }
+
+  _focusOnNextDays() {
+    this._nextDaysButton.classList.toggle('forecast__active-item');
+    this._tomorrowButton.classList.remove('forecast__active-item');
+    this._todayButton.classList.remove('forecast__active-item');
+  }
+
+  _resetSwitcher() {
+    this._checkbox.checked = false; // reset the switcher back to the forecast state
   }
 }
 export default new CardsView();

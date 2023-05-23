@@ -22,6 +22,8 @@ class ChartView extends View {
   _delayed; //for the animation delay
   _chartData = [...Array(7)].map(x => []); // empty array with 7 empty arrays
 
+  // ---------- MAIN FUNCTION ---------- //
+
   renderChart(data) {
     // IF there is a current chart, destroy it, so it can be applied to other cities with the same config
     this._checkCurrentChart();
@@ -31,6 +33,25 @@ class ChartView extends View {
 
     // create chart
     new Chart(this._diagram, this._precipitationChart());
+  }
+
+  // ---------- HELPER FUNCTIONS ---------- //
+
+  _checkCurrentChart() {
+    const currentChart = Chart.getChart('diagram');
+    if (currentChart) currentChart.destroy();
+  }
+
+  _fillChartData(data) {
+    const daysArrayKeys = Object.keys(data.weather.days); // zero, one, two....
+    const daysArrayValues = Object.values(data.weather.days); // data for: zero, one, two....
+    const dayNames = Object.values(data.dayNames); // 0: current day (friday) / 1: tomorrow (saturday)
+
+    daysArrayKeys.forEach((_, i) => {
+      this._chartData[i].time = dayNames[i].slice(0, 3);
+      this._chartData[i].chance =
+        daysArrayValues[i].precipitation_probability_max;
+    });
   }
 
   _precipitationChart() {
@@ -114,23 +135,6 @@ class ChartView extends View {
         ],
       },
     };
-  }
-
-  _checkCurrentChart() {
-    const currentChart = Chart.getChart('diagram');
-    if (currentChart) currentChart.destroy();
-  }
-
-  _fillChartData(data) {
-    const daysArrayKeys = Object.keys(data.weather.days); // zero, one, two....
-    const daysArrayValues = Object.values(data.weather.days); // data for: zero, one, two....
-    const dayNames = Object.values(data.dayNames); // 0: current day (friday) / 1: tomorrow (saturday)
-
-    daysArrayKeys.forEach((_, i) => {
-      this._chartData[i].time = dayNames[i].slice(0, 3);
-      this._chartData[i].chance =
-        daysArrayValues[i].precipitation_probability_max;
-    });
   }
 }
 

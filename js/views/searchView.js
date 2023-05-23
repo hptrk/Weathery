@@ -15,16 +15,7 @@ class SearchView extends View {
   _errorMessage =
     'Something went wrong while loading your search results. Please refresh the page and try again.';
 
-  addHandlerRender(render) {
-    // Write in the input field
-    this._inputField.addEventListener('input', async () => {
-      this._inputField.value.length >= 3 && render(); // if the input field has at least 3 characters
-      if (this._inputField.value.length < 3) {
-        this._removeBoxes();
-        this._removeInnerHTML();
-      }
-    });
-  }
+  // ---------- DEFAULTS ---------- //
 
   addBasicConfig() {
     // Submitting input field
@@ -46,32 +37,20 @@ class SearchView extends View {
     });
   }
 
-  _preventFocusLoss(results) {
-    // if there are results
-    if (results) {
-      document
-        .querySelectorAll('.navigation__searchbar-results--box')
-        .forEach(btn =>
-          btn.addEventListener('mousedown', e => {
-            e.preventDefault(); // prevent losing focus on clicking
-          })
-        );
-    }
+  // ---------- HANDLER ---------- //
+
+  addHandlerRender(render) {
+    // Write in the input field
+    this._inputField.addEventListener('input', async () => {
+      this._inputField.value.length >= 3 && render(); // if the input field has at least 3 characters
+      if (this._inputField.value.length < 3) {
+        this._removeBoxes();
+        this._removeInnerHTML();
+      }
+    });
   }
 
-  getValue() {
-    return this._inputField.value;
-  }
-
-  _likeAnimation() {
-    document
-      .querySelectorAll('.navigation__searchbar-results--box svg:last-child')
-      .forEach(heart =>
-        heart.addEventListener('click', () => {
-          heart.classList.toggle('like-clicked');
-        })
-      );
-  }
+  // ---------- MAIN FUNCTIONS ---------- //
 
   generateResults(data, favorites) {
     // Remove previous data
@@ -95,6 +74,19 @@ class SearchView extends View {
     this._preventFocusLoss(this._results.length); // without this prevention the boxes would be removed too fast
   }
 
+  getValue() {
+    return this._inputField.value;
+  }
+
+  // ---------- HELPER FUNCTIONS ---------- //
+
+  _displaySearchResults() {
+    // this forEach runs the _searchResultMarkup() function 'results.length' times
+    Array.from({ length: this._results.length }).forEach((_, i) => {
+      this._parentElement.innerHTML += this._searchResultMarkup(i);
+    });
+  }
+
   _searchResultMarkup(i) {
     return `
 <div class="navigation__searchbar-results--box">
@@ -116,17 +108,33 @@ class SearchView extends View {
 `;
   }
 
-  _displaySearchResults() {
-    // this forEach runs the _searchResultMarkup() function 'results.length' times
-    Array.from({ length: this._results.length }).forEach((_, i) => {
-      this._parentElement.innerHTML += this._searchResultMarkup(i);
-    });
+  _likeAnimation() {
+    document
+      .querySelectorAll('.navigation__searchbar-results--box svg:last-child')
+      .forEach(heart =>
+        heart.addEventListener('click', () => {
+          heart.classList.toggle('like-clicked');
+        })
+      );
   }
 
   _handleStyleAnimations() {
     // add HEIGHT for animation
     this._parentElement.style.height = this._results.length * 5 + 5 + 'rem'; // *5 because 1 box is 5rem, +5 because of border hider
     this._parentElement.style.boxShadow = '0 2.1rem 2rem rgba(0, 0, 0, 0.3)'; // animating the boxshadow
+  }
+
+  _preventFocusLoss(results) {
+    // if there are results
+    if (results) {
+      document
+        .querySelectorAll('.navigation__searchbar-results--box')
+        .forEach(btn =>
+          btn.addEventListener('mousedown', e => {
+            e.preventDefault(); // prevent losing focus on clicking
+          })
+        );
+    }
   }
 }
 export default new SearchView();

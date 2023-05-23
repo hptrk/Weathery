@@ -18,6 +18,8 @@ class FavoriteView extends View {
   _event;
   _errorMessage = `You've reached the maximum number of pinned cities. Please unpin a city before adding a new one.`;
 
+  // ---------- HANDLERS ---------- //
+
   addHandlerRender(handler) {
     // Open favorite list on click
     this._menuButton.addEventListener('click', handler);
@@ -65,19 +67,68 @@ class FavoriteView extends View {
     });
   }
 
-  // Replace pin icon (not possible with css, have to replace the whole svg element)
+  // ---------- MAIN FUNCTIONS ---------- //
+
+  async generateFavorites(data) {
+    this._favoriteData = data;
+    // If it is shown, hide it
+    if (this._checkIfClicked()) return;
+
+    // Check if there are favorited cities
+    if (this._checkIfEmpty()) return;
+
+    // Display favorite cities
+    this._displayFavorites();
+
+    // Handle element's style and animations
+    this._handleStyleAnimatons();
+  }
+
   togglePinIcon() {
+    // Replace pin icon (not possible with css, have to replace the whole svg element)
     this._replacePinIcon(
       this._event.target.classList.contains('pin') ? pinned : pin
     );
   }
-  _replacePinIcon(icon) {
-    this._event.target
-      .closest('.navigation__favorites-box--icons :first-child')
-      .insertAdjacentHTML('beforebegin', icon);
-    this._event.target
-      .closest('.navigation__favorites-box--icons :nth-child(2)')
-      .remove();
+
+  async refreshOnClick() {
+    // Remove clicked from layout
+    this._removeClicked();
+
+    // Animation on click
+    this._animationOnClick();
+  }
+
+  // ---------- HELPER FUNCTIONS ---------- //
+
+  _checkIfClicked() {
+    // if it is already on screen, hide it
+    if (this._isClicked) {
+      this._hideFavoriteList();
+      return true;
+    }
+    this._isClicked = true;
+    return false;
+  }
+
+  async _hideFavoriteList() {
+    if (this._isClicked) {
+      this._triangle.style.borderBottom = '0 solid var(--color-grey-dark-2)';
+      this._removeBoxes();
+      await sleep(0.4); // wait for animation
+      this._checkbox.checked = false;
+      this._removeInnerHTML();
+
+      this._isClicked = false;
+    }
+  }
+
+  _checkIfEmpty() {
+    if (!this._favoriteData.length) {
+      this._messageWhenEmpty();
+      return true;
+    }
+    return false;
   }
 
   _messageWhenEmpty() {
@@ -107,38 +158,6 @@ class FavoriteView extends View {
       // input focus
       this._inputField.focus();
     });
-  }
-
-  async generateFavorites(data) {
-    this._favoriteData = data;
-    // If it is shown, hide it
-    if (this._checkIfClicked()) return;
-
-    // Check if there are favorited cities
-    if (this._checkIfEmpty()) return;
-
-    // Display favorite cities
-    this._displayFavorites();
-
-    // Handle element's style and animations
-    this._handleStyleAnimatons();
-  }
-
-  _checkIfClicked() {
-    // if it is already on screen, hide it
-    if (this._isClicked) {
-      this._hideFavoriteList();
-      return true;
-    }
-    this._isClicked = true;
-    return false;
-  }
-  _checkIfEmpty() {
-    if (!this._favoriteData.length) {
-      this._messageWhenEmpty();
-      return true;
-    }
-    return false;
   }
 
   _displayFavorites() {
@@ -184,22 +203,13 @@ class FavoriteView extends View {
     this._hideOnInfoClick(); // hide list when clicking on the info button
   }
 
-  _likeAnimation() {
-    document
-      .querySelectorAll('.navigation__favorites-box--icons svg:last-child')
-      .forEach(heart =>
-        heart.addEventListener('click', () => {
-          heart.classList.toggle('like-clicked'); // basically removes this class (animation)
-        })
-      );
-  }
-
-  async refreshOnClick() {
-    // Remove clicked from layout
-    this._removeClicked();
-
-    // Animation on click
-    this._animationOnClick();
+  _replacePinIcon(icon) {
+    this._event.target
+      .closest('.navigation__favorites-box--icons :first-child')
+      .insertAdjacentHTML('beforebegin', icon);
+    this._event.target
+      .closest('.navigation__favorites-box--icons :nth-child(2)')
+      .remove();
   }
 
   async _removeClicked() {
@@ -221,16 +231,14 @@ class FavoriteView extends View {
     if (this._parentElement.clientHeight <= 62) this._messageWhenEmpty(); // when empty, display empty message
   }
 
-  async _hideFavoriteList() {
-    if (this._isClicked) {
-      this._triangle.style.borderBottom = '0 solid var(--color-grey-dark-2)';
-      this._removeBoxes();
-      await sleep(0.4); // wait for animation
-      this._checkbox.checked = false;
-      this._removeInnerHTML();
-
-      this._isClicked = false;
-    }
+  _likeAnimation() {
+    document
+      .querySelectorAll('.navigation__favorites-box--icons svg:last-child')
+      .forEach(heart =>
+        heart.addEventListener('click', () => {
+          heart.classList.toggle('like-clicked'); // basically removes this class (animation)
+        })
+      );
   }
 
   _hideOnInfoClick() {

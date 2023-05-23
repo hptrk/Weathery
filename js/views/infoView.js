@@ -11,6 +11,8 @@ class InfoView extends View {
   _isClicked = false;
   _triangle = document.querySelector('.gaphider');
 
+  // ---------- HANDLER ---------- //
+
   addHandlerRender(handler) {
     // Open info box (click)
     this._infoButton.addEventListener('click', handler);
@@ -23,6 +25,8 @@ class InfoView extends View {
     // Add shiny hover effect
     this._addHoverEffect();
   }
+
+  // ---------- MAIN FUNCTION ---------- //
 
   async renderInfoBox() {
     // If it is shown, hide it
@@ -38,6 +42,8 @@ class InfoView extends View {
     this._addGithubLogoListener(); // open Weathery github page on click
   }
 
+  // ---------- HELPER FUNCTIONS ---------- //
+
   _checkIfClicked() {
     if (this._isClicked) {
       this._hideInfoBox();
@@ -45,6 +51,17 @@ class InfoView extends View {
     }
     this._isClicked = true;
     return false;
+  }
+
+  async _hideInfoBox() {
+    if (this._isClicked) {
+      this._triangle.style.borderBottom = '0 solid var(--color-grey-dark-2)';
+      this._removeBoxes();
+      await sleep(0.4); // wait for animation
+      this._removeInnerHTML();
+
+      this._isClicked = false;
+    }
   }
 
   _displayInfo() {
@@ -72,16 +89,6 @@ class InfoView extends View {
     this._triangle.style.borderBottom = '1.6rem solid var(--color-grey-dark-2)';
   }
 
-  async _hideInfoBox() {
-    if (this._isClicked) {
-      this._triangle.style.borderBottom = '0 solid var(--color-grey-dark-2)';
-      this._removeBoxes();
-      await sleep(0.4); // wait for animation
-      this._removeInnerHTML();
-
-      this._isClicked = false;
-    }
-  }
   _hideListOnClick() {
     this._menuButton.addEventListener('click', async () => {
       this._hideInfoBox();

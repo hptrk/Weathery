@@ -4,6 +4,8 @@ import View from './View.js';
 class LocationView extends View {
   _parentElement = document.querySelector('.navigation__location');
 
+  // ---------- HELPER FUNCTION ---------- //
+
   _generateMarkup() {
     return `
    <svg
