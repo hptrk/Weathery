@@ -421,7 +421,6 @@ a.leaflet-popup-close-button {
   border-radius: 2rem;
   transition: height 0.4s, box-shadow 0.2s;
   transition-timing-function: ease-in-out;
-  height: 0;
   overflow: hidden;
   display: flex;
   flex-direction: column;

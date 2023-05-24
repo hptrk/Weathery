@@ -68,10 +68,7 @@ class InfoView extends View {
     const markup = `
     <div class="weathery-logo"></div>
     <div class="navigation__info-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo laborum.
+    I am proud to have worked on this project independently. It was a transformative journey filled with valuable learning experiences and new discoveries. Through this project, I honed my skills and expanded my knowledge in various aspects of development. With its completion, I am excited to showcase this application as a vibrant addition to my portfolio, reflecting my growth, commitment, and passion for creating impactful software solutions.
     </div>
         <div class="navigation__info-copyright">&copy; 2023 Weathery ${githubLogo}</div>
 
@@ -81,7 +78,7 @@ class InfoView extends View {
 
   async _handleStyleAnimatons() {
     this._parentElement.style.height = `${
-      window.innerWidth > 1100 ? 30 : 36
+      window.innerWidth > 1100 ? 47 : 53
     }rem`;
     this._parentElement.style.boxShadow = '0 2.1rem 2rem rgba(0, 0, 0, 0.3)'; // animating the boxshadow
     this._triangle.style.left = '65%';

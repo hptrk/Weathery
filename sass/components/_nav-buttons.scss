@@ -194,14 +194,13 @@
     top: 120%;
     left: 60%;
     z-index: 99999;
-    height: 0;
+    height: 0; // base height is 0, JS will change it
     width: 40rem;
     background-color: var(--color-grey-dark-2);
     border-radius: 2rem;
     //box-shadow: $shadow-big; // ADDED WITH JAVASCRIPT FOR ANIMATION
     transition: height 0.4s, box-shadow 0.2s;
     transition-timing-function: ease-in-out;
-    height: 0; // base height is 0, JS will change it
     overflow: hidden;
 
     display: flex;
