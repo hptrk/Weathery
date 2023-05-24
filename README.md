@@ -34,12 +34,6 @@ Welcome to Weathery, your ultimate companion for accurate and up-to-date weather
 
 9. **Responsive Design**: Weathery is built with a responsive design, ensuring a seamless weather experience across all devices and screen sizes. Whether you're accessing the website from a desktop, laptop, tablet, or smartphone, Weathery adapts effortlessly to provide you with a consistent and user-friendly interface.
 
-## Screenshots
-
-![Weathery on desktop](readme_images/Weathery_Desktop.png)
-![Weathery on tablet](readme_images/Weathery_Tablet.png)
-![Weathery on mobile](readme_images/Weathery_Mobile.png)
-
 ## Technologies Used
 
 - **HTML** is the backbone of this project, providing the structure and layout for Weathery with _semantic_ tags
@@ -73,3 +67,13 @@ If you have any questions, suggestions, or feedback, feel free to reach out:
 - Twitter: [@hptrk0916](https://twitter.com/hptrk0916)
 - GitHub: [hptrk](https://github.com/hptrk)
 - Discord: [hptrk#9820](https://discord.com/)
+
+## Screenshots
+
+## ![Weathery on desktop](readme_images/Weathery_Desktop.png)
+
+## ![Weathery on tablet](readme_images/Weathery_Tablet.png)
+
+## ![Weathery on mobile](readme_images/Weathery_Mobile.png)
+
+## ![Weathery searching](readme_images/Weathery_Search.png)
