@@ -79,7 +79,6 @@ body {
   font-family: "Mulish", sans-serif;
   font-weight: 400;
   font-size: 1.6rem;
-  text-rendering: optimizeLegibility;
   line-height: 1.6;
   color: var(--color-grey-light); }
 
