@@ -144,8 +144,8 @@ export const loadCity = async function (lat, long) {
     const data = res[0].properties;
     console.log(data);
 
-    state.location.city = data.city;
-    state.location.country = data.country;
+    state.location.city = data.city ? data.city : 'Unknown'; // if the city is undefined (for example clicked on a lake), load 'unknown'
+    state.location.country = data.country ? data.country : 'Unknown';
   } catch (err) {
     console.error(`${err} 💥`);
   }
