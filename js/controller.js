@@ -16,11 +16,11 @@ import infoView from './views/infoView.js';
 
 const controlStarterState = async function () {
   try {
-    // 0) Load current location
+    // 0) Load current location - The browser asks the user for location permission
     await model.loadLocation();
 
-    // 0) Load weather based on current location
-    await model.loadWeather();
+    // 0) Render error message if the user declined the prompt
+    !model.state.isLocationEnabled && cityView.renderError();
 
     // 0) Load favorite cities from localStorage
     model.loadFavorites();
@@ -34,45 +34,49 @@ const controlStarterState = async function () {
     // 0) Prevent default behaviour on submit + handle clicks
     searchView.addBasicConfig();
 
-    // 1) Render the location
-    locationView.render(model.state.location);
-
-    // 2) Render the weather
-    cardsView.render(model.state);
-
-    // 3) Render the clock
+    // 1) Render the clock
     cardsView.updateClock(model.state);
 
-    // 4) Render the small cards
-    cardsView.renderCards(model.state);
-
-    // 5) Fade the DOM in
-    cardsView.loadFadeIn();
-
-    // 6) Render chart (for 7 days)
-    chartView.renderChart(model.state);
-
-    // 7) Load default pinned cities
+    // 2) Load default pinned cities
     model.refreshPinnedCities();
 
-    // 8) Render pinned cities
+    // 3) Render pinned cities
     pinnedView.generatePinnedCities(model.state.pinned);
 
-    // 9) Render map
+    // If the user enabled location service, load the current location's weather
+    if (model.state.isLocationEnabled) {
+      // 0) Load weather based on current location
+      await model.loadWeather();
+
+      // 1) Render the weather
+      cardsView.render(model.state);
+
+      // 2) Render the clock
+      cardsView.updateClock(model.state);
+
+      // 3) Render the small cards
+      cardsView.renderCards(model.state);
+
+      // 4) Fade the DOM in
+      cardsView.loadFadeIn();
+
+      // 5) Render chart (for 7 days)
+      chartView.renderChart(model.state);
+    }
+
+    // 6) Render the location
+    locationView.render(model.state.location);
+
+    // 7) Render map
     mapView.renderMap(
       model.state.favorites,
       model.state.location,
       controlLoadCity
     );
 
-    // 10) Management of map resizing
+    // 8) Management of map resizing
     mapView.manageResize();
   } catch (err) {
-    if (err.code === 1) {
-      cityView.renderError();
-      console.error(err);
-      return;
-    }
     cardsView.renderError();
     console.error(err);
   }

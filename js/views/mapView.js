@@ -70,8 +70,13 @@ class MapView extends View {
   // ---------- HELPER FUNCTIONS ---------- //
 
   _createMap(currentLocation) {
-    const { latitude, longitude } = currentLocation; // get lat+lng from current position
-    return L.map('map').setView([latitude, longitude], 7); // 7 -> zoom level
+    // get lat+lng from current position
+    const { latitude, longitude } = currentLocation;
+    // If the user declined browser's location prompt, Budapest will be the in the center
+    return L.map('map').setView(
+      [latitude ? latitude : 47.497913, longitude ? longitude : 19.040236],
+      7
+    ); // 7 -> zoom level
   }
 
   _addTileLayer(isLightMode) {

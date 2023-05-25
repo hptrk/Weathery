@@ -1,7 +1,12 @@
 //---------- The model represents and manages data, as well as the rules and behaviors associated with that data ----------//
 
 import { async } from 'regenerator-runtime';
-import { WEATHER_API, REVERSE_GEOCODE, AUTOCOMPLETE } from './config';
+import {
+  WEATHER_API,
+  REVERSE_GEOCODE,
+  AUTOCOMPLETE,
+  AUTOCOMPLETE2,
+} from './config';
 import {
   AJAX,
   getDaily,
@@ -29,6 +34,7 @@ export const state = {
     results: [],
   },
   locale: 'en-US', // will be automatic later
+  isLocationEnabled: false,
 };
 
 // ---------- WORKING WITH WEATHER DATAS (forecast section) ---------- //
@@ -81,14 +87,21 @@ const createMiniObject = function (data) {
 
 // Load current position + weather
 export const loadLocation = async () => {
-  if (!navigator.geolocation)
-    return console.error('💥 Geolocation is not supported by your browser 💥');
+  try {
+    if (!navigator.geolocation)
+      return console.error(
+        '💥 Geolocation is not supported by your browser 💥'
+      );
 
-  const pos = await new Promise((resolve, reject) => {
-    navigator.geolocation.getCurrentPosition(resolve, reject);
-  });
-  state.location.latitude = pos.coords.latitude;
-  state.location.longitude = pos.coords.longitude;
+    const pos = await new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
+    state.location.latitude = pos.coords.latitude;
+    state.location.longitude = pos.coords.longitude;
+    state.isLocationEnabled = true;
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 // Loading the data from open-meteo API
@@ -158,7 +171,10 @@ export const loadSearchResults = async function (
   closest = [state.location.latitude, state.location.longitude]
 ) {
   try {
-    const { results } = await AJAX(AUTOCOMPLETE(text, closest));
+    const { results } = state.isLocationEnabled
+      ? await AJAX(AUTOCOMPLETE(text, closest))
+      : await AJAX(AUTOCOMPLETEWithoutBias(text));
+
     results.sort((a, b) => b.rank.importance - a.rank.importance); // sort results by importance
     state.search.results = results; // load into state object
   } catch (err) {

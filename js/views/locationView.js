@@ -1,5 +1,6 @@
 //---------- This view is responsible for rendering the current location to the navigation ----------//
 
+import { mark } from 'regenerator-runtime';
 import View from './View.js';
 class LocationView extends View {
   _parentElement = document.querySelector('.navigation__location');
@@ -26,10 +27,15 @@ class LocationView extends View {
   />
 </svg>
 
-<span class="navigation__location-text"
-  ><strong class="navigation__location-text--city">${this._data.city}</strong>,
-  ${this._data.country}</span>
+<span class="navigation__location-text">
+<strong class="navigation__location-text--city">
+${this._data.city ? this._data.city : 'Search for a city!'}
+  </strong>
+  ${this._data.city ? ',' : ''}
+  ${this._data.country ? this._data.country : ''}
+  </span>
   `;
   }
+  // If the user declined browser's location prompt, display "Search for a city!"
 }
 export default new LocationView();

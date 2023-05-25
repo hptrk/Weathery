@@ -13,7 +13,7 @@ class CityView extends View {
   _nextDaysButton = this._buttons[2];
   _event;
   _pressedEnter = false;
-  _errorMessage = 'Please allow access to your location for Weathery to work.';
+  _errorMessage = `Please allow access to your location for seamless user experience!`;
 
   // ---------- HANDLERS ---------- //
 
