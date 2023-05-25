@@ -6,7 +6,6 @@ import { sleep } from '../helpers.js';
 
 class FavoriteView extends View {
   _parentElement = document.querySelector('.navigation__favorites');
-  _favoriteData;
   _menuButton = document.querySelectorAll('.navigation__icon-box')[0]; // [0]-menu, [1]-info
   _infoButton = document.querySelectorAll('.navigation__icon-box')[1];
   _checkbox = document.querySelector('.navigation__icon-checkbox');
@@ -14,9 +13,10 @@ class FavoriteView extends View {
   _triangle = document.querySelector('.gaphider');
   _iconsBox = document.querySelectorAll('.navigation__favorites-box--icons');
   _inputField = document.querySelector('.navigation__searchbar-input');
-  _isClicked = false;
-  _event;
   _errorMessage = `You've reached the maximum number of pinned cities. Please unpin a city before adding a new one.`;
+  _isClicked = false;
+  _favoriteData;
+  _event;
 
   // ---------- HANDLERS ---------- //
 

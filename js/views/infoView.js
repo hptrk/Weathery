@@ -8,8 +8,8 @@ class InfoView extends View {
   _infoButton = document.querySelectorAll('.navigation__icon-box')[1]; // [0]-menu, [1]-info
   _menuButton = document.querySelectorAll('.navigation__icon-box')[0];
   _inputField = document.querySelector('.navigation__searchbar-input');
-  _isClicked = false;
   _triangle = document.querySelector('.gaphider');
+  _isClicked = false;
 
   // ---------- HANDLER ---------- //
 

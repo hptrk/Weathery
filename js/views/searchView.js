@@ -9,11 +9,11 @@ class SearchView extends View {
   _parentElement = document.querySelector('.navigation__searchbar-results');
   _searchBar = document.querySelector('.navigation__searchbar');
   _inputField = document.querySelector('.navigation__searchbar-input');
-  _results;
-  _favorites;
   _borderHider = '<div class="border-hider"></div>'; // with a height of 5rem (hides the bottom borders)
   _errorMessage =
     'Something went wrong while loading your search results. Please refresh the page and try again.';
+  _results;
+  _favorites;
 
   // ---------- DEFAULTS ---------- //
 

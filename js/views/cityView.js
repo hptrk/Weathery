@@ -11,9 +11,9 @@ class CityView extends View {
   _todayButton = this._buttons[0];
   _tomorrowButton = this._buttons[1];
   _nextDaysButton = this._buttons[2];
-  _event;
   _pressedEnter = false;
   _errorMessage = `Please allow access to your location for seamless user experience!`;
+  _event;
 
   // ---------- HANDLERS ---------- //
 

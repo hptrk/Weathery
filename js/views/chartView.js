@@ -19,8 +19,8 @@ Chart.defaults.font.lineHeight = 1;
 
 class ChartView extends View {
   _diagram = document.getElementById('diagram');
-  _delayed; // for the animation delay
   _chartData = [...Array(7)].map(x => []); // empty array with 7 empty arrays
+  _delayed; // for the animation delay
 
   // ---------- MAIN FUNCTION ---------- //
 

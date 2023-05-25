@@ -1,15 +1,14 @@
 //---------- Main View file with helper functions ----------//
 
-import { mark } from 'regenerator-runtime';
 import { sleep } from '../helpers';
 
 export default class View {
-  _data;
   _errorBox = document.querySelector('.error-message');
   _buttons = document.querySelectorAll('.forecast__header-menu--item');
   _todayButton = this._buttons[0];
   _tomorrowButton = this._buttons[1];
   _nextDaysButton = this._buttons[2];
+  _data;
 
   // ---------- RENDER FUNCTIONS ---------- //
 

@@ -1,11 +1,10 @@
 //---------- The model represents and manages data, as well as the rules and behaviors associated with that data ----------//
 
-import { async } from 'regenerator-runtime';
 import {
   WEATHER_API,
   REVERSE_GEOCODE,
   AUTOCOMPLETE,
-  AUTOCOMPLETE2,
+  AUTOCOMPLETEWithoutBias,
 } from './config';
 import {
   AJAX,
@@ -19,7 +18,6 @@ import {
   isDayTime,
   updateLocalStorage,
 } from './helpers';
-import { pinned } from '../icons/likeSVG';
 
 // Current state object
 export const state = {
@@ -155,7 +153,6 @@ export const loadCity = async function (lat, long) {
   try {
     const { features: res } = await AJAX(REVERSE_GEOCODE(lat, long));
     const data = res[0].properties;
-    console.log(data);
 
     state.location.city = data.city ? data.city : 'Unknown'; // if the city is undefined (for example clicked on a lake), load 'unknown'
     state.location.country = data.country ? data.country : 'Unknown';

@@ -22,7 +22,6 @@ import night_snow from '../icons/night_snow.svg';
 import snow from '../icons/snow.svg';
 import thunder from '../icons/thunder.svg';
 import { N, NE, E, SE, S, SW, W, NW } from '../icons/directionSVGS';
-import { icon } from 'leaflet';
 
 ////////////////////
 // Rejecting timeout needed for promise race

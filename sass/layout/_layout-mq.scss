@@ -142,8 +142,8 @@
     grid-column: 1 / -1;
   }
   .settings {
-    grid-row: 1; //
-    grid-column: -2 / -1; ///
+    grid-row: 1;
+    grid-column: -2 / -1;
     align-items: start;
   }
   .forecast {
@@ -200,7 +200,6 @@
   }
   .forecast {
     grid-template-rows: repeat(2, min-content);
-    //margin-top: -3rem;
     &__header {
       display: grid;
       align-items: center;

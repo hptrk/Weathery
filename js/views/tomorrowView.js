@@ -1,6 +1,5 @@
 //---------- This view is responsible for rendering the "Tomorrow" cards section on click ----------//
 
-import { mark } from 'regenerator-runtime';
 import View from './View.js';
 import { getSVGLink, hoursString, getArrowSVGCode } from '../helpers.js';
 
@@ -10,9 +9,9 @@ class TomorrowView extends View {
   _todayButton = this._buttons[0];
   _tomorrowButton = this._buttons[1];
   _nextDaysButton = this._buttons[2];
-  _cardNumber;
   _switcher = document.getElementById('forecastSwitcher');
   _checkbox = document.querySelector('.forecast__header-switcher--checkbox');
+  _cardNumber;
 
   // ---------- DEFAULTS ---------- //
 

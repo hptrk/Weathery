@@ -1,6 +1,5 @@
 //---------- This view is responsible for rendering the current location to the navigation ----------//
 
-import { mark } from 'regenerator-runtime';
 import View from './View.js';
 class LocationView extends View {
   _parentElement = document.querySelector('.navigation__location');

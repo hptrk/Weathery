@@ -11,12 +11,12 @@ import {
 } from '../helpers';
 
 class MapView extends View {
-  _map;
-  _currentPosition;
   _resizeButton = document.querySelector('.map__header-resize');
   _isResized = false;
   _container = document.querySelector('.container');
   _mapMessage = document.querySelector('.map__message');
+  _map;
+  _currentPosition;
 
   // ---------- MAIN FUNCTIONS ---------- //
 
