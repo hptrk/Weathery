@@ -27,6 +27,7 @@ ol[role='list'] {
   padding: 0;
 }
 html {
+  -webkit-text-size-adjust: 100%; // text size rendering fix for apple users
   font-size: 62.5%; // 1rem equals to 10 px, for easier calculations
 }
 
