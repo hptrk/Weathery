@@ -8,9 +8,14 @@ export const REVERSE_GEOCODE = function (lat, long) {
   // API FOR REVERSE GEOCODING
   return `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${long}&apiKey=5890a163a80f47f7850ecb63ea0bf851`;
 };
-export const AUTOCOMPLETEWithoutBias = function (text, coords) {
+export const AUTOCOMPLETE = function (text, coords) {
   // API FOR CITY NAME AUTO COMPLETE
   return `https://api.geoapify.com/v1/geocode/autocomplete?text=${text}&lang=en&limit=5&type=city&bias=proximity:${coords[1]},${coords[0]}&format=json&apiKey=5890a163a80f47f7850ecb63ea0bf851
+  `;
+};
+export const AUTOCOMPLETEWithoutBias = function (text) {
+  // API FOR CITY NAME AUTO COMPLETE WITHOUT PROXIMITY BIAS (when user does not enable )
+  return `https://api.geoapify.com/v1/geocode/autocomplete?text=${text}&lang=en&limit=5&type=city&format=json&apiKey=5890a163a80f47f7850ecb63ea0bf851
   `;
 };
 export const TIMEOUT_SEC = 10; // Reject a promise after X seconds
